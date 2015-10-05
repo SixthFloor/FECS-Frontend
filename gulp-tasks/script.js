@@ -4,8 +4,9 @@ var uglify = require('gulp-uglify')
 var browserSync = require('browser-sync')
 
 gulp.task('script', function () {
-  return gulp.src(['./node_modules/angular/angular.js',
-    './node_modules/angular-ui-router/release/angular-ui-router.js',
+  return gulp.src([
+    './bower_components/angular/angular.js',
+    './bower_components/angular-ui-router/release/angular-ui-router.js',
     './src/js/**/*.js'])
     .pipe(concat('scripts.js'))
     .pipe(uglify({mangle: true}))
