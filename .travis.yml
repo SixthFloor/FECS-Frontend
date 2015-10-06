@@ -14,6 +14,6 @@ before_script:
 - 'bower install'
 
 script: 
-- gulp init
+- gulp initialize
 - gulp script
 - gulp style
