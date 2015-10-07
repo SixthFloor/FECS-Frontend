@@ -1,6 +1,8 @@
 FECS-Web
 ==========
 
+[![Build Status](https://travis-ci.org/SixthFloor/FECS-Web.svg)](https://travis-ci.org/SixthFloor/FECS-Web)[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+
 ## Installation for developer
 1. Download and Install `node.js`.
 2. Open Terminal or Command Line.
