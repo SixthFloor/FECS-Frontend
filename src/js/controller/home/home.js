@@ -32,17 +32,18 @@
 	  return token ? token : false;
 	}
 
-    self.login = function() {
-    //for real use
-     //  return $http.post('waitForSomeAPI', {
-	    //   email: self.email,
-	    //   password: self.pwd
-   	 // })
-	
-	// if success
-	var fakeToken = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	self.setToken(fakeToken)
-
+    self.login = function(email, pwd) {
+    	console.log("email: "+ email + "  password: " + pwd)
+	    //for real use
+	     //  return $http.post('waitForSomeAPI', {
+		    //   email: email,
+		    //   password: pwd
+	   	 // })
+		
+		// if success
+		var fakeToken = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		self.setToken(fakeToken)
+		console.log("Token: " + self.getToken())
   	}
 
   	self.logout = function() {
@@ -51,19 +52,24 @@
 
 	}
 
-  HomePageController.$inject = ['$scope','FECSAuth']
-  function HomePageController ($scope, FECSAuth) {
+  HomePageController.$inject = ['$scope']
+  function HomePageController ($scope) {
     var self = this
 
     self.welcome = 'Welcome to Furniture E-Commerce System'
   }
 
-  LoginController.$inject = ['$scope','$http']
-  function LoginController ($scope,$http) {
+  LoginController.$inject = ['$scope','$http', 'FECSAuth']
+  function LoginController ($scope,$http,FECSAuth) {
     var self = this
 
     self.email = 'guro@guro.com'
     self.pwd = 'Hello'
+    console.log(FECSAuth.test)
+
+    self.login = function(){
+    	FECSAuth.login(self.email,self.pwd)
+    }
 
 
   }
