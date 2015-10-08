@@ -79,3 +79,16 @@ input.textfield {
 	width: 0px;
 	height: 0px;
 }
+#navbar #right #login button#loggingin {
+	width: 270px;
+	margin: 5px 0 0 5px;
+	padding: 4px 8px;
+	color: #fff;
+	background-color: #111;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+#navbar #right #login button#loggingin:hover {
+	background-color: #444;
+}
