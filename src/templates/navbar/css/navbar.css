@@ -45,3 +45,16 @@ input.textfield {
 	height: 60px;
 	line-height: 60px;
 }
+#navbar #right button.navbutton {
+	width: 80px;
+	margin: 5px 0 0 5px;
+	padding: 4px 8px;
+	color: #fff;
+	background-color: #111;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+#navbar #right button.navbutton:hover {
+	background-color: #444;
+}
