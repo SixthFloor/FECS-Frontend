@@ -12,8 +12,3 @@ angular
     $scope.sub1 = "Bedroom"
     $scope.sub2 = "Single beds"
   }])
-  .directive('navBar', function() {
-  	return {
-    	templateUrl: 'templates/nav.html'
-  	};
-  })

@@ -22,15 +22,11 @@
         controller: 'HomePageController',
         controllerAs: 'homepageCtrl'
       })
-<<<<<<< HEAD
-  }
-})()
-=======
       
       .state('product', {
         url: '/product',
         templateUrl: 'templates/product.html',
         controller: 'ProductPageController'
       })
-  }])
->>>>>>> master
+  	}
+  })()
