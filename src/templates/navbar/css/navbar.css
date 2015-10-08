@@ -19,7 +19,7 @@
 	margin: 12px 10px 0 0;
 	background: transparent url(../img/logo.png) left top no-repeat;
 }
-#navbar #left input#searchtf {
+input.textfield {
 	width: 250px;
 	padding: 4px 8px;
 	border-radius: 10px;
