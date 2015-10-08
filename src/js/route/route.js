@@ -3,17 +3,23 @@
 /**
  * @description router for control FECS app
  */
-(function () {
-  angular
-    .module('service.route', ['ui.router'])
-    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/home')
 
-      $stateProvider
-        .state('home', {
-          url: '/home',
-          templateUrl: 'templates/home.tmpl',
-          controller: 'HomePageController'
-        })
-    }])
+;(function () {
+  angular
+    .module('services.route', ['ui.router'])
+    .config(config)
+
+  config.$inject = ['$stateProvider', '$urlRouterProvider']
+
+  function config ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('', '/home')
+    $urlRouterProvider.otherwise('/404')
+
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'templates/home.tmpl',
+        controller: 'HomePageController'
+      })
+  }
 })()

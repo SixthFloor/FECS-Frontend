@@ -5,21 +5,24 @@
 *
 * @description Homepage Controller module to add create all controller of this project.
 */
-(function () {
+;(function () {
   angular
     .module('controller.homepage', [])
-    .controller('HomePageController', ['$scope', function ($scope) {
-      $scope.welcome = 'Welcome to Furniture E-Commerce System'
-    }])
+    .controller('HomePageController', HomePageController)
+    .controller('LoginController', LoginController)
 
-    .controller('LoginCtrl', ['$scope', function ($scope) {
-      $scope.email = 'guro@guro.com'
-      $scope.pwd = 'Hello'
-    }])
+  HomePageController.$inject = ['$scope']
+  function HomePageController ($scope) {
+    var _ = this
 
-    .directive('navBar', function () {
-      return {
-        templateUrl: 'templates/nav.html'
-      }
-    })
+    _.welcome = 'Welcome to Furniture E-Commerce System'
+  }
+
+  LoginController.$inject = ['$scope']
+  function LoginController ($scope) {
+    var _ = this
+
+    _.email = 'guro@guro.com'
+    _.pwd = 'Hello'
+  }
 })()
