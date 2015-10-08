@@ -19,7 +19,8 @@
       .state('home', {
         url: '/home',
         templateUrl: 'templates/home.tmpl',
-        controller: 'HomePageController'
+        controller: 'HomePageController',
+        controllerAs: 'homepageCtrl'
       })
   }
 })()

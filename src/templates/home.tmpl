@@ -1,19 +1,19 @@
-<div name="title"><h1>{{welcome}}</h1></div>
+<div name="title"><h1>{{homepageCtrl.welcome}}</h1></div>
 
-<div class="container" ng-controller="LoginController">
+<div class="container" ng-controller="LoginController as loginCtrl">
   <form role="form">
     <h2> Login </h2>
   	  <div class="row">
   	    <div class="form-group col-md-4">
   		    <label for="email">Email address:</label>
-  		    <input type="email" class="form-control" ng-model="email">
+  		    <input type="email" class="form-control" ng-model="loginCtrl.email">
   	  	</div>
   	  </div>
 
   	  <div class="row">
   	  	 <div class="form-group col-md-4">
   		    <label for="pwd">Password:</label>
-  		    <input type="password" class="form-control" ng-model="pwd">
+  		    <input type="password" class="form-control" ng-model="loginCtrl.pwd">
   	  	</div>
   	  </div>
   	   <div class="checkbox">
@@ -22,7 +22,7 @@
   	  <button type="submit" class="btn btn-default">Submit</button>
   </form>
  <hr>
-  Your email is {{email}}
-  with password {{pwd}}.
+  Your email is {{loginCtrl.email}}
+  with password {{loginCtrl.pwd}}.
 
 </div>
