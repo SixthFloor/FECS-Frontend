@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" media="all" href="css/navbar.css" />
 
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/loginfieldTransition.js"></script>
+
 </head>
 <body>
 
@@ -33,18 +35,6 @@
 </div>
 
 <script>
-	$(document).on("ready", function(){
-		$drpBtn = $("div#right").find("button#loginbutton");
-			$drpBtn.on("click", function(e){
-				e.stopPropagation();
-				$(this).parent().find("#login").fadeToggle(200);
-	  		});
-			$("html").click(function(e){
-				if( !$(e.target).closest("#login").length ) {
-					$("#login").hide(200);
-				}
-			});
-	});
 </script>
 
 </body>
