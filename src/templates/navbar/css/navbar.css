@@ -19,6 +19,25 @@
 	margin: 12px 10px 0 0;
 	background: transparent url(../img/logo.png) left top no-repeat;
 }
+#navbar #left input#searchtf {
+	width: 250px;
+	padding: 4px 8px;
+	border-radius: 10px;
+	border: none;
+}
+#navbar #left button#search {
+	width: 80px;
+	margin: 5px 0 0 5px;
+	padding: 4px 8px;
+	color: #fff;
+	background-color: #555;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+#navbar #left button#search:hover {
+	background-color: #777;
+}
 #navbar #right {
 	display: block;
 	float: right;
