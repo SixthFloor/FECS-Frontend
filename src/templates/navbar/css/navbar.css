@@ -20,7 +20,7 @@
 	background: transparent url(../img/logo.png) left top no-repeat;
 }
 input.textfield {
-	width: 250px;
+	width: 270px;
 	padding: 4px 8px;
 	border-radius: 10px;
 	border: none;
@@ -61,8 +61,8 @@ input.textfield {
 #navbar #right #login {
 	padding: 18px 0 0 0;
 	margin: -10px 0 0 0;
-	width: 400px;
-	height: 200px;
+	width: 300px;
+	height: 150px;
 	background-color: #999;
 	border-radius: 10px;
 	border: 1px solid #fff;
@@ -70,6 +70,8 @@ input.textfield {
 	color: #fff;
 	display: none;
 	z-index: 2;
+	font-size: 13px;
+	line-height: 30px;
 }
 #navbar #right #login:before {
 	position: absolute;
