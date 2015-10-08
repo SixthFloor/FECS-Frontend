@@ -14,4 +14,10 @@ angular
         templateUrl: 'templates/home.tmpl',
         controller: 'HomePageController'
       })
+      
+      .state('product', {
+        url: '/product',
+        templateUrl: 'templates/product.html',
+        controller: 'ProductPageController'
+      })
   }])

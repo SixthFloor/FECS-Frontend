@@ -2,5 +2,6 @@
 angular
   .module('FECSapp', [
     'service.route',
-    'controller.homepage'
+    'controller.homepage',
+    'controller.productpage'
   ])
