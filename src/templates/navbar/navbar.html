@@ -21,10 +21,25 @@
 	<div id="right">
 		<button class="navbutton" id="regbutton">Register</button>
 		<button class="navbutton" id="loginbutton">Login</button>
-		<div id="login"></div>
+		<div id="login">Test</div>
 	</div>
 	<div class="clear"></div>
 </div>
+
+<script>
+	$(document).on("ready", function(){
+		$drpBtn = $("div#right").find("button#loginbutton");
+			$drpBtn.on("click", function(e){
+				e.stopPropagation();
+				$(this).parent().find("#login").fadeToggle(200);
+	  		});
+			$("html").click(function(e){
+				if( !$(e.target).closest("#login").length ) {
+					$("#login").hide(200);
+				}
+			});
+	});
+</script>
 
 </body>
 </html>
