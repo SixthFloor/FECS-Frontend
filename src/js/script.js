@@ -1,4 +1,5 @@
 /* global angular */
+<<<<<<< HEAD
 
 ;(function () {
   angular
@@ -8,3 +9,11 @@
       'directive.navbar'
     ])
 })()
+=======
+angular
+  .module('FECSapp', [
+    'service.route',
+    'controller.homepage',
+    'controller.productpage'
+  ])
+>>>>>>> master
