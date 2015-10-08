@@ -1,0 +1,20 @@
+#navbar {
+	padding: 0 3%;
+	color: #777;
+	font-size: 28px;
+	background-color: #000;
+}
+#navbar #left {
+	min-width: 550px;
+	display: block;
+	float: left;
+	height: 60px;
+	line-height: 60px;
+}
+#navbar #right {
+	display: block;
+	float: right;
+	text-align: right;
+	height: 60px;
+	line-height: 60px;
+}
