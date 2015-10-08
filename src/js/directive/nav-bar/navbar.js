@@ -8,7 +8,7 @@
 
   function navbar () {
     var directive = {
-      templateUrl: 'templates/nav.html'
+      templateUrl: 'templates/nav.tmpl'
     }
     return directive
   }
