@@ -1,13 +1,6 @@
 $nav_bar_height: 60px;
 $logo_width: 175px;
 $logo_height: 42px;
-$loginpopup_width: 270px;
-
-@mixin component-style() {
-	padding: 4px 8px;
-	border-radius: 10px;
-	border: none;
-}
 
 input.textfield {
 	@include component-style();
