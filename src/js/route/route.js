@@ -38,9 +38,22 @@
 
       .state('register', {
         url: '/register',
-        templateUrl: 'templates/register.tmpl',
-        controller: 'RegisterController',
-        controllerAs: 'registerCtrl'
+        views: {
+            '': {
+              templateUrl: 'templates/register/register.tmpl',
+              controller: 'RegisterController',
+              controllerAs: 'registerCtrl'
+             },
+            'step1@register': {
+                templateUrl: 'templates/register/step1.tmpl',
+                controller: 'scotchController'
+            },
+            'step2@register': {
+                templateUrl: 'templates/register/register.tmpl',
+                controller: 'scotchController'
+            }
+        }
+
       })
   }
 })()
