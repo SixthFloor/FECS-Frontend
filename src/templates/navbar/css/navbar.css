@@ -1,17 +1,17 @@
-#navbar {
+.navbar {
 	padding: 0 3%;
 	color: #777;
 	font-size: 28px;
 	background-color: #000;
 }
-#navbar #left {
+.navbar .left {
 	min-width: 550px;
 	display: block;
 	float: left;
 	height: 60px;
 	line-height: 60px;
 }
-#navbar #left #logo {
+.navbar .left .logo {
 	display: block;
 	float: left;
 	width: 175px;
@@ -25,7 +25,7 @@ input.textfield {
 	border-radius: 10px;
 	border: none;
 }
-#navbar #left button#search {
+.navbar .left button#search {
 	width: 80px;
 	margin: 5px 0 0 5px;
 	padding: 4px 8px;
@@ -35,17 +35,17 @@ input.textfield {
 	border: none;
 	cursor: pointer;
 }
-#navbar #left button#search:hover {
+.navbar .left button#search:hover {
 	background-color: #777;
 }
-#navbar #right {
+.navbar .right {
 	display: block;
 	float: right;
 	text-align: right;
 	height: 60px;
 	line-height: 60px;
 }
-#navbar #right button.navbutton {
+.navbar .right button.navbutton {
 	width: 80px;
 	margin: 5px 0 0 5px;
 	padding: 4px 8px;
@@ -55,10 +55,10 @@ input.textfield {
 	border: none;
 	cursor: pointer;
 }
-#navbar #right button.navbutton:hover {
+.navbar .right button.navbutton:hover {
 	background-color: #444;
 }
-#navbar #right #login {
+.navbar .right .login {
 	padding: 18px 0 0 0;
 	margin: -10px 0 0 0;
 	width: 300px;
@@ -73,13 +73,13 @@ input.textfield {
 	font-size: 13px;
 	line-height: 30px;
 }
-#navbar #right #login:before {
+.navbar .right .login:before {
 	position: absolute;
 	content: "";
 	width: 0px;
 	height: 0px;
 }
-#navbar #right #login button#loggingin {
+.navbar .right .login button#loggingin {
 	width: 270px;
 	margin: 5px 0 0 5px;
 	padding: 4px 8px;
@@ -89,6 +89,6 @@ input.textfield {
 	border: none;
 	cursor: pointer;
 }
-#navbar #right #login button#loggingin:hover {
+.navbar .right .login button#loggingin:hover {
 	background-color: #444;
 }

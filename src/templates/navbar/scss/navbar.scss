@@ -13,20 +13,20 @@ input.textfield {
 	@include component-style();
 	width: $loginpopup_width;
 }
-#navbar {
+.navbar {
 	padding: 0 3%;
 	color: #777;
 	font-size: 28px;
 	background-color: #000;
 
-	#left {
+	.left {
 		min-width: 550px;
 		display: block;
 		float: left;
 		height: $nav_bar_height;
 		line-height: $nav_bar_height;
 
-		#logo {
+		.logo {
 			display: block;
 			float: left;
 			width: $logo_width;
@@ -47,7 +47,7 @@ input.textfield {
 		}
 	}
 
-	#right {
+	.right {
 		display: block;
 		float: right;
 		text-align: right;
@@ -65,7 +65,7 @@ input.textfield {
 		button.navbutton:hover {
 			background-color: #444;
 		}
-		#login {
+		.login {
 			padding: 18px 0 0 0;
 			margin: -10px 0 0 0;
 			width: 300px;
@@ -92,7 +92,7 @@ input.textfield {
 				background-color: #444;
 			}
 		}
-		#login:before {
+		.login:before {
 			position: absolute;
 			content: "";
 			width: 0px;
