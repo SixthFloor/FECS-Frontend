@@ -49,7 +49,7 @@
                 controller: 'scotchController'
             },
             'step2@register': {
-                templateUrl: 'templates/register/register.tmpl',
+                templateUrl: 'templates/register/step2.tmpl',
                 controller: 'scotchController'
             }
         }
