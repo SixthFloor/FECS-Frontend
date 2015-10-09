@@ -6,6 +6,7 @@
       'services.route',
       'controller.homepage',
       'controller.productpage',
-      'directive.navbar'
+      'directive.navbar',
+      'services.login'
     ])
 })()
