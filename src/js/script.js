@@ -7,7 +7,7 @@
       'controller.homepage',
       'controller.productpage',
       'directive.navbar',
-      'controller.category',
+      'controller.categorypage',
       'services.login'
     ])
 })()
