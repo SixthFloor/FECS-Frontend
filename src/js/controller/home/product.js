@@ -5,10 +5,17 @@
 *
 * @description Product Controller module to add create all controller of this project.
 */
-angular
-  .module('controller.productpage', [])
-  .controller('ProductPageController', ['$scope', function ($scope) {
-  	/** do logic */
-    $scope.sub1 = "Bedroom"
-    $scope.sub2 = "Single beds"
-  }])
+;(function () {
+  angular
+    .module('controller.productpage', [])
+    .controller('ProductPageController', ProductPageController)
+
+  ProductPageController.$inject = ['$scope']
+  function ProductPageController ($scope) {
+    var self = this
+    /** do logic */
+    self.sub1 = "Bedroom"
+    self.sub2 = "Single beds"
+  }
+
+})()

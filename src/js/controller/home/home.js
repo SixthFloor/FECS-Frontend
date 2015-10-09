@@ -27,8 +27,7 @@
     console.log(FECSAuth.test)
 
     self.login = function(){
-    	FECSAuth.login(self.email,self.pwd)
-    }
-    
+      FECSAuth.login(self.email,self.pwd)
+    }    
   }
 })()
