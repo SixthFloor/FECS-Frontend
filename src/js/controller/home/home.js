@@ -10,6 +10,7 @@
     .module('controller.homepage', [])
     .controller('HomePageController', HomePageController)
     .controller('LoginController', LoginController)
+    .controller('RegisterController', RegisterController)
 
   HomePageController.$inject = ['$scope']
   function HomePageController ($scope) {
@@ -29,5 +30,12 @@
     self.login = function () {
       FECSAuth.login(self.email, self.pwd)
     }
+  }
+
+  RegisterController.$inject = ['$scope', '$http', 'FECSAuth']
+  function RegisterController ($scope, $http, FECSAuth) {
+    var self = this
+
+    self.test = 'Hello'
   }
 })()

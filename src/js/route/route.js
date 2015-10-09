@@ -39,8 +39,8 @@
       .state('register', {
         url: '/register',
         templateUrl: 'templates/register.tmpl',
-        controller: 'CategoryPageController',
-        controllerAs: 'categorypageCtrl'
+        controller: 'RegisterController',
+        controllerAs: 'registerCtrl'
       })
   }
 })()
