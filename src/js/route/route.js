@@ -28,5 +28,11 @@
         templateUrl: 'templates/product.html',
         controller: 'ProductPageController'
       })
+      
+      .state('category', {
+        url: '/category',
+        templateUrl: 'templates/category.html',
+        controller: 'CategoryPageController'
+      })
   	}
   })()
