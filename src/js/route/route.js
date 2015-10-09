@@ -32,7 +32,8 @@
       .state('category', {
         url: '/category',
         templateUrl: 'templates/category.html',
-        controller: 'CategoryPageController'
+        controller: 'CategoryPageController',
+        controllerAs: 'categorypageCtrl'
       })
   	}
   })()
