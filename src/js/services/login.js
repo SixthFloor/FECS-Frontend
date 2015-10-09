@@ -11,8 +11,8 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', [])
     .service('FECSAuth', FECSAuth)
 
-  FECSAuth.$inject = ['$window']
-  function FECSAuth ($window) {
+  FECSAuth.$inject = ['localStorageService']
+  function FECSAuth (localStorageService) {
     var self = this
 
     self.test = 'Hello'
@@ -23,11 +23,11 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.setToken = function (token) {
-      $window.localStorage['authToken'] = token
+      localStorageService.set('authToken', token)
     }
 
     self.getToken = function () {
-      var token = $window.localStorage['authToken']
+      var token = localStorageService.get('authToken')
       return token ? token : false
     }
 
@@ -46,7 +46,7 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.logout = function () {
-      $window.localStorage.removeItem('authToken')
+      localStorageService.remove('authToken')
     }
   }
 })()
