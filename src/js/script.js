@@ -1,8 +1,12 @@
 /* global angular */
-(function () {
+
+;(function () {
   angular
     .module('FECSapp', [
-      'service.route',
-      'controller.homepage'
+      'services.route',
+      'controller.homepage',
+      'controller.productpage',
+      'directive.navbar',
+      'services.login'
     ])
 })()
