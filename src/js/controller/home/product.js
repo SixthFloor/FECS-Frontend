@@ -17,5 +17,4 @@
     self.sub1 = 'Bedroom'
     self.sub2 = 'Single beds'
   }
-
 })()

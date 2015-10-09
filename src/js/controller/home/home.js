@@ -18,8 +18,8 @@
     self.welcome = 'Welcome to Furniture E-Commerce System'
   }
 
-  LoginController.$inject = ['$scope', '$http', 'FECSAuth']
-  function LoginController ($scope, $http, FECSAuth) {
+  LoginController.$inject = ['$scope', '$http', 'FECSAuth', 'localStorageService']
+  function LoginController ($scope, $http, FECSAuth, localStorageService) {
     var self = this
 
     self.email = 'guro@guro.com'

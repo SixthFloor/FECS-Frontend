@@ -8,6 +8,7 @@
       'controller.productpage',
       'directive.navbar',
       'controller.categorypage',
-      'services.login'
+      'services.login',
+      'LocalStorageModule'
     ])
 })()
