@@ -22,7 +22,7 @@
         controller: 'HomePageController',
         controllerAs: 'homepageCtrl'
       })
-      
+
       .state('product', {
         url: '/product',
         templateUrl: 'templates/product.html',
@@ -36,4 +36,5 @@
         controllerAs: 'categorypageCtrl'
       })
   	}
-  })()
+  }
+})()

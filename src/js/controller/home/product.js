@@ -14,8 +14,8 @@
   function ProductPageController ($scope) {
     var self = this
     /** do logic */
-    self.sub1 = "Bedroom"
-    self.sub2 = "Single beds"
+    self.sub1 = 'Bedroom'
+    self.sub2 = 'Single beds'
   }
 
 })()
