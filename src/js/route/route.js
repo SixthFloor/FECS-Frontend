@@ -46,11 +46,18 @@
              },
             'step1@register': {
                 templateUrl: 'templates/register/step1.tmpl',
-                controller: 'scotchController'
+                controller: 'RegisterController',
+                controllerAs: 'registerCtrl'
             },
             'step2@register': {
                 templateUrl: 'templates/register/step2.tmpl',
-                controller: 'scotchController'
+                controller: 'RegisterController',
+                controllerAs: 'registerCtrl'
+            },
+            'step3@register': {
+                templateUrl: 'templates/register/step3.tmpl',
+                controller: 'RegisterController',
+                controllerAs: 'registerCtrl'
             }
         }
 
