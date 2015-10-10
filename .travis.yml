@@ -6,8 +6,13 @@ branches:
 
 language: node_js
 
-env: BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
-    
+env: 
+	matrix:
+    - MODE='check'
+    - BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
+    - BROWSER=Chrome-beta ARGS='-x -b Chrome -u'
+    - BROWSER=Chrome-unstable ARGS='-x -b Chrome -u'
+
 node_js:
 - '0.12'
 - '0.11'
@@ -22,5 +27,8 @@ before_script:
 - 'npm install'
 - 'bower install'
 - 'chmod a+x script.sh'
+
+install:
+- ./script-setup.sh
 
 script: ./script.sh
