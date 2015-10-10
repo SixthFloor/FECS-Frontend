@@ -22,10 +22,20 @@
   LoginController.$inject = ['$scope', '$http', 'FECSAuth']
   function LoginController ($scope, $http, FECSAuth) {
     var self = this
-
+    self.show = false
     self.email = 'guro@guro.com'
     self.pwd = 'Hello'
     console.log(FECSAuth.test)
+
+    self.toggleLogin = function () {
+      if (self.show) {
+        self.show = false
+      }
+      else {
+        self.show = true
+      }
+      console.log(self.show)
+    }
 
     self.login = function () {
       FECSAuth.login(self.email, self.pwd)
