@@ -1,5 +1,11 @@
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 
+//Register page
 .require-star{
   color: red;
+}
+
+.register-2col-row{
+  @extend .row;
+  margin-left: -3px;
 }
