@@ -63,12 +63,12 @@ $text-color-textfield: #444;
 
 		button.navbutton {
 			@include component-style();
+			@include nav-component();
 			width: 80px;
 			margin: 5px 0 0 5px;
 			color: #fff;
 			background-color: #111;
 			cursor: pointer;
-			@include nav-component();
 		}
 		button.navbutton:hover {
 			background-color: #444;
