@@ -8,7 +8,8 @@
     "unittest": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js --single-run",
     "update-webdriver": "webdriver-manager update",
     "protractor": "protractor ./test/protractor.conf.js",
-    "test": "npm run protractor && npm run unittest"
+    "runtest": "npm run protractor && npm run unittest",
+    "test": "script.sh"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "gulp-sass": "^2.0.4",
     "gulp-shell": "^0.4.3",
     "gulp-uglify": "^1.4.1",
+    "http-server": "^0.8.5",
     "karma": "^0.13.10",
     "karma-chrome-launcher": "^0.2.1",
     "karma-firefox-launcher": "^0.1.6",
