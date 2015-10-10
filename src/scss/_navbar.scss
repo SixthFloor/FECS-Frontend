@@ -1,0 +1,108 @@
+$nav_bar_height: 60px;
+$logo_width: 175px;
+$logo_height: 42px;
+$loginpopup_width: 270px;
+$text-color-textfield: #444;
+
+@mixin component-style() {
+	padding: 4px 8px;
+	border-radius: 10px;
+	border: none;
+}
+@mixin nav-component() {
+	margin: 22px 0 0 0;
+}
+
+.nav-bar {
+	padding: 0 30px;
+	color: $text-color-textfield;
+	background-color: #000;
+
+	input.navtf {
+		@include component-style();
+		width: $loginpopup_width;
+	}
+
+	.left {
+		min-width: 550px;
+		display: block;
+		float: left;
+		height: $nav_bar_height;
+		line-height: $nav_bar_height;
+
+		.logo {
+			display: block;
+			float: left;
+			width: $logo_width;
+			height: $logo_height;
+			margin: 12px 10px 0 0;
+			background: transparent url(../img/logo.png) left top no-repeat;
+		}
+		button, input {
+			@include nav-component();
+		}
+		button#search {
+			@include component-style();
+			width: 80px;
+			margin: 5px 0 0 5px;
+			color: #fff;
+			background-color: #555;
+			cursor: pointer;
+		}
+		button#search:hover {
+			background-color: #777;
+		}
+	}
+
+	.right {
+		display: block;
+		float: right;
+		text-align: right;
+		height: $nav_bar_height;
+		line-height: $nav_bar_height;
+
+		button.navbutton {
+			@include component-style();
+			width: 80px;
+			margin: 5px 0 0 5px;
+			color: #fff;
+			background-color: #111;
+			cursor: pointer;
+			@include nav-component();
+		}
+		button.navbutton:hover {
+			background-color: #444;
+		}
+	}
+}
+
+.login {
+	padding: 18px 0 0 0;
+	margin: -10px 0 0 0;
+	width: 300px;
+	height: 150px;
+	background-color: #999;
+	border-radius: 10px;
+	border: 1px solid #fff;
+	text-align: center;
+	color: #fff;
+	z-index: 2;
+	font-size: 13px;
+	line-height: 30px;
+
+	input {
+		color: $text-color-textfield;
+	}
+
+	button#loggingin {
+		@include component-style();
+		width: $loginpopup_width;
+		margin: 5px 0 0 5px;
+		color: #fff;
+		background-color: #111;
+		cursor: pointer;
+	}
+	button#loggingin:hover {
+		background-color: #444;
+	}
+}
