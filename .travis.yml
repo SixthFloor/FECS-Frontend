@@ -3,31 +3,22 @@ branches:
   only:
     - master
     - ci
-
 language: node_js
-
-env:
-- BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
-- BROWSER=Chrome-beta ARGS='-x -b Chrome -u'
-- BROWSER=Chrome-unstable ARGS='-x -b Chrome -u'
-
 node_js:
 - '0.12'
 - '0.11'
 
 before_install:
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- npm run update-webdriver
+- sleep 1 
 - chmod a+x script.sh
-- chmod a+x script-setup.sh
 - gem install sass
 
 before_script:
 - 'npm -g install bower gulp'
 - 'npm install'
 - 'bower install'
-
-install:
-- ./script-setup.sh
 
 script: ./script.sh
