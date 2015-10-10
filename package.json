@@ -4,7 +4,11 @@
   "description": "Frontend Furniture E-Commerce System",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "unittest": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js --single-run",
+    "update-webdriver": "webdriver-manager update",
+    "protractor": "protractor ./test/protractor.conf.js",
+    "test": "npm run protractor && npm run unittest"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,12 @@
     "gulp-sass": "^2.0.4",
     "gulp-shell": "^0.4.3",
     "gulp-uglify": "^1.4.1",
+    "karma": "^0.13.10",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6",
+    "karma-junit-reporter": "^0.3.7",
+    "protractor": "^2.5.1",
     "require-dir": "^0.3.0"
   },
   "dependencies": {}
