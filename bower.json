@@ -17,6 +17,8 @@
   "dependencies": {
     "angular": "~1.4.7",
     "angular-ui-router": "~0.2.15",
-    "bootstrap-sass": "~3.3.5"
-  }
+    "bootstrap-sass": "~3.3.5",
+    "angular-mocks": "~1.4.7"
+  },
+  "devDependencies": {}
 }
