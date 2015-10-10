@@ -6,19 +6,11 @@ branches:
 
 language: node_js
 
+env: BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
+    
 node_js:
 - '0.12'
 - '0.11'
-
-env: 
-	matrix:
-    - MODE='check'
-    - BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
-    - BROWSER=Chrome-beta ARGS='-x -b Chrome -u'
-    - BROWSER=Chrome-unstable ARGS='-x -b Chrome -u'
-    - BROWSER=Firefox-stable ARGS='-x -b Firefox -u'
-    - BROWSER=Firefox-beta ARGS='-x -b Firefox -u'
-    - BROWSER=Firefox-aurora ARGS='-x -b Firefox -u'
 
 before_install:
 - "export DISPLAY=:99.0"
