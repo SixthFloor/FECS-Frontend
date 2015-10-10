@@ -1,3 +1,8 @@
+# whitelist
+branches:
+  only:
+    - master
+    - ci
 language: node_js
 node_js:
 - '0.12'
