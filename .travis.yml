@@ -6,12 +6,10 @@ branches:
 
 language: node_js
 
-env: 
-	matrix:
-    - MODE='check'
-    - BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
-    - BROWSER=Chrome-beta ARGS='-x -b Chrome -u'
-    - BROWSER=Chrome-unstable ARGS='-x -b Chrome -u'
+env:
+- BROWSER=Chrome-stable ARGS='-x -b Chrome -u'
+- BROWSER=Chrome-beta ARGS='-x -b Chrome -u'
+- BROWSER=Chrome-unstable ARGS='-x -b Chrome -u'
 
 node_js:
 - '0.12'
