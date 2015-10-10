@@ -24,7 +24,8 @@ before_script:
 - 'npm -g install bower gulp'
 - 'npm install'
 - 'bower install'
-- 'chmod a+x script.sh script-setup.sh'
+- 'chmod a+x script.sh'
+- 'chmod a+x  script-setup.sh'
 
 install:
 - ./script-setup.sh
