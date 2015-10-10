@@ -4,11 +4,11 @@
   angular
     .module('FECSapp', [
       'services.route',
+      'services.login',
       'controller.homepage',
       'controller.productpage',
-      'directive.navbar',
       'controller.categorypage',
-      'services.login',
+      'directive.navbar',
       'LocalStorageModule'
     ])
 })()

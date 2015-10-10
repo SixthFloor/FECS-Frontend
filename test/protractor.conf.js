@@ -1,5 +1,5 @@
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 4000,
 
   specs: ['protractor_test/*.js'],
 
@@ -12,6 +12,6 @@ exports.config = {
   framework: 'jasmine',
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
+    defaultTimeoutInterval: 4000
   }
 }
