@@ -25,7 +25,7 @@ before_script:
 - 'npm install'
 - 'bower install'
 - 'chmod a+x script.sh'
-- 'chmod a+x  script-setup.sh'
+- 'chmod a+x script-setup.sh'
 
 install:
 - ./script-setup.sh
