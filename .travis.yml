@@ -18,14 +18,14 @@ node_js:
 before_install:
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
+- chmod a+x script.sh
+- chmod a+x script-setup.sh
 - gem install sass
 
 before_script:
 - 'npm -g install bower gulp'
 - 'npm install'
 - 'bower install'
-- 'chmod a+x script.sh'
-- 'chmod a+x script-setup.sh'
 
 install:
 - ./script-setup.sh
