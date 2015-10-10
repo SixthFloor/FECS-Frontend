@@ -5,10 +5,12 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
-    "unittest": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js --single-run",
+    "unit": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js --single-run",
+    "unit-firefox": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox",
     "update-webdriver": "webdriver-manager update",
     "protractor": "node ./node_modules/protractor/bin/protractor ./test/protractor.conf.js",
-    "runtest": "npm run protractor && npm run unittest",
+    "protractor-firefox": "node ./node_modules/protractor/bin/protractor ./test/protractor.conf.js --browser=firefox",
+    "runtest": "npm run protractor && npm run unit",
     "test": "script.sh"
   },
   "repository": {
