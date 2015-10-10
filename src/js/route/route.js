@@ -22,20 +22,17 @@
         controller: 'HomePageController',
         controllerAs: 'homepageCtrl'
       })
-
       .state('product', {
         url: '/product',
         templateUrl: 'templates/product.tmpl',
         controller: 'ProductPageController'
       })
-
       .state('category', {
         url: '/category',
         templateUrl: 'templates/category.tmpl',
         controller: 'CategoryPageController',
         controllerAs: 'categorypageCtrl'
       })
-
       .state('register', {
         url: '/register',
         views: {
@@ -60,7 +57,6 @@
             controllerAs: 'registerCtrl'
           }
         }
-
       })
   }
 })()
