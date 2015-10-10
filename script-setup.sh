@@ -4,7 +4,7 @@ set -x
 set -e
 
 ls -l /dev/shm
-sudo chmod 1777 /dev/shm
+chmod 1777 /dev/shm
 ls -l /dev/shm
 
 uname -a
