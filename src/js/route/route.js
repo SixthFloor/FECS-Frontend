@@ -25,7 +25,8 @@
       .state('product', {
         url: '/product',
         templateUrl: 'templates/product.tmpl',
-        controller: 'ProductPageController'
+        controller: 'ProductPageController',
+        controllerAs: 'productpageCtrl'
       })
       .state('category', {
         url: '/category',
