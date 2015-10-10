@@ -18,5 +18,4 @@ before_script:
 - 'npm install'
 - 'bower install'
 
-script:
-- script.sh
+script: ./script.sh
