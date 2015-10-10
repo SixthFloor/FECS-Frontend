@@ -14,7 +14,7 @@ module.exports = function (config) {
 
     frameworks: ['jasmine'],
 
-    browsers: ['Chrome', 'Chrome_without_security', 'Firefox'],
+    browsers: ['Chrome', 'Chrome_without_security'],
 
     customLaunchers: {
       Chrome_without_security: {

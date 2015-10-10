@@ -7,7 +7,7 @@
     "start": "gulp",
     "unittest": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js --single-run",
     "update-webdriver": "webdriver-manager update",
-    "protractor": "protractor ./test/protractor.conf.js",
+    "protractor": "node ./node_modules/protractor/bin/protractor ./test/protractor.conf.js",
     "runtest": "npm run protractor && npm run unittest",
     "test": "script.sh"
   },
