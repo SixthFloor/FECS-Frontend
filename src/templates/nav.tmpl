@@ -1,20 +1,20 @@
 <div class="nav-bar">
   <div class="left">
     <a href="#/home"><div class="logo"></div></a>
-    <input class="navtf" id="searchtf" type="text" placeHolder="Search" />
-    <button id="search" type="submit">Search</button>
+    <input class="navtf" type="text" placeHolder="Search" />
+    <button class="search" type="submit">Search</button>
   </div>
   <div class="right" ng-controller="LoginController as loginCtrl">
-    <a href="#/register"><button class="navbutton" id="regbutton">Register</button></a>
-    <button class="navbutton" id="loginbutton" ng-click="loginCtrl.toggleLogin()">Log in</button>
+    <a href="#/register"><button class="navbutton" >Register</button></a>
+    <button class="navbutton" ng-click="loginCtrl.toggleLogin()">Log in</button>
 
     <div class="login" ng-show="loginCtrl.show">
       <form role="form">
-        <input class="navtf" id="usernametf" type="text" placeHolder="E-mail" ng-model="loginCtrl.email" />
-        <input class="navtf" id="passwordtf" type="password" placeHolder="Password" ng-model="loginCtrl.pwd" /><br/>
-        <input id="remember" type="checkbox" /><label for="remember"><span></span>Keep me logged in</label> |
+        <input class="navtf" type="text" placeHolder="E-mail" ng-model="loginCtrl.email" />
+        <input class="navtf" type="password" placeHolder="Password" ng-model="loginCtrl.pwd" /><br/>
+        <input type="checkbox" id="remember" /><label for="remember"><span></span>Keep me logged in</label> |
         <a href="">Forgot your password?</a>
-        <button id="loggingin" type="submit" ng-click="loginCtrl.login()">Log in</button>
+        <button class="loggingin" type="submit" ng-click="loginCtrl.login()">Log in</button>
       </form>
       Your email is {{loginCtrl.email}}
       with password {{loginCtrl.pwd}}

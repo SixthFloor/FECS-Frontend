@@ -41,7 +41,7 @@ $text-color-textfield: #444;
 		button, input {
 			@include nav-component();
 		}
-		button#search {
+		button.search {
 			@include component-style();
 			width: 80px;
 			margin: 5px 0 0 5px;
@@ -49,7 +49,7 @@ $text-color-textfield: #444;
 			background-color: #555;
 			cursor: pointer;
 		}
-		button#search:hover {
+		button.search:hover {
 			background-color: #777;
 		}
 	}
@@ -94,7 +94,7 @@ $text-color-textfield: #444;
 		color: $text-color-textfield;
 	}
 
-	button#loggingin {
+	button.loggingin {
 		@include component-style();
 		width: $loginpopup_width;
 		margin: 5px 0 0 5px;
@@ -102,7 +102,7 @@ $text-color-textfield: #444;
 		background-color: #111;
 		cursor: pointer;
 	}
-	button#loggingin:hover {
+	button.loggingin:hover {
 		background-color: #444;
 	}
 }
