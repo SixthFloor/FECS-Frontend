@@ -25,13 +25,13 @@
 
       .state('product', {
         url: '/product',
-        templateUrl: 'templates/product.html',
+        templateUrl: 'templates/product.tmpl',
         controller: 'ProductPageController'
       })
 
       .state('category', {
         url: '/category',
-        templateUrl: 'templates/category.html',
+        templateUrl: 'templates/category.tmpl',
         controller: 'CategoryPageController',
         controllerAs: 'categorypageCtrl'
       })
@@ -39,26 +39,26 @@
       .state('register', {
         url: '/register',
         views: {
-            '': {
-              templateUrl: 'templates/register/register.tmpl',
-              controller: 'RegisterController',
-              controllerAs: 'registerCtrl'
-             },
-            'step1@register': {
-                templateUrl: 'templates/register/step1.tmpl',
-                controller: 'RegisterController',
-                controllerAs: 'registerCtrl'
-            },
-            'step2@register': {
-                templateUrl: 'templates/register/step2.tmpl',
-                controller: 'RegisterController',
-                controllerAs: 'registerCtrl'
-            },
-            'step3@register': {
-                templateUrl: 'templates/register/step3.tmpl',
-                controller: 'RegisterController',
-                controllerAs: 'registerCtrl'
-            }
+          '': {
+            templateUrl: 'templates/register/register.tmpl',
+            controller: 'RegisterController',
+            controllerAs: 'registerCtrl'
+          },
+          'step1@register': {
+            templateUrl: 'templates/register/step1.tmpl',
+            controller: 'RegisterController',
+            controllerAs: 'registerCtrl'
+          },
+          'step2@register': {
+            templateUrl: 'templates/register/step2.tmpl',
+            controller: 'RegisterController',
+            controllerAs: 'registerCtrl'
+          },
+          'step3@register': {
+            templateUrl: 'templates/register/step3.tmpl',
+            controller: 'RegisterController',
+            controllerAs: 'registerCtrl'
+          }
         }
 
       })
