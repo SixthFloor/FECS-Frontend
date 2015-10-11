@@ -1,3 +1,25 @@
 .product-view {
-	padding: 0 30px;
+	padding: 0 5%;
+  .product {
+    text-align: center;
+  }
+	.product-left {
+    display: inline-block;
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+		background-color: #fff;
+    border-radius: 20px;
+	}
+  .product-right {
+    display: inline-block;
+    margin: 10px;
+    width: 250px;
+    background-color: #fff;
+    border-radius: 20px;
+    .product-cus {
+      padding: 0 20px 20px 20px;
+      text-align: left;
+    }
+  }
 }

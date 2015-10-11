@@ -17,6 +17,8 @@
     var self = this
 
     self.welcome = 'Welcome to Furniture E-Commerce System'
+
+    $scope.accessToken = ''
   }
 
   LoginController.$inject = ['$scope', '$http', 'FECSAuth']
@@ -28,15 +30,20 @@
     console.log(FECSAuth.test)
 
     self.toggleLogin = function () {
-      if (self.show) {
-        self.show = false
-      }
-      else self.show = true
-      console.log(self.show)
+      self.show = !self.show
     }
 
     self.login = function () {
-      FECSAuth.login(self.email, self.pwd)
+      var data = {
+        email: self.email,
+        pwd: self.pwd
+      }
+      FECSAuth.login(data, function (res) {
+        $scope.accessToken = res.success.access_token
+        FECSAuth.setToken($scope.accessToken)
+      }, function (err) {
+        self.message = err.error
+      })
     }
   }
 
