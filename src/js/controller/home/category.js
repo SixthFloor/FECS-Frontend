@@ -1,9 +1,9 @@
 /* global angular */
 
 /**
-* Product Controller Module
+* Category Controller Module
 *
-* @description Product Controller module to add create all controller of this project.
+* @description Category Controller module to add create all controller of this project.
 */
 ;(function () {
   angular
