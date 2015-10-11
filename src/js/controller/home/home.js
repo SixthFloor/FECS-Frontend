@@ -31,9 +31,7 @@
       if (self.show) {
         self.show = false
       }
-      else {
-        self.show = true
-      }
+      else self.show = true
       console.log(self.show)
     }
 
@@ -45,7 +43,21 @@
   RegisterController.$inject = ['$scope', '$http', 'FECSAuth']
   function RegisterController ($scope, $http, FECSAuth) {
     var self = this
+    self.member = {}
 
-    self.test = 'Hello'
+    self.submit = function(){
+      $http.post('http://128.199.112.126:3000/register', {
+        email: 'guro@guro.com',
+        password: 'guro',
+        firstname: 'Guro',
+        lastname: 'GreenBlooD',
+        address: 'Guros home',
+        phonenumber: '0800000000'
+      }).success( function (resp) {
+        console.log(resp.message)
+      }).error( function (resp) {
+        console.log(resp.message)
+      })
+    }
   }
 })()
