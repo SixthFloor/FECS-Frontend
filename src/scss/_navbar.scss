@@ -4,13 +4,9 @@ $logo_height: 42px;
 $loginpopup_width: 270px;
 $text-color-textfield: #444;
 
-@mixin component-style() {
-  padding: 4px 8px;
-  border-radius: 10px;
-  border: none;
-}
 @mixin nav-component() {
-  margin: 22px 0 0 0;
+  margin-top: 22px;
+  padding: 4px 8px;
 }
 
 .nav-bar {
@@ -44,7 +40,7 @@ $text-color-textfield: #444;
     button.search {
       @include component-style();
       width: 80px;
-      margin: 5px 0 0 5px;
+      margin-left: 5px;
       color: #fff;
       background-color: #555;
       cursor: pointer;
@@ -65,7 +61,7 @@ $text-color-textfield: #444;
       @include component-style();
       @include nav-component();
       width: 80px;
-      margin: 5px 0 0 5px;
+      margin-left: 5px;
       color: #fff;
       background-color: #111;
       cursor: pointer;

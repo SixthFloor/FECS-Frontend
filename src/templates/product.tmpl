@@ -1,3 +1,13 @@
+<div class="cat-bar">
+  <button class="category">Bedroom</button>
+  <button class="category">Bathroom</button>
+  <button class="category">Dinning Room</button>
+  <button class="category">Kitchen</button>
+  <button class="category">Living Room</button>
+  <button class="category"><b>Category</b></button>
+  <div class="clear"></div>
+</div>
+
 <div class="row">
 <!-- <table>
   <tr ng-repeat="x in productpageCtrl.names">
@@ -5,27 +15,27 @@
     <td>{{ x.Country }}</td>
   </tr>
 </table> -->
-	<h1>{{productpageCtrl.productName}}</h1>
-	<h6>{{productpageCtrl.productID}}</h6>
-	<form class="form-inline">
-		<label>Property 1</label> 
-		<select class="form-control" ng-model="productpageCtrl.property1.repeatSelect">
-	  		<option ng-repeat="option in productpageCtrl.property1.availableOptions" value="{{option.id}}">{{option.name}}</option>
-		</select>
-	</form>
-	<form class="form-inline">
-		<label>Property 2</label> 
-		<select class="form-control" ng-model="productpageCtrl.property2.repeatSelect">
-	  		<option ng-repeat="option in productpageCtrl.property2.availableOptions" value="{{option.id}}">{{option.name}}</option>
-		</select>
-	</form>
-	<h2>THB {{productpageCtrl.price}}</h2>
-	<label>Available {{productpageCtrl.available}}</label>
-	<form class="form-inline">
-		<div class="form-group">
-	    	<label for="exampleInputName2">Quantity</label>
-	    	<input type="number" class="form-control" value="1" />
-	  	</div>
-	</form>
-	<button class="btn btn-primary" name="">Add to Cart</button>
+    <h1>{{productpageCtrl.productName}}</h1>
+    <h6>{{productpageCtrl.productID}}</h6>
+    <form class="form-inline">
+        <label>Property 1</label> 
+        <select class="form-control" ng-model="productpageCtrl.property1.repeatSelect">
+            <option ng-repeat="option in productpageCtrl.property1.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select>
+    </form>
+    <form class="form-inline">
+        <label>Property 2</label> 
+        <select class="form-control" ng-model="productpageCtrl.property2.repeatSelect">
+            <option ng-repeat="option in productpageCtrl.property2.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select>
+    </form>
+    <h2>THB {{productpageCtrl.price}}</h2>
+    <label>Available {{productpageCtrl.available}}</label>
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="exampleInputName2">Quantity</label>
+            <input type="number" class="form-control" value="1" />
+        </div>
+    </form>
+    <button class="btn btn-primary" name="">Add to Cart</button>
 </div>

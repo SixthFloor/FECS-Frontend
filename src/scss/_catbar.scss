@@ -1,0 +1,21 @@
+$cat_bar_height: 30px;
+
+.cat-bar {
+  margin: 7px 0 0 0;
+  border-radius: 20px;
+  color: $text-color-textfield;
+  background-color: #aaa;
+  line-height: $cat_bar_height;
+  text-align: center;
+
+  button.category {
+    @include component-style();
+    margin: 5px;
+    width: 15%;
+    min-width: 110px;
+    height: $cat_bar_height;
+    float: center;
+    text-align: center;
+    background-color: #afafaf;
+  }
+}
