@@ -14,7 +14,6 @@
   function config ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.when('', '/home')
     $urlRouterProvider.otherwise('/404')
-
     $stateProvider
       .state('home', {
         url: '/home',
@@ -23,7 +22,7 @@
         controllerAs: 'homepageCtrl'
       })
       .state('product', {
-        url: '/product',
+        url: '/product/:product_id',
         templateUrl: 'templates/product.tmpl',
         controller: 'ProductPageController',
         controllerAs: 'productpageCtrl'
