@@ -4,7 +4,7 @@
     <input class="navtf" type="text" placeHolder="Search" />
     <button class="search" type="submit">Search</button>
   </div>
-  <div class="nav-right" ng-controller="LoginController as loginCtrl">
+  <div ng-if="!accessToken" class="nav-right" ng-controller="LoginController as loginCtrl">
     <a href="#/register"><button class="navbutton" >Register</button></a>
     <button class="navbutton" ng-click="loginCtrl.toggleLogin()">Log in</button>
 
@@ -19,6 +19,9 @@
       {{loginCtrl.message}}
     </div>
 
+  </div>
+  <div ng-if="accessToken" class="nav-right" ng-controller="NavbarController as navCtrl">
+    {{navCtrl.welcomeMessage}}
   </div>
   <div class="clear"></div>
 </div>

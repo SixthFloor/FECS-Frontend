@@ -38,16 +38,17 @@ every controller that have to identify the customer, authentication service has 
           email: data.email,
           password: data.pwd
         },
-        headers: {
-          'Content-Type': undefined
-        },
         url: 'http://128.199.112.126:3000/login'
       }
       $http(req).then(function (res) {
         var response = res.data
-        success({success: response.access_token})
+        console.log(response.status)
+        if (response.status === 'error') {
+          error({error: response.message})
+        } else {
+          success({success: {access_token: response.access_token}})
+        }
       }, function (err) {
-        console.log(err)
         error({error: err.data})
       })
     }
