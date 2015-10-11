@@ -11,8 +11,8 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', [])
     .service('FECSAuth', FECSAuth)
 
-  FECSAuth.$inject = ['localStorageService']
-  function FECSAuth (localStorageService) {
+  FECSAuth.$inject = ['localStorageService', '$http']
+  function FECSAuth (localStorageService, $http) {
     var self = this
 
     self.test = 'Hello'
@@ -31,18 +31,25 @@ every controller that have to identify the customer, authentication service has 
       return token ? token : false
     }
 
-    self.login = function (email, pwd) {
-      console.log('email: ' + email + '  password: ' + pwd)
-      // for real use
-      //   return $http.post('waitForSomeAPI', {
-      //     email: email,
-      //     password: pwd
-      // })
-
-      // if success
-      var fakeToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-      self.setToken(fakeToken)
-      console.log('Token: ' + self.getToken())
+    self.login = function (data, success, error) {
+      var req = {
+        method: 'POST',
+        data: {
+          email: data.email,
+          password: data.pwd
+        },
+        headers: {
+          'Content-Type': undefined
+        },
+        url: 'http://128.199.112.126:3000/login'
+      }
+      $http(req).then(function (res) {
+        var response = res.data
+        success({success: response.access_token})
+      }, function (err) {
+        console.log(err)
+        error({error: err.data})
+      })
     }
 
     self.logout = function () {

@@ -30,15 +30,22 @@
     self.toggleLogin = function () {
       if (self.show) {
         self.show = false
-      }
-      else {
+      } else {
         self.show = true
       }
       console.log(self.show)
     }
 
     self.login = function () {
-      FECSAuth.login(self.email, self.pwd)
+      var data = {
+        email: self.email,
+        pwd: self.pwd
+      }
+      $scope.access_token = FECSAuth.login(data, function (res) {
+        console.log(res)
+      }, function (err) {
+        self.message = err.error
+      })
     }
   }
 
