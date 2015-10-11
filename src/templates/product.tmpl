@@ -1,3 +1,4 @@
+<div ng-if="!productpageCtrl.is404">
 <div class="cat-bar">
   <button class="category">Bedroom</button>
   <button class="category">Bathroom</button>
@@ -44,4 +45,9 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+<div ng-if="productpageCtrl.is404">
+  <h1>Product Not Found</h1>
+  <p>{{productpageCtrl.errorMessage}}</p>
 </div>
