@@ -13,6 +13,7 @@
   ProductPageController.$inject = ['$scope', '$http', 'FECSAuth', '$stateParams']
   function ProductPageController ($scope, $http, $FECSAuth, $stateParams) {
     var self = this
+    // path of mock API
     var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
     $http.get(url).success(function (response) {
       console.log(response)
