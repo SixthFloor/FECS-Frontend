@@ -53,7 +53,6 @@
       } else {
         console.log(response.message)
         self.is404 = true
-        document.querySelector('title').innerHTML = response.message
         self.errorMessage = 'Error: ' + response.message
       }
     })
