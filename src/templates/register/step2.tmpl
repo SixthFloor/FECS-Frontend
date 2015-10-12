@@ -4,12 +4,12 @@
     <div class="register-2col-row">
       <label class="control-label col-sm-2" >First name: </label>
       <div class="col-sm-3">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" ng-model="registerCtrl.member.firstname">
       </div>
       <span class="require-star col-sm-1">*</span>
       <label class="control-label col-sm-2" >Last name: </label>
       <div class="col-sm-3">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" ng-model="registerCtrl.member.lastname">
       </div>
       <span class="require-star col-sm-1">*</span>
     </div>
@@ -17,31 +17,31 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Address1:</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" rows="5" ></input>
+      <input type="text" class="form-control" rows="5" ng-model="registerCtrl.member.adr1"></input>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2">Address2:</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" rows="5" ></input>
+      <input type="text" class="form-control" rows="5" ng-model="registerCtrl.member.adr2"></input>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" >Province: </label>
     <div class="col-sm-3">
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" ng-model="registerCtrl.member.province">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" >ZIP code: </label>
     <div class="col-sm-3">
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" ng-model="registerCtrl.member.zip">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2">Phone number:</label>
     <div class="col-sm-3">
-      <input type="texy" class="form-control">
+      <input type="texy" class="form-control" ng-model="registerCtrl.member.phonenumber">
     </div>
   </div>
 </form>

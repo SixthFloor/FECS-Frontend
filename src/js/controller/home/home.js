@@ -47,28 +47,13 @@
     }
   }
 
-  RegisterController.$inject = ['$scope', '$http', 'FECSAuth']
-  function RegisterController ($scope, $http, FECSAuth) {
+  RegisterController.$inject = ['$scope', '$http', 'registerService']
+  function RegisterController ($scope, $http, registerService) {
     var self = this
-    self.member = {
-      email: ''
-    }
+    self.member = registerService.member
+
     self.submit = function () {
-      $scope.$apply(function(){
-          console.log(self.member.email)
-      })
-      $http.post('http://128.199.112.126:3000/register', {
-        email: 'guro@guro.com',
-        password: 'guro',
-        firstname: 'Guro',
-        lastname: 'GreenBlooD',
-        address: 'Guros home',
-        phonenumber: '0800000000'
-      }).success(function (resp) {
-        console.log(resp.message)
-      }).error(function (resp) {
-        console.log(resp.message)
-      })
+      registerService.regis()
     }
   }
 })()
