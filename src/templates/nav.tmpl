@@ -1,10 +1,10 @@
 <div class="nav-bar">
-  <div class="left">
+  <div class="nav-left">
     <a href="#/home"><div class="logo"></div></a>
     <input class="navtf" type="text" placeHolder="Search" />
     <button class="search" type="submit">Search</button>
   </div>
-  <div class="right" ng-controller="LoginController as loginCtrl">
+  <div ng-if="!accessToken" class="nav-right" ng-controller="LoginController as loginCtrl">
     <a href="#/register"><button class="navbutton" >Register</button></a>
     <button class="navbutton" ng-click="loginCtrl.toggleLogin()">Log in</button>
 
@@ -16,10 +16,12 @@
         <a href="">Forgot your password?</a>
         <button class="loggingin" type="submit" ng-click="loginCtrl.login()">Log in</button>
       </form>
-      Your email is {{loginCtrl.email}}
-      with password {{loginCtrl.pwd}}
+      {{loginCtrl.message}}
     </div>
 
+  </div>
+  <div ng-if="accessToken" class="nav-right" ng-controller="NavbarController as navCtrl">
+    {{navCtrl.welcomeMessage}}
   </div>
   <div class="clear"></div>
 </div>
