@@ -50,9 +50,13 @@
   RegisterController.$inject = ['$scope', '$http', 'FECSAuth']
   function RegisterController ($scope, $http, FECSAuth) {
     var self = this
-    self.member = {}
-
-    self.submit = function(){
+    self.member = {
+      email: ''
+    }
+    self.submit = function () {
+      $scope.$apply(function(){
+          console.log(self.member.email)
+      })
       $http.post('http://128.199.112.126:3000/register', {
         email: 'guro@guro.com',
         password: 'guro',
@@ -60,9 +64,9 @@
         lastname: 'GreenBlooD',
         address: 'Guros home',
         phonenumber: '0800000000'
-      }).success( function (resp) {
+      }).success(function (resp) {
         console.log(resp.message)
-      }).error( function (resp) {
+      }).error(function (resp) {
         console.log(resp.message)
       })
     }
