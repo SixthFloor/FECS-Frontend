@@ -12,3 +12,13 @@
   @extend .row;
   margin-left: -3px;
 }
+.register-btn{
+  @extend .btn;
+  @extend .btn-success;
+  font-size: large;
+  padding: 6px 40px;
+  margin: 12px 0px 35px 0px;
+}
+.register-container{
+  text-align: center;
+}
