@@ -14,7 +14,6 @@
       password: '',
       firstname: '',
       lastname: '',
-      address: '',
       phonenumber: '',
       adr1: '',
       adr2: '',
@@ -23,7 +22,7 @@
     }
 
     self.regis = function(){
-      var address = self.member.adr1+self.member.adr2+self.member.province+self.member.zip
+      var address = self.member.adr1+' '+self.member.adr2+' '+self.member.province+' '+self.member.zip
       console.log(address)
       console.log(self.member);
       var url = 'http://128.199.112.126:3000/register'
