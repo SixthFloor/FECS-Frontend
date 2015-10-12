@@ -15,8 +15,6 @@ every controller that have to identify the customer, authentication service has 
   function FECSAuth (localStorageService, $http) {
     var self = this
 
-    self.test = 'Hello'
-
     self.isAuthed = function () {
       if (self.getToken()) return true
       else return false

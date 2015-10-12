@@ -25,9 +25,6 @@
   function LoginController ($scope, $http, FECSAuth) {
     var self = this
     self.show = false
-    self.email = 'guro@guro.com'
-    self.pwd = 'Hello'
-    console.log(FECSAuth.test)
 
     self.toggleLogin = function () {
       self.show = !self.show
