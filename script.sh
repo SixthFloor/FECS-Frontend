@@ -3,5 +3,14 @@ set -ex
 npm run update-webdriver
 gulp compile
 http-server ./www -p 4444 & WEBSERVER_PID=$!
-npm run runtest
+echo '$1 = ' $1
+if [ "$1" == "-protractor" ]
+then
+	npm run protractor
+elif [ "$1" == "-unit" ]
+then
+	npm run unit
+else
+	npm run runtest
+fi
 kill -9 $WEBSERVER_PID
