@@ -58,5 +58,14 @@
           }
         }
       })
+
+      .state('register-complete', {
+        url: '/register/complete',
+        templateUrl: 'templates/register/complete.tmpl',
+        controller: 'RegisterController',
+        controllerAs: 'registerCtrl'
+      })
+
+
   }
 })()
