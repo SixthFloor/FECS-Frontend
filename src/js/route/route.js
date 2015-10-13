@@ -70,12 +70,10 @@
           }
         }
       })
-
       .state('register.complete', {
         url: '/complete',
-        templateUrl: 'templates/register/complete.tmpl',
-        controller: 'RegisterController',
-        controllerAs: 'registerCtrl'
+        parent: 'register',
+        templateUrl: 'templates/register/complete.tmpl'
       })
   }
 })()

@@ -25,7 +25,7 @@
       zip: ''
     }
 
-    self.regis = function () {
+    self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
       console.log(self.member.address)
       console.log(self.member)
@@ -37,11 +37,7 @@
         lastname: self.member.lastname,
         address: self.member.address,
         phonenumber: self.member.phonenumber
-      }).success(function (resp) {
-        console.log(resp.message)
-      }).error(function (resp) {
-        console.log(resp.message)
-      })
+      }).success(success).error(error)
     }
   }
 })()

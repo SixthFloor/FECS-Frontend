@@ -80,8 +80,8 @@
     self.logout()
   }
 
-  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', 'FECSAuth']
-  function RegisterController ($scope, $http, registerService, $location, FECSAuth) {
+  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'notify', 'FECSAuth']
+  function RegisterController ($scope, $http, registerService, $location, $state, notify, FECSAuth) {
     $scope.accessToken = FECSAuth.getToken()
     var self = this
     self.member = registerService.member
@@ -92,8 +92,26 @@
         (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
         (self.member.email !== '') && (self.member.firstname !== '') &&
         (self.member.lastname !== '')) {
-        $location.url('/register/complete')
         registerService.valid = true
+        registerService.regis(function (response) {
+          if (response.status === 'error') {
+            var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+            notify({
+              messageTemplate: msg,
+              classes: 'alert alert-danger'
+            })
+          } else {
+            msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
+            notify({
+              messageTemplate: msg,
+              classes: 'alert alert-success'
+            })
+            $state.transitionTo('login')
+          }
+        }, function (response) {
+          console.log(response)
+        })
+      // $state.go('register.complete')
       } else {
         console.log('should be false')
         registerService.valid = false
