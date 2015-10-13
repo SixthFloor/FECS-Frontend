@@ -4,16 +4,16 @@
     text-align: center;
   }
 	.product-left {
-    display: inline-block;
-    margin: 10px;
+    //display: inline-block;
+    //margin: 10px;
     width: 400px;
     height: 200px;
 		background-color: #fff;
     border-radius: 20px;
 	}
   .product-right {
-    display: inline-block;
-    margin: 10px;
+    //display: inline-block;
+    //margin: 10px;
     width: 250px;
     background-color: #fff;
     border-radius: 20px;
@@ -22,4 +22,22 @@
       text-align: left;
     }
   }
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+.footer {
+  color: $text-color-textfield;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  position: fixed;
+  margin: 0;
+  left: 0px;
+  bottom: 0px;
+  height: 140px;
+  width: 100%;
+  background: #2E2A20;
+  color: #fff;
+  padding: 0 5%;
 }
