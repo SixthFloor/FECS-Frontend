@@ -7,7 +7,7 @@
 */
 ;(function () {
   angular
-    .module('controller.homepage', [])
+    .module('controller.homepage', ['cgNotify', 'ui.router'])
     .controller('HomePageController', HomePageController)
     .controller('LoginController', LoginController)
     .controller('RegisterController', RegisterController)
@@ -21,10 +21,14 @@
     $scope.accessToken = ''
   }
 
-  LoginController.$inject = ['$scope', '$http', 'FECSAuth']
-  function LoginController ($scope, $http, FECSAuth) {
+  LoginController.$inject = ['$scope', '$http', '$state', 'notify', 'FECSAuth']
+  function LoginController ($scope, $http, $state, notify, FECSAuth) {
     var self = this
     self.show = false
+    self.data = {
+      email: '',
+      pwd: ''
+    }
 
     self.toggleLogin = function () {
       self.show = !self.show
@@ -32,14 +36,24 @@
 
     self.login = function () {
       var data = {
-        email: self.email,
-        pwd: self.pwd
+        email: self.data.email,
+        pwd: self.data.pwd
       }
       FECSAuth.login(data, function (res) {
         $scope.accessToken = res.success.access_token
         FECSAuth.setToken($scope.accessToken)
+        $state.go('home')
+        var msg = '<span><b>Well done!</b> Login successfully.</span>'
+        notify({
+          messageTemplate: msg,
+          classes: 'alert alert-success'
+        })
       }, function (err) {
-        self.message = err.error
+        var msg = '<span><b>Oh snap!</b> ' + err.error + '.</span>'
+        notify({
+          messageTemplate: msg,
+          classes: 'alert alert-danger'
+        })
       })
     }
   }
@@ -52,7 +66,9 @@
 
     self.submit = function () {
       if ((self.member.confirmpassword === self.member.password) &&
-      (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8)) {
+      (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
+      (self.member.email !== '') && (self.member.firstname !== '') &&
+      (self.member.lastname !== '')) {
         $location.url('/register/complete')
         registerService.valid = true
       }

@@ -7,6 +7,7 @@ var browserSync = require('browser-sync')
 
 gulp.task('style', function () {
   return gulp.src([
+    './bower_components/angular-notify/dist/angular-notify.css',
     './src/scss/style.scss'
   ])
     .pipe(libsass())

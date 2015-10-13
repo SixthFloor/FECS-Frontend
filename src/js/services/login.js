@@ -45,7 +45,6 @@ every controller that have to identify the customer, authentication service has 
           console.log(response.message)
         } else {
           success({success: {access_token: response.access_token}})
-          console.log(response.access_token)
         }
       }, function (err) {
         error({error: err.data})

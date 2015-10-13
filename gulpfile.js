@@ -11,6 +11,7 @@ gulp.task('default', ['compile'], function () {
   gulp.watch('./src/js/**/*.js', ['script'])
 
   browserSync({
+    notify: false,
     port: 3030,
     server: {
       baseDir: './www'

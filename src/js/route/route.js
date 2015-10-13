@@ -21,6 +21,12 @@
         controller: 'HomePageController',
         controllerAs: 'homepageCtrl'
       })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.tmpl',
+        controller: 'LoginController',
+        controllerAs: 'loginCtrl'
+      })
       .state('product', {
         url: '/product/:product_id',
         templateUrl: 'templates/product.tmpl',
@@ -65,7 +71,5 @@
         controller: 'RegisterController',
         controllerAs: 'registerCtrl'
       })
-
-
   }
 })()
