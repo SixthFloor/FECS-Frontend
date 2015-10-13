@@ -9,6 +9,8 @@
   function registerService ($http) {
     var self = this
 
+    self.valid = true
+
     self.member = {
       email: '',
       password: '',

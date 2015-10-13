@@ -9,7 +9,11 @@
   <div class="step">
     <div ui-view="step3"></div>
   </div>
+  <div class="alert alert-danger "
+  ng-show="!registerCtrl.valid">
+    <strong>Alert!</strong> Invalid form
+  </div>
   <div class="register-container">
-    <a href="#/register/complete"><button type="button" class="register-btn" ng-click="registerCtrl.submit()">Register</button></a>
+    <button type="button" class="register-btn" ng-click="registerCtrl.submit()">Register</button>
   </div>
 </div>

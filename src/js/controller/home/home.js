@@ -44,15 +44,24 @@
     }
   }
 
-  RegisterController.$inject = ['$scope', '$http', 'registerService']
-  function RegisterController ($scope, $http, registerService) {
+  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location']
+  function RegisterController ($scope, $http, registerService, $location) {
     var self = this
     self.member = registerService.member
+    self.valid = registerService.valid
 
     self.submit = function () {
-      if (self.member.confirmpassword === self.member.password) {
-          registerService.regis()
+      if ((self.member.confirmpassword === self.member.password) &&
+      (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8)) {
+        $location.url('/register/complete')
+        registerService.valid = true
       }
+      else {
+        console.log('should be false')
+        registerService.valid = false
+      }
+      self.valid = registerService.valid
+      console.log(self.valid)
     }
   }
 })()
