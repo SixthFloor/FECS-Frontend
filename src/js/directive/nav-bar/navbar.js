@@ -14,6 +14,8 @@
 
   function navbar () {
     var directive = {
+      restrict: 'E',
+      transclude: true,
       templateUrl: 'templates/nav.tmpl'
     }
     return directive

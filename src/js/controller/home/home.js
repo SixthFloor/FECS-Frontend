@@ -11,14 +11,15 @@
     .controller('HomePageController', HomePageController)
     .controller('LoginController', LoginController)
     .controller('RegisterController', RegisterController)
+    .controller('LogoutController', LogoutController)
 
-  HomePageController.$inject = ['$scope']
-  function HomePageController ($scope) {
+  HomePageController.$inject = ['$scope', 'FECSAuth']
+  function HomePageController ($scope, FECSAuth) {
     var self = this
 
     self.welcome = 'Welcome to Furniture E-Commerce System'
-
-    $scope.accessToken = ''
+    $scope.accessToken = FECSAuth.getToken()
+    console.log('Token : ' + $scope.accessToken)
   }
 
   LoginController.$inject = ['$scope', '$http', '$state', 'notify', 'FECSAuth']
@@ -42,7 +43,11 @@
       FECSAuth.login(data, function (res) {
         $scope.accessToken = res.success.access_token
         FECSAuth.setToken($scope.accessToken)
-        $state.go('home')
+        $state.transitionTo('home', $state.params, {
+          reload: true,
+          inherit: false,
+          notify: true
+        })
         var msg = '<span><b>Well done!</b> Login successfully.</span>'
         notify({
           messageTemplate: msg,
@@ -58,21 +63,38 @@
     }
   }
 
-  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location']
-  function RegisterController ($scope, $http, registerService, $location) {
+  LogoutController.$inject = ['$scope', '$state', 'FECSAuth']
+  function LogoutController ($scope, $state, FECSAuth) {
+    var self = this
+
+    self.logout = function () {
+      FECSAuth.logout()
+      $scope.accessToken = ''
+      $state.transitionTo('home', $state.params, {
+        reload: true,
+        inherit: false,
+        notify: true
+      })
+    }
+
+    self.logout()
+  }
+
+  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', 'FECSAuth']
+  function RegisterController ($scope, $http, registerService, $location, FECSAuth) {
+    $scope.accessToken = FECSAuth.getToken()
     var self = this
     self.member = registerService.member
     self.valid = registerService.valid
 
     self.submit = function () {
       if ((self.member.confirmpassword === self.member.password) &&
-      (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
-      (self.member.email !== '') && (self.member.firstname !== '') &&
-      (self.member.lastname !== '')) {
+        (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
+        (self.member.email !== '') && (self.member.firstname !== '') &&
+        (self.member.lastname !== '')) {
         $location.url('/register/complete')
         registerService.valid = true
-      }
-      else {
+      } else {
         console.log('should be false')
         registerService.valid = false
       }

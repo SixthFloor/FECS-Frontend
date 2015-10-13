@@ -27,6 +27,12 @@
         controller: 'LoginController',
         controllerAs: 'loginCtrl'
       })
+      .state('logout', {
+        url: '/logout',
+        templateUrl: 'templates/logout.tmpl',
+        controller: 'LogoutController',
+        controllerAs: 'logoutCtrl'
+      })
       .state('product', {
         url: '/product/:product_id',
         templateUrl: 'templates/product.tmpl',
@@ -65,8 +71,8 @@
         }
       })
 
-      .state('register-complete', {
-        url: '/register/complete',
+      .state('register.complete', {
+        url: '/complete',
         templateUrl: 'templates/register/complete.tmpl',
         controller: 'RegisterController',
         controllerAs: 'registerCtrl'

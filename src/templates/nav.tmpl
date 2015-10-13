@@ -4,24 +4,12 @@
     <input class="navtf" type="text" placeHolder="" />
     <button class="search" type="submit">search</button>
   </div>
-  <div ng-if="!accessToken" class="nav-right" ng-controller="LoginController as loginCtrl">
+  <div ng-if="accessToken == false" class="nav-right">
     <a ui-sref="register">Sign up</a>
     <a ui-sref="login">Sign in</a>
-
-    <!-- <div class="login" ng-show="loginCtrl.show">
-      <form role="form">
-        <input class="navtf" type="text" placeHolder="E-mail" ng-model="loginCtrl.email" />
-        <input class="navtf" type="password" placeHolder="Password" ng-model="loginCtrl.pwd" /><br/>
-        <input type="checkbox" id="remember" /><label for="remember"><span></span>Keep me logged in</label> |
-        <a href="">Forgot your password?</a>
-        <button class="loggingin" type="submit" ng-click="loginCtrl.login()">Log in</button>
-      </form>
-      {{loginCtrl.message}}
-    </div> -->
-
   </div>
-  <div ng-if="accessToken" class="nav-right" ng-controller="NavbarController as navCtrl">
-    {{navCtrl.welcomeMessage}}
+  <div ng-if="accessToken != false" class="nav-right">
+    Welcome to the FECS <a ui-sref="logout">Sign out</a> 
   </div>
   <div class="clear"></div>
 </div>
