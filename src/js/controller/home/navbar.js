@@ -10,5 +10,4 @@
     var self = this
     self.welcomeMessage = 'Welcome to FECS'
   }
-
 })()

@@ -40,11 +40,12 @@ every controller that have to identify the customer, authentication service has 
       }
       $http(req).then(function (res) {
         var response = res.data
-        console.log(res.status)
         if (response.status === 'error') {
           error({error: response.message})
+          console.log(response.message)
         } else {
           success({success: {access_token: response.access_token}})
+          console.log(response.access_token)
         }
       }, function (err) {
         error({error: err.data})
