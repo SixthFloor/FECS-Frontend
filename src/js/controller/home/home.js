@@ -50,7 +50,9 @@
     self.member = registerService.member
 
     self.submit = function () {
-      registerService.regis()
+      if (self.member.confirmpassword === self.member.password) {
+          registerService.regis()
+      }
     }
   }
 })()

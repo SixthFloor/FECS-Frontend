@@ -12,6 +12,7 @@
     self.member = {
       email: '',
       password: '',
+      confirmpassword: '',
       firstname: '',
       lastname: '',
       phonenumber: '',

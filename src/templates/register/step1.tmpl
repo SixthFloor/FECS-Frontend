@@ -18,7 +18,10 @@
     <span class="require-star">*</span>
     <label class="control-label col-sm-2" for="pwd">Confirm password:</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" placeholder="Re-enter password">
+      <input type="password" class="form-control" placeholder="Re-enter password" ng-model="registerCtrl.member.confirmpassword">
     </div>
+  </div>
+  <div class="alert alert-danger col-sm-4 col-sm-offset-2" ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password">
+    <strong>Re-enter</strong> Password does not match
   </div>
 </form>
