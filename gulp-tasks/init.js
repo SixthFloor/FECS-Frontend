@@ -23,7 +23,7 @@ gulp.task('init', function () {
     .pipe(gulp.dest('./www/templates'))
   gulp.src(['./src/fonts/**',
     './bower_components/bootstrap-sass/assets/fonts/bootstrap/*'])
-    .pipe(gulp.dest('./www/fonts'))
+    .pipe(gulp.dest('./www/fonts/bootstrap/'))
   gulp.src('./src/html/**')
     .pipe(gulp.dest('./www'))
 })
