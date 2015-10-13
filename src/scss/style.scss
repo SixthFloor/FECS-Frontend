@@ -23,7 +23,12 @@
   text-align: center;
 }
 .member-info{
-  text-align: -webkit-center;
+  text-align: -webkit-center !important;
   text-align: center;
   margin: 25px 0px;
+}
+.member-info-panel{
+  @extend .panel;
+  @extend .panel-default;
+  width: 75%;
 }
