@@ -52,7 +52,9 @@
 
     self.submit = function () {
       if ((self.member.confirmpassword === self.member.password) &&
-      (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8)) {
+      (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
+      (self.member.email !== '') && (self.member.firstname !== '') &&
+      (self.member.lastname !== '')) {
         $location.url('/register/complete')
         registerService.valid = true
       }
