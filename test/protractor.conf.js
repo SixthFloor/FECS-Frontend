@@ -3,7 +3,7 @@ var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
 exports.config = {
   allScriptsTimeout: 4000,
 
-  specs: ['protractor_test/*.js'],
+  specs: ['protractor_test/testLogin.js'],
 
   capabilities: {
     'browserName': 'chrome'
@@ -11,10 +11,10 @@ exports.config = {
 
   baseUrl: 'http://localhost:8080/app/',
 
-  framework: 'jasmine',
+  framework: 'jasmine2',
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 4000
+    defaultTimeoutInterval: 40000
   },
 
   onPrepare: function () {

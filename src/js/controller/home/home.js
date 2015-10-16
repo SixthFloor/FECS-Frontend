@@ -51,7 +51,8 @@
         var msg = '<span><b>Well done!</b> Login successfully.</span>'
         notify({
           messageTemplate: msg,
-          classes: 'alert alert-success'
+          classes: 'alert alert-success',
+          //duration: 300000000
         })
       }, function (err) {
         var msg = '<span><b>Oh snap!</b> ' + err.error + '.</span>'
