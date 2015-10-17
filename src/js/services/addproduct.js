@@ -1,9 +1,14 @@
 /* global angular */
 
+/**
+* Add Product service Module
+*
+* @description Add Product service Module uses for add new product to the FECS's store.
+*/
 ;(function () {
   angular
     .module('services.addproduct', [])
-    .service('addproductService', adproductService)
+    .service('addproductService', addproductService)
 
   addproductService.$inject = ['$http']
   function addproductService ($http) {
