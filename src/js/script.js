@@ -10,7 +10,6 @@
       'controller.homepage',
       'controller.productpage',
       'controller.categorypage',
-      'directive.navbar',
-      'LocalStorageModule'
+      'directive.navbar'
     ])
 })()
