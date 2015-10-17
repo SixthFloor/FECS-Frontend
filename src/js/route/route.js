@@ -75,5 +75,20 @@
         parent: 'register',
         templateUrl: 'templates/register/complete.tmpl'
       })
+      .state('addproduct', {
+        url: '/api/product/add',
+        views: {
+          '': {
+            templateUrl: 'templates/product/addproduct.tmpl',
+            controller: 'AddProductController',
+            controllerAs: 'addproductCtrl'
+          },
+          'img-manager@addproduct': {
+            templateUrl: 'templates/product/addproduct_img.tmpl',
+            controller: 'AddProductController',
+            controllerAs: 'addproductCtrl'
+          }
+        }
+      })
   }
 })()
