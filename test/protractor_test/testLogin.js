@@ -5,16 +5,17 @@
 /* global by */
 /* global expect */
 /* global beforeEach */
-describe('sendKey to login', function() {
+describe('Test Login', function() {
 
   var linkSignin =  element(by.css('[ui-sref="login"]'))
   var linkSignout = element(by.css('[ui-sref="logout"]'))
+  var linkHome = element(by.css('[ui-sref="home"]'))
   var email = element(by.model('loginCtrl.data.email'))
   var password = element(by.model('loginCtrl.data.pwd'))
   var loginButton = element(by.buttonText('Sign in'))
-  var afterLogin = element(by.css('[ng-if="accessToken != false"]'))
-  var closeHiden = element(by.css('[aria-hidden]="true"'))
-  var notify = element(by.className('cg-notify-message ng-scope alert alert-success cg-notify-message-center'))
+  
+  
+  //var notify = element(by.className('cg-notify-message ng-scope alert alert-success cg-notify-message-center'))
   
 
   function Login(a,b) {
@@ -26,43 +27,70 @@ describe('sendKey to login', function() {
   function testCases() {
     case1()
     case2()
+    case3()
+    case4()
+    case5()
+    case6()
   }
-
+  //Case 1 is email and password correct
   function case1(){
     linkSignin.click()
     Login('nititest@hotmail.com','nititest')
+    expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(10000);
+    browser.sleep(10000)
     browser.waitForAngular()
-    //browser.ignoreSynchronization = true
-    //expect(notify.getText()).toEqual('Sign out')
-    //browser.ignoreSynchronization = false
+    expect(linkSignout.getText()).toEqual('Sign out')
     linkSignout.click()
   }
-
+  //Case 2 is email wrong but password correct
   function case2(){
     linkSignin.click()
     Login('nititest2@hotmail.com','nititest')
+    expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(10000);
+    browser.sleep(10000)
     browser.waitForAngular()
-    //closeHiden.click()
-    //expect(afterLogin.getText()).toEqual('Welcome to the FECS Sign out')
-    //linkSignout.click()
+    linkHome.click()
   }
-
+  //Case 3 is email correct but password wrong
   function case3(){
-    
+    linkSignin.click()
+    Login('nititest@hotmail.com','nititest2')
+    expect(loginButton.getAttribute('disabled')).toBe(null)
+    loginButton.click()
+    browser.sleep(10000)
+    browser.waitForAngular()
+    linkHome.click()
   }
-
+  //Case 4 is email and password wrong
   function case4(){
-    
+    linkSignin.click()
+    Login('nititest2@hotmail.com','nititest2')
+    expect(loginButton.getAttribute('disabled')).toBe(null)
+    loginButton.click()
+    browser.sleep(10000)
+    browser.waitForAngular()
+    linkHome.click()
   }
-
+  //Case 5 is email not in format
+  function case5(){
+    linkSignin.click()
+    Login('nititest','nititest2')
+    expect(loginButton.getAttribute('disabled')).toBe('true')
+    linkHome.click()
+  }
+  //Case 6 is no fill email and password
+  function case6(){
+    linkSignin.click()
+    Login('','')
+    expect(loginButton.getAttribute('disabled')).toBe('true')
+    linkHome.click()
+  }
 
   beforeEach(function() {
     browser.get('http://localhost:3030/#')
-  });
+  })
 
   /*afterEach(function() {
     browser.manage().logs().get('browser').then(function(browserLog) {
@@ -72,6 +100,6 @@ describe('sendKey to login', function() {
 
   it('should no wrong', function() {
     testCases();
-  });
+  })
 
-});
+})
