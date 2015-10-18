@@ -19,7 +19,6 @@
 
     self.welcome = 'Welcome to Furniture E-Commerce System'
     $scope.accessToken = FECSAuth.getToken()
-    console.log('Token : ' + $scope.accessToken)
   }
 
   LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'FECSAuth']
