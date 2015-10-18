@@ -16,6 +16,7 @@
       horizontalSpacing: 20,
       positionX: 'center',
       positionY: 'top',
+      replaceMessage: true,
       templateUrl: 'templates/notification.tmpl'
     })
   }

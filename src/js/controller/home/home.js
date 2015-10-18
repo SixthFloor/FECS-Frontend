@@ -61,13 +61,17 @@
     }
   }
 
-  LogoutController.$inject = ['$scope', '$state', 'FECSAuth']
-  function LogoutController ($scope, $state, FECSAuth) {
+  LogoutController.$inject = ['$scope', '$state', 'Notification', 'FECSAuth']
+  function LogoutController ($scope, $state, notification, FECSAuth) {
     var self = this
 
     self.logout = function () {
       FECSAuth.logout()
       $scope.accessToken = ''
+      var msg = '<span><b>Logout Success!</b> Thank you for our services :)</span>'
+      notification.success({
+        message: msg
+      })
       $state.transitionTo('home', $state.params, {
         reload: true,
         inherit: false,
@@ -108,7 +112,6 @@
         }, function (response) {
           console.log(response)
         })
-      // $state.go('register.complete')
       } else {
         console.log('should be false')
         registerService.valid = false
