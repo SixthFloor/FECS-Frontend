@@ -9,6 +9,9 @@
       'services.addproduct',
       'services.notification',
       'controller.homepage',
+      'controller.login',
+      'controller.logout',
+      'controller.register',
       'controller.productpage',
       'controller.categorypage',
       'directive.navbar'
