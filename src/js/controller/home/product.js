@@ -65,8 +65,8 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'addproductService', 'notify', 'FECSAuth']
-  function AddProductController ($scope, $http, addproductService, notify, FECSAuth) {
+  AddProductController.$inject = ['$scope', '$http', 'addproductService', 'notification', 'FECSAuth']
+  function AddProductController ($scope, $http, addproductService, notification, FECSAuth) {
     var self = this
     $scope.isloggedin = FECSAuth.isAuthed()
     self.product = addproductService.product
@@ -79,15 +79,14 @@
         addproductService.addproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
-            notify({
-              messageTemplate: msg,
-              classes: 'alert alert-danger'
+            notification.error({
+              message: msg,
+              replaceMessage: true
             })
           } else {
             msg = '<span><b>Success!</b> Added new product.<br/>' + self.member.firstname + ' is now available in FECS store.</span>'
-            notify({
-              messageTemplate: msg,
-              classes: 'alert alert-success'
+            notification.success({
+              message: msg
             })
           }
         }, function (response) {

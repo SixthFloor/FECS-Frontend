@@ -7,6 +7,7 @@
       'services.login',
       'services.register',
       'services.addproduct',
+      'services.notification',
       'controller.homepage',
       'controller.productpage',
       'controller.categorypage',

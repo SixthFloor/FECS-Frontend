@@ -7,7 +7,7 @@
 */
 ;(function () {
   angular
-    .module('controller.homepage', ['cgNotify', 'ui.router'])
+    .module('controller.homepage', ['ui.router'])
     .controller('HomePageController', HomePageController)
     .controller('LoginController', LoginController)
     .controller('RegisterController', RegisterController)
@@ -22,8 +22,8 @@
     console.log('Token : ' + $scope.accessToken)
   }
 
-  LoginController.$inject = ['$scope', '$http', '$state', 'notify', 'FECSAuth']
-  function LoginController ($scope, $http, $state, notify, FECSAuth) {
+  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'FECSAuth']
+  function LoginController ($scope, $http, $state, notification, FECSAuth) {
     var self = this
     self.show = false
     self.data = {
@@ -49,15 +49,14 @@
           notify: true
         })
         var msg = '<span><b>Well done!</b> Login successfully.</span>'
-        notify({
-          messageTemplate: msg,
-          classes: 'alert alert-success'
+        notification.success({
+          message: msg
         })
       }, function (err) {
         var msg = '<span><b>Oh snap!</b> ' + err.error + '.</span>'
-        notify({
-          messageTemplate: msg,
-          classes: 'alert alert-danger'
+        notification.error({
+          message: msg,
+          replaceMessage: true
         })
       })
     }
@@ -80,8 +79,8 @@
     self.logout()
   }
 
-  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'notify', 'FECSAuth']
-  function RegisterController ($scope, $http, registerService, $location, $state, notify, FECSAuth) {
+  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'Notification', 'FECSAuth']
+  function RegisterController ($scope, $http, registerService, $location, $state, notification, FECSAuth) {
     $scope.accessToken = FECSAuth.getToken()
     var self = this
     self.member = registerService.member
@@ -96,15 +95,14 @@
         registerService.regis(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
-            notify({
-              messageTemplate: msg,
-              classes: 'alert alert-danger'
+            notification.error({
+              message: msg,
+              replaceMessage: true
             })
           } else {
             msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
-            notify({
-              messageTemplate: msg,
-              classes: 'alert alert-success'
+            notification.success({
+              message: msg
             })
             $state.transitionTo('login')
           }
