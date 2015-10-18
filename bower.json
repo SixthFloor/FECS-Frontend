@@ -19,8 +19,8 @@
     "angular-ui-router": "~0.2.15",
     "bootstrap-sass": "~3.3.5",
     "angular-mocks": "~1.4.7",
-    "angular-notify": "~2.5.0",
-    "angular-local-storage": "~0.2.3"
+    "angular-local-storage": "~0.2.3",
+    "angular-ui-notification": "~0.0.14"
   },
   "devDependencies": {}
 }
