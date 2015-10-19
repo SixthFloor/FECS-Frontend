@@ -3,15 +3,15 @@
 /**
 * Add Product service Module
 *
-* @description Add Product service Module uses for add new product to the FECS's store.
+* @description Product service Module uses for add/edit new product to the FECS's store.
 */
 ;(function () {
   angular
-    .module('services.addproduct', [])
-    .service('addproductService', addproductService)
+    .module('services.product', [])
+    .service('productService', productService)
 
-  addproductService.$inject = ['$http']
-  function addproductService ($http) {
+  productService.$inject = ['$http']
+  function productService ($http) {
     var self = this
 
     self.valid = true

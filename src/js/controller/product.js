@@ -67,18 +67,18 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'addproductService', 'Notification', 'FECSAuth']
-  function AddProductController ($scope, $http, addproductService, notification, FECSAuth) {
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'FECSAuth']
+  function AddProductController ($scope, $http, productService, notification, FECSAuth) {
     var self = this
     $scope.isloggedin = FECSAuth.isAuthed()
-    self.product = addproductService.product
-    self.valid = addproductService.valid
+    self.product = productService.product
+    self.valid = productService.valid
 
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.categoryID !== '') && (self.product.subcategoryID !== '')) {
-        addproductService.valid = true
-        addproductService.addproduct(function (response) {
+        productService.valid = true
+        productService.addproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
             notification.error({
@@ -96,9 +96,9 @@
         })
       } else {
         console.log('should be false')
-        addproductService.valid = false
+        productService.valid = false
       }
-      self.valid = addproductService.valid
+      self.valid = productService.valid
       console.log(self.valid)
     }
   }
