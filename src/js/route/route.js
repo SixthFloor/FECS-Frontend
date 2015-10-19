@@ -40,7 +40,7 @@
         controllerAs: 'productpageCtrl'
       })
       .state('category', {
-        url: '/category',
+        url: '/category/:category_name',
         templateUrl: 'templates/category.tmpl',
         controller: 'CategoryPageController',
         controllerAs: 'categorypageCtrl'
