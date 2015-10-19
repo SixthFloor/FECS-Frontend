@@ -36,3 +36,15 @@
 .alert {
   min-width: 300px;
 }
+
+//Add product
+.addproduct-container{
+  text-align: center;
+}
+.addproduct-btn{
+  @extend .btn;
+  @extend .btn-success;
+  font-size: large;
+  padding: 6px 40px;
+  margin: 12px 0px 35px 0px;
+}
