@@ -8,12 +8,11 @@ exports.config = {
          'protractor_test/test_RegisterAsMember.js'],
 
   multiCapabilities: [{
-    browserName: 'firefox'
-  }, {
-    browserName: 'chrome'
-  }, {
-    browserName: 'internet explorer'
-  }]
+      browserName: 'firefox'
+    }, {
+      browserName: 'chrome'
+    }
+  ]
 
   baseUrl: 'http://localhost:8080/app/',
 
