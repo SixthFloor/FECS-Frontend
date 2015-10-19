@@ -3,12 +3,13 @@
 /**
 * Product Controller Module
 *
-* @description Product Controller module to add create all controller of this project.
+* @description Product Controller module to add create all controller about product of this project.
 */
 ;(function () {
   angular
     .module('controller.productpage', [])
     .controller('ProductPageController', ProductPageController)
+    .controller('AddProductController', AddProductController)
 
   ProductPageController.$inject = ['$scope', '$http', 'FECSAuth', '$stateParams']
   function ProductPageController ($scope, $http, $FECSAuth, $stateParams) {
@@ -61,6 +62,42 @@
     } else {
       self.is404 = true
       self.errorMessage = 'Error: Product not found'
+    }
+  }
+
+  AddProductController.$inject = ['$scope', '$http', 'addproductService', 'notification', 'FECSAuth']
+  function AddProductController ($scope, $http, addproductService, notification, FECSAuth) {
+    var self = this
+    $scope.isloggedin = FECSAuth.isAuthed()
+    self.product = addproductService.product
+    self.valid = addproductService.valid
+
+    self.submit = function () {
+      if ((self.product.productName !== '') && (self.product.price !== '') &&
+        (self.product.categoryID !== '') && (self.product.subcategoryID !== '')) {
+        addproductService.valid = true
+        addproductService.addproduct(function (response) {
+          if (response.status === 'error') {
+            var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+            notification.error({
+              message: msg,
+              replaceMessage: true
+            })
+          } else {
+            msg = '<span><b>Success!</b> Added new product.<br/>' + self.member.firstname + ' is now available in FECS store.</span>'
+            notification.success({
+              message: msg
+            })
+          }
+        }, function (response) {
+          console.log(response)
+        })
+      } else {
+        console.log('should be false')
+        addproductService.valid = false
+      }
+      self.valid = addproductService.valid
+      console.log(self.valid)
     }
   }
 })()

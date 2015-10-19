@@ -8,7 +8,7 @@ every controller that have to identify the customer, authentication service has 
 */
 ;(function () {
   angular
-    .module('services.login', [])
+    .module('services.login', ['LocalStorageModule'])
     .service('FECSAuth', FECSAuth)
 
   FECSAuth.$inject = ['localStorageService', '$http']
