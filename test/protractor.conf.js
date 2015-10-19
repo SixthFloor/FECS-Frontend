@@ -5,30 +5,25 @@ exports.config = {
   allScriptsTimeout: 4000,
 
 
-  specs: ['protractor_test/.js'],
+  specs: ['protractor_test/test_LoginAsMember.js', 
+         'protractor_test/test_RegisterAsMember.js'],
 
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
   },
 
   baseUrl: 'http://localhost:8080/app/',
-
-  // framework: 'jasmine2',
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 60000
   },
 
   onPrepare: function () {
-    // jasmine.getEnv().addReporter(
-    //   new HtmlReporter({
-    //     savePath: './test/reports/',
-    //     baseDirectory: 'images',
-    //     takeScreenshotsOnlyOnFailures: true
-    //   })
-    // )
-  jasmine.getEnv().addReporter(new HtmlReporter({
-         baseDirectory: './test/reports/'
+    jasmine.getEnv().addReporter(new HtmlReporter({
+         baseDirectory: 'test_reports/',
+         takeScreenshotsOnlyOnFailures: true,
+         docTitle: 'Test Beta',
+         docName: 'test_beta.html'
       }))
   }
 }
