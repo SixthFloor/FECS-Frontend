@@ -13,10 +13,10 @@ describe('Login as member', function() {
   var email = element(by.model('loginCtrl.data.email'))
   var password = element(by.model('loginCtrl.data.pwd'))
   var loginButton = element(by.buttonText('Sign in'))
-  
-  
-  //var notify = element(by.className('cg-notify-message ng-scope alert alert-success cg-notify-message-center'))
-  
+  var afterLogin = element(by.css('[ng-if="accessToken != false"]'))
+  var closeHiden = element(by.css('[aria-hidden]="true"'))
+  var notify = $('.cg-notify-message')
+  // var notifyButton = $('.cg-notify-close')
 
   function Login(a,b) {
     //browser.get('http://localhost:3030/#');
@@ -39,7 +39,8 @@ describe('Login as member', function() {
     Login('nititest@hotmail.com','nititest')
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(10000)
+    browser.sleep(2500)
+    browser.driver.executeScript("$('.cg-notify-message').remove();")
     browser.waitForAngular()
     expect(linkSignout.getText()).toEqual('Sign out')
     linkSignout.click()
@@ -88,4 +89,7 @@ describe('Login as member', function() {
     expect(loginButton.getAttribute('disabled')).toBe('true')
     linkHome.click()
   })
+  
 })
+
+
