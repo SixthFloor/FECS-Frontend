@@ -1,50 +1,59 @@
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "standard";
-@import "navbar";
-@import "_loginpage.scss";
-@import "catbar";
-@import "productview";
+// @import "standard";
+// @import "navbar";
+// @import "_loginpage.scss";
+// @import "catbar";
+// @import "productview";
 
-//Register page
-.require-star{
-  color: red;
-}
-.register-2col-row{
-  @extend .row;
-  margin-left: -3px;
-}
-.register-btn{
-  @extend .btn;
-  @extend .btn-success;
-  font-size: large;
-  padding: 6px 40px;
-  margin: 12px 0px 35px 0px;
-}
-.register-container{
-  text-align: center;
-}
-.member-info{
-  text-align: -webkit-center !important;
-  text-align: center;
-  margin: 25px 0px;
-}
-.member-info-panel{
-  @extend .panel;
-  @extend .panel-default;
-  width: 75%;
-}
-.alert {
-  min-width: 300px;
-}
+// //Register page
+// .require-star{
+//   color: red;
+// }
+// .register-2col-row{
+//   @extend .row;
+//   margin-left: -3px;
+// }
+// .register-btn{
+//   @extend .btn;
+//   @extend .btn-success;
+//   font-size: large;
+//   padding: 6px 40px;
+//   margin: 12px 0px 35px 0px;
+// }
+// .register-container{
+//   text-align: center;
+// }
+// .member-info{
+//   text-align: -webkit-center !important;
+//   text-align: center;
+//   margin: 25px 0px;
+// }
+// .member-info-panel{
+//   @extend .panel;
+//   @extend .panel-default;
+//   width: 75%;
+// }
+// .alert {
+//   min-width: 300px;
+// }
 
-//Add product
-.addproduct-container{
-  text-align: center;
-}
-.addproduct-btn{
-  @extend .btn;
-  @extend .btn-success;
-  font-size: large;
-  padding: 6px 40px;
-  margin: 12px 0px 35px 0px;
+// //Add product
+// .addproduct-container{
+//   text-align: center;
+// }
+// .addproduct-btn{
+//   @extend .btn;
+//   @extend .btn-success;
+//   font-size: large;
+//   padding: 6px 40px;
+//   margin: 12px 0px 35px 0px;
+// }
+.navbar-custom {
+    top: 0;
+    left: 0;
+    border: none;
+    border-radius: 0;
+    background-color: rgba(255,255,255,.9);
+    width: 100%;
+    z-index: 2000;
 }
