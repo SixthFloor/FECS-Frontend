@@ -11,11 +11,23 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope']
-  function CategoryPageController ($scope) {
+  CategoryPageController.$inject = ['$scope', '$http', 'FECSAuth', '$state', '$stateParams']
+  function CategoryPageController ($scope, $http, FECSAuth, $state, $stateParams) {
     var self = this
-    /** do logic */
-    self.sub1 = 'Bedroom'
-    self.sub2 = 'Single beds'
+    console.log($stateParams.category_name)
+    self.productList = {}
+
+    //  API path
+    var url = 'http://128.199.112.126:3000/category/' + $stateParams.category_name
+    if ($stateParams.category_name === 'all') {
+      $http.get(url).success(function (response) {
+        self.productList = response.data
+        console.log(self.productList)
+      })
+    }
+
+    self.viewProduct = function (id) {
+      $state.transitionTo('product', {product_id: id})
+    }
   }
 })()

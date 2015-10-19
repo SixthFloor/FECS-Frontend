@@ -23,7 +23,7 @@
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           console.log(response)
-          console.log(response.data.name)
+          //console.log(response.data.name)
           console.log($stateParams.product_id)
 
           self.productName = angular.uppercase(response.data.name)
