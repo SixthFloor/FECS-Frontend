@@ -1,11 +1,12 @@
 /* global angular */
 
-/**
-* Product Controller Module
-*
-* @description Product Controller module to add create all controller about product of this project.
-*/
 ;(function () {
+  /**
+  * controller.product Module
+  *
+  * @author Warunyu Rerkdee
+  * @description Product Controller module to add create all controller about product of this project.
+  */
   angular
     .module('controller.productpage', [])
     .controller('ProductPageController', ProductPageController)
