@@ -92,7 +92,7 @@
       })
       .state('editproduct', {
         url: '/admin/product/edit/:product_id',
-        templateUrl: 'templates/admin/product/addproduct.tmpl',
+        templateUrl: 'templates/admin/product/editproduct.tmpl',
         controller: 'EditProductController',
         controllerAs: 'editproductCtrl'
       })

@@ -38,5 +38,19 @@
         img: self.product.img
       }).success(success).error(error)
     }
+
+    self.editproduct = function (success, error, productID) {
+      var url = 'http://128.199.112.126:3000/api/product/edit'
+      $http.post(url, {
+        productID: productID,
+        name: self.product.productName,
+        price: self.product.price,
+        description: self.product.description,
+        dimensionDescription: self.product.dimensionDescription,
+        categoryID: self.product.categoryID,
+        subcategoryID: self.product.subcategoryID,
+        img: self.product.img
+      }).success(success).error(error)
+    }
   }
 })()
