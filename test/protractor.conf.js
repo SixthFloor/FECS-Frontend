@@ -3,7 +3,7 @@ var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
 exports.config = {
   allScriptsTimeout: 4000,
 
-  specs: ['protractor_test/Registor.js'],
+  specs: ['protractor_test/testRegister.js'],
 
   capabilities: {
     'browserName': 'chrome'
