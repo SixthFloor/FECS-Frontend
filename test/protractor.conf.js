@@ -5,11 +5,16 @@ exports.config = {
   allScriptsTimeout: 4000,
 
 
-  specs: ['protractor_test/.js'],
+  specs: ['protractor_test/testLogin.js'],
 
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'internet explorer'
   },
+  /*multiCapabilities: [{
+    browserName: 'firefox'
+  }, {
+    browserName: 'chrome'
+  }],*/
 
   baseUrl: 'http://localhost:8080/app/',
 
