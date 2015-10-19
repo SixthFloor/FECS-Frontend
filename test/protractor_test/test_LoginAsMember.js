@@ -22,19 +22,12 @@ describe('Login as member', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3030/#')
-    
     notifications.each(function(notification) {
-                notification.addClass('killed')
+      notification.addClass('killed')
     })
   })
 
-  /*afterEach(function() {
-    browser.manage().logs().get('browser').then(function(browserLog) {
-      console.log('log: ' + require('util').inspect(browserLog));
-    });
-  });*/
-
-  it('Case1: If email and password correct,then it should access complete', function() {
+  it('Case 1: If email and password correct,then it should access complete', function() {
     linkSignin.click()
     expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
     Login('nititest@hotmail.com','nititest')
@@ -44,14 +37,14 @@ describe('Login as member', function() {
     expect(notifications.getText()).toEqual([ 'Well done! Login successfully.' ])
   })
 
-  it('Case2: If access complete,then when logout it should logout success ', function() {
+  it('Case 2: If access complete,then when logout it should logout success ', function() {
     expect(linkSignout.getText()).toEqual('Sign out')
     linkSignout.click()
     browser.sleep(5000)
     expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
   })
 
-  it('Case3: If email wrong but password correct,then it should not access complete', function() {
+  it('Case 3: If email wrong but password correct,then it should not access complete', function() {
     linkSignin.click()
     expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
     Login('nititest2@hotmail.com','nititest')
@@ -61,7 +54,7 @@ describe('Login as member', function() {
     expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
   })
 
-  it('Case4: If email correct but password wrong,then it should not access complete', function() {
+  it('Case 4: If email correct but password wrong,then it should not access complete', function() {
     linkSignin.click()
     expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
     Login('nititest@hotmail.com','nititest2')
@@ -71,7 +64,7 @@ describe('Login as member', function() {
     expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
   })
 
-  it('Case5: If email and password wrong,then it should not access complete', function() {
+  it('Case 5: If email and password wrong,then it should not access complete', function() {
     linkSignin.click()
     expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
     Login('nititest2@hotmail.com','nititest2')
@@ -81,14 +74,14 @@ describe('Login as member', function() {
     expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
   })
 
-  it('Case6: If email and password wrong,then it should not access complete(Sign in button do not show)', function() {
+  it('Case 6: If email and password wrong,then it should not access complete(Sign in button do not show)', function() {
     linkSignin.click()
     expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
     Login('nititest','nititest2')
     expect(loginButton.getAttribute('disabled')).toBe('true')
   })
 
-  it('Case7: If no fill email and password,then it should not access complete(Sign in button do not show)', function() {
+  it('Case 7: If no fill email and password,then it should not access complete(Sign in button do not show)', function() {
     linkSignin.click()
     expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
     Login('','')
