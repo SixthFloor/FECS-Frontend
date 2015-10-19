@@ -4,7 +4,8 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 exports.config = {
   allScriptsTimeout: 4000,
 
-  specs: ['protractor_test/testLogin.js'],
+
+  specs: ['protractor_test/.js'],
 
   capabilities: {
     'browserName': 'chrome'
