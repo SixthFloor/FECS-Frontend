@@ -13,9 +13,7 @@ describe('Login as member', function() {
   var email = element(by.model('loginCtrl.data.email'))
   var password = element(by.model('loginCtrl.data.pwd'))
   var loginButton = element(by.buttonText('Sign in'))
-  var afterLogin = element(by.css('[ng-if="accessToken != false"]'))
-  var closeHiden = element(by.css('[aria-hidden]="true"'))
-  var notify = $('.cg-notify-message')
+  var notifications = element.all(by.css('.ui-notification'))
   // var notifyButton = $('.cg-notify-close')
 
   function Login(a,b) {
@@ -26,6 +24,10 @@ describe('Login as member', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3030/#')
+    
+    notifications.each(function(notification) {
+                notification.addClass('killed')
+    })
   })
 
   /*afterEach(function() {
@@ -34,16 +36,18 @@ describe('Login as member', function() {
     });
   });*/
 
-  it('Case1: If email and password correct,then it should access complete', function() {
+  it('Case1: If email and password correct,then it should access complete\n1.1 Login Button should show', function() {
     linkSignin.click()
+    //expect(browser.getcurrentUrl()).toBe('http://localhost:3030/?#/login')
     Login('nititest@hotmail.com','nititest')
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(2500)
-    browser.driver.executeScript("$('.cg-notify-message').remove();")
-    browser.waitForAngular()
+    browser.sleep(5000)
+    expect(notifications.getText()).toEqual([ 'Well done! Login successfully.' ])
     expect(linkSignout.getText()).toEqual('Sign out')
     linkSignout.click()
+    browser.sleep(5000)
+    expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
   })
 
   it('Case2: If email wrong but password correct,then it should not access complete', function() {
@@ -51,8 +55,8 @@ describe('Login as member', function() {
     Login('nititest2@hotmail.com','nititest')
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(10000)
-    browser.waitForAngular()
+    browser.sleep(5000)
+    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
     linkHome.click()
   })
 
@@ -61,8 +65,8 @@ describe('Login as member', function() {
     Login('nititest@hotmail.com','nititest2')
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(10000)
-    browser.waitForAngular()
+    browser.sleep(5000)
+    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
     linkHome.click()
   })
 
@@ -71,8 +75,8 @@ describe('Login as member', function() {
     Login('nititest2@hotmail.com','nititest2')
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
-    browser.sleep(10000)
-    browser.waitForAngular()
+    browser.sleep(5000)
+    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
     linkHome.click()
   })
 
@@ -89,7 +93,7 @@ describe('Login as member', function() {
     expect(loginButton.getAttribute('disabled')).toBe('true')
     linkHome.click()
   })
-  
+
 })
 
 
