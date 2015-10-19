@@ -1,4 +1,5 @@
-var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
+//var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
+var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
   allScriptsTimeout: 4000,
@@ -11,19 +12,22 @@ exports.config = {
 
   baseUrl: 'http://localhost:8080/app/',
 
-  framework: 'jasmine2',
+  // framework: 'jasmine2',
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 60000
   },
 
   onPrepare: function () {
-    jasmine.getEnv().addReporter(
-      new Jasmine2HtmlReporter({
-        savePath: './test/reports/',
-        screenshotsFolder: 'images',
-        takeScreenshotsOnlyOnFailures: true
-      })
-    )
+    // jasmine.getEnv().addReporter(
+    //   new HtmlReporter({
+    //     savePath: './test/reports/',
+    //     baseDirectory: 'images',
+    //     takeScreenshotsOnlyOnFailures: true
+    //   })
+    // )
+  jasmine.getEnv().addReporter(new HtmlReporter({
+         baseDirectory: './test/reports/'
+      }))
   }
 }
