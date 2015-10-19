@@ -109,5 +109,26 @@
     var self = this
     // path of mock API
     var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
+    if ($stateParams.product_id !== '') {
+      $http.get(url).success(function (response) {
+        if (response.status !== 'error') {
+          self.productName = response.data.name
+          self.productID = angular.uppercase(response.data.serialNumber)
+          self.price = response.data.price
+          self.description = response.data.description
+          self.dimensionDescription = ''
+          self.categoryID = response.data.category.id
+          self.subcategoryID = '1'
+          self.img = []
+        } else {
+          console.log(response.message)
+          self.is404 = true
+          self.errorMessage = 'Error: Product not found'
+        }
+      })
+    } else {
+      self.is404 = true
+      self.errorMessage = 'Error: Product not found'
+    }
   }
 })()

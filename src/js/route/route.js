@@ -90,5 +90,11 @@
           }
         }
       })
+      .state('editproduct', {
+        url: '/admin/product/edit/:product_id',
+        templateUrl: 'templates/admin/product/addproduct.tmpl',
+        controller: 'EditProductController',
+        controllerAs: 'editproductCtrl'
+      })
   }
 })()
