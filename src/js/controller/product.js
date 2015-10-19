@@ -65,7 +65,7 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'addproductService', 'notification', 'FECSAuth']
+  AddProductController.$inject = ['$scope', '$http', 'addproductService', 'Notification', 'FECSAuth']
   function AddProductController ($scope, $http, addproductService, notification, FECSAuth) {
     var self = this
     $scope.isloggedin = FECSAuth.isAuthed()
