@@ -11,6 +11,7 @@
     .module('controller.productpage', [])
     .controller('ProductPageController', ProductPageController)
     .controller('AddProductController', AddProductController)
+    .controller('EditProductController', AddProductController)
 
   ProductPageController.$inject = ['$scope', '$http', 'FECSAuth', '$stateParams']
   function ProductPageController ($scope, $http, $FECSAuth, $stateParams) {
@@ -100,5 +101,13 @@
       self.valid = addproductService.valid
       console.log(self.valid)
     }
+  }
+
+  EditProductController.$inject = ['$scope', '$http', 'FECSAuth', '$stateParams', 'Notification']
+  function EditProductController ($scope, $http, $FECSAuth, $stateParams, notification) {
+    console.log($stateParams.product_id)
+    var self = this
+    // path of mock API
+    var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
   }
 })()
