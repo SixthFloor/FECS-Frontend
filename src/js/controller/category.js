@@ -1,11 +1,12 @@
 /* global angular */
 
-/**
-* Category Controller Module
-*
-* @description Category Controller module to add create all controller of this project.
-*/
 ;(function () {
+  /**
+  * controller.home Module
+  *
+  * @author Chinnaporn Soonue
+  * @description Category Controller module to add create all controller of this project.
+  */
   angular
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
