@@ -23,11 +23,11 @@
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           console.log(response)
-          console.log(response.data.name)
+          console.log(response.data[0].name)
           console.log($stateParams.product_id)
 
-          self.productName = angular.uppercase(response.data.name)
-          self.productID = angular.uppercase(response.data.serialNumber)
+          self.productName = angular.uppercase(response.data[0].name)
+          self.productID = angular.uppercase(response.data[0].serialNumber)
           self.property1 = {
             repeatSelect: null,
             availableOptions: [
@@ -52,9 +52,9 @@
           }
 
           self.available = 5
-          self.price = response.data.price
-          self.description = response.data.description
-          self.category = angular.uppercase(response.data.category.name)
+          self.price = response.data[0].price
+          self.description = response.data[0].description
+          self.category = angular.uppercase(response.data[0].category.name)
         } else {
           console.log(response.message)
           self.is404 = true
