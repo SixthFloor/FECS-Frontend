@@ -9,6 +9,7 @@
   angular
     .module('controller.login', ['ui.bootstrap'])
     .controller('LoginController', LoginController)
+    .controller('LogoutController', LogoutController)
 
   LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'User']
   function LoginController ($scope, $http, $state, notification, User) {
@@ -48,5 +49,25 @@
         })
       })
     }
+  }
+
+  LogoutController.$inject = ['$scope', '$state', 'Notification', 'User']
+  function LogoutController ($scope, $state, notification, User) {
+    var self = this
+
+    self.logout = function () {
+      User.logout()
+      var msg = '<span><b>Logout Success!</b> Thank you for using our services :)</span>'
+      notification.success({
+        message: msg
+      })
+      $state.transitionTo('home', $state.params, {
+        reload: true,
+        inherit: false,
+        notify: true
+      })
+    }
+
+    self.logout()
   }
 })()
