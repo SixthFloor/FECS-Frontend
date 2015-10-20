@@ -115,12 +115,12 @@
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
-          self.productID = angular.uppercase(response.data.serialNumber)
-          self.product.productName = response.data.name
-          self.product.price = response.data.price
-          self.product.description = response.data.description
+          self.productID = angular.uppercase(response.data[0].serialNumber)
+          self.product.productName = response.data[0].name
+          self.product.price = response.data[0].price
+          self.product.description = response.data[0].description
           self.product.dimensionDescription = ''
-          self.product.categoryID = response.data.category.id
+          self.product.categoryID = '' + response.data[0].category.id
           self.product.subcategoryID = '1'
           self.product.img = []
         } else {
