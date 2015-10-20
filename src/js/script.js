@@ -14,6 +14,7 @@
       'controller.register',
       'controller.productpage',
       'controller.categorypage',
+      'controller.navbar',
       'directive.navbar'
     ])
 })()

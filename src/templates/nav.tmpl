@@ -16,17 +16,17 @@
             <input type="text" class="form-control search-query">
           </div>
       </form>
-      <div ng-if="accessToken == false" class="nav navbar-nav navbar-right">
+      <div ng-if="!navbarCtrl.isAuthed" class="nav navbar-nav navbar-right">
         <a class="btn btn-danger navbar-btn" ui-sref="register">Sign up</a>
         <a class="btn btn-danger navbar-btn" ui-sref="login">Sign in</a>
         <!-- <li><a ui-sref="register">Sign up</a></li>
         <li><a ui-sref="login">Sign in</a></li> -->
       </div>
-      <div ng-if="accessToken != false" class="nav-right">
+      <div ng-if="navbarCtrl.isAuthed" class="nav-right">
         <p class="navbar-text navbar-right">
           Welcome to FECS, <a ui-sref="logout" class="navbar-link">Sign out</a>
         </p>
       </div>
     </div>
   </div>
-</div>
+

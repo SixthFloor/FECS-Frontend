@@ -11,8 +11,8 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', 'FECSAuth', '$state', '$stateParams']
-  function CategoryPageController ($scope, $http, FECSAuth, $state, $stateParams) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams']
+  function CategoryPageController ($scope, $http, $state, $stateParams) {
     var self = this
     console.log($stateParams.category_name)
     self.productList = {}
