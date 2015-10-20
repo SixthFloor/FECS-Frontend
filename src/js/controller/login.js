@@ -9,6 +9,7 @@
   angular
     .module('controller.login', [])
     .controller('LoginController', LoginController)
+    .controller('LogoutController', LogoutController)
 
   LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'FECSAuth']
   function LoginController ($scope, $http, $state, notification, FECSAuth) {
@@ -48,5 +49,25 @@
         })
       })
     }
+  }
+
+  LogoutController.$inject = ['$scope', '$state', 'Notification', 'FECSAuth']
+  function LogoutController ($scope, $state, notification, FECSAuth) {
+    var self = this
+
+    self.logout = function () {
+      FECSAuth.logout()
+      var msg = '<span><b>Logout Success!</b> Thank you for using our services :)</span>'
+      notification.success({
+        message: msg
+      })
+      $state.transitionTo('home', $state.params, {
+        reload: true,
+        inherit: false,
+        notify: true
+      })
+    }
+
+    self.logout()
   }
 })()
