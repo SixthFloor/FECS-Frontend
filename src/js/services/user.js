@@ -9,10 +9,10 @@ every controller that have to identify the customer, authentication service has 
 ;(function () {
   angular
     .module('services.login', ['LocalStorageModule'])
-    .service('FECSAuth', FECSAuth)
+    .service('User', User)
 
-  FECSAuth.$inject = ['localStorageService', '$http']
-  function FECSAuth (localStorageService, $http) {
+  User.$inject = ['localStorageService', '$http']
+  function User (localStorageService, $http) {
     var self = this
 
     self.isAuthed = function () {

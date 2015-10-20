@@ -10,8 +10,8 @@
     .module('controller.login', [])
     .controller('LoginController', LoginController)
 
-  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'FECSAuth']
-  function LoginController ($scope, $http, $state, notification, FECSAuth) {
+  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'User']
+  function LoginController ($scope, $http, $state, notification, User) {
     var self = this
     self.show = false
     self.data = {
@@ -28,9 +28,9 @@
         email: self.data.email,
         pwd: self.data.pwd
       }
-      FECSAuth.login(data, function (res) {
+      User.login(data, function (res) {
         var token = res.success.access_token
-        FECSAuth.setToken(token)
+        User.setToken(token)
         $state.transitionTo('home', $state.params, {
           reload: true,
           inherit: false,

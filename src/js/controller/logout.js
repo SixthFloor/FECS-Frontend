@@ -10,12 +10,12 @@
     .module('controller.logout', [])
     .controller('LogoutController', LogoutController)
 
-  LogoutController.$inject = ['$scope', '$state', 'Notification', 'FECSAuth']
-  function LogoutController ($scope, $state, notification, FECSAuth) {
+  LogoutController.$inject = ['$scope', '$state', 'Notification', 'User']
+  function LogoutController ($scope, $state, notification, User) {
     var self = this
 
     self.logout = function () {
-      FECSAuth.logout()
+      User.logout()
       var msg = '<span><b>Logout Success!</b> Thank you for using our services :)</span>'
       notification.success({
         message: msg
