@@ -2,14 +2,14 @@
   <div class="nav-left">
     <a ui-sref="home"><div class="logo"></div></a>
     <input class="navtf" type="text" placeHolder="" />
-    <button class="search" type="submit">search</button>
+    <button class="search" type="submit" placeHolder="{{navbarCtrl.test}}" >search</button>
   </div>
-  <div ng-if="accessToken == false" class="nav-right">
+  <div ng-if="!navbarCtrl.isAuthed" class="nav-right">
     <a ui-sref="register">Sign up</a>
     <a ui-sref="login">Sign in</a>
   </div>
-  <div ng-if="accessToken != false" class="nav-right">
-    Welcome to the FECS <a ui-sref="logout">Sign out</a> 
+  <div ng-if="navbarCtrl.isAuthed" class="nav-right">
+    Welcome to the FECS <a ui-sref="logout">Sign out</a>
   </div>
   <div class="clear"></div>
 </div>

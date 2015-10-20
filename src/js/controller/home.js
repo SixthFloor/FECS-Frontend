@@ -16,6 +16,6 @@
     var self = this
 
     self.welcome = 'Welcome to Furniture E-Commerce System'
-    $scope.accessToken = FECSAuth.getToken()
+
   }
 })()

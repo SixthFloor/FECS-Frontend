@@ -29,8 +29,8 @@
         pwd: self.data.pwd
       }
       FECSAuth.login(data, function (res) {
-        $scope.accessToken = res.success.access_token
-        FECSAuth.setToken($scope.accessToken)
+        var token = res.success.access_token
+        FECSAuth.setToken(token)
         $state.transitionTo('home', $state.params, {
           reload: true,
           inherit: false,

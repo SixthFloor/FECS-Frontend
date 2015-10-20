@@ -16,7 +16,6 @@
 
     self.logout = function () {
       FECSAuth.logout()
-      $scope.accessToken = ''
       var msg = '<span><b>Logout Success!</b> Thank you for using our services :)</span>'
       notification.success({
         message: msg
