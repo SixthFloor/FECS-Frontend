@@ -14,7 +14,7 @@ gulp.task('script', function () {
     './bower_components/Bootflat/bootflat/js/*.js',
     './src/js/**/*.js'])
     .pipe(concat('scripts.js'))
-    .pipe(uglify({mangle: true}))
+    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest('./www/js'))
     .pipe(browserSync.reload({
       stream: true
