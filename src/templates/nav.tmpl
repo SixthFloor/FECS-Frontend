@@ -13,16 +13,16 @@
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <form class="navbar-form navbar-left" role="search">
            <div class="form-search search-only">
-              <i class="search-icon glyphicon glyphicon-search"></i>
-              <input type="text" class="form-control search-query">
+              <i class="search-icon-custom glyphicon glyphicon-search"></i>
+              <input type="text" class="form-control search-field " placeholder="Search...">
             </div>
         </form>
-        <div ng-if="!navbarCtrl.isAuthed" class="nav navbar-nav navbar-right">
-          <a class="btn btn-danger navbar-btn" ui-sref="register">Sign up</a>
-          <a class="btn btn-danger navbar-btn" ui-sref="login">Sign in</a>
-          <!-- <li><a ui-sref="register">Sign up</a></li>
-          <li><a ui-sref="login">Sign in</a></li> -->
-        </div>
+        <ul ng-if="!navbarCtrl.isAuthed" class="nav navbar-nav navbar-right">
+          <!-- <a class="btn btn-danger navbar-btn" ui-sref="register">Sign up</a>
+          <a class="btn btn-danger navbar-btn" ui-sref="login">Sign in</a> -->
+          <li><a ui-sref="register">Sign up</a></li>
+          <li><a ui-sref="login">Sign in</a></li>
+        </ul>
         <div ng-if="navbarCtrl.isAuthed" class="nav-right">
           <p class="navbar-text navbar-right">
             Welcome to FECS, <a ui-sref="logout" class="navbar-link">Sign out</a>
