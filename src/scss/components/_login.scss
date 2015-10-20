@@ -1,15 +1,116 @@
 $white:	#000 !default;
+body {
+	background-color: #CCD1D9;
+}
 
 .login {
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.45);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.45);
   background-size: 940px 778px;
+  margin: 100px auto 0;
   color: $white;
   margin-bottom: 77px;
-  padding: 38px 38px 267px;
+  padding: 0;
   position: relative;
+  max-width: 650px;
+  max-height: 550px;
 }
 
 .login-screen {
   background-color: #1abc9c;
   min-height: 473px;
-  padding: 123px 199px 33px 306px;
+  padding: 120px 5% 133px 35%;
 }
+
+.login-icon {
+  left: 100px;
+  position: absolute;
+  top: 130px;
+  width: 96px;
+
+  > img {
+    display: block;
+    margin-bottom: 6px;
+    width: 100%;
+  }
+  > h4 {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 34px;
+    opacity: .95;
+
+    small {
+      color: inherit;
+      display: block;
+      font-size: inherit;
+      font-weight: 700;
+    }
+  }
+}
+
+.login-form {
+  background-color: #edeff1;
+  padding: 24px 23px 20px;
+  position: relative;
+  border-radius: 6px;
+
+  .control-group {
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .login-field {
+    border-color: transparent;
+    font-size: 17px;
+    text-indent: 3px;
+
+    &:focus {
+      border-color: #1abc9c;
+
+      & + .login-field-icon {
+        color: #1abc9c;
+      }
+    }
+  }
+  .login-field-icon {
+    color: #bfc9ca;
+    font-size: 16px;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    line-height: 34px;
+    transition: all .25s;
+  }
+}
+.login-btn {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  a {			   	
+    color: #FFF;
+  	font-weight: bold;
+    text-decoration: none;
+    cursor: auto;
+    display: inline-block;
+    margin-bottom: 11px;
+  }
+  a:hover {
+  	text-decoration: underline;
+  }
+}
+.login-link {
+  color: #E6E9ED;
+  display: block;
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: center;
+}
+.tooltip.customClass {
+    .tooltip-inner {
+    	max-width: 350px;
+    	min-width: 100%;
+    	white-space: nowrap;
+    }
+}
+// .tooltip.customClass .tooltip-arrow {
+//     display: none;
+// }

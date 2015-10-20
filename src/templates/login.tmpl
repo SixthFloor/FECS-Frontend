@@ -33,26 +33,29 @@
 		<a ui-sref="home" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-home"></span> Home</a>
 	</div>
 </div> -->
+<navbar></navbar>
 <div class="login">
 	<div class="login-screen">
 	  <div class="login-icon">
 	    <img src="img/Pocket.png" alt="Welcome to Mail App">
-	    <h4>Welcome to <small>Mail App</small></h4>
+	    <h4>Welcome to <small>6th Floor</small></h4>
 	  </div>
-
-	  <div class="login-form">
-	    <div class="form-group">
-	      <input type="text" class="form-control login-field" value="" placeholder="Enter your name" id="login-name">
-	      <label class="login-field-icon fui-user" for="login-name"></label>
+	  <form class="login-form" name="loginForm" ng-submit="loginCtrl.login()">
+	    <div class="form-group has-success has-feedback">
+	      <input type="text" class="form-control login-field" placeholder="Enter your email" ng-model="loginCtrl.data.email" tabindex="0" uib-tooltip="Input your email..." tooltip-trigger="focus" tooltip-placement="right" tooltip-class="customClass">
+	      <span class="glyphicon glyphicon-user login-field-icon " aria-hidden="true"></span>
 	    </div>
 
-	    <div class="form-group">
-	      <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass">
-	      <label class="login-field-icon fui-lock" for="login-pass"></label>
+	    <div class="form-group has-success has-feedback">
+	      <input type="password" class="form-control login-field" ng-model="loginCtrl.data.pwd" placeholder="Enter your password" pattern=".{8,20}" required tabindex="0" uib-tooltip="Password should be between 8-20 characters..." tooltip-trigger="focus" tooltip-placement="right" tooltip-class="customClass">
+	      <span class="glyphicon glyphicon-lock login-field-icon " aria-hidden="true"></span>
 	    </div>
 
-	    <a class="btn btn-primary btn-lg btn-block" href="#">Log in</a>
-	    <a class="login-link" href="#">Lost your password?</a>
+	    <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="!loginForm.$valid">Sign in</button>
+	  </form>
+	  <div class="login-btn">
+	    <a href="#">Forget your password?</a><br/>
+	    <a ui-sref="register">Sign Up</a>
 	  </div>
 	</div>
 </div>
