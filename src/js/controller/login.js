@@ -11,8 +11,8 @@
     .controller('LoginController', LoginController)
     .controller('LogoutController', LogoutController)
 
-  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'FECSAuth']
-  function LoginController ($scope, $http, $state, notification, FECSAuth) {
+  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'User']
+  function LoginController ($scope, $http, $state, notification, User) {
     var self = this
     self.show = false
     self.data = {
@@ -29,9 +29,9 @@
         email: self.data.email,
         pwd: self.data.pwd
       }
-      FECSAuth.login(data, function (res) {
+      User.login(data, function (res) {
         var token = res.success.access_token
-        FECSAuth.setToken(token)
+        User.setToken(token)
         $state.transitionTo('home', $state.params, {
           reload: true,
           inherit: false,
@@ -51,12 +51,12 @@
     }
   }
 
-  LogoutController.$inject = ['$scope', '$state', 'Notification', 'FECSAuth']
-  function LogoutController ($scope, $state, notification, FECSAuth) {
+  LogoutController.$inject = ['$scope', '$state', 'Notification', 'User']
+  function LogoutController ($scope, $state, notification, User) {
     var self = this
 
     self.logout = function () {
-      FECSAuth.logout()
+      User.logout()
       var msg = '<span><b>Logout Success!</b> Thank you for using our services :)</span>'
       notification.success({
         message: msg

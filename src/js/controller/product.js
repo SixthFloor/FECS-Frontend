@@ -13,8 +13,8 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
-  ProductPageController.$inject = ['$scope', '$http', 'FECSAuth', '$stateParams']
-  function ProductPageController ($scope, $http, $FECSAuth, $stateParams) {
+  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams']
+  function ProductPageController ($scope, $http, User, $stateParams) {
     console.log($stateParams.product_id)
     var self = this
     // path of mock API
@@ -67,10 +67,10 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'FECSAuth']
-  function AddProductController ($scope, $http, productService, notification, FECSAuth) {
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User']
+  function AddProductController ($scope, $http, productService, notification, User) {
     var self = this
-    $scope.isloggedin = FECSAuth.isAuthed()
+    $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
 
@@ -103,11 +103,11 @@
     }
   }
 
-  EditProductController.$inject = ['$scope', '$http', 'FECSAuth', '$stateParams', 'Notification', 'productService']
-  function EditProductController ($scope, $http, FECSAuth, $stateParams, notification, productService) {
+  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService']
+  function EditProductController ($scope, $http, User, $stateParams, notification, productService) {
     console.log($stateParams.product_id)
     var self = this
-    $scope.isloggedin = FECSAuth.isAuthed()
+    $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
     // path of mock API

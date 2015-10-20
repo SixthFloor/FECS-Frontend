@@ -11,10 +11,10 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', 'FECSAuth']
-  function NavbarController ($scope, FECSAuth) {
+  NavbarController.$inject = ['$scope', 'User']
+  function NavbarController ($scope, User) {
     var self = this
 
-    self.isAuthed = FECSAuth.isAuthed()
+    self.isAuthed = User.isAuthed()
   }
 })()

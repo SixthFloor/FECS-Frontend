@@ -10,8 +10,8 @@
     .module('controller.register', [])
     .controller('RegisterController', RegisterController)
 
-  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'Notification', 'FECSAuth']
-  function RegisterController ($scope, $http, registerService, $location, $state, notification, FECSAuth) {
+  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'Notification', 'User']
+  function RegisterController ($scope, $http, registerService, $location, $state, notification, User) {
     var self = this
     self.member = registerService.member
     self.valid = registerService.valid
