@@ -13,7 +13,7 @@ gulp.task('script', function () {
     './bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
     './src/js/**/*.js'])
     .pipe(concat('scripts.js'))
-    // .pipe(uglify({mangle: true}))
+    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest('./www/js'))
     .pipe(browserSync.reload({
       stream: true

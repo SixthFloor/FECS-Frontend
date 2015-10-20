@@ -1,0 +1,77 @@
+<div ng-if="!editproductCtrl.is404">
+  <div class="container">
+    <legend><h2>Edit Product ID: {{editproductCtrl.productID}}</h2></legend>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <span class="require-star">*</span>
+        <label class="col-sm-2 control-label" for="productName">Product Name:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" placeholder="Enter name of new product" ng-model="editproductCtrl.product.productName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="description">Description:</label>
+        <div class="col-sm-5">
+          <textarea class="form-control" placeholder="Enter description of product" ng-model="editproductCtrl.product.description"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="dimensionDescription" >Dimension:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" placeholder="Enter dimention detail (ex. 1m x 1.82m)" ng-model="editproductCtrl.product.dimensionDescription">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="categoryID">Category:</label>
+        <div class="col-sm-2">
+          <select class="form-control" ng-model="editproductCtrl.product.categoryID">
+            <option value="" disabled selected>Category</option>
+            <option value="1">Bedroom</option>
+            <option value="2">Bathroom</option>
+            <option value="3">Dinning Room</option>
+            <option value="4">Kitchen</option>
+            <option value="5">Living Room</option>
+            <option value="6">Laundry</option>
+            <option value="7">Office furniture</option>
+            <option value="8">Kid's furniture</option>
+            <option value="9">Dressing room</option>
+            <option value="10">Lightning</option>
+            <option value="11">Hallway</option>
+            <option value="12">Outdoor</option>
+          </select>
+        </div>
+        <div class="col-sm-1 require-star">*</div>
+        <span class="require-star">*</span>
+        <div class="col-sm-2">
+          <select class="form-control col-sm-2" ng-model="editproductCtrl.product.subcategoryID">
+            <option value="" disabled selected>Sub-Category</option>
+            <option value="1">Sofabed</option>
+            <option value="2">Bed</option>
+            <option value="3">Chair</option>
+            <option value="4">Lamb</option>
+            <option value="5">Table</option>
+            <option value="6">Shelf</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <span class="require-star">*</span>
+        <label class="col-sm-2 control-label" for="price">Price (THB):</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="price" id="price" ng-model="editproductCtrl.product.price">
+        </div>
+      </div>
+    </form>
+
+    <div class="addproduct-container">
+      <div class="alert alert-danger " ng-show="!editproductCtrl.valid">
+        <strong>Invalid Form</strong> Please check for the required information
+      </div>
+      <button type="button" class="addproduct-btn" ng-click="editproductCtrl.submit()">Edit Product</button>
+    </div>
+  </div>
+</div>
+<div ng-if="editproductCtrl.is404">
+  <h1>Product Not Found</h1>
+  <p>{{editproductCtrl.errorMessage}}</p>
+</div>

@@ -40,7 +40,7 @@
         controllerAs: 'productpageCtrl'
       })
       .state('category', {
-        url: '/category',
+        url: '/category/:category_name',
         templateUrl: 'templates/category.tmpl',
         controller: 'CategoryPageController',
         controllerAs: 'categorypageCtrl'
@@ -89,6 +89,12 @@
             controllerAs: 'addproductCtrl'
           }
         }
+      })
+      .state('editproduct', {
+        url: '/admin/product/edit/:product_id',
+        templateUrl: 'templates/admin/product/editproduct.tmpl',
+        controller: 'EditProductController',
+        controllerAs: 'editproductCtrl'
       })
   }
 })()

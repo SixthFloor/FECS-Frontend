@@ -2,14 +2,37 @@
   <div class="nav-left">
     <a ui-sref="home"><div class="logo"></div></a>
     <input class="navtf" type="text" placeHolder="" />
-    <button class="search" type="submit">search</button>
+    <button class="search" type="submit" placeHolder="{{navbarCtrl.test}}" >search</button>
   </div>
-  <div ng-if="accessToken == false" class="nav-right">
+  <div ng-if="!navbarCtrl.isAuthed" class="nav-right">
     <a ui-sref="register">Sign up</a>
     <a ui-sref="login">Sign in</a>
   </div>
-  <div ng-if="accessToken != false" class="nav-right">
-    Welcome to the FECS <a ui-sref="logout">Sign out</a> 
+  <div ng-if="navbarCtrl.isAuthed" class="nav-right">
+    Welcome to the FECS <a ui-sref="logout">Sign out</a>
   </div>
   <div class="clear"></div>
+</div>
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/home">About</a></li>
+        <li><a href="#/category/all">All products</a></li>
+        <li><a href="#">Bedroom</a></li>
+        <li><a href="#">Bathroom</a></li>
+        <li><a href="#">Dinning Room</a></li>
+        <li><a href="#">Kitchen</a></li>
+        <li><a href="#">Living Room</a></li>
+        <li><a href="#">Laundry</a></li>
+        <li><a href="#">Office furniture</a></li>
+        <li><a href="#">Kid's furniture</a></li>
+        <li><a href="#">Dressing room</a></li>
+        <li><a href="#">Lightning</a></li>
+        <li><a herf="#">Hallway</a></li>
+        <li><a herf="#">Outdoor</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

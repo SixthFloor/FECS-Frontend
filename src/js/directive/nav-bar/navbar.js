@@ -15,6 +15,8 @@
   function navbar () {
     var directive = {
       restrict: 'E',
+      controller: 'NavbarController',
+      controllerAs: 'navbarCtrl',
       transclude: true,
       templateUrl: 'templates/nav.tmpl'
     }
