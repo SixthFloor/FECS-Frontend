@@ -2,7 +2,7 @@
 
 ;(function () {
   /**
-  * controller.register Module
+  * controller.logout Module
   *
   * @author Chinnaporn Soonue
   */

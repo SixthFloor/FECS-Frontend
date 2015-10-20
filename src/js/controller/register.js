@@ -17,15 +17,21 @@
     self.member = registerService.member
     self.valid = registerService.valid
 
+    self.checkEmail = function validateEmail (email) {
+      var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+      console.log(re.test(email))
+      return re.test(email)
+    }
+
     self.submit = function () {
       if ((self.member.confirmpassword === self.member.password) &&
         (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
-        (self.member.email !== '') && (self.member.firstname !== '') &&
+        (self.checkEmail(self.member.email)) && (self.member.firstname !== '') &&
         (self.member.lastname !== '')) {
         registerService.valid = true
         registerService.regis(function (response) {
           if (response.status === 'error') {
-            var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+            var msg = '<span><b>Registration not possible </b> ' + response.message + '.</span>'
             notification.error({
               message: msg,
               replaceMessage: true
@@ -41,7 +47,7 @@
           console.log(response)
         })
       } else {
-        console.log('should be false')
+        console.log('form not valid')
         registerService.valid = false
       }
       self.valid = registerService.valid

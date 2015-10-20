@@ -1,11 +1,12 @@
 /* global angular */
 
-/**
-* Homepage Controller Module
-*
-* @description Homepage Controller module to add create all controller of this project.
-*/
 ;(function () {
+  /**
+  * controller.home Module
+  *
+  * @author Chinnaporn Soonue
+  * @description Homepage Controller module to add create all controller of this project.
+  */
   angular
     .module('controller.homepage', [])
     .controller('HomePageController', HomePageController)
