@@ -1,4 +1,8 @@
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "custom/bootflat";
+
+// @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 // @import "standard";
 // @import "navbar";
 // @import "_loginpage.scss";
@@ -53,7 +57,7 @@
     left: 0;
     border: none;
     border-radius: 0;
-    background-color: rgba(255,255,255,.9);
+    // background-color: rgba(255,255,255,.9);
     width: 100%;
     z-index: 2000;
 }
