@@ -8,20 +8,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button> -->
-        <a class="navbar-brand" ui-sref="home">SixthFloor</a>
+        <a class="navbar-brand" ui-sref="home"><i class="glyphicon glyphicon-home"></i> 6thFloor</a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <form class="navbar-form navbar-left" role="search">
            <div class="form-search search-only">
               <i class="search-icon-custom glyphicon glyphicon-search"></i>
-              <input type="text" class="form-control search-field " placeholder="Search...">
+              <input type="text" class="form-control search-field " maxlength="50" placeholder="Search...">
             </div>
         </form>
         <ul ng-if="!navbarCtrl.isAuthed" class="nav navbar-nav navbar-right">
-          <!-- <a class="btn btn-danger navbar-btn" ui-sref="register">Sign up</a>
-          <a class="btn btn-danger navbar-btn" ui-sref="login">Sign in</a> -->
-          <li><a ui-sref="register">Sign up</a></li>
-          <li><a ui-sref="login">Sign in</a></li>
+          <li>
+            <a ui-sref="register"><i class="glyphicon glyphicon-plus-sign"></i> Sign up </a>
+          </li>
+          <li><a ui-sref="login"><i class="glyphicon glyphicon-lock"></i> Sign in </a></li>
         </ul>
         <div ng-if="navbarCtrl.isAuthed" class="nav-right">
           <p class="navbar-text navbar-right">
