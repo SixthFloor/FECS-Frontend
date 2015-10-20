@@ -1,3 +1,6 @@
+/* Test case: View furniture */
+/* Created by Niti and Runyasak */
+
 describe('view furniture', function() {
 
 	var allProduct = element.all(by.css(".form-group"))

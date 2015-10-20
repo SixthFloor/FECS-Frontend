@@ -1,10 +1,6 @@
-/* global describe */
-/* global it */
-/* global browser */
-/* global element */
-/* global by */
-/* global expect */
-/* global beforeEach */
+/* Test case: Login As Member */
+/* Created by Niti */
+
 describe('Login as member', function() {
 
   var linkSignin =  element(by.css('[ui-sref="login"]'))

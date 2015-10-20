@@ -20,11 +20,11 @@ exports.config = {
 
   onPrepare: function () {
     jasmine.getEnv().addReporter(new HtmlReporter({
-         baseDirectory: 'test_reports/test_1_19-10-2015',
+         baseDirectory: 'test_reports/test_2_20-10-2015',
          takeScreenShotsOnlyForFailedSpecs: true,
-         docTitle: 'Test 1: 19-10-2015',
+         docTitle: 'Test 2: 20-10-2015',
          preserveDirectory: true,
-         docName: 'test_result_1.html'
+         docName: 'test_result_2.html'
       }))
   }
 }

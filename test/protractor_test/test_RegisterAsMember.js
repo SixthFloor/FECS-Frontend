@@ -1,11 +1,7 @@
-/* global describe */
-/* global it */
-/* global browser */
-/* global element */
-/* global by */
-/* global expect */
-/* global beforeEach */
-describe('register as member', function () {
+/* Test case: Register As Member */
+/* Created by Kittinan */
+
+describe('Register as member', function () {
 
     var email = element(by.model('registerCtrl.member.email'))
     var password = element(by.model('registerCtrl.member.password'))
@@ -42,7 +38,7 @@ describe('register as member', function () {
     })
 
     it('Case 1: If e-mail,password,name and lastname are corrected, register should be successed and access to login page', function () {
-        email.sendKeys("newped1234@gmail.com")
+        email.sendKeys("newped777@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         firstname.sendKeys("ped")
@@ -138,7 +134,7 @@ describe('register as member', function () {
 
     it('Case 8: If register with all correct information, notification should appear successed and change to login page', function () {
         clearInformation()
-        email.sendKeys("newnewped1234@gmail.com")
+        email.sendKeys("newnewped779@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         firstname.sendKeys("ped")
