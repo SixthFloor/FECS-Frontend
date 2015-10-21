@@ -18,8 +18,9 @@
     self.productList = {}
 
     //  API path
-    var url = 'http://128.199.112.126:3000/category/' + $stateParams.category_name
+    //var url = 'http://128.199.112.126:3000/category/' + $stateParams.category_name
     if ($stateParams.category_name === 'all') {
+      var url = 'http://188.166.245.52/api/product/all'
       $http.get(url).success(function (response) {
         self.productList = response.data
         console.log(self.productList)
