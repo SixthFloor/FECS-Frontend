@@ -17,6 +17,7 @@
     self.valid = true
 
     self.product = {
+      serialNumber: '',
       productName: '',
       price: '',
       description: '',
@@ -39,10 +40,10 @@
       }).success(success).error(error)
     }
 
-    self.editproduct = function (success, error, productID) {
+    self.editproduct = function (success, error) {
       var url = 'http://128.199.112.126:3000/api/product/edit'
       $http.post(url, {
-        productID: productID,
+        serialNumber: self.product.serialNumber,
         name: self.product.productName,
         price: self.product.price,
         description: self.product.description,

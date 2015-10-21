@@ -110,19 +110,19 @@
     $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
-    // path of mock API
-    var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
+    // path of real API
+    var url = 'http://188.166.245.52/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
-          self.productID = angular.uppercase(response.data[0].serialNumber)
-          self.product.productName = response.data[0].name
-          self.product.price = response.data[0].price
-          self.product.description = response.data[0].description
-          self.product.dimensionDescription = ''
-          self.product.categoryID = '' + response.data[0].category.id
-          self.product.subcategoryID = '1'
-          self.product.img = []
+          self.product.serialNumber = response.data.serialNumber
+          self.product.productName = response.data.name
+          self.product.price = response.data.price
+          self.product.description = response.data.description
+          self.product.dimensionDescription = response.data.dimensionDescription
+          self.product.categoryID = '' + response.data.subCategory.category.id
+          self.product.subcategoryID = '' + response.data.subCategory.id
+          self.product.img = response.data.images
         } else {
           console.log(response.message)
           self.is404 = true
@@ -153,7 +153,7 @@
           }
         }, function (response) {
           console.log(response)
-        }, self.productID)
+        })
       } else {
         console.log('should be false')
         productService.valid = false
