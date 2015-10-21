@@ -22,6 +22,6 @@ before_script:
 script:
 - npm run update-webdriver
 - gulp compile
-- http-server ./www -p 4444 & WEBSERVER_PID=$!
+- http-server ./www -p 3030 & WEBSERVER_PID=$!
 - npm run unit-firefox
 - npm run protractor-firefox
