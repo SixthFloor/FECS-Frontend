@@ -17,8 +17,8 @@
   function ProductPageController ($scope, $http, User, $stateParams) {
     console.log($stateParams.product_id)
     var self = this
-    // path of mock API
-    var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
+    // API path
+    var url = 'http://188.166.245.52/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
