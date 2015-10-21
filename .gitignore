@@ -3,3 +3,4 @@ bower_components/
 www/
 .DS_Store
 **/.DS_Store
+npm-debug.log
