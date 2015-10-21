@@ -1,20 +1,13 @@
 <navbar></navbar>
 <div class="container">
   <h1> Join SixthFloor !</h1>
-  <div class="step">
+  <div class="step" ng-show="registerCtrl.steps.step1">
     <div ui-view="step1"></div>
   </div>
-  <div class="step">
+  <div class="step" ng-show="registerCtrl.steps.step2">
     <div ui-view="step2"></div>
   </div>
-  <div class="step">
+  <div class="step" ng-show="registerCtrl.steps.step3">
     <div ui-view="step3"></div>
-  </div>
-  <div class="register-container">
-    <div class="alert alert-danger "
-    ng-show="!registerCtrl.valid">
-      <strong>Invalid Form</strong> Please check for the required information
-    </div>
-    <button type="button" class="register-btn" ng-click="registerCtrl.submit()">Register</button>
   </div>
 </div>
