@@ -3,7 +3,14 @@
 <div class="container">
 	<div class="route">
 			<a href="#/home">Home</a> >>
-			<a href="#/category/all">All products</a>
+			<a href="#/category/all">
+				<span ng-if="categorypageCtrl.category_name == 'All'">
+					All products
+				</span>
+				<span ng-if="categorypageCtrl.category_name != 'All'">
+					{{categorypageCtrl.category_name}}
+				</span>
+			</a>
 	</div>
 
 <div class="collections text-center">
