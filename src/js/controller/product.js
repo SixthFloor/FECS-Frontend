@@ -18,7 +18,7 @@
     console.log($stateParams.product_id)
     var self = this
     // API path
-    var url = 'http://188.166.245.52/api/product/' + $stateParams.product_id
+    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
@@ -113,7 +113,7 @@
     self.categoryList = {}
     self.subcategoryList = {}
     // path of real API
-    var url = 'http://188.166.245.52/api/product/' + $stateParams.product_id
+    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
@@ -136,7 +136,7 @@
       self.errorMessage = 'Error: Furniture not found'
     }
     // Get all categories
-    $http.get('http://188.166.245.52/api/category/all').success(function (response) {
+    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
       if (response.status !== 'error') {
         self.categoryList = response.data
       } else {

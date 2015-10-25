@@ -21,9 +21,9 @@
     //  API path
     var url = ''
     if ($stateParams.category_name !== 'all') {
-      url = 'http://188.166.245.52/api/category/' + self.category_name
+      url = 'http://128.199.133.224/api/category/' + self.category_name
     }
-    else url = 'http://188.166.245.52/api/product/all'
+    else url = 'http://128.199.133.224/api/product/all'
 
     $http.get(url).success(function (response) {
       self.productList = response.data
