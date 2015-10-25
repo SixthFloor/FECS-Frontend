@@ -110,6 +110,8 @@
     $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
+    self.categoryList = {}
+    self.subcategoryList = {}
     // path of real API
     var url = 'http://188.166.245.52/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
@@ -132,6 +134,22 @@
     } else {
       self.is404 = true
       self.errorMessage = 'Error: Product not found'
+    }
+    // Get all categories
+    $http.get('http://188.166.245.52/api/category/all').success(function (response) {
+      if (response.status !== 'error') {
+        self.categoryList = response.data
+      } else {
+        console.log(response.message)
+        self.is404 = true
+        self.errorMessage = 'Error: Cannot get categories.'
+      }
+    })
+    // Get subcategories from category
+    console.log(self.product.categoryID)
+    if (self.product.categoryID !== '') {
+      console.log('getgetetss')
+      self.subcategoryList = self.categoryList[0].subCategories
     }
 
     self.submit = function () {

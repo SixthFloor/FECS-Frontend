@@ -26,18 +26,7 @@
         <div class="col-sm-2">
           <select class="form-control" ng-model="editproductCtrl.product.categoryID">
             <option value="" disabled selected>Category</option>
-            <option value="1">Bedroom</option>
-            <option value="2">Bathroom</option>
-            <option value="3">Dinning Room</option>
-            <option value="4">Kitchen</option>
-            <option value="5">Living Room</option>
-            <option value="6">Laundry</option>
-            <option value="7">Office furniture</option>
-            <option value="8">Kid's furniture</option>
-            <option value="9">Dressing room</option>
-            <option value="10">Lightning</option>
-            <option value="11">Hallway</option>
-            <option value="12">Outdoor</option>
+            <option ng-repeat="category in editproductCtrl.categoryList" value="{{category.id}}">{{category.name}}</option>
           </select>
         </div>
         <div class="col-sm-1 require-star">*</div>
@@ -45,12 +34,7 @@
         <div class="col-sm-2">
           <select class="form-control col-sm-2" ng-model="editproductCtrl.product.subcategoryID">
             <option value="" disabled selected>Sub-Category</option>
-            <option value="1">Sofabed</option>
-            <option value="2">Bed</option>
-            <option value="3">Chair</option>
-            <option value="4">Lamb</option>
-            <option value="5">Table</option>
-            <option value="6">Shelf</option>
+            <option ng-repeat="subcategory in editproductCtrl.subcategoryList" value="{{subcategory.id}}">{{subcategory.name}}</option>
           </select>
         </div>
       </div>
