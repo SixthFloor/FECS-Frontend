@@ -3,11 +3,23 @@
 <div class="container">
 	<div class="route">
 			<a href="#/home">Home</a> >>
-			<a href="#/category/all">All products</a>
+			<a href="#/category/all">
+				<span ng-if="categorypageCtrl.category_name == 'All'">
+					All products
+				</span>
+				<span ng-if="categorypageCtrl.category_name != 'All'">
+					{{categorypageCtrl.category_name}}
+				</span>
+			</a>
 	</div>
 
 <div class="collections text-center">
-	<hr/><h2>All products</h2><hr/>
+	<span ng-if="categorypageCtrl.category_name == 'All'">
+		<hr/><h2>All products</h2><hr/>
+	</span>
+	<span ng-if="categorypageCtrl.category_name != 'All'">
+		<hr/><h2>{{categorypageCtrl.category_name}}</h2><hr/>
+	</span>
 </div>
 
 	<div class="row">
@@ -41,7 +53,7 @@
 			</div>
 			<div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList">
 				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
+					<img src="http://placehold.it/350x300">
 					<div class="caption">
 						<h3>{{product.name}}</h3>
 						<p>{{product.description}}</p>
@@ -50,73 +62,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<b>Product price</b>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<b>Product price</b>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<b>Product price</b>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<b>Product price</b>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<b>Product price</b>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<b>Product price</b>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</div>
 </div>

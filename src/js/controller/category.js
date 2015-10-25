@@ -16,19 +16,27 @@
     var self = this
     console.log($stateParams.category_name)
     self.productList = {}
+    self.category_name = $stateParams.category_name
 
     //  API path
-    // var url = 'http://128.199.112.126:3000/category/' + $stateParams.category_name
-    if ($stateParams.category_name === 'all') {
-      var url = 'http://188.166.245.52/api/product/all'
-      $http.get(url).success(function (response) {
-        self.productList = response.data
-        console.log(self.productList)
-      })
+    var url = ''
+    if ($stateParams.category_name !== 'all') {
+      url = 'http://188.166.245.52/api/category/' + self.category_name
     }
+    else url = 'http://188.166.245.52/api/product/all'
+
+    $http.get(url).success(function (response) {
+      self.productList = response.data
+      console.log(self.productList)
+    })
 
     self.viewProduct = function (id) {
       $state.transitionTo('product', {product_id: id})
     }
+
+    self.capitalize = function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+    self.category_name = self.capitalize(self.category_name)
   }
 })()
