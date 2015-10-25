@@ -1,24 +1,24 @@
 <navbar></navbar>
 
 <div class="container">
-	<div class="route">
-			<a href="#/home">Home</a> >>
-			<a ng-if="categorypageCtrl.category_name == 'All'" href="#/category/all">
-				<span>All furnitures</span>
-			</a>
-			<a ng-if="categorypageCtrl.category_name != 'All'" href="#/category/{{categorypageCtrl.category_name}}">
-				<span >{{categorypageCtrl.category_name}}</span>
-			</a>
+  <div class="route">
+    <a href="#/home">Home</a> >>
+	  <a ng-if="categorypageCtrl.category_name == 'All'" href="#/category/all">
+	    <span>All furnitures</span>
+	  </a>
+	  <a ng-if="categorypageCtrl.category_name != 'All'" href="#/category/{{categorypageCtrl.category_name}}">
+		<span >{{categorypageCtrl.category_name}}</span>
+	  </a>
 	</div>
 
-<div class="collections text-center">
-	<span ng-if="categorypageCtrl.category_name == 'All'">
-		<hr/><h2>All furnitures</h2><hr/>
-	</span>
-	<span ng-if="categorypageCtrl.category_name != 'All'">
-		<hr/><h2>{{categorypageCtrl.category_name}}</h2><hr/>
-	</span>
-</div>
+	<div class="collections text-center">
+		<span ng-if="categorypageCtrl.category_name == 'All'">
+			<hr/><h2>All furnitures</h2><hr/>
+		</span>
+		<span ng-if="categorypageCtrl.category_name != 'All'">
+			<hr/><h2>{{categorypageCtrl.category_name}}</h2><hr/>
+		</span>
+	</div>
 
 	<div class="row">
 		<div class="category-filter">
@@ -60,6 +60,6 @@
 					</div>
 				</div>
 			</div>
-
+		</div>
 	</div>
 </div>
