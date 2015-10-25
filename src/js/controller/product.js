@@ -58,12 +58,12 @@
         } else {
           console.log(response.message)
           self.is404 = true
-          self.errorMessage = 'Error: Product not found'
+          self.errorMessage = 'Error: Furniture not found'
         }
       })
     } else {
       self.is404 = true
-      self.errorMessage = 'Error: Product not found'
+      self.errorMessage = 'Error: Furniture not found'
     }
   }
 
@@ -86,7 +86,7 @@
               replaceMessage: true
             })
           } else {
-            msg = '<span><b>Success!</b> Added new product.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
+            msg = '<span><b>Success!</b> Added new furniture.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
             notification.success({
               message: msg
             })
@@ -128,12 +128,12 @@
         } else {
           console.log(response.message)
           self.is404 = true
-          self.errorMessage = 'Error: Product not found'
+          self.errorMessage = 'Error: Furniture not found'
         }
       })
     } else {
       self.is404 = true
-      self.errorMessage = 'Error: Product not found'
+      self.errorMessage = 'Error: Furniture not found'
     }
     // Get all categories
     $http.get('http://188.166.245.52/api/category/all').success(function (response) {
@@ -164,7 +164,7 @@
               replaceMessage: true
             })
           } else {
-            msg = '<span><b>Success!</b> Edited Product ID: ' + self.productID + '<br/>' + self.product.productName + "'s datas saved.</span>"
+            msg = '<span><b>Success!</b> Edited Furniture ID: ' + self.productID + '<br/>' + self.product.productName + "'s datas saved.</span>"
             notification.success({
               message: msg
             })
