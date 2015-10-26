@@ -1,117 +1,60 @@
 <navbar></navbar>
 
 <div class="container">
-	<div class="">
-		<ol class="breadcrumb">
-			<li><a href="#">Home</a></li>
-			<li class="active">All</li>
-		</ol>
-	</div>
+  <div class="route">
+    <a href="#/home">Home</a> >>
+    <a ng-if="categorypageCtrl.category_name == 'All'" href="#/category/all">
+      <span>All furnitures</span>
+    </a>
+    <a ng-if="categorypageCtrl.category_name != 'All'" href="#/category/{{categorypageCtrl.category_name}}">
+      <span >{{categorypageCtrl.category_name}}</span>
+    </a>
+  </div>
 
-<div class="collections text-center">
-	<hr/><h2>All products</h2><hr/>
-</div>
+  <div class="collections text-center">
+    <span ng-if="categorypageCtrl.category_name == 'All'">
+      <hr/><h2>All furnitures</h2><hr/>
+    </span>
+    <span ng-if="categorypageCtrl.category_name != 'All'">
+      <hr/><h2>{{categorypageCtrl.category_name}}</h2><hr/>
+    </span>
+  </div>
 
-	<div class="row">
-		<div class="category-filter">
-			<h3>Filter By</h3>
-			<div class="price">
-				<h4>Price</h4>
-				<input type="checkbox"> Under THB 1,000 <br/>
-				<input type="checkbox"> THB 1,000 to THB 5,000 <br/>
-				<input type="checkbox"> THB 5,000 to THB 10,000 <br />
-				<input type="checkbox"> THB 10,000 & Above <br/>
-			</div>
-		</div>
+  <div class="row">
+    <div class="category-filter">
+      <h3>Filter By</h3>
+      <div class="price">
+        <h4>Price</h4>
+        <input type="checkbox"> Under THB 1,000 <br/>
+        <input type="checkbox"> THB 1,000 to THB 5,000 <br/>
+        <input type="checkbox"> THB 5,000 to THB 10,000 <br />
+        <input type="checkbox"> THB 10,000 & Above <br/>
+      </div>
+    </div>
 
-		<div class="list col-md-9">
-			<div class="row">
-				<div class="sort">
-					<h4>Sort by</h4>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Price Low to High <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Price Low to High</a></li>
-							<li><a href="#">Price High to Low</a></li>
-							<li><a href="#">Name A - Z</a></li>
-							<li><a href="#">Name Z - A</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>{{product.name}}</h3>
-						<p>{{product.description}}</p>
-						<p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 text-center">
-				<div class="thumbnail">
-					<img src="http://placehold.it/350x250">
-					<div class="caption">
-						<h3>Product Name</h3>
-						<p>Product description</p>
-						<p><a href="#" class="btn btn-primary" role="button">View product</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
+    <div class="list col-md-9">
+      <div class="row">
+        <div class="sort">
+          <h4>Sort by</h4>
+          <div class="btn-group">
+            <select class="form-control" ng-model="categorypageCtrl.sort_by"
+            ng-change="categorypageCtrl.order()"
+            required ng-options='option.value as option.name for option in categorypageCtrl.sortOptions'>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by">
+        <div class="thumbnail">
+          <img src="http://placehold.it/350x300">
+          <div class="caption">
+            <h3>{{product.name}}</h3>
+            <p>{{product.description}}</p>
+            <b>{{product.price}} TH Baht</b>
+            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View furniture</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

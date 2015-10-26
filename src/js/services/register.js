@@ -9,7 +9,15 @@
   function registerService ($http) {
     var self = this
 
-    self.valid = true
+    self.valid = {
+      step1: true,
+      step2: true
+    }
+    self.steps = {
+      step1: true,
+      step2: false,
+      step3: false
+    }
 
     self.member = {
       email: '',

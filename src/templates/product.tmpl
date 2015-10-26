@@ -2,11 +2,11 @@
 <div class="container">
   <div ng-if="!productpageCtrl.is404">
     <div class="product-view row">
-      <span>
-        <a href="#/home">Home</a> |
-        <a href="">Bedroom</a> |
-        <a href="">{{productpageCtrl.category}}</a>
-      </span>
+      <div class="route">
+          <a href="#/home">Home</a> >>
+          <a href="#/category/all">All furnitures</a> >>
+          <a href="">{{productpageCtrl.productName}}</a>
+      </div>
       <br />
       <br />
       <br />
@@ -17,7 +17,7 @@
         <div class="product-right col-sm-push-3 col-sm-5">
           <div class="product-cus">
             <h1>{{productpageCtrl.productName}}</h1>
-            <h6>Product ID: {{productpageCtrl.productID}}</h6>
+            <h6>Furniture ID: {{productpageCtrl.productID}}</h6>
             <form class="form-inline">
               <label>Property 1</label>
               <select class="form-control" ng-model="productpageCtrl.property1.repeatSelect">
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="col-sm-push-2 col-sm-5">
-        <label><h3><span class="label label-default"><b>Product Description</b></span></h3></label>
+        <label><h3><span class="label label-default"><b>Furniture Description</b></span></h3></label>
         <div class="form-group">
           <label>{{productpageCtrl.description}}</label>
         </div>
@@ -57,7 +57,7 @@
   </div>
 </div>
 <div ng-if="productpageCtrl.is404">
-  <h1>Product Not Found</h1>
+  <h1>Furniture Not Found</h1>
   <p>{{productpageCtrl.errorMessage}}</p>
 </div>
 </div>

@@ -41,4 +41,11 @@
       <strong>Re-enter</strong> Password should be between 8-20 characters
     </div>
   </div>
+  <div class="register-container">
+    <div class="alert alert-danger " ng-show="!registerCtrl.valid.step1">
+      <strong>Invalid Form</strong> Please check for the required information
+    </div>
+    <button type="button" class="register-btn" ng-click="registerCtrl.clear()">Clear</button>
+    <button type="button" class="register-btn" ng-click="registerCtrl.next1()">Next</button>
+  </div>
 </form>
