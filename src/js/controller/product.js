@@ -17,17 +17,17 @@
   function ProductPageController ($scope, $http, User, $stateParams) {
     console.log($stateParams.product_id)
     var self = this
-    // path of mock API
-    var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
+    // API path
+    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           console.log(response)
-          console.log(response.data[0].name)
+          console.log(response.data.name)
           console.log($stateParams.product_id)
 
-          self.productName = angular.uppercase(response.data[0].name)
-          self.productID = angular.uppercase(response.data[0].serialNumber)
+          self.productName = angular.uppercase(response.data.name)
+          self.productID = angular.uppercase(response.data.serialNumber)
           self.property1 = {
             repeatSelect: null,
             availableOptions: [
@@ -52,18 +52,18 @@
           }
 
           self.available = 5
-          self.price = response.data[0].price
-          self.description = response.data[0].description
-          self.category = angular.uppercase(response.data[0].category.name)
+          self.price = response.data.price
+          self.description = response.data.description
+          self.category = angular.uppercase(response.data.category.name)
         } else {
           console.log(response.message)
           self.is404 = true
-          self.errorMessage = 'Error: Product not found'
+          self.errorMessage = 'Error: Furniture not found'
         }
       })
     } else {
       self.is404 = true
-      self.errorMessage = 'Error: Product not found'
+      self.errorMessage = 'Error: Furniture not found'
     }
   }
 
@@ -86,7 +86,7 @@
               replaceMessage: true
             })
           } else {
-            msg = '<span><b>Success!</b> Added new product.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
+            msg = '<span><b>Success!</b> Added new furniture.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
             notification.success({
               message: msg
             })
@@ -110,28 +110,46 @@
     $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
-    // path of mock API
-    var url = 'http://128.199.112.126:3000/product/' + $stateParams.product_id
+    self.categoryList = {}
+    self.subcategoryList = {}
+    // path of real API
+    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
-          self.productID = angular.uppercase(response.data[0].serialNumber)
-          self.product.productName = response.data[0].name
-          self.product.price = response.data[0].price
-          self.product.description = response.data[0].description
-          self.product.dimensionDescription = ''
-          self.product.categoryID = '' + response.data[0].category.id
-          self.product.subcategoryID = '1'
-          self.product.img = []
+          self.product.serialNumber = response.data.serialNumber
+          self.product.productName = response.data.name
+          self.product.price = response.data.price
+          self.product.description = response.data.description
+          self.product.dimensionDescription = response.data.dimensionDescription
+          self.product.categoryID = '' + response.data.subCategory.category.id
+          self.product.subcategoryID = '' + response.data.subCategory.id
+          self.product.img = response.data.images
         } else {
           console.log(response.message)
           self.is404 = true
-          self.errorMessage = 'Error: Product not found'
+          self.errorMessage = 'Error: Furniture not found'
         }
       })
     } else {
       self.is404 = true
-      self.errorMessage = 'Error: Product not found'
+      self.errorMessage = 'Error: Furniture not found'
+    }
+    // Get all categories
+    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
+      if (response.status !== 'error') {
+        self.categoryList = response.data
+      } else {
+        console.log(response.message)
+        self.is404 = true
+        self.errorMessage = 'Error: Cannot get categories.'
+      }
+    })
+    // Get subcategories from category
+    console.log(self.product.categoryID)
+    if (self.product.categoryID !== '') {
+      console.log('getgetetss')
+      self.subcategoryList = self.categoryList[0].subCategories
     }
 
     self.submit = function () {
@@ -146,14 +164,14 @@
               replaceMessage: true
             })
           } else {
-            msg = '<span><b>Success!</b> Edited Product ID: ' + self.productID + '<br/>' + self.product.productName + "'s datas saved.</span>"
+            msg = '<span><b>Success!</b> Edited Furniture ID: ' + self.productID + '<br/>' + self.product.productName + "'s datas saved.</span>"
             notification.success({
               message: msg
             })
           }
         }, function (response) {
           console.log(response)
-        }, self.productID)
+        })
       } else {
         console.log('should be false')
         productService.valid = false
