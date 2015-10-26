@@ -11,23 +11,45 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams']
-  function CategoryPageController ($scope, $http, $state, $stateParams) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter) {
     var self = this
+    var orderBy = $filter('orderBy')
     console.log($stateParams.category_name)
     self.productList = {}
+    self.sortOptions = [
+      { name: 'Name A - Z', value: 'name' },
+      { name: 'Name Z - A', value: '-name' },
+      { name: 'Price Low to High', value: 'price' },
+      { name: 'Price High to Low', value: '-price' }
+    ]
+    self.sort_by = self.sortOptions[0].value
+    self.category_name = $stateParams.category_name
 
     //  API path
-    var url = 'http://128.199.112.126:3000/category/' + $stateParams.category_name
-    if ($stateParams.category_name === 'all') {
-      $http.get(url).success(function (response) {
-        self.productList = response.data
-        console.log(self.productList)
-      })
+    var url = ''
+    if (self.category_name !== 'all') {
+      url = 'http://128.199.133.224/api/category/' + self.category_name
     }
+    else url = 'http://128.199.133.224/api/product/all'
+
+    $http.get(url).success(function (response) {
+      self.productList = response.data
+      console.log(self.productList)
+    })
 
     self.viewProduct = function (id) {
       $state.transitionTo('product', {product_id: id})
+    }
+
+    self.capitalize = function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+    self.category_name = self.capitalize(self.category_name)
+
+    self.order = function () {
+      console.log("ORDERRR")
+      self.productList = orderBy(self.productList, self.sort_by)
     }
   }
 })()

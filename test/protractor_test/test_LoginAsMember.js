@@ -31,6 +31,7 @@ describe('Login as member', function() {
     loginButton.click()
     browser.sleep(5000)
     expect(notifications.getText()).toEqual([ 'Well done! Login successfully.' ])
+    expect(notifications.count()).toEqual(1)
   })
 
   it('Case 2: If access complete,then when logout it should logout success ', function() {
@@ -38,6 +39,7 @@ describe('Login as member', function() {
     linkSignout.click()
     browser.sleep(5000)
     expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
+    expect(notifications.count()).toEqual(1)
   })
 
   it('Case 3: If email wrong but password correct,then it should not access complete', function() {
@@ -47,7 +49,8 @@ describe('Login as member', function() {
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
     browser.sleep(5000)
-    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
+    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is incorrent.' ])
+    expect(notifications.count()).toEqual(1)
   })
 
   it('Case 4: If email correct but password wrong,then it should not access complete', function() {
@@ -57,7 +60,8 @@ describe('Login as member', function() {
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
     browser.sleep(5000)
-    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
+    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is incorrent.' ])
+    expect(notifications.count()).toEqual(1)
   })
 
   it('Case 5: If email and password wrong,then it should not access complete', function() {
@@ -67,7 +71,8 @@ describe('Login as member', function() {
     expect(loginButton.getAttribute('disabled')).toBe(null)
     loginButton.click()
     browser.sleep(5000)
-    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is invalid.' ])
+    expect(notifications.getText()).toEqual([ 'Oh snap! username or password is incorrent.' ])
+    expect(notifications.count()).toEqual(1)
   })
 
   it('Case 6: If email and password wrong,then it should not access complete(Sign in button do not show)', function() {
