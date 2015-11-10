@@ -1,22 +1,22 @@
 <navbar></navbar>
 
-<div class="container">
+<div class="container" ng-init="header = categorypageCtrl.capitalize(categorypageCtrl.category_name)">
   <div class="route">
     <a href="#/home">Home</a> >>
-    <a ng-if="categorypageCtrl.category_name == 'All'" href="#/category/all">
+    <a ng-if="categorypageCtrl.category_name == 'all'" href="#/category/all">
       <span>All furnitures</span>
     </a>
-    <a ng-if="categorypageCtrl.category_name != 'All'" href="#/category/{{categorypageCtrl.category_name}}">
-      <span >{{categorypageCtrl.category_name}}</span>
+    <a ng-if="categorypageCtrl.category_name != 'all'" href="#/category/{{categorypageCtrl.category_name}}">
+      <span >{{header}}</span>
     </a>
   </div>
 
   <div class="collections text-center">
-    <span ng-if="categorypageCtrl.category_name == 'All'">
+    <span ng-if="categorypageCtrl.category_name == 'all'">
       <hr/><h2>All furnitures</h2><hr/>
     </span>
-    <span ng-if="categorypageCtrl.category_name != 'All'">
-      <hr/><h2>{{categorypageCtrl.category_name}}</h2><hr/>
+    <span ng-if="categorypageCtrl.category_name != 'all'">
+      <hr/><h2>{{header}}</h2><hr/>
     </span>
   </div>
 

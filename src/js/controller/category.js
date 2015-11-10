@@ -45,10 +45,8 @@
     self.capitalize = function (string) {
       return string.charAt(0).toUpperCase() + string.slice(1)
     }
-    self.category_name = self.capitalize(self.category_name)
 
     self.order = function () {
-      console.log("ORDERRR")
       self.productList = orderBy(self.productList, self.sort_by)
     }
   }
