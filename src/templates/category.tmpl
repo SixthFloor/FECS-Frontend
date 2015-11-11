@@ -4,7 +4,7 @@
   <div class="route">
     <a href="#/home">Home</a> >>
     <a ng-if="categorypageCtrl.category_name == 'all'" href="#/category/all">
-      <span>All furnitures</span>
+      <span>All products</span>
     </a>
     <a ng-if="categorypageCtrl.category_name != 'all'" href="#/category/{{categorypageCtrl.category_name}}">
       <span >{{header}}</span>
@@ -13,7 +13,7 @@
 
   <div class="collections text-center">
     <span ng-if="categorypageCtrl.category_name == 'all'">
-      <hr/><h2>All furnitures</h2><hr/>
+      <hr/><h2>All products</h2><hr/>
     </span>
     <span ng-if="categorypageCtrl.category_name != 'all'">
       <hr/><h2>{{header}}</h2><hr/>
@@ -51,7 +51,7 @@
             <h3>{{product.name}}</h3>
             <p>{{product.description}}</p>
             <b>{{product.price}} TH Baht</b>
-            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View furniture</a></p>
+            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
           </div>
         </div>
       </div>
