@@ -26,34 +26,13 @@
           console.log(response.name)
           console.log($stateParams.product_id)
 
-          self.productName = angular.uppercase(response.name)
+          self.productName = response.name
           self.productID = angular.uppercase(response.serialNumber)
-          self.property1 = {
-            repeatSelect: null,
-            availableOptions: [
-              {id: 'green', name: 'Green'},
-              {id: 'white', name: 'White'},
-              {id: 'black', name: 'Black'}
-            ]
-          }
-
-          self.property2 = {
-            repeatSelect: null,
-            availableOptions: [
-              {id: 'size30', name: 'Size-30'},
-              {id: 'size32', name: 'Size-32'},
-              {id: 'size34', name: 'Size-34'}
-            ]
-          }
-
-          self.forceUnknownOption = function () {
-            self.property1.repeatSelect = 'error'
-            self.property2.repeatSelect = 'error'
-          }
 
           self.available = 5
           self.price = response.price
           self.description = response.description
+          self.dimensionDescription = response.dimensionDescription
           self.category = angular.uppercase(response.subCategory.category.name)
         } else {
           console.log(response.message)

@@ -1,43 +1,16 @@
-.product-view {
-	padding: 0 5%;
-  .product {
-    text-align: center;
-  }
-	.product-left {
-    //display: inline-block;
-    //margin: 10px;
-    width: 400px;
-    height: 200px;
-		background-color: #fff;
-    border-radius: 20px;
+/* Product View Page*/
+.product{
+	@extend .row;
+	.product-left{
+		@extend .col-md-7;
+		@extend .text-center;
 	}
-  .product-right {
-    //display: inline-block;
-    //margin: 10px;
-    width: 350px;
-    background-color: #fff;
-    border-radius: 20px;
-    .product-cus {
-      padding: 0 20px 20px 20px;
-      text-align: left;
-    }
-  }
+	.product-right{
+		@extend .text-center;
+		padding: 10px 25px;
+		background-color: #FAFAFA;
+	}
 }
-
-/* Sticky footer styles
--------------------------------------------------- */
-.footer {
-  color: $text-color-textfield;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  position: fixed;
-  margin: 0;
-  left: 0px;
-  bottom: 0px;
-  height: 140px;
-  width: 100%;
-  background: #2E2A20;
-  color: #fff;
-  padding: 0 5%;
+.product-info{
+	margin: 15px 0px;
 }
