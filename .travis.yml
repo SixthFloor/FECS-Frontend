@@ -1,4 +1,5 @@
 # whitelist
+# cd /home/travis/build/SixthFloor/FECS-Web
 branches:
   only:
     - master

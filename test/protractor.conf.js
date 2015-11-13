@@ -2,7 +2,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
-  specs: ['protractor_test/test_RegisterAsMember.js'],
+  specs: ['protractor_test/test_LoginAsMember.js'],
 
   multiCapabilities: [{
       browserName: 'firefox'
@@ -17,13 +17,13 @@ exports.config = {
     defaultTimeoutInterval: 60000
   },
 
-  onPrepare: function () {
-    jasmine.getEnv().addReporter(new HtmlReporter({
-         baseDirectory: 'test_reports/test_2_20-10-2015',
-         takeScreenShotsOnlyForFailedSpecs: true,
-         docTitle: 'Test 2: 20-10-2015',
-         preserveDirectory: true,
-         docName: 'test_result_2.html'
-      }))
-  }
+  // onPrepare: function () {
+  //   jasmine.getEnv().addReporter(new HtmlReporter({
+  //        baseDirectory: 'test_reports/test_2_20-10-2015',
+  //        takeScreenShotsOnlyForFailedSpecs: true,
+  //        docTitle: 'Test 2: 20-10-2015',
+  //        preserveDirectory: true,
+  //        docName: 'test_result_2.html'
+  //     }))
+  // }
 }
