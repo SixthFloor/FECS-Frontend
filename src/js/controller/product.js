@@ -18,43 +18,22 @@
     console.log($stateParams.product_id)
     var self = this
     // API path
-    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
+    var url = 'http://128.199.133.224/api/furniture/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           console.log(response)
-          console.log(response.data.name)
+          console.log(response.name)
           console.log($stateParams.product_id)
 
-          self.productName = angular.uppercase(response.data.name)
-          self.productID = angular.uppercase(response.data.serialNumber)
-          self.property1 = {
-            repeatSelect: null,
-            availableOptions: [
-              {id: 'green', name: 'Green'},
-              {id: 'white', name: 'White'},
-              {id: 'black', name: 'Black'}
-            ]
-          }
-
-          self.property2 = {
-            repeatSelect: null,
-            availableOptions: [
-              {id: 'size30', name: 'Size-30'},
-              {id: 'size32', name: 'Size-32'},
-              {id: 'size34', name: 'Size-34'}
-            ]
-          }
-
-          self.forceUnknownOption = function () {
-            self.property1.repeatSelect = 'error'
-            self.property2.repeatSelect = 'error'
-          }
+          self.productName = response.name
+          self.productID = angular.uppercase(response.serialNumber)
 
           self.available = 5
-          self.price = response.data.price
-          self.description = response.data.description
-          self.category = angular.uppercase(response.data.category.name)
+          self.price = response.price
+          self.description = response.description
+          self.dimensionDescription = response.dimensionDescription
+          self.category = angular.uppercase(response.subCategory.category.name)
         } else {
           console.log(response.message)
           self.is404 = true
@@ -113,18 +92,18 @@
     self.categoryList = {}
     self.subcategoryList = {}
     // path of real API
-    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
+    var url = 'http://128.199.133.224/api/furniture/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
-          self.product.serialNumber = response.data.serialNumber
-          self.product.productName = response.data.name
-          self.product.price = response.data.price
-          self.product.description = response.data.description
-          self.product.dimensionDescription = response.data.dimensionDescription
-          self.product.categoryID = '' + response.data.subCategory.category.id
-          self.product.subcategoryID = '' + response.data.subCategory.id
-          self.product.img = response.data.images
+          self.product.serialNumber = response.serialNumber
+          self.product.productName = response.name
+          self.product.price = response.price
+          self.product.description = response.description
+          self.product.dimensionDescription = response.dimensionDescription
+          self.product.categoryID = '' + response.subCategory.category.id
+          self.product.subcategoryID = '' + response.subCategory.id
+          self.product.img = response.images
         } else {
           console.log(response.message)
           self.is404 = true
@@ -138,7 +117,7 @@
     // Get all categories
     $http.get('http://128.199.133.224/api/category/all').success(function (response) {
       if (response.status !== 'error') {
-        self.categoryList = response.data
+        self.categoryList = response
       } else {
         console.log(response.message)
         self.is404 = true

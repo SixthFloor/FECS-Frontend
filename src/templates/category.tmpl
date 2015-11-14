@@ -1,22 +1,22 @@
 <navbar></navbar>
 
-<div class="container">
+<div class="container" ng-init="header = categorypageCtrl.capitalize(categorypageCtrl.category_name)">
   <div class="route">
     <a href="#/home">Home</a> >>
-    <a ng-if="categorypageCtrl.category_name == 'All'" href="#/category/all">
-      <span>All furnitures</span>
+    <a ng-if="categorypageCtrl.category_name == 'all'" href="#/category/all">
+      <span>All products</span>
     </a>
-    <a ng-if="categorypageCtrl.category_name != 'All'" href="#/category/{{categorypageCtrl.category_name}}">
-      <span >{{categorypageCtrl.category_name}}</span>
+    <a ng-if="categorypageCtrl.category_name != 'all'" href="#/category/{{categorypageCtrl.category_name}}">
+      <span >{{header}}</span>
     </a>
   </div>
 
   <div class="collections text-center">
-    <span ng-if="categorypageCtrl.category_name == 'All'">
-      <hr/><h2>All furnitures</h2><hr/>
+    <span ng-if="categorypageCtrl.category_name == 'all'">
+      <hr/><h2>All products</h2><hr/>
     </span>
-    <span ng-if="categorypageCtrl.category_name != 'All'">
-      <hr/><h2>{{categorypageCtrl.category_name}}</h2><hr/>
+    <span ng-if="categorypageCtrl.category_name != 'all'">
+      <hr/><h2>{{header}}</h2><hr/>
     </span>
   </div>
 
@@ -49,9 +49,13 @@
           <img src="http://placehold.it/350x300">
           <div class="caption">
             <h3>{{product.name}}</h3>
+            
+            <!-- easy for tester  -->
+            <h5>({{product.serialNumber}})</h5>
+
             <p>{{product.description}}</p>
             <b>{{product.price}} TH Baht</b>
-            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View furniture</a></p>
+            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
           </div>
         </div>
       </div>
