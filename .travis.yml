@@ -10,9 +10,10 @@ node_js:
 - '0.11'
 
 before_install:
+- sudo apt-get install -qq sshpass
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-- chmod a+x script.sh
+# - chmod a+x script.sh
 - gem install sass
 
 before_script:
@@ -23,6 +24,10 @@ before_script:
 script:
 - npm run update-webdriver
 - gulp compile
-- http-server ./www -p 4444 & WEBSERVER_PID=$!
-- npm run unit-firefox
+- http-server ./www -p 3030 & WEBSERVER_PID=$!
+# - npm run unit-firefox
 - npm run protractor-firefox
+
+after_script:
+- mv ./reports/ test_"${REPORT_DATE}"_"(${NUMBER_FILE})"/
+- sshpass -p jl scp -r test_"${REPORT_DATE}"_"(${NUMBER_FILE})"/ jl@128.199.133.224:/home/jl/Test_reports/feature-tests/
