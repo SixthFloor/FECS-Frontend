@@ -13,7 +13,7 @@ if [ $1 = "-protractor" ];
 then
 	protractor test/protractor.conf.js && echo "skip"
 	mv ./reports/ test_"${REPORT_DATE}"_"(${NUMBER_FILE})"/
-	sshpass -p jl scp -r -o StrictHostKeyChecking=no test_"${REPORT_DATE}"_"(${TEST_TIME})"/ jl@128.199.133.224:/home/jl/Test_reports/feature-tests/ -o StrictHostKeyChecking=no
+	sshpass -p jl scp -r -o StrictHostKeyChecking=no test_"${REPORT_DATE}"_"(${TEST_TIME})"/ jl@128.199.133.224:/home/jl/Test_reports/feature-tests/
 elif [ "$1" = "-unit" ];
 then
 	npm run unit
