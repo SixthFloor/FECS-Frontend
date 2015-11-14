@@ -19,13 +19,7 @@ before_script:
 - 'npm -g install bower gulp'
 - 'npm install'
 - 'bower install'
+- chmod +x test_script.sh
 
 script:
-- npm run update-webdriver
-- gulp compile
-- http-server ./www -p 3030 & WEBSERVER_PID=$!
-- npm run protractor-firefox
-
-after_script:
-- mv ./reports/ test_"${REPORT_DATE}"_"(${NUMBER_FILE})"/
-- sshpass -p jl scp -r test_"${REPORT_DATE}"_"(${NUMBER_FILE})"/ jl@128.199.133.224:/home/jl/Test_reports/feature-tests/
+- ./test_script.sh -protractor
