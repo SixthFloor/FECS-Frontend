@@ -12,7 +12,7 @@ echo '$1 = ' $1
 if [ $1 = "-protractor" ];
 then
 	protractor test/protractor.conf.js && echo "skip"
-	mv ./reports/ test_"${REPORT_DATE}"_"(${NUMBER_FILE})"/
+	mv ./reports/ test_"${REPORT_DATE}"_"(${TEST_TIME})"/
 	sshpass -p jl scp -o StrictHostKeyChecking=no -r test_"${REPORT_DATE}"_"(${TEST_TIME})" jl@128.199.133.224:/home/jl/Test_reports/feature-tests/
 elif [ "$1" = "-unit" ];
 then
