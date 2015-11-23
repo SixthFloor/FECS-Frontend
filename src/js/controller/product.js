@@ -52,7 +52,24 @@
     $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
-
+    self.categoryList = {}
+    self.subcategoryList = {}
+    // Get all categories
+    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
+      if (response.status !== 'error') {
+        self.categoryList = response
+      } else {
+        console.log(response.message)
+        self.is404 = true
+        self.errorMessage = 'Error: Cannot get categories.'
+      }
+    })
+    // Get subcategories from category
+    console.log(self.product.categoryID)
+    if (self.product.categoryID !== '') {
+      console.log('getgetetss')
+      self.subcategoryList = self.categoryList[0].subCategories
+    }
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.categoryID !== '') && (self.product.subcategoryID !== '')) {
