@@ -1,4 +1,5 @@
 # whitelist
+# cd /home/travis/build/SixthFloor/FECS-Web
 branches:
   only:
     - master
@@ -6,22 +7,18 @@ branches:
 language: node_js
 node_js:
 - '0.12'
-- '0.11'
 
 before_install:
+- sudo apt-get install -qq sshpass
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-- chmod a+x script.sh
 - gem install sass
 
 before_script:
 - 'npm -g install bower gulp'
 - 'npm install'
 - 'bower install'
+- chmod +x test_script.sh
 
 script:
-- npm run update-webdriver
-- gulp compile
-- http-server ./www -p 4444 & WEBSERVER_PID=$!
-- npm run unit-firefox
-- npm run protractor-firefox
+- ./test_script.sh -protractor

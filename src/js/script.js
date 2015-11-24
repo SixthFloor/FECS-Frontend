@@ -14,6 +14,7 @@
       'controller.productpage',
       'controller.categorypage',
       'controller.navbar',
-      'directive.navbar'
+      'directive.navbar',
+      'directive.footer'
     ])
 })()
