@@ -2,7 +2,7 @@
 set -ex
 npm run update-webdriver
 gulp compile
-http-server ./www -p 4444 & WEBSERVER_PID=$!
+http-server ./www -p 3030 & WEBSERVER_PID=$!
 echo '$1 = ' $1
 if [ "$1" == "-protractor" ]
 then

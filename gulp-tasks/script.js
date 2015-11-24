@@ -10,7 +10,9 @@ gulp.task('script', function () {
     './bower_components/angular-local-storage/dist/angular-local-storage.js',
     './bower_components/angular-ui-router/release/angular-ui-router.js',
     './bower_components/angular-ui-notification/src/angular-ui-notification.js',
+    './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
     './bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+    './bower_components/Bootflat/bootflat/js/*.js',
     './src/js/**/*.js'])
     .pipe(concat('scripts.js'))
     .pipe(uglify({mangle: false}))

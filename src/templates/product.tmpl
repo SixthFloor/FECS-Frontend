@@ -1,7 +1,6 @@
 <navbar></navbar>
 <div class="container">
   <div ng-if="!productpageCtrl.is404">
-    
       <div class="route">
         <a href="#/home">Home</a> >>
         <a href="#/category/all">All products</a> >>
@@ -41,9 +40,11 @@
           </div>
         </div>
       </div>
-
+  </div>
   <div ng-if="productpageCtrl.is404">
     <h1>Furniture Not Found</h1>
     <p>{{productpageCtrl.errorMessage}}</p>
   </div>
 </div>
+<footer></footer>
+

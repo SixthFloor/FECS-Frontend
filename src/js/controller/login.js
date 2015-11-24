@@ -7,7 +7,7 @@
   * @author Chinnaporn Soonue
   */
   angular
-    .module('controller.login', [])
+    .module('controller.login', ['ui.bootstrap'])
     .controller('LoginController', LoginController)
     .controller('LogoutController', LogoutController)
 
