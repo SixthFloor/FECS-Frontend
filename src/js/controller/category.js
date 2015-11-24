@@ -2,10 +2,10 @@
 
 ;(function () {
   /**
-  * controller.home Module
+  * controller.categorypage Module
   *
-  * @author Chinnaporn Soonue
-  * @description Category Controller module to add create all controller of this project.
+  * @author Jiratchaya Intaragumhaneg
+  * @description Category Controller module use for view products by their category , can sort the products
   */
   angular
     .module('controller.categorypage', [])
@@ -42,10 +42,12 @@
       $state.transitionTo('product', {product_id: id})
     }
 
+    // Change the first letter to upper case
     self.capitalize = function (string) {
       return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
+    // Sort function that sort the product list by sortOptions
     self.order = function () {
       self.productList = orderBy(self.productList, self.sort_by)
     }
