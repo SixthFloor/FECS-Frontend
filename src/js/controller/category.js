@@ -29,7 +29,7 @@
     //  API path
     var url = ''
     if (self.category_name !== 'all') {
-      url = 'http://128.199.133.224/api/category/' + self.category_name
+      url = 'http://128.199.133.224/api/category/product/' + self.category_name
     }
     else url = 'http://128.199.133.224/api/product/all'
 
