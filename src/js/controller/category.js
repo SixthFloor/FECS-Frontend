@@ -31,7 +31,7 @@
     if (self.category_name !== 'all') {
       url = 'http://128.199.133.224/api/category/' + self.category_name
     }
-    else url = 'http://128.199.133.224/api/furniture/all'
+    else url = 'http://128.199.133.224/api/product/all'
 
     $http.get(url).success(function (response) {
       self.productList = response

@@ -18,7 +18,7 @@
     console.log($stateParams.product_id)
     var self = this
     // API path
-    var url = 'http://128.199.133.224/api/furniture/' + $stateParams.product_id
+    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
@@ -109,7 +109,7 @@
     self.categoryList = {}
     self.subcategoryList = {}
     // path of real API
-    var url = 'http://128.199.133.224/api/furniture/' + $stateParams.product_id
+    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
