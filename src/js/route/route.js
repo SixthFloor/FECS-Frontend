@@ -96,5 +96,11 @@
         controller: 'EditProductController',
         controllerAs: 'editproductCtrl'
       })
+      .state('cart', {
+        url: '/cart',
+        templateUrl: 'templates/cart.tmpl',
+        controller: 'CartController',
+        controllerAs: 'cartCtrl'
+      })
   }
 })()
