@@ -1,3 +1,5 @@
+/* Any global standard layout of the application is defined here */
+
 @mixin component-style() {
   border-radius: 10px;
   border: none;
@@ -14,8 +16,8 @@ html, body, p, figure {
 }
 body {
   min-width: 1024px;
-  color: #000;
-  //background-color: #e9e9e9;
+  // color: #000;
+  background-color: #ECF0F1;
 }
 body, input, button, label {
   font-family: 'THSarabunNew', sans-serif;
