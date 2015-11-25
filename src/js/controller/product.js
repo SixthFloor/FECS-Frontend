@@ -31,6 +31,7 @@
 
           self.available = 5
           self.price = response.price
+          self.images = response.images
           self.description = response.description
           self.dimensionDescription = response.dimensionDescription
           self.category = angular.uppercase(response.subCategory.category.name)
