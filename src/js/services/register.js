@@ -37,14 +37,12 @@
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
       console.log(self.member.address)
       console.log(self.member)
-      var url = 'http://128.199.112.126:3000/register'
+      var url = 'http://128.199.133.224/api/user/new'
       $http.post(url, {
         email: self.member.email,
         password: self.member.password,
-        firstname: self.member.firstname,
-        lastname: self.member.lastname,
-        address: self.member.address,
-        phonenumber: self.member.phonenumber
+        firstName: self.member.firstname,
+        lastName: self.member.lastname
       }).success(success).error(error)
     }
   }

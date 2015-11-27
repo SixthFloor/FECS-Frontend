@@ -66,14 +66,20 @@
       }
     })
     // Get subcategories from category
-    console.log(self.product.categoryID)
-    if (self.product.categoryID !== '') {
-      console.log('getgetetss')
-      self.subcategoryList = self.categoryList[0].subCategories
+    self.getSubcat = function () {
+      $http.get('http://128.199.133.224/api/category/'+self.product.category.name).success(function (response) {
+        if (response.status !== 'error') {
+          self.subcategoryList = response
+        } else {
+          console.log(response.message)
+          self.is404 = true
+          self.errorMessage = 'Error: Cannot get categories.'
+        }
+      })
     }
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
-        (self.product.categoryID !== '') && (self.product.subcategoryID !== '')) {
+        (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
         productService.addproduct(function (response) {
           if (response.status === 'error') {
@@ -114,14 +120,12 @@
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
+          self.product.id = response.id
           self.product.serialNumber = response.serialNumber
           self.product.productName = response.name
           self.product.price = response.price
           self.product.description = response.description
           self.product.dimensionDescription = response.dimensionDescription
-          self.product.categoryID = '' + response.subCategory.category.id
-          self.product.subcategoryID = '' + response.subCategory.id
-          self.product.img = response.images
         } else {
           console.log(response.message)
           self.is404 = true
@@ -143,15 +147,21 @@
       }
     })
     // Get subcategories from category
-    console.log(self.product.categoryID)
-    if (self.product.categoryID !== '') {
-      console.log('getgetetss')
-      self.subcategoryList = self.categoryList[0].subCategories
+    self.getSubcat = function () {
+      $http.get('http://128.199.133.224/api/category/'+self.product.category.name).success(function (response) {
+        if (response.status !== 'error') {
+          self.subcategoryList = response
+        } else {
+          console.log(response.message)
+          self.is404 = true
+          self.errorMessage = 'Error: Cannot get categories.'
+        }
+      })
     }
 
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
-        (self.product.categoryID !== '') && (self.product.subcategoryID !== '')) {
+        (self.product.category !== '') && (self.product.subcategory !== '')) {
         productService.valid = true
         productService.editproduct(function (response) {
           if (response.status === 'error') {

@@ -36,7 +36,7 @@ every controller that have to identify the customer, authentication service has 
           email: data.email,
           password: data.pwd
         },
-        url: 'http://128.199.112.126:3000/login'
+        url: 'http://128.199.133.224/api/authentication/login'
       }
       $http(req).then(function (res) {
         var response = res.data
