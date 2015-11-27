@@ -5,42 +5,45 @@
         <ol class="breadcrumb breadcrumb-arrow">
           <li><a href="#/home">Home</a></li>
           <li><a href="#/category/all">All products</a></li>
-          <li class="active"><span>{{productpageCtrl.productName}}</span></li>
+          <li class="active"><span>{{productpageCtrl.product.name}}</span></li>
         </ol>
       </div>
       <div class="row text-center">
-        <hr><h1>{{productpageCtrl.productName}}</h1><hr>
+        <hr><h1>{{productpageCtrl.product.name}}</h1><hr>
       </div>
       <div class="product">
         <div class="product-left">
-          <img src={{productpageCtrl.images[0].link}} >
+          <img src={{productpageCtrl.product.images[0].link}} >
         </div>
         <div class="product-right col-md-4 box-container">
-          <h2>฿{{productpageCtrl.price}}</h2>
-          <h6>Serial number: {{productpageCtrl.productID}}</h6>
-          <label>Available {{productpageCtrl.available}}</label>
-          <form class="form-inline">
+          <h2>฿{{productpageCtrl.product.price}}</h2>
+          <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
+          <label>In Stock</label>
+          <form class="form-inline margin-5">
             <div class="form-group">
               <label >Quantity</label>
-              <input type="number" class="form-control" value="1" />
+              <input ng-model="quantity"  ng-init="quantity=1" type="number" class="form-control"/>
             </div>
           </form><br/>
-          <button class="btn btn-primary" name="">Add to Cart</button>
+          <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
         </div>
       </div>
       <div class="product-info box-container">
         <h3>Details</h3>
         <div class="tab-content">
           <label><h4><span class="label label-info"><b>Description</b></span></h4></label>
-          <p>{{productpageCtrl.description}}</p>
+          <p>{{productpageCtrl.product.description}}</p>
           <label><h4><span class="label label-info"><b>Size</b></span></h4></label>
-          <p>{{productpageCtrl.dimensionDescription}}</p>
+          <p>{{productpageCtrl.product.dimensionDescription}}</p>
         </div>
       </div>
   </div>
   <div ng-if="productpageCtrl.is404">
-    <h1>Furniture Not Found</h1>
-    <p>{{productpageCtrl.errorMessage}}</p>
+    <div class="text-center margin-5">
+      <h1>Product Not Found</h1>
+      <p>Please check your product serial number again</p><br/>
+      <a href="#/home" class="btn btn-primary"><i class="glyphicon glyphicon-home"/> Back to Home page</a>
+    </div>
   </div>
 </div>
 <footer></footer>

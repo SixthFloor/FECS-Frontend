@@ -13,37 +13,23 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
-  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams']
-  function ProductPageController ($scope, $http, User, $stateParams) {
-    console.log($stateParams.product_id)
+  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'FECSCart']
+  function ProductPageController ($scope, $http, User, $stateParams, FECSCart) {
     var self = this
+
     // API path
     var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
-    if ($stateParams.product_id !== '') {
-      $http.get(url).success(function (response) {
-        if (response.status !== 'error') {
-          console.log(response)
-          console.log(response.name)
-          console.log($stateParams.product_id)
 
-          self.productName = response.name
-          self.productID = angular.uppercase(response.serialNumber)
-
-          self.available = 5
-          self.price = response.price
-          self.images = response.images
-          self.description = response.description
-          self.dimensionDescription = response.dimensionDescription
-          self.category = angular.uppercase(response.subCategory.category.name)
-        } else {
-          console.log(response.message)
-          self.is404 = true
-          self.errorMessage = 'Error: Furniture not found'
-        }
-      })
-    } else {
+    $http.get(url).success(function (response) {
+        console.log(response)
+        self.product = response
+    }).error(function (response) {
+      console.log('Error')
       self.is404 = true
-      self.errorMessage = 'Error: Furniture not found'
+    })
+
+    self.addToCart = function (quantity) {
+      FECSCart.add({product: self.product, quantity: quantity})
     }
   }
 
@@ -66,7 +52,7 @@
     })
     // Get subcategories from category
     self.getSubcat = function () {
-      $http.get('http://128.199.133.224/api/category/'+self.product.category.name).success(function (response) {
+      $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
         } else {
@@ -146,7 +132,7 @@
     })
     // Get subcategories from category
     self.getSubcat = function () {
-      $http.get('http://128.199.133.224/api/category/'+self.product.category.name).success(function (response) {
+      $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
         } else {
