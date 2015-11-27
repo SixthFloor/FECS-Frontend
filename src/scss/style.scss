@@ -11,6 +11,18 @@
 @import "productview";
 
 
+//Layouts
+.box-container{
+  //margin: 5px 5%;
+  padding: 2%;
+  -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+.margin-5{
+  margin: 5px;
+}
+
 //Register page
 .require-star{
   color: red;
@@ -61,4 +73,20 @@
   font-size: large;
   padding: 6px 40px;
   margin: 12px 0px 35px 0px;
+}
+
+//Cart Page
+.checkout{
+  @extend .text-center;
+  .checkout-btn{
+    @extend .btn;
+    @extend .btn-primary;
+    width: 25%;
+    margin: 3% 0px;
+  }
+}
+.total{
+  @extend .well;
+  @extend .row;
+  margin: 0px;
 }

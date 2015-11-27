@@ -15,8 +15,10 @@ every controller that have to identify the customer, authentication service has 
   function FECSCart (localStorageService, $http) {
     var self = this
 
-    self.list = {}
+    self.list = []
 
-
+    self.add = function (item) {
+      self.list.push(item)
+    }
   }
 })()

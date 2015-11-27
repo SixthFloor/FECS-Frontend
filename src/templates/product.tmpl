@@ -2,18 +2,26 @@
 <div class="container">
   <div ng-if="!productpageCtrl.is404">
       <div class="route">
+<<<<<<< HEAD
         <a href="#/home">Home</a> /
         <a href="#/category/all">All products</a> /
         <a href="">{{productpageCtrl.productName}}</a>
+=======
+        <ol class="breadcrumb breadcrumb-arrow">
+          <li><a href="#/home">Home</a></li>
+          <li><a href="#/category/all">All products</a></li>
+          <li class="active"><span>{{productpageCtrl.productName}}</span></li>
+        </ol>
+>>>>>>> 64bf6dd55586c42e0a80539590a6bd0f045bc992
       </div>
       <div class="row text-center">
         <hr><h1>{{productpageCtrl.productName}}</h1><hr>
       </div>
       <div class="product">
         <div class="product-left">
-          <img src={{productpageCtrl.images[0].link}}>
+          <img src={{productpageCtrl.images[0].link}} >
         </div>
-        <div class="product-right col-md-4">
+        <div class="product-right col-md-4 box-container">
           <h2>฿{{productpageCtrl.price}}</h2>
           <h6>Serial number: {{productpageCtrl.productID}}</h6>
           <label>Available {{productpageCtrl.available}}</label>
@@ -26,7 +34,7 @@
           <button class="btn btn-primary" name="">Add to Cart</button>
         </div>
       </div>
-      <div class="product-info">
+      <div class="product-info box-container">
         <h3>Details</h3>
         <div class="tab-content">
           <label><h4><span class="label label-info"><b>Description</b></span></h4></label>
