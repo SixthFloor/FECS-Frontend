@@ -35,7 +35,6 @@
 
     $http.get(url).success(function (response) {
       self.productList = response
-      console.log(self.productList)
     })
 
     self.viewProduct = function (id) {
