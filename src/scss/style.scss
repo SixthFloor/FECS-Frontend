@@ -71,3 +71,20 @@
   padding: 6px 40px;
   margin: 12px 0px 35px 0px;
 }
+
+//Cart Page
+.checkout{
+  @extend .text-center;
+  .checkout-btn{
+    @extend .btn;
+    @extend .btn-primary;
+    width: 25%;
+    margin: 3% 0px;
+  }
+}
+
+.total{
+  @extend .well;
+  @extend .row;
+  margin: 0px;
+}
