@@ -49,13 +49,14 @@
 
           <!-- easy for tester  -->
           <h5>[{{product.serialNumber}}]</h5>
-
           <b>{{product.price}} TH Baht</b>
-          <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
+          <p><a class="btn btn-primary margin-5" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
+          <p><a class="btn btn-default margin-5" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit product</a></p>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
 <footer></footer>

@@ -1,3 +1,4 @@
+<navbar></navbar>
 <div ng-if="!editproductCtrl.is404">
   <div class="container">
     <legend><h2>Edit Furniture({{editproductCtrl.product.serialNumber}})</h2></legend>
@@ -24,17 +25,15 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" for="categoryID">Category:</label>
         <div class="col-sm-2">
-          <select class="form-control" ng-model="editproductCtrl.product.categoryID">
+          <select class="form-control" disabled ng-model="editproductCtrl.product.category" ng-options="category as category.name for category in editproductCtrl.categoryList" ng-change="editproductCtrl.getSubcat()">
             <option value="" disabled selected>Category</option>
-            <option ng-repeat="category in editproductCtrl.categoryList" value="{{category.id}}">{{category.name}}</option>
           </select>
         </div>
         <div class="col-sm-1 require-star">*</div>
         <span class="require-star">*</span>
         <div class="col-sm-2">
-          <select class="form-control col-sm-2" ng-model="editproductCtrl.product.subcategoryID">
+          <select class="form-control" disabled ng-model="editproductCtrl.product.subcategory" ng-options="subcategory as subcategory.name for subcategory in editproductCtrl.subcategoryList">
             <option value="" disabled selected>Sub-Category</option>
-            <option ng-repeat="subcategory in editproductCtrl.subcategoryList" value="{{subcategory.id}}">{{subcategory.name}}</option>
           </select>
         </div>
       </div>
@@ -59,3 +58,4 @@
   <h1>Furniture Not Found</h1>
   <p>{{editproductCtrl.errorMessage}}</p>
 </div>
+<footer></footer>
