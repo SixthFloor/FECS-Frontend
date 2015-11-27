@@ -2,21 +2,11 @@
 
 <div class="container" ng-init="header = categorypageCtrl.capitalize(categorypageCtrl.category_name)">
   <div class="route">
-<<<<<<< HEAD
-    <a href="#/home">Home</a> /
-    <a ng-if="categorypageCtrl.category_name == 'all'" href="#/category/all">
-      <span>All products</span>
-    </a>
-    <a ng-if="categorypageCtrl.category_name != 'all'" href="#/category/{{categorypageCtrl.category_name}}">
-      <span >{{header}}</span>
-    </a>
-=======
     <ol class="breadcrumb breadcrumb-arrow">
       <li><a href="#/home">Home</a></li>
       <li class="active"><span ng-if="categorypageCtrl.category_name == 'all'">All products</span></li>
       <li class="active"><span ng-if="categorypageCtrl.category_name != 'all'">{{header}}</span></li>
     </ol>
->>>>>>> 64bf6dd55586c42e0a80539590a6bd0f045bc992
   </div>
   <div class="collections text-center">
     <span ng-if="categorypageCtrl.category_name == 'all'">
@@ -57,18 +47,11 @@
         <div class="caption">
           <h3>{{product.name}}</h3>
 
-<<<<<<< HEAD
-            <b>{{product.price}} Baht</b>
-            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">view</a></p>
-            <p><a href="#/admin/product/edit/{{product.serialNumber}}">Edit product</a></p>
-          </div>
-=======
           <!-- easy for tester  -->
           <h5>[{{product.serialNumber}}]</h5>
-          <b>{{product.price}} TH Baht</b>
-          <p><a class="btn btn-primary margin-5" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
+          <b>{{product.price}} Baht</b>
+          <p><a class="btn btn-primary margin-5" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">view</a></p>
           <p><a class="btn btn-default margin-5" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit product</a></p>
->>>>>>> 64bf6dd55586c42e0a80539590a6bd0f045bc992
         </div>
       </div>
     </div>
