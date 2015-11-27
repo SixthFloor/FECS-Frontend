@@ -50,7 +50,6 @@
   AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User']
   function AddProductController ($scope, $http, productService, notification, User) {
     var self = this
-    $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
     self.categoryList = {}
@@ -110,7 +109,6 @@
   function EditProductController ($scope, $http, User, $stateParams, notification, productService) {
     console.log($stateParams.product_id)
     var self = this
-    $scope.isloggedin = User.isAuthed()
     self.product = productService.product
     self.valid = productService.valid
     self.categoryList = {}
