@@ -2,7 +2,7 @@
 
 <div class="container" ng-init="header = categorypageCtrl.capitalize(categorypageCtrl.category_name)">
   <div class="route">
-    <a href="#/home">Home</a> >>
+    <a href="#/home">Home</a> /
     <a ng-if="categorypageCtrl.category_name == 'all'" href="#/category/all">
       <span>All products</span>
     </a>
@@ -53,8 +53,8 @@
             <!-- easy for tester  -->
             <h5>[{{product.serialNumber}}]</h5>
 
-            <b>{{product.price}} TH Baht</b>
-            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View product</a></p>
+            <b>{{product.price}} Baht</b>
+            <p><a class="btn btn-primary" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">view</a></p>
             <p><a href="#/admin/product/edit/{{product.serialNumber}}">Edit product</a></p>
           </div>
         </div>
