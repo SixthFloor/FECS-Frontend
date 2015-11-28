@@ -11,8 +11,8 @@
     .controller('LoginController', LoginController)
     .controller('LogoutController', LogoutController)
 
-  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'User']
-  function LoginController ($scope, $http, $state, notification, User) {
+  LoginController.$inject = ['$scope', '$state', 'Notification', 'User']
+  function LoginController ($scope, $state, notification, User) {
     var self = this
     self.show = false
     self.data = {

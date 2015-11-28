@@ -13,7 +13,6 @@
 
   function permissionService (Permission, User) {
     Permission.defineRole('anonymous', function (stateParams) {
-      console.log(!User.isAuthed())
       return !User.isAuthed()
     })
 

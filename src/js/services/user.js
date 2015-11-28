@@ -46,7 +46,6 @@ every controller that have to identify the customer, authentication service has 
 
     self.getToken = function () {
       var token = localStorageService.get('authToken')
-      console.log(token)
       return token ? token : false
     }
 
