@@ -22,5 +22,14 @@
       delete $http.defaults.headers.common['Authorization']
     }
     console.log($http.defaults.headers.common)
+
+    // API to get email address
+    var url = 'http://128.199.133.224/api/authentication/token'
+    $http.post(url, {
+      token: User.getToken()
+    }).success(function (response) {
+      console.log(response)
+      self.fullname = response.firstName + ' ' + response.lastName
+    })
   }
 })()

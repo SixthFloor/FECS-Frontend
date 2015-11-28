@@ -22,12 +22,13 @@
             <a ui-sref="register"><i class="glyphicon glyphicon-plus-sign"></i> Sign up </a>
           </li>
           <li><a ui-sref="login"><i class="glyphicon glyphicon-lock"></i> Sign in </a></li>
-          <li><a ui-sref="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart</a></li>
         </ul>
         <div ng-if="navbarCtrl.isAuthed" class="nav-right">
-          <p class="navbar-text navbar-right">
-            Welcome to FECS, <a ui-sref="logout" class="navbar-link">Sign out</a>
-          </p>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-namelabel"> Welcome user {{navbarCtrl.fullname}} </li>
+            <li><a ui-sref="logout"><i class="glyphicon glyphicon-lock"></i> Sign out </a></li>
+            <li><a ui-sref="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart</a></li>
+          </ul>
         </div>
       </div>
     </div>
