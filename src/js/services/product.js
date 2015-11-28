@@ -38,6 +38,13 @@
       }).success(success).error(error)
     }
 
+    self.addproduct2 = function (success, error) {
+      var url = 'http://128.199.133.224/api/catalog/new?category='+self.product.category.name+'&subCategory='+self.product.subcategory.name
+      $http.post(url, {
+        id: self.product.id
+      }).success(success).error(error)
+    }
+
     self.editproduct = function (success, error) {
       var url = 'http://128.199.133.224/api/product/edit'
       $http.post(url, {
