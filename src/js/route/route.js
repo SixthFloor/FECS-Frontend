@@ -102,7 +102,7 @@
         url: '/admin/product/add',
         data: {
           permissions: {
-            only: ['staff', 'admin'],
+            only: ['staff', 'owner', 'admin'],
             redirectTo: 'home'
           }
         },
@@ -123,7 +123,7 @@
         url: '/admin/product/edit/:product_id',
         data: {
           permissions: {
-            only: ['staff', 'admin'],
+            only: ['staff', 'owner', 'admin'],
             redirectTo: 'home'
           }
         },
