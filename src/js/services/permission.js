@@ -42,6 +42,15 @@
       }
       return false
     })
+
+    Permission.defineRole('owner', function (stateParams) {
+      if (User.isAuthed()) {
+        if (User.role === 'owner') {
+          return true
+        }
+      }
+      return false
+    })
   }
 
 })()
