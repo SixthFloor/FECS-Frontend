@@ -16,6 +16,33 @@
       console.log(!User.isAuthed())
       return !User.isAuthed()
     })
+
+    Permission.defineRole('member', function (stateParams) {
+      if (User.isAuthed()) {
+        if (User.role === 'member') {
+          return true
+        }
+      }
+      return false
+    })
+
+    Permission.defineRole('staff', function (stateParams) {
+      if (User.isAuthed()) {
+        if (User.role === 'staff') {
+          return true
+        }
+      }
+      return false
+    })
+
+    Permission.defineRole('admin', function (stateParams) {
+      if (User.isAuthed()) {
+        if (User.role === 'admin') {
+          return true
+        }
+      }
+      return false
+    })
   }
 
 })()

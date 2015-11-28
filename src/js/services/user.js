@@ -14,10 +14,30 @@ every controller that have to identify the customer, authentication service has 
   User.$inject = ['localStorageService', '$http']
   function User (localStorageService, $http) {
     var self = this
+    self.email = ''
+    self.firstname = ''
+    self.lastname = ''
+    self.role = ''
 
     self.isAuthed = function () {
       if (self.getToken()) return true
       else return false
+    }
+
+    self.setEmail = function (email) {
+      self.email = email
+    }
+
+    self.setFirstname = function (firstname) {
+      self.firstname = firstname
+    }
+
+    self.setLastname = function (lastname) {
+      self.lastname = lastname
+    }
+
+    self.setRole = function (role) {
+      self.role = role
     }
 
     self.setToken = function (token) {
@@ -26,6 +46,7 @@ every controller that have to identify the customer, authentication service has 
 
     self.getToken = function () {
       var token = localStorageService.get('authToken')
+      console.log(token)
       return token ? token : false
     }
 
@@ -42,9 +63,10 @@ every controller that have to identify the customer, authentication service has 
         var response = res.data
         if (response.status === 'error') {
           error({error: response.message})
-          console.log(response.message)
         } else {
-          success({success: {access_token: response.access_token}})
+          self.setToken(response.token)
+          self.setRole(response.role.name)
+          success()
         }
       }, function (err) {
         error({error: err.data})

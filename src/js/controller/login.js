@@ -29,9 +29,7 @@
         email: self.data.email,
         pwd: self.data.pwd
       }
-      User.login(data, function (res) {
-        var token = res.success.access_token
-        User.setToken(token)
+      User.login(data, function () {
         $state.transitionTo('home', $state.params, {
           reload: true,
           inherit: false,
