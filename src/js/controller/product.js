@@ -105,6 +105,7 @@
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
+    self.typeID = 0;
     // path of real API
     var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
@@ -116,6 +117,20 @@
           self.product.price = response.price
           self.product.description = response.description
           self.product.dimensionDescription = response.dimensionDescription
+        } else {
+          console.log(response.message)
+          self.is404 = true
+          self.errorMessage = 'Error: Furniture not found'
+        }
+      })
+      url = 'http://128.199.133.224/api/catalog/' + $stateParams.product_id
+      $http.get(url).success(function (response) {
+        if (response.status !== 'error') {
+          self.typeID = response[0].id
+          self.product.category = response[0].category
+          self.product.subcategory = response[0].subCategory
+          console.log(response)
+          console.log(self.product.category)
         } else {
           console.log(response.message)
           self.is404 = true
