@@ -75,6 +75,12 @@
             })
           } else {
             msg = '<span><b>Success!</b> Added new furniture.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
+            self.product.id = response.id
+            productService.addproduct2( function (response2) {
+                console.log(response2)
+              }, function (response2) {
+                console.log(response2)
+            })
             notification.success({
               message: msg
             })
