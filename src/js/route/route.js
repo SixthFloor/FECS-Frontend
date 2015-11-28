@@ -19,7 +19,13 @@
         url: '/home',
         templateUrl: 'templates/home.tmpl',
         controller: 'HomePageController',
-        controllerAs: 'homepageCtrl'
+        controllerAs: 'homepageCtrl',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'login'
+          }
+        }
       })
       .state('login', {
         url: '/login',

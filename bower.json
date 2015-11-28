@@ -22,7 +22,8 @@
     "angular-local-storage": "~0.2.3",
     "angular-ui-notification": "~0.0.14",
     "Bootflat": "~2.0.4",
-    "angular-bootstrap": "~0.14.2"
+    "angular-bootstrap": "~0.14.2",
+    "angular-permission": "~1.1.1"
   },
   "devDependencies": {}
 }
