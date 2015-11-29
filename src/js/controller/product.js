@@ -105,7 +105,7 @@
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
-    self.typeID = 0
+    self.catalogID = 0
     self.oldSubcat = null
 
     // Get all categories
@@ -164,7 +164,7 @@
       url = 'http://128.199.133.224/api/catalog/' + $stateParams.product_id
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
-          self.typeID = response[0].id
+          self.catalogID = response[0].id
           for( var i=0; i<self.categoryList.length;i++ ) {
             var cat = self.categoryList[i]
             if( cat.name === response[0].category.name ) {
@@ -203,7 +203,7 @@
           }
         }, function (response) {
           console.log(response)
-        })
+        }, self.catalogID)
       } else {
         console.log('should be false')
         productService.valid = false
