@@ -7,6 +7,7 @@ gulp.task('script', function () {
   return gulp.src([
     './bower_components/jquery/dist/jquery.js',
     './bower_components/angular/angular.js',
+    './bower_components/angular-animate/angular-animate.min.js',
     './bower_components/angular-local-storage/dist/angular-local-storage.js',
     './bower_components/angular-ui-router/release/angular-ui-router.js',
     './bower_components/angular-ui-notification/src/angular-ui-notification.js',
