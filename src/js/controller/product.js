@@ -105,7 +105,45 @@
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
-    self.typeID = 0;
+    self.typeID = 0
+    self.oldSubcat = null
+
+    // Get all categories
+    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
+      if (response.status !== 'error') {
+        self.categoryList = response
+      } else {
+        console.log(response.message)
+        self.is404 = true
+        self.errorMessage = 'Error: Cannot get categories.'
+      }
+    })
+    // Get subcategories from category
+    self.getSubcat = function () {
+      $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
+        if (response.status !== 'error') {
+          self.subcategoryList = response
+          if( self.oldSubcat !== null ) {
+            for( var i=0; i<self.subcategoryList.length;i++ ) {
+              var subcat = self.subcategoryList[i]
+              if( subcat.name === self.oldSubcat.name ) {
+                self.product.subcategory = subcat
+              }
+            }
+          }
+        } else {
+          console.log(response.message)
+          self.is404 = true
+          self.errorMessage = 'Error: Cannot get categories.'
+        }
+      })
+    }
+    self.changeSubcat = function () {
+      if(self.product.subcategory !== null) {
+        self.oldSubcat = self.product.subcategory
+      }  
+    }
+
     // path of real API
     var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
@@ -127,10 +165,14 @@
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           self.typeID = response[0].id
-          self.product.category = response[0].category
-          self.product.subcategory = response[0].subCategory
-          console.log(response)
-          console.log(self.product.category)
+          for( var i=0; i<self.categoryList.length;i++ ) {
+            var cat = self.categoryList[i]
+            if( cat.name === response[0].category.name ) {
+              self.product.category = cat
+            }
+          }
+          self.oldSubcat = response[0].subCategory
+          self.getSubcat()
         } else {
           console.log(response.message)
           self.is404 = true
@@ -140,28 +182,6 @@
     } else {
       self.is404 = true
       self.errorMessage = 'Error: Furniture not found'
-    }
-    // Get all categories
-    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
-      if (response.status !== 'error') {
-        self.categoryList = response
-      } else {
-        console.log(response.message)
-        self.is404 = true
-        self.errorMessage = 'Error: Cannot get categories.'
-      }
-    })
-    // Get subcategories from category
-    self.getSubcat = function () {
-      $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
-        if (response.status !== 'error') {
-          self.subcategoryList = response
-        } else {
-          console.log(response.message)
-          self.is404 = true
-          self.errorMessage = 'Error: Cannot get categories.'
-        }
-      })
     }
 
     self.submit = function () {

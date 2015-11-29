@@ -32,7 +32,7 @@
         <div class="col-sm-1 require-star">*</div>
         <span class="require-star">*</span>
         <div class="col-sm-2">
-          <select class="form-control" ng-model="editproductCtrl.product.subcategory" ng-options="subcategory as subcategory.name for subcategory in editproductCtrl.subcategoryList">
+          <select class="form-control" ng-model="editproductCtrl.product.subcategory" ng-options="subcategory as subcategory.name for subcategory in editproductCtrl.subcategoryList" ng-change="editproductCtrl.changeSubcat()">
             <option value="" disabled selected>Sub-Category</option>
           </select>
         </div>
