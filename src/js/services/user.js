@@ -24,6 +24,10 @@ every controller that have to identify the customer, authentication service has 
       else return false
     }
 
+    self.isAdmin = function () {
+      return (self.role === 'owner' || self.role === 'staff' || self.role === 'admin')
+    }
+
     self.setEmail = function (email) {
       self.email = email
     }
@@ -63,6 +67,9 @@ every controller that have to identify the customer, authentication service has 
         if (response.status === 'error') {
           error({error: response.message})
         } else {
+          self.setFirstname(response.user.firstName)
+          self.setLastname(response.user.lastName)
+          self.setEmail(response.user.email)
           self.setToken(response.token)
           self.setRole(response.role.name)
           success()

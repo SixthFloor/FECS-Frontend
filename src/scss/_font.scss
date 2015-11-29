@@ -34,3 +34,49 @@
 	font-weight:300;
 	src:url("http://fast.fonts.net/dv2/14/62e28d52-436d-40b8-a5f0-00479f3f44ed.woff2?d44f19a684109620e4841470af90e818cc1ec5a6788323e412a02f7b0f11d7742cf0804a48f43287df296aac838b640e913aaa36d8db75930dcbfaa6c9954d6f40eee314c60dd6a5046366e2f7f15923806810d843aa2e53d2dfc2a43f121a0eee99&projectId=b346d14e-3e55-4620-b0b2-6196278dc080") format('woff2');
 }
+@font-face {
+  font-family: "untitled-font-1";
+  src:url("../fonts/Custom/1448786021.eot");
+  src:url("../fonts/Custom/1448786021.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Custom/1448786021.woff") format("woff"),
+    url("../fonts/Custom/1448786021.ttf") format("truetype"),
+    url("../fonts/Custom/1448786021.svg#1448786021") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "untitled-font-1" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "untitled-font-1" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-toilets:before {
+  content: "a";
+}
+.icon-chef-food-restaurant-streamline:before {
+  content: "b";
+}
+.icon-armchair-chair-streamline:before {
+  content: "c";
+}

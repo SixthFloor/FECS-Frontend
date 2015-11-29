@@ -16,11 +16,12 @@
     var self = this
 
     self.isAuthed = User.isAuthed()
+    self.User = User.getUser()
+
     if (User.isAuthed()) {
       $http.defaults.headers.common['Authorization'] = User.getToken()
     } else {
       delete $http.defaults.headers.common['Authorization']
     }
-    console.log($http.defaults.headers.common)
   }
 })()
