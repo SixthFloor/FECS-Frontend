@@ -1,13 +1,21 @@
 <navbar></navbar>
-<div style="height: 305px; margin-top: -20px;">
-	<uib-carousel interval="homepageCtrl.myInterval" no-wrap="homepageCtrl.noWrapSlides">
-	  <uib-slide ng-repeat="slide in homepageCtrl.slides" active="slide.active">
-	    <img ng-src="{{slide.image}}" style="margin:auto;">
-	    <div class="carousel-caption">
-	      <h4>Slide {{$index}}</h4>
-	      <p>{{slide.text}}</p>
-	    </div>
-	  </uib-slide>
-	</uib-carousel>
+<div class="image-1">
+	<div class="image-content">
+		<div class="overlay"></div>
+		<div class="spaces-post-content">
+            <div class="post-title">
+				Prepäre for exträ guests this winter
+			</div>
+            <div class="featured-excerpt">
+            	<p>
+            		Christmas is getting closer, and that means one thing- extra guests! So make sure you have plenty of room for them this winter.
+            	</p>
+			</div>
+			<div class="home-button">
+				<a ui-sref="category({category_name: 'Dinning Room'})" class="button">See our dining range</i></a>
+			</div>
+			<a href="#" class="cover-scroll no-ajaxy">Scroll to find out more <span><i class="fa fa-angle-down"></i></span></a>
+        </div>
+	</div>
 </div>
 <footer></footer>

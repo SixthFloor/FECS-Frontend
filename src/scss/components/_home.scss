@@ -1,0 +1,199 @@
+@media only screen and (min-width:768px) and (max-width:989px) {
+    .image-1 {
+        height: 480px
+    }
+}
+
+@media only screen and (min-width:900px) and (max-width:1024px) {
+    .image-1 {
+        height: 550px
+    }
+}
+
+@media only screen and (min-width:1025px) and (max-width:1179px) {
+    .image-1 {
+        height: 650px
+    }
+}
+
+@media only screen and (min-width:1180px) and (max-width:1240px) {
+    .image-1 {
+        height: 580px
+    }
+}
+
+@media only screen and (min-width:1241px) and (max-width:1280px) {
+    .image-1 {
+        height: 605px
+    }
+    .image-2 {
+        height: 500px
+    }
+}
+
+@media only screen and (min-width:1281px) and (max-width:1366px) {
+    .image-1 {
+        height: 625px
+    }
+}
+
+@media only screen and (min-width:1367px) and (max-width:1440px) {
+    .image-1 {
+        height: 680px
+    }
+    .image-2 {
+        height: 550px
+    }
+}
+
+@media only screen and (min-width:1441px) and (max-width:1700px) {
+    .image-1 {
+        height: 740px
+    }
+    .image-2 {
+        height: 600px
+    }
+}
+
+@media only screen and (min-width:1701px) {
+    .image-1 {
+        height: 900px
+    }
+    .image-2 {
+        height: 750px
+    }
+}
+.image-1 {
+    margin-top: -22px;
+    float: left;
+    position: relative;
+    width: 100%;
+    .image-content {
+        background-position: 0% -20px;
+        background-image: url(../img/home-page/image-1.jpg);
+    }
+}
+.image-content {
+    background-repeat: no-repeat;
+    -webkit-background-size: 105%;
+    -moz-background-size: 105%;
+    -o-background-size: 105%;
+    background-size: 105%;
+    background-position-x: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: table;
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background: rgba(0,0,0,.3);
+    }
+}
+.spaces-post-content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    .post-title{
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5px;
+        font-size: 48px;
+        line-height: 58px;
+        padding: 0;
+        color: #FFF;
+        font-weight: 400;
+        text-rendering: optimizeLegibility;
+        letter-spacing: .05em;
+        text-transform: capitalize;
+    }
+}
+.spaces-post-content {
+    padding: 0 220px
+}
+@media (min-width:1600px) {
+    .spaces-post-content {
+        padding: 0 300px
+    }
+}
+@media only screen and (min-width:1180px) and (max-width:1439px) {
+    .spaces-post-content {
+        padding: 0 180px
+    }
+}
+@media only screen and (min-width:990px) and (max-width:1179px) {
+    .spaces-post-content {
+        padding: 0 160px
+    }
+}
+@media only screen and (min-width:768px) and (max-width:989px) {
+    .spaces-post-content {
+        padding: 0 50px
+    }
+}
+@media only screen and (min-width:480px) and (max-width:767px) {
+    .spaces-post-content {
+        padding: 0 30px
+    }
+}
+@media only screen and (min-width:220px) and (max-width:479px) {
+    .spaces-post-content {
+        padding: 0 18px
+    }
+}
+.featured-excerpt p {
+    color: #FFF;
+    font-size: 20px;
+    line-height: 34px;
+    font-weight: 400;
+    padding: 0 75px;
+    letter-spacing: 1.2px;
+}
+.home-button {
+    padding-top: 50px;
+    .button {
+        border: 2px solid #FFF;
+        color: #FFF;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 2px;
+        padding: 13px 25px;
+        border-radius: 0;
+        text-align: center;
+        transition: all .25s ease-out;
+        top: 30px;
+        position: relative;
+    }
+    .button:hover {
+        background: #DFDFDF;
+        text-decoration: none;
+        border-color: #dfdfdf;
+    }
+}
+a.cover-scroll {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    color: #FFF !important;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 11px;
+    letter-spacing: .02em;
+    z-index: 199;
+    margin-left: -53px;
+    i {
+        display: block;
+        font-size: 45px;
+        margin-top: -5px;
+        line-height: 45px;
+    }
+}

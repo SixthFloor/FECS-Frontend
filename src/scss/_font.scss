@@ -80,3 +80,46 @@
 .icon-armchair-chair-streamline:before {
   content: "c";
 }
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../fonts/THsarabun/thsarabunnew-webfont.eot');
+    src: url('../fonts/THsarabun/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/THsarabun/thsarabunnew-webfont.woff') format('woff'),
+         url('../fonts/THsarabun/thsarabunnew-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../fonts/THsarabun/thsarabunnew_bolditalic-webfont.eot');
+    src: url('../fonts/THsarabun/thsarabunnew_bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/THsarabun/thsarabunnew_bolditalic-webfont.woff') format('woff'),
+         url('../fonts/THsarabun/thsarabunnew_bolditalic-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../fonts/THsarabun/thsarabunnew_italic-webfont.eot');
+    src: url('../fonts/THsarabun/thsarabunnew_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/THsarabun/thsarabunnew_italic-webfont.woff') format('woff'),
+         url('../fonts/THsarabun/thsarabunnew_italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    src: url('../fonts/THsarabun/thsarabunnew_bold-webfont.eot');
+    src: url('../fonts/THsarabun/thsarabunnew_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/THsarabun/thsarabunnew_bold-webfont.woff') format('woff'),
+         url('../fonts/THsarabun/thsarabunnew_bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
