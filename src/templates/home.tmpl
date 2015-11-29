@@ -1,5 +1,13 @@
 <navbar></navbar>
-<div class="container">
-  <div name="title"><h1>{{homepageCtrl.welcome}}</h1></div>
+<div style="height: 305px; margin-top: -20px;">
+	<uib-carousel interval="homepageCtrl.myInterval" no-wrap="homepageCtrl.noWrapSlides">
+	  <uib-slide ng-repeat="slide in homepageCtrl.slides" active="slide.active">
+	    <img ng-src="{{slide.image}}" style="margin:auto;">
+	    <div class="carousel-caption">
+	      <h4>Slide {{$index}}</h4>
+	      <p>{{slide.text}}</p>
+	    </div>
+	  </uib-slide>
+	</uib-carousel>
 </div>
 <footer></footer>

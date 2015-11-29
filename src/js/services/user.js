@@ -34,11 +34,12 @@ every controller that have to identify the customer, authentication service has 
           if (response.status === 'error') {
             console.log('error')
           } else {
-            self.setFirstname(response.firstName)
-            self.setLastname(response.lastName)
-            self.setEmail(response.email)
-            // self.setRole(response.role.name)
+            self.setFirstname(response.user.firstName)
+            self.setLastname(response.user.lastName)
+            self.setEmail(response.user.email)
+            self.setRole(response.role.name)
             console.log('success')
+            console.log(self)
           }
         }, function (err) {
           console.log(err)

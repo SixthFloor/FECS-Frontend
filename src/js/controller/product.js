@@ -13,23 +13,23 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
-  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'FECSCart']
-  function ProductPageController ($scope, $http, User, $stateParams, FECSCart) {
+  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart']
+  function ProductPageController ($scope, $http, User, $stateParams, Cart) {
     var self = this
 
     // API path
     var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
 
     $http.get(url).success(function (response) {
-        console.log(response)
-        self.product = response
+      console.log(response)
+      self.product = response
     }).error(function (response) {
       console.log('Error')
       self.is404 = true
     })
 
     self.addToCart = function (quantity) {
-      FECSCart.add({product: self.product, quantity: quantity})
+      Cart.add({product: self.product, quantity: quantity})
     }
   }
 
