@@ -19,6 +19,33 @@ every controller that have to identify the customer, authentication service has 
     self.lastname = ''
     self.role = ''
 
+    function initUser () {
+      if (self.isAuthed()) {
+        var req = {
+          method: 'POST',
+          data: {
+            token: self.getToken()
+          },
+          url: 'http://128.199.133.224/api/authentication/token'
+        }
+        $http(req).then(function (res) {
+          console.log(res)
+          var response = res.data
+          if (response.status === 'error') {
+            console.log('error')
+          } else {
+            self.setFirstname(response.firstName)
+            self.setLastname(response.lastName)
+            self.setEmail(response.email)
+            // self.setRole(response.role.name)
+            console.log('success')
+          }
+        }, function (err) {
+          console.log(err)
+        })
+      }
+    }
+
     self.isAuthed = function () {
       if (self.getToken()) return true
       else return false
@@ -82,5 +109,6 @@ every controller that have to identify the customer, authentication service has 
     self.logout = function () {
       localStorageService.remove('authToken')
     }
+    initUser()
   }
 })()

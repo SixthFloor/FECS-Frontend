@@ -71,11 +71,11 @@
             </a>
             <ul class="dropdown-menu account">
               <div class="profile">
-                <h4>{{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}</h4>
+                <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}</h4>
               </div>
               <div class="menu">
                 <li>
-                  <a href="#"><i class="fa fa-pencil-square-o"></i> Edit profile </a>
+                  <a href="#"><i class="fa fa-cog"></i> Setting </a>
                 </li>
                 <li>
                   <a ui-sref="logout"><i class="fa fa-sign-out"></i> Sign out </a>
@@ -85,11 +85,6 @@
           </li>
         </ul>
       </div>
-        <!-- <div ng-if="navbarCtrl.isAuthed" class="nav-right">
-          <p class="navbar-text navbar-right">
-            Welcome to FECS, <a ui-sref="logout" class="navbar-link">Sign out</a>
-          </p>
-        </div> -->
       </div>
     </div>
   </div>

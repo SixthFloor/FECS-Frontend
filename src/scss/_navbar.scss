@@ -205,7 +205,7 @@
 }
 .account {
     top: 65px;
-    width: 120%;
+    width: 300px;
     list-style: none;
     border: none;
     display: none;
@@ -254,7 +254,7 @@
         margin: 0 auto;    
         background: #ECECEC;
         display: block;
-        padding: 5px 15px 20px;
+        padding: 5px 15px 5px;
         float: left;
         position: relative;
         width: 100%;
@@ -265,8 +265,11 @@
             letter-spacing: 2px;
             font-weight: 400;
             width: 100%;
-            text-align: center;    
-            text-transform: uppercase; 
+            text-align: left;    
+            text-transform: uppercase;
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 }

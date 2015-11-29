@@ -16,7 +16,7 @@
     var self = this
 
     self.isAuthed = User.isAuthed()
-    self.User = User.getUser()
+    self.User = User
 
     if (User.isAuthed()) {
       $http.defaults.headers.common['Authorization'] = User.getToken()
