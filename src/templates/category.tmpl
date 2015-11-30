@@ -36,14 +36,14 @@
             ng-change="categorypageCtrl.order()"
             required ng-options='option.value as option.name for option in categorypageCtrl.sortOptions'>
           </select>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by">
-      <div class="thumbnail">
-        <img src={{product.images[0].link}} ng-if="product.images.length > 0">
-        <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
-        <div class="caption">
+      <div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by">
+        <div class="thumbnail">
+          <img src={{product.images[0].link}} ng-if="product.images.length > 0">
+          <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
+          <div class="caption">
           <h3>{{product.name}}</h3>
 
           <!-- easy for tester  -->
@@ -51,10 +51,9 @@
           <b>{{product.price}} Baht</b>
           <p><a class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
           <p><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
