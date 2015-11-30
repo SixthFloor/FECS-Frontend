@@ -9,6 +9,7 @@
       'services.product',
       'services.notification',
       'services.cart',
+      'services.permission',
       'controller.homepage',
       'controller.login',
       'controller.register',

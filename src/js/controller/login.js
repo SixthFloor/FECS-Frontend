@@ -11,8 +11,8 @@
     .controller('LoginController', LoginController)
     .controller('LogoutController', LogoutController)
 
-  LoginController.$inject = ['$scope', '$http', '$state', 'Notification', 'User']
-  function LoginController ($scope, $http, $state, notification, User) {
+  LoginController.$inject = ['$scope', '$state', 'Notification', 'User']
+  function LoginController ($scope, $state, notification, User) {
     var self = this
     self.show = false
     self.data = {
@@ -29,9 +29,7 @@
         email: self.data.email,
         pwd: self.data.pwd
       }
-      User.login(data, function (res) {
-        var token = res.success.access_token
-        User.setToken(token)
+      User.login(data, function () {
         $state.transitionTo('home', $state.params, {
           reload: true,
           inherit: false,

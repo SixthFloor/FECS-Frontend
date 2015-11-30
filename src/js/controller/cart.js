@@ -11,25 +11,25 @@
     .module('controller.cart', [])
     .controller('CartController', CartController)
 
-  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'FECSCart']
-  function CartController ($scope, $http, $state, $stateParams, FECSCart) {
+  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Cart']
+  function CartController ($scope, $http, $state, $stateParams, Cart) {
     var self = this
 
     self.calTotal = function () {
-      self.itemList = FECSCart.getItemList()
+      self.itemList = Cart.getItemList()
       self.total = 0
-      for (var i=0; i<self.itemList.length; i++) {
+      for (var i = 0; i < self.itemList.length; i++) {
         self.total += self.itemList[i].product.price * self.itemList[i].quantity
       }
     }
 
     self.removeItem = function (index) {
-      FECSCart.remove(index)
+      Cart.remove(index)
       self.calTotal()
     }
 
-    self.init = function (){
-      self.itemList = FECSCart.getItemList()
+    self.init = function () {
+      self.itemList = Cart.getItemList()
       self.calTotal()
     }
 

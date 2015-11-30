@@ -9,10 +9,10 @@ every controller that have to identify the customer, authentication service has 
 ;(function () {
   angular
     .module('services.cart', [])
-    .service('FECSCart', FECSCart)
+    .service('Cart', Cart)
 
-  FECSCart.$inject = ['localStorageService', '$http']
-  function FECSCart (localStorageService, $http) {
+  Cart.$inject = ['localStorageService', '$http']
+  function Cart (localStorageService, $http) {
     var self = this
 
     self.itemList = []

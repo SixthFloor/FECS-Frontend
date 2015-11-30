@@ -9,6 +9,8 @@ var browserSync = require('browser-sync')
 gulp.task('style', function () {
   return gulp.src([
     './bower_components/angular-ui-notification/dist/angular-ui-notification.min.css',
+    './bower_components/components-font-awesome/css/font-awesome.min.css',
+    './src/css/*.css',
     './src/scss/style.scss'
   ])
     .pipe(wait(1000))

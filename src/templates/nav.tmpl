@@ -1,52 +1,96 @@
-<header>
-  <div class="navbar navbar-default navbar-custom">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button> -->
-        <a class="navbar-brand" ui-sref="home"><i class="glyphicon glyphicon-home"></i> 6thFloor</a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <form class="navbar-form navbar-left" role="search">
-           <div class="form-search search-only">
-              <i class="search-icon-custom glyphicon glyphicon-search"></i>
-              <input type="text" class="form-control search-field " maxlength="50" placeholder="Search...">
+<div class="navbar navbar-default navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">SЇxthFloor</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <form class="navbar-form navbar-left" role="search">
+         <div class="form-search search-only">
+            <i class="search-icon-custom glyphicon glyphicon-search"></i>
+            <input type="text" class="form-control search-field " maxlength="50" placeholder="Type to Search...">
+          </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a ui-sref="cart">
+            <i class="glyphicon glyphicon-shopping-cart"></i> Cart 
+            <span class="badge badge-notify" ng-show="navbarCtrl.Cart.itemList.length != 0">
+              {{navbarCtrl.Cart.itemList.length}}
+            </span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Category <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+          <ul class="dropdown-menu category">
+            <div class="subcategory">
+                <li>
+                  <a ui-sref="category({category_name: 'all'})">
+                    <i class="fa fa-shopping-bag"></i>All products
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="category({category_name: 'Bedroom'})">
+                    <i class="fa fa-bed"></i>Bedroom
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="category({category_name: 'Bathroom'})">
+                    <i class="icon-toilets"></i>Bathroom
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="category({category_name: 'Dinning Room'})">
+                    <i class="fa fa-cutlery"></i>Dinning Room
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="category({category_name: 'Kitchen'})">
+                    <i class="icon-chef-food-restaurant-streamline"></i>Kitchen
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="category({category_name: 'Living Room'})">
+                    <i class="icon-armchair-chair-streamline"></i>Living room
+                  </a>
+                </li>        
             </div>
-        </form>
-        <ul ng-if="!navbarCtrl.isAuthed" class="nav navbar-nav navbar-right">
-          <li>
-            <a ui-sref="register"><i class="glyphicon glyphicon-plus-sign"></i> Sign up </a>
-          </li>
-          <li><a ui-sref="login"><i class="glyphicon glyphicon-lock"></i> Sign in </a></li>
-          <li><a ui-sref="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Cart</a></li>
-        </ul>
-        <div ng-if="navbarCtrl.isAuthed" class="nav-right">
-          <p class="navbar-text navbar-right">
-            Welcome to FECS, <a ui-sref="logout" class="navbar-link">Sign out</a>
-          </p>
-        </div>
-      </div>
+          </ul>
+        </li>
+        <li class="dropdown" ng-if="!navbarCtrl.isAuthed">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Account <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+          <ul class="dropdown-menu account">
+            <li>
+              <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign up </a>
+            </li>
+            <li>
+              <a ui-sref="login"><i class="fa fa-sign-in"></i> Sign in </a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown" ng-if="navbarCtrl.isAuthed">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Profile <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+          <ul class="dropdown-menu account">
+            <div class="profile">
+              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}</h4>
+            </div>
+            <div class="menu">
+              <li>
+                <a href="#"><i class="fa fa-cog"></i> Setting </a>
+              </li>
+              <li>
+                <a ui-sref="logout"><i class="fa fa-sign-out"></i> Sign out </a>
+              </li>
+            </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
     </div>
   </div>
-
-  <div class="navbar navbar-default">
-    <div class="container-fluid">
-      <div>
-        <ul class="nav navbar-nav">
-          <li><a href="#/home">Home</a></li>
-          <li><a href="#/home">About</a></li>
-          <li><a href="#/category/all">All products</a></li>
-          <li><a href="#/category/Bedroom">Bedroom</a></li>
-          <li><a href="#/category/Bathroom">Bathroom</a></li>
-          <li><a href="#/category/Dinning Room">Dinning Room</a></li>
-          <li><a href="#/category/Kitchen">Kitchen</a></li>
-          <li><a href="#/category/Living Room">Living Room</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</header>
+</div>

@@ -25,13 +25,24 @@
         url: '/login',
         templateUrl: 'templates/login.tmpl',
         controller: 'LoginController',
-        controllerAs: 'loginCtrl'
+        controllerAs: 'loginCtrl',
+        data: {
+          permissions: {
+            only: ['anonymous'],
+            redirectTo: 'home'
+          }
+        }
       })
       .state('logout', {
         url: '/logout',
         templateUrl: 'templates/logout.tmpl',
         controller: 'LogoutController',
-        controllerAs: 'logoutCtrl'
+        controllerAs: 'logoutCtrl',
+        data: {
+          permissions: {
+            except: ['anonymous']
+          }
+        }
       })
       .state('product', {
         url: '/product/:product_id',
@@ -47,6 +58,12 @@
       })
       .state('register', {
         url: '/register',
+        data: {
+          permissions: {
+            only: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
         views: {
           '': {
             templateUrl: 'templates/register/register.tmpl',
@@ -72,11 +89,23 @@
       })
       .state('register.complete', {
         url: '/complete',
+        data: {
+          permissions: {
+            only: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
         parent: 'register',
         templateUrl: 'templates/register/complete.tmpl'
       })
       .state('addproduct', {
         url: '/admin/product/add',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'admin'],
+            redirectTo: 'home'
+          }
+        },
         views: {
           '': {
             templateUrl: 'templates/admin/product/addproduct.tmpl',
@@ -92,6 +121,12 @@
       })
       .state('editproduct', {
         url: '/admin/product/edit/:product_id',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'admin'],
+            redirectTo: 'home'
+          }
+        },
         templateUrl: 'templates/admin/product/editproduct.tmpl',
         controller: 'EditProductController',
         controllerAs: 'editproductCtrl'

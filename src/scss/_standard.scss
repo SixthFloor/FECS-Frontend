@@ -4,31 +4,61 @@
   border-radius: 10px;
   border: none;
 }
-
 * {
   word-wrap: break-word;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-html, body, p, figure {
+html { height: 100%; }
+body {
+    min-height: 100%;
+    position:relative;
+}
+p, figure {
   padding: 0;
   margin: 0;
 }
 body {
-  min-width: 1024px;
-  // color: #000;
-  background-color: #ECF0F1;
+  overflow-x: hidden;
+  font-family: 'Avenir Next W01', 'THSarabunNew', 'Avenir Next W10 Regular', sans-serif;
+  overflow-y: scroll;
 }
-body, input, button, label {
-  font-family: 'THSarabunNew', sans-serif;
-  line-height: normal;
-  font-weight: normal;
+a, a:visited {
+    color: #000;
+    transition: all .15s ease-out;
+    font-weight: normal;
+    text-decoration: none;
 }
-a {
-  font-weight: normal;
-  text-decoration: none;
+a:focus, a:hover {
+    color: #969696;
+    text-decoration: none;
 }
-
 .clear {
   clear: both;
+}
+
+.custom-wrapper {
+    min-height: 100%;
+}
+[ui-view].ng-enter, [ui-view].ng-leave {
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  opacity: 1; 
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
 }

@@ -14,10 +14,62 @@ every controller that have to identify the customer, authentication service has 
   User.$inject = ['localStorageService', '$http']
   function User (localStorageService, $http) {
     var self = this
+    self.email = ''
+    self.firstname = ''
+    self.lastname = ''
+    self.role = ''
+
+    function initUser () {
+      if (self.isAuthed()) {
+        var req = {
+          method: 'POST',
+          data: {
+            token: self.getToken()
+          },
+          url: 'http://128.199.133.224/api/authentication/token'
+        }
+        $http(req).then(function (res) {
+          console.log(res)
+          var response = res.data
+          if (response.status === 'error') {
+            console.log('error')
+          } else {
+            self.setFirstname(response.user.firstName)
+            self.setLastname(response.user.lastName)
+            self.setEmail(response.user.email)
+            self.setRole(response.role.name)
+            console.log('success')
+            console.log(self)
+          }
+        }, function (err) {
+          console.log(err)
+        })
+      }
+    }
 
     self.isAuthed = function () {
       if (self.getToken()) return true
       else return false
+    }
+
+    self.isAdmin = function () {
+      return (self.role === 'owner' || self.role === 'staff' || self.role === 'admin')
+    }
+
+    self.setEmail = function (email) {
+      self.email = email
+    }
+
+    self.setFirstname = function (firstname) {
+      self.firstname = firstname
+    }
+
+    self.setLastname = function (lastname) {
+      self.lastname = lastname
+    }
+
+    self.setRole = function (role) {
+      self.role = role
     }
 
     self.setToken = function (token) {
@@ -42,9 +94,13 @@ every controller that have to identify the customer, authentication service has 
         var response = res.data
         if (response.status === 'error') {
           error({error: response.message})
-          console.log(response.message)
         } else {
-          success({success: {access_token: response.access_token}})
+          self.setFirstname(response.user.firstName)
+          self.setLastname(response.user.lastName)
+          self.setEmail(response.user.email)
+          self.setToken(response.token)
+          self.setRole(response.role.name)
+          success()
         }
       }, function (err) {
         error({error: err.data})
@@ -54,5 +110,6 @@ every controller that have to identify the customer, authentication service has 
     self.logout = function () {
       localStorageService.remove('authToken')
     }
+    initUser()
   }
 })()
