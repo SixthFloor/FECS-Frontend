@@ -50,6 +50,18 @@
         self.errorMessage = 'Error: Cannot get categories.'
       }
     })
+    self.direct = function (categoryName) {
+      $state.transitionTo('admin/product/add')
+      productService.clearProduct()
+      if( categoryName !== 'all' ) {
+        for( var i=0; i<self.categoryList.length;i++ ) {
+          var cat = self.categoryList[i]
+          if( cat.name === categoryName ) {
+            self.product.category = cat
+          }
+        }
+      }
+    }
     // Get subcategories from category
     self.getSubcat = function () {
       $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
