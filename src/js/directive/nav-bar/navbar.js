@@ -15,6 +15,7 @@
   function navbar () {
     var directive = {
       restrict: 'E',
+      scope: true,
       controller: 'NavbarController',
       controllerAs: 'navbarCtrl',
       transclude: true,

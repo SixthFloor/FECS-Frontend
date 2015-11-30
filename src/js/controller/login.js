@@ -30,11 +30,7 @@
         pwd: self.data.pwd
       }
       User.login(data, function () {
-        $state.transitionTo('home', $state.params, {
-          reload: true,
-          inherit: false,
-          notify: true
-        })
+        $state.go('home', {}, {reload: true})
         var msg = '<span><b>Well done!</b> Login successfully.</span>'
         notification.success({
           message: msg
@@ -59,11 +55,7 @@
       notification.success({
         message: msg
       })
-      $state.transitionTo('home', $state.params, {
-        reload: true,
-        inherit: false,
-        notify: true
-      })
+      $state.go('home', {}, {reload: true})
     }
 
     self.logout()

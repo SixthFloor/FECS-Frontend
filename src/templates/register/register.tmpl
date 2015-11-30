@@ -1,12 +1,14 @@
-<div class="container">
-  <h1> Join SixthFloor !</h1>
-  <div class="step" ng-show="registerCtrl.steps.step1">
-    <div ui-view="step1"></div>
+<navbar></navbar>
+  <div class="container">
+    <h1> Join SixthFloor !</h1>
+    <div class="step" ng-show="registerCtrl.steps.step1">
+      <div ui-view="step1"></div>
+    </div>
+    <div class="step" ng-show="registerCtrl.steps.step2">
+      <div ui-view="step2"></div>
+    </div>
+    <div class="step" ng-show="registerCtrl.steps.step3">
+      <div ui-view="step3"></div>
+    </div>
   </div>
-  <div class="step" ng-show="registerCtrl.steps.step2">
-    <div ui-view="step2"></div>
-  </div>
-  <div class="step" ng-show="registerCtrl.steps.step3">
-    <div ui-view="step3"></div>
-  </div>
-</div>
+<footer></footer>
