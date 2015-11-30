@@ -21,7 +21,7 @@
             float: left;
             font-size: 11px;
             letter-spacing: 2px;
-            line-height: 14px;
+            line-height: 13px;
             padding: 26px 12px;
             position: relative;
             z-index: 109;
@@ -62,7 +62,8 @@
     }
 }
 .navbar {
-    min-height:66px !important
+    margin-bottom: 0px;
+    min-height:66px !important;
 }
 .navbar-custom {
     border-radius: 0;
