@@ -167,11 +167,11 @@
           self.catalogID = response[0].id
           for( var i=0; i<self.categoryList.length;i++ ) {
             var cat = self.categoryList[i]
-            if( cat.name === response[0].category.name ) {
+            if( cat.name === response[0].type.category.name ) {
               self.product.category = cat
             }
           }
-          self.oldSubcat = response[0].subCategory
+          self.oldSubcat = response[0].type.subCategory
           self.getSubcat()
         } else {
           console.log(response.message)
