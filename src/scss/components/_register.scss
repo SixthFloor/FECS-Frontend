@@ -1,0 +1,31 @@
+.timeline dl dd.pos-right .time {
+  margin-left: -100%;
+}
+.timeline dl dd .time {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  color: #000;
+}
+.timeline dl dt {
+	position: relative;
+    top: 30px;
+    padding: 3px 5px;
+    margin: 0 auto 30px;
+    text-align: center;
+    border-radius: 0px;
+    background-color: #AAB2BD;
+    font-weight: 400;
+    color: #FFF;
+    width: 180px;
+    z-index: 200;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.timeline dl dd .events .events-body .events-heading {
+    margin: 0 0 10px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}

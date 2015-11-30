@@ -62,3 +62,17 @@ a:focus, a:hover {
 [ui-view].ng-leave-active {
   opacity: 0;
 }
+.logo {
+  font-size: 25px;
+  padding: 16px 0;
+  line-height: 34px;
+  text-transform: uppercase;
+  transition: color .3s;
+  letter-spacing: 10px;
+  width: 280px;
+  color: #000;
+  font-weight: 400;
+}
+.logo:after {
+  content: "\0053\03AA\03C7\0054\0048\0046\004C\004F\004F\0052";
+}

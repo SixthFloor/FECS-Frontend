@@ -1,14 +1,117 @@
-<navbar></navbar>
-  <div class="container">
-    <h1> Join SixthFloor !</h1>
-    <div class="step" ng-show="registerCtrl.steps.step1">
-      <div ui-view="step1"></div>
-    </div>
-    <div class="step" ng-show="registerCtrl.steps.step2">
-      <div ui-view="step2"></div>
-    </div>
-    <div class="step" ng-show="registerCtrl.steps.step3">
-      <div ui-view="step3"></div>
-    </div>
+<div class="container">
+  <!-- <h1>Register</h1>
+  <div class="step" ng-show="registerCtrl.steps.step1">
+    <div ui-view="step1"></div>
   </div>
-<footer></footer>
+  <div class="step" ng-show="registerCtrl.steps.step2">
+    <div ui-view="step2"></div>
+  </div>
+  <div class="step" ng-show="registerCtrl.steps.step3">
+    <div ui-view="step3"></div>
+  </div> -->
+  <div class="timeline">
+    <dl>
+      <dt>Register</dt>
+      <dd class="pos-right clearfix">
+        <div class="circ"></div>
+        <div class="time">Step 1</div>
+        <div class="events">
+          <div class="events-body">
+            <h4 class="events-heading">Account Information</h4>
+            <p>
+              <form name="registerForm" class="form-horizontal" role="form">
+                <div class="form-group">
+                  <span class="require-star">*</span>
+                  <label class="control-label col-sm-2" for="email">E-mail:</label>
+                  <div class="col-sm-4">
+                    <input type="email" name="memberEmail" class="form-control" placeholder="Enter your e-mail" ng-model="registerCtrl.member.email">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="alert alert-danger col-sm-4 col-sm-offset-2" ng-show="!registerCtrl.checkEmail(registerCtrl.member.email) &&
+                  (registerCtrl.member.email != '')">
+                    <strong>Re-enter</strong> E-mail address is not valid
+                  </div>
+                </div>
+                <div class="form-group">
+                  <span class="require-star">*</span>
+                  <label class="control-label col-sm-2" for="pwd">Password:</label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" placeholder="Enter password"
+                    maxlength="20" ng-model="registerCtrl.member.password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <span class="require-star">*</span>
+                  <label class="control-label col-sm-2" maxlength="20" for="pwd">Confirm password:</label>
+                  <div class="col-sm-4">
+                    <input type="password" class="form-control" placeholder="Re-enter password"
+                    maxlength="20" ng-model="registerCtrl.member.confirmpassword">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="alert alert-danger col-sm-4 col-sm-offset-2" ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password">
+                    <strong>Re-enter</strong> Password does not match
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="alert alert-danger col-sm-4 col-sm-offset-2"
+                  ng-show="(registerCtrl.member.password.length && registerCtrl.member.confirmpassword.length) < 8 &&
+                  (registerCtrl.member.password.length || registerCtrl.member.confirmpassword.length) != 0">
+                    <strong>Re-enter</strong> Password should be between 8-20 characters
+                  </div>
+                </div>
+                <div class="register-container">
+                  <div class="alert alert-danger " ng-show="!registerCtrl.valid.step1">
+                    <strong>Invalid Form</strong> Please check for the required information
+                  </div>
+                  <button type="button" class="register-btn" ng-click="registerCtrl.clear()">Clear</button>
+                  <button type="button" class="register-btn" ng-click="registerCtrl.next1()">Next</button>
+                </div>
+              </form>
+            </p>
+          </div>
+        </div>
+      </dd>
+      <dd class="pos-left clearfix">
+        <div class="circ"></div>
+        <div class="time">Step2: Personal Information</div>
+        <div class="events">
+          <div class="pull-left">
+            <img class="events-object img-rounded" src="img/photo-2.jpg">
+          </div>
+          <div class="events-body">
+            <h4 class="events-heading">Bootflat</h4>
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.</p>
+          </div>
+        </div>
+      </dd>
+      <dd class="pos-right clearfix">
+        <div class="circ"></div>
+        <div class="time">Step 3: Credit Card Information</div>
+        <div class="events">
+          <div class="pull-left">
+            <img class="events-object img-rounded" src="img/photo-3.jpg">
+          </div>
+          <div class="events-body">
+            <h4 class="events-heading">Flat UI</h4>
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.</p>
+          </div>
+        </div>
+      </dd>
+      <dd class="pos-left clearfix">
+        <div class="circ"></div>
+        <div class="time">Registration Complete</div>
+        <div class="events">
+          <div class="pull-left">
+            <img class="events-object img-rounded" src="img/photo-4.jpg">
+          </div>
+          <div class="events-body">
+            <h4 class="events-heading">UI design</h4>
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.</p>
+          </div>
+        </div>
+      </dd>
+    </dl>
+  </div>
+</div>
