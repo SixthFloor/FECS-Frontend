@@ -1,11 +1,12 @@
 .timeline dl dd.pos-right .time {
-  margin-left: -100%;
+  margin-left: -200px;
 }
 .timeline dl dd .time {
   text-transform: uppercase;
-  letter-spacing: 2px;
-  width: 100%;
-  color: #000;
+  letter-spacing: 5px;
+  width: 200px;
+  color: #FFF;
+  font-weight: 900;
 }
 .timeline dl dt {
 	position: relative;
@@ -22,10 +23,145 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     font-size: 20px;
+    border: 4px solid #FFF;
 }
 .timeline dl dd .events .events-body .events-heading {
     margin: 0 0 10px;
     font-size: 14px;
-    letter-spacing: 3px;
+    letter-spacing: 8px;
     text-transform: uppercase;
+}
+.timeline dl dd .circ {
+	border: 4px solid #FFF;
+}
+.timeline {
+	overflow-y: hidden;
+    position: fixed !important;
+    top: 66px;
+    right: 0;
+    bottom: 50px;
+    left: 0;
+    dl {
+    	-webkit-transition: all 0.7s ease-out;
+	    -moz-transition: all 0.7s ease-out;
+	    -ms-transition: all 0.7s ease-out;
+	    -o-transition: all 0.7s ease-out;
+	    transition: all 0.7s ease-out;
+    	height: 100%;
+    }
+    .form-control {
+    	color: #000!important;
+	    width: 100%!important;
+	    padding: 5px;
+	    margin: 0;
+	    font-size: 11px;
+	    font-weight: 400;
+	    line-height: 23px;
+	    text-indent: 0;
+	    background: 0 0;
+	    outline: 0;
+	    box-shadow: none;
+	    letter-spacing: 2px;
+	    -webkit-appearance: none!important;
+	    border: 1px solid #d8d8d8;
+	    border-radius: 0;
+	}
+	.control-label {
+		font-size: 14px;
+    	font-weight: 400;
+    	text-transform: uppercase;
+	}
+	.alert {
+		min-width: 500px;
+		border-radius: 0;
+		margin-bottom: 0px;
+		padding: 5px;
+		strong {
+			text-transform: uppercase;
+		}
+	}
+	.alert-danger {
+		background-color: #FFF;
+		border: none;
+	}
+	.register-btn {
+		position: relative;
+	    text-align: center;
+	    color: #000;
+	    background: #fff;
+	    font-size: 12px;
+	    transition: all .15s ease-out;
+	    letter-spacing: 1px;
+	    border: 1px solid #000;
+	    border-radius: 0;
+	    width: 200px;
+    	text-transform: uppercase;
+    	margin-right: 50px;
+	}
+	.register-btn:hover, .register-btn:active {
+		color: #FFF;
+		background: #969696;
+		border: 1px solid #969696;
+	}
+	.overlay {
+	    background-image: -webkit-linear-gradient(top, rgba(0,0,0,.5) 0%, rgba(0,0,0,.0001) 100%);
+	    background-image: -o-linear-gradient(top, rgba(0,0,0,.5) 0%, rgba(0,0,0,.0001) 100%);
+	    background-image: linear-gradient(to top, rgba(0,0,0,.5) 0%, rgba(0,0,0,.0001) 100%);
+	    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=0);
+	}
+	.clearfix {
+		height: 100%;
+	}
+}
+.timeline:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    content: '';
+    background-color: #CCD1D9;
+    z-index: 100;
+}
+.form-horizontal {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.events-left {
+	float: left !important;
+	z-index: -1;
+}
+.regis-s1 {
+	height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -100;
+    width: calc(50% - 1px);
+    overflow: hidden;
+	.content {
+		position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+		background-image: url(../img/home-page/image-3.jpg);
+	    background-repeat: no-repeat;
+	    background-size: auto 105%;
+	    background-position-x: center;
+		-webkit-filter: blur(5px);
+		-moz-filter: blur(5px);
+		-o-filter: blur(5px);
+		-ms-filter: blur(5px);
+		filter: blur(5px);
+	}
+    .overlay {
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    z-index: 1;
+	    background: rgba(0,0,0,.3);
+	}
 }

@@ -1,4 +1,5 @@
 /* global angular */
+/* global $ */
 
 ;(function () {
   /**
@@ -17,6 +18,9 @@
     self.valid = registerService.valid
     self.steps = registerService.steps
 
+    self.moveElement = $('.timeline>dl')
+    self.height = self.moveElement.height() + 40
+
     self.checkEmail = function validateEmail (email) {
       var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
       return re.test(email)
@@ -34,11 +38,13 @@
         registerService.steps.step2 = false
         registerService.steps.step3 = false
         console.log('Step2 back')
+        self.moveElement.css('margin-top', '0px')
       } else if (self.steps.step3) {
         registerService.steps.step1 = false
         registerService.steps.step2 = true
         registerService.steps.step3 = false
         console.log('Step3 back')
+        self.moveElement.css('margin-top', '-' + self.height + 'px')
       }
       self.valid = registerService.valid
       self.steps = registerService.steps
@@ -52,6 +58,7 @@
         registerService.steps.step2 = true
         registerService.steps.step3 = false
         console.log('Step1 next')
+        self.moveElement.css('margin-top', '-' + self.height + 'px')
       } else {
         console.log('form not valid')
         registerService.valid.step1 = false
@@ -66,6 +73,7 @@
         registerService.steps.step2 = false
         registerService.steps.step3 = true
         console.log('Step2 next')
+        self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
       } else {
         console.log('form not valid')
         registerService.valid.step2 = false
