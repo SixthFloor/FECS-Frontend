@@ -24,8 +24,7 @@ describe('Register as member', function () {
     var step3 = element(by.id('registerCtrl.steps.step3'))
 
     function enterResgiterPage(){
-        browser.get('http://localhost:3030/#')
-        element(by.css('[ui-sref="register"]')).click()
+        browser.get('http://localhost:3030/#/register')
     }
 
     it('Start: Test click to register page', function () {

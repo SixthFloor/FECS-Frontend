@@ -13,9 +13,7 @@
   productService.$inject = ['$http']
   function productService ($http) {
     var self = this
-
     self.valid = true
-
     self.product = {
       id: '',
       serialNumber: '',
@@ -28,6 +26,18 @@
       img: []
     }
 
+    self.clearProduct = function () {
+      self.product.id = ''
+      self.product.serialNumber = ''
+      self.product.productName = ''
+      self.product.price = ''
+      self.product.description = ''
+      self.product.dimensionDescription = ''
+      self.product.category = null
+      self.product.subcategory = null
+      self.product.img = []
+    }
+
     self.addproduct = function (success, error) {
       var url = 'http://128.199.133.224/api/product/new'
       $http.post(url, {
@@ -37,10 +47,16 @@
         dimensionDescription: self.product.dimensionDescription,
       }).success(success).error(error)
     }
-
-    self.editproduct = function (success, error) {
-      var url = 'http://128.199.133.224/api/product/edit'
+    self.addproduct2 = function (success, error) {
+      var url = 'http://128.199.133.224/api/catalog/new?category='+self.product.category.name+'&subCategory='+self.product.subcategory.name
       $http.post(url, {
+        id: self.product.id
+      }).success(success).error(error)
+    }
+
+    self.editproduct = function (success, error, catalogID) {
+      var url = 'http://128.199.133.224/api/product/edit'
+      $http.put(url, {
         id: self.product.id,
         serialNumber: self.product.serialNumber,
         name: self.product.productName,
@@ -48,6 +64,27 @@
         description: self.product.description,
         dimensionDescription: self.product.dimensionDescription
       }).success(success).error(error)
+      $http.get('http://128.199.133.224/api/type/all').success(function (response) {
+        if (response.status !== 'error') {
+          for( var i=0; i<response.length;i++ ) {
+            if( response[i].category.name === self.product.category.name &&
+                response[i].subCategory.name === self.product.subcategory.name ) {
+              var newCatalog = {
+                id: catalogID,
+                type: {
+                  id: response[i].id
+                },
+                productDescription: {
+                  id: self.product.id
+                }
+              }
+              console.log(newCatalog)
+              url = 'http://128.199.133.224/api/catalog/edit'
+              $http.put(url, newCatalog).success(success).error(error)
+            }
+          }
+        }
+      })
     }
   }
 })()
