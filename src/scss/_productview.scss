@@ -1,0 +1,19 @@
+/* Product View Page*/
+$gray-bg: #ECF0F1;
+.product{
+	@extend .row;
+	.product-left{
+		@extend .col-md-7;
+		@extend .text-center;
+	}
+	.product-right{
+		@extend .text-center;
+		padding: 15px 25px;
+		background-color: $gray-bg;
+	}
+}
+.product-info{
+	margin: 35px 55px;
+	padding: 10px 25px;
+	background-color: $gray-bg;
+}

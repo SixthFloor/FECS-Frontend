@@ -22,7 +22,9 @@ gulp.task('init', function () {
   gulp.src('./src/templates/**')
     .pipe(gulp.dest('./www/templates'))
   gulp.src(['./src/fonts/**',
-    './bower_components/bootstrap-sass/assets/fonts/bootstrap/*'])
+    './bower_components/bootstrap-sass/assets/fonts/**'])
+    .pipe(gulp.dest('./www/fonts/'))
+  gulp.src('./bower_components/components-font-awesome/fonts/**')
     .pipe(gulp.dest('./www/fonts'))
   gulp.src('./src/html/**')
     .pipe(gulp.dest('./www'))

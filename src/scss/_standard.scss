@@ -1,0 +1,79 @@
+/* Any global standard layout of the application is defined here */
+
+@mixin component-style() {
+  border-radius: 10px;
+  border: none;
+}
+* {
+  word-wrap: break-word;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+html { height: 100%; }
+body {
+    min-height: 100%;
+    position:relative;
+}
+p, figure {
+  padding: 0;
+  margin: 0;
+}
+body {
+  overflow-x: hidden;
+  font-family: 'Avenir Next W01', 'THSarabunNew', 'Avenir Next W10 Regular', sans-serif;
+  overflow-y: scroll;
+}
+a, a:visited {
+    color: #000;
+    transition: all .15s ease-out;
+    font-weight: normal;
+    text-decoration: none;
+}
+a:focus, a:hover {
+    color: #969696;
+    text-decoration: none;
+}
+.clear {
+  clear: both;
+}
+
+.custom-wrapper {
+    min-height: 100%;
+}
+[ui-view].ng-enter, [ui-view].ng-leave {
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  opacity: 1; 
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+}
+.logo {
+  font-style: normal;
+  font-size: 25px;
+  padding: 16px 0;
+  line-height: 34px;
+  text-transform: uppercase;
+  transition: color .3s;
+  letter-spacing: 10px;
+  width: 280px;
+  color: #000;
+  font-weight: 400;
+}
+.logo:after {
+  content: "\0053\03AA\03C7\0054\0048\0046\004C\004F\004F\0052";
+}

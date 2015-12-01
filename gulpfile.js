@@ -6,10 +6,12 @@ requireDir('./gulp-tasks')
 
 gulp.task('default', ['compile'], function () {
   gulp.watch('./src/**/*.html', ['html'])
-  gulp.watch('./src/scss/*.scss', ['style'])
-  gulp.watch('./src/js/*.js', ['script'])
+  gulp.watch('./src/**/*.tmpl', ['html'])
+  gulp.watch('./src/scss/**/*.*', ['style'])
+  gulp.watch('./src/js/**/*.js', ['script'])
 
   browserSync({
+    notify: false,
     port: 3030,
     server: {
       baseDir: './www'

@@ -1,0 +1,51 @@
+<legend><h2>Step1: Account Information</h2></legend>
+<form name="registerForm" class="form-horizontal" role="form">
+  <div class="form-group">
+    <span class="require-star">*</span>
+    <label class="control-label col-sm-2" for="email">E-mail:</label>
+    <div class="col-sm-4">
+      <input type="email" name="memberEmail" class="form-control" placeholder="Enter your e-mail" ng-model="registerCtrl.member.email">
+    </div>
+  </div>
+  <div class="row">
+    <div class="alert alert-danger col-sm-4 col-sm-offset-2" ng-show="!registerCtrl.checkEmail(registerCtrl.member.email) &&
+    (registerCtrl.member.email != '')">
+      <strong>Re-enter</strong> E-mail address is not valid
+    </div>
+  </div>
+  <div class="form-group">
+    <span class="require-star">*</span>
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" placeholder="Enter password"
+      maxlength="20" ng-model="registerCtrl.member.password">
+    </div>
+  </div>
+  <div class="form-group">
+    <span class="require-star">*</span>
+    <label class="control-label col-sm-2" maxlength="20" for="pwd">Confirm password:</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" placeholder="Re-enter password"
+      maxlength="20" ng-model="registerCtrl.member.confirmpassword">
+    </div>
+  </div>
+  <div class="row">
+    <div class="alert alert-danger col-sm-4 col-sm-offset-2" ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password">
+      <strong>Re-enter</strong> Password does not match
+    </div>
+  </div>
+  <div class="row">
+    <div class="alert alert-danger col-sm-4 col-sm-offset-2"
+    ng-show="(registerCtrl.member.password.length && registerCtrl.member.confirmpassword.length) < 8 &&
+    (registerCtrl.member.password.length || registerCtrl.member.confirmpassword.length) != 0">
+      <strong>Re-enter</strong> Password should be between 8-20 characters
+    </div>
+  </div>
+  <div class="register-container">
+    <div class="alert alert-danger " ng-show="!registerCtrl.valid.step1">
+      <strong>Invalid Form</strong> Please check for the required information
+    </div>
+    <button type="button" class="register-btn" ng-click="registerCtrl.clear()">Clear</button>
+    <button type="button" class="register-btn" ng-click="registerCtrl.next1()">Next</button>
+  </div>
+</form>

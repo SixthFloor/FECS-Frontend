@@ -1,3 +1,9 @@
 node_modules/
 bower_components/
+*.log
 www/
+.DS_Store
+**/.DS_Store
+npm-debug.log
+test/test_reports/
+test/reports/

@@ -1,19 +1,24 @@
+# whitelist
+# cd /home/travis/build/SixthFloor/FECS-Web
+branches:
+  only:
+    - master
+    - ci
 language: node_js
-before_install:
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
-- gem install sass
-
 node_js:
-- '4.1'
-- '4.0'
+- '0.12'
+
+before_install:
+- sudo apt-get install -qq sshpass
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- gem install sass
 
 before_script:
 - 'npm -g install bower gulp'
 - 'npm install'
 - 'bower install'
+- chmod +x test_script.sh
 
-script: 
-- gulp initialize
-- gulp script
-- gulp style
+script:
+- ./test_script.sh -protractor

@@ -1,0 +1,45 @@
+<navbar></navbar>
+  <div class="container">
+    <div name="title"><h1>Cart <span class="glyphicon glyphicon-shopping-cart"></span></h1></div>
+    <div class="panel panel-default">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in cartCtrl.itemList track by $index">
+            <td>{{$index+1}}</td>
+            <td>
+              <img src={{item.product.images[0].link}} width="100"/></td>
+            <td>{{item.product.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.quantity*item.product.price}}</td>
+            <td><button type="button" class="btn btn-danger" ng-click="cartCtrl.removeItem($index)">
+              <span class="glyphicon glyphicon-remove"></span></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total">
+      <div class="col-md-6">
+        <b>Total Price: </b>
+      </div>
+      <div class="col-md-4 text-right">
+        <b>{{cartCtrl.total}}</b>
+      </div>
+      <div class="col-md-2">
+        <b>Baht</b>
+      </div>
+    </div>
+    <div class="checkout">
+      <button class="checkout-btn" type="button" name="button">Checkout</button>
+    </div>
+  </div>
+<footer></footer>
