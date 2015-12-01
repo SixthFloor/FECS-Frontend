@@ -112,6 +112,26 @@
 	.clearfix {
 		height: 100%;
 	}
+	.complete {
+		margin-top: 50px;
+		.member-info-panel {
+			margin-top: 100px;
+			border-radius: 0px;
+			box-shadow: none;
+			border: 1px solid #000;
+		}
+		.panel-heading {
+			border-radius: 0px;
+			text-transform: uppercase;
+			letter-spacing: 3px;
+		}
+		.attr {
+			text-align: right;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			font-weight: 600;
+		}
+	}
 }
 .timeline:before {
     position: absolute;
