@@ -43,9 +43,9 @@ describe('view furniture', function() {
   	it('should count all product', function() {
         browser.wait(allProduct.get(0).isPresent()).then( function() {
             expect(allProduct.count()).toEqual(furnitureAll.length)
-            allProduct.get(0).getText().then(function(text) {
-                console.log(text)
-            })
+            // allProduct.get(0).getText().then(function(text) {
+            //     console.log(text)
+            // })
         })
   	})
 

@@ -3,7 +3,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 exports.config = {
 
 
-  specs: ['protractor_test/test_SortFurniture.js'],
+  specs: ['protractor_test/test_LoginAsMember.js'],
 
   multiCapabilities: [{
       // browserName: 'firefox'
@@ -18,13 +18,13 @@ exports.config = {
     defaultTimeoutInterval: 180000
   },
 
-  // onPrepare: function () {
-  //   jasmine.getEnv().addReporter(new HtmlReporter({
-  //        baseDirectory: 'reports/',
-  //        takeScreenShotsOnlyForFailedSpecs: true,
-  //        docTitle: 'Test Report',
-  //        preserveDirectory: true,
-  //        docName: 'report.html'
-  //     }))
-  // }
+  onPrepare: function () {
+    jasmine.getEnv().addReporter(new HtmlReporter({
+         baseDirectory: 'reports/',
+         takeScreenShotsOnlyForFailedSpecs: true,
+         docTitle: 'Test Report',
+         preserveDirectory: true,
+         docName: 'report.html'
+      }))
+  }
 }
