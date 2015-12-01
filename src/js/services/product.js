@@ -14,7 +14,6 @@
   function productService ($http) {
     var self = this
     self.valid = true
-
     self.product = {
       id: '',
       serialNumber: '',
@@ -25,6 +24,18 @@
       category: null,
       subcategory: null,
       img: []
+    }
+
+    self.clearProduct = function () {
+      self.product.id = ''
+      self.product.serialNumber = ''
+      self.product.productName = ''
+      self.product.price = ''
+      self.product.description = ''
+      self.product.dimensionDescription = ''
+      self.product.category = null
+      self.product.subcategory = null
+      self.product.img = []
     }
 
     self.addproduct = function (success, error) {

@@ -2,13 +2,17 @@
 <html ng-app="FECSapp">
 <head>
   <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>S I X T H F L O O R</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <ui-view></ui-view>
+  <div class="custom-wrapper">
+  	<navbar></navbar>
+  	<div ui-view></div ui-view>
+  	<footer></footer>
+  </div>
   <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>

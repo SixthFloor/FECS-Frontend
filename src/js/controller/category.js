@@ -11,8 +11,8 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter']
-  function CategoryPageController ($scope, $http, $state, $stateParams, $filter) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService) {
     var self = this
     var orderBy = $filter('orderBy')
     console.log($stateParams.category_name)
@@ -49,6 +49,11 @@
     // Sort function that sort the product list by sortOptions
     self.order = function () {
       self.productList = orderBy(self.productList, self.sort_by)
+    }
+
+    self.directToAdd = function () {
+      productService.clearProduct()
+      $state.transitionTo('addproduct')
     }
   }
 })()
