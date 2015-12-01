@@ -19,7 +19,7 @@ describe('sort furniture', function() {
     var allTypesort = element.all(by.tagName('option'))
 
   beforeEach(function() {
-    browser.get('http://localhost:3030/#')
+    browser.get('http://localhost:3030/#/home')
     })
 
 
