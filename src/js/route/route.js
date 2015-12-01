@@ -137,16 +137,5 @@
         controller: 'CartController',
         controllerAs: 'cartCtrl'
       })
-<<<<<<< HEAD
-      
-      .state('product', {
-  	   	url: '/product',
-        templateUrl: 'templates/product.tmpl',
-        controller: 'ProductController'
-      });
-      
-  }])
-=======
   }
 })()
->>>>>>> dev

@@ -25,11 +25,7 @@
   "homepage": "https://github.com/SixthFloor/FECS-Web",
   "devDependencies": {
     "bower": "^1.5.3",
-<<<<<<< HEAD
-    "browser-sync": "^2.9.10",
-=======
     "browser-sync": "^2.10.0",
->>>>>>> dev
     "fs": "0.0.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
