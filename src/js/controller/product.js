@@ -33,8 +33,8 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User']
-  function AddProductController ($scope, $http, productService, notification, User) {
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User', '$state']
+  function AddProductController ($scope, $http, productService, notification, User, $state) {
     var self = this
     self.product = productService.product
     self.valid = productService.valid
@@ -50,18 +50,6 @@
         self.errorMessage = 'Error: Cannot get categories.'
       }
     })
-    self.direct = function (categoryName) {
-      $state.transitionTo('admin/product/add')
-      productService.clearProduct()
-      if( categoryName !== 'all' ) {
-        for( var i=0; i<self.categoryList.length;i++ ) {
-          var cat = self.categoryList[i]
-          if( cat.name === categoryName ) {
-            self.product.category = cat
-          }
-        }
-      }
-    }
     // Get subcategories from category
     self.getSubcat = function () {
       $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
@@ -78,6 +66,12 @@
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
+        if(self.product.description === '') {
+          self.product.description = '-'
+        }
+        if(self.product.dimensionDescription === '') {
+          self.product.dimensionDescription = '-'
+        }
         productService.addproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
@@ -109,8 +103,8 @@
     }
   }
 
-  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService']
-  function EditProductController ($scope, $http, User, $stateParams, notification, productService) {
+  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService', '$state']
+  function EditProductController ($scope, $http, User, $stateParams, notification, productService, $state) {
     console.log($stateParams.product_id)
     var self = this
     self.product = productService.product
@@ -198,8 +192,14 @@
 
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
-        (self.product.category !== '') && (self.product.subcategory !== '')) {
+        (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
+        if(self.product.description === '') {
+          self.product.description = '-'
+        }
+        if(self.product.dimensionDescription === '') {
+          self.product.dimensionDescription = '-'
+        }
         productService.editproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
@@ -216,11 +216,39 @@
         }, function (response) {
           console.log(response)
         }, self.catalogID)
+        productService.clearProduct()
       } else {
         console.log('should be false')
         productService.valid = false
       }
       self.valid = productService.valid
+    }
+
+    self.delete = function () {
+      productService.deleteproduct(function (response) {
+        if (response.status === 'error') {
+          var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+          notification.error({
+            message: msg,
+            replaceMessage: true
+          })
+        } else {
+          msg = '<span><b>Success!</b> Deleted Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + " is not in FECS.</span>"
+          notification.success({
+            message: msg
+          })
+          var category_bak = self.product.category
+          productService.clearProduct()
+          if( category_bak !== null ) {
+            $state.transitionTo('category', {category_name: category_bak.name})
+          }
+          else {
+            $state.transitionTo('category', {category_name: 'all'})
+          }
+        }
+      }, function (response) {
+        console.log(response)
+      })
     }
   }
 })()

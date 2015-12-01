@@ -27,6 +27,7 @@
     }
 
     self.clearProduct = function () {
+      self.valid = true
       self.product.id = ''
       self.product.serialNumber = ''
       self.product.productName = ''
@@ -85,6 +86,13 @@
           }
         }
       })
+    }
+
+    self.deleteproduct = function (success, error) {
+      var url = 'http://128.199.133.224/api/product/delete'
+      $http.delete(url, {
+        serialNumber: self.product.serialNumber
+      }).success(success).error(error)
     }
   }
 })()

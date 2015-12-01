@@ -1,6 +1,7 @@
 <div ng-if="!editproductCtrl.is404">
   <div class="container">
-    <legend><h2>Edit Furniture({{editproductCtrl.product.serialNumber}})</h2></legend>
+    <legend><h2>Edit Furniture({{editproductCtrl.product.serialNumber}})</h2>
+    <a class="btn btn-danger category-btn" ng-click="editproductCtrl.delete()">DELETE THIS PRODUCT (The product will be gone permanently.)</a></legend>
     <form class="form-horizontal" role="form">
       <div class="form-group">
         <span class="require-star">*</span>
