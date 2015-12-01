@@ -22,7 +22,7 @@
         <form class="form-inline margin-5">
           <div class="form-group">
             <label >Quantity</label>
-            <input ng-model="quantity"  ng-init="quantity=1" type="number" class="form-control"/>
+            <input ng-model="quantity"  ng-init="quantity=1" type="number" min="1" class="form-control"/>
           </div>
         </form><br/>
         <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
