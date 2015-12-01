@@ -18,6 +18,12 @@ every controller that have to identify the customer, authentication service has 
     self.itemList = []
 
     self.add = function (item) {
+      for (var i=0;i<self.itemList.length ; i++) {
+        if (self.itemList[i].product === item.product) {
+          self.itemList[i].quantity += item.quantity
+          return
+        }
+      }
       self.itemList.push(item)
       console.log(self.itemList)
     }
