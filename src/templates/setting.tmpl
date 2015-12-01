@@ -1,0 +1,72 @@
+<navbar></navbar>
+  <div class="container">
+    <div class="route">
+      <ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/home">Home</a></li>
+        <li class="active">Setting</li>
+      </ol>
+    </div>
+    
+    <form>
+      <uib-tabset justified="true">
+        <uib-tab heading="User">
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" value="{{settingCtrl.User.email}}">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+          </div>
+        </uib-tab>
+        <uib-tab heading="Information">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" value="{{settingCtrl.User.firstname}}">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="{{settingCtrl.User.lastname}}">
+          </div>
+          <div class="form-group">
+            <label>Address1</label>
+            <input type="text" class="form-control" id="address1" placeholder="Address1" value="{{settingCtrl.Local.address1}}">
+          </div>
+          <div class="form-group">
+            <label>Address2</label>
+            <input type="text" class="form-control" id="address2" placeholder="Address2">
+          </div>
+          <div class="form-group">
+            <label>Province</label>
+            <input type="text" class="form-control" id="province" placeholder="Provnice" value="{{settingCtrl.Local.province}}">
+          </div>
+          <div class="form-group">
+            <label>Zip Code</label>
+            <input type="text" class="form-control" id="zipcode" placeholder="Zip Code">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+          </div>
+        </uib-tab>
+        <uib-tab heading="Card ID">
+          <div class="form-group">
+            <label>Card Holder's Name</label>
+            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name">
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date">
+          </div>
+        </uib-tab>
+      </uib-tabset>
+      <div class="text-center">
+        <button type="submit" class="btn btn-lg btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+<footer></footer>
