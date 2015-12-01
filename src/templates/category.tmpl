@@ -1,67 +1,61 @@
-<div class="container" ng-init="header = categorypageCtrl.capitalize(categorypageCtrl.category_name)">
-  <div class="route">
-    <ol class="breadcrumb breadcrumb-arrow">
-      <li><a href="#/home">Home</a></li>
-      <li class="active"><span ng-if="categorypageCtrl.category_name == 'all'">All products</span></li>
-      <li class="active"><span ng-if="categorypageCtrl.category_name != 'all'">{{header}}</span></li>
-    </ol>
-  </div>
-  <div class="collections text-center">
-    <span ng-if="categorypageCtrl.category_name == 'all'">
-      <hr/><h2>All products</h2><hr/>
-    </span>
-    <span ng-if="categorypageCtrl.category_name != 'all'">
-      <hr/><h2>{{header}}</h2><hr/>
-    </span>
-  </div>
-
-  <div class="row">
-    <div class="category-filter">
-      <h3>Filter By</h3>
-      <div class="price">
-        <h4>Price</h4>
-        <input type="checkbox"> Under THB 1,000 <br/>
-        <input type="checkbox"> THB 1,000 to THB 5,000 <br/>
-        <input type="checkbox"> THB 5,000 to THB 10,000 <br />
-        <input type="checkbox"> THB 10,000 & Above <br/>
-      </div>
+<navbar></navbar>
+  <div class="container" ng-init="header = categorypageCtrl.capitalize(categorypageCtrl.category_name)">
+    <div class="route">
+      <ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/home">Home</a></li>
+        <li class="active"><span ng-if="categorypageCtrl.category_name == 'all'">All products</span></li>
+        <li class="active"><span ng-if="categorypageCtrl.category_name != 'all'">{{header}}</span></li>
+      </ol>
+    </div>
+    <div class="collections text-center">
+      <span ng-if="categorypageCtrl.category_name == 'all'">
+        <hr/><h2>All products</h2><hr/>
+      </span>
+      <span ng-if="categorypageCtrl.category_name != 'all'">
+        <hr/><h2>{{header}}</h2><hr/>
+      </span>
     </div>
 
-    <div class="list col-md-9">
-      <div class="row">
-        <div class="sort">
-          <h4>Sort by</h4>
-          <div class="btn-group">
-            <select class="form-control" ng-model="categorypageCtrl.sort_by"
-            ng-change="categorypageCtrl.order()"
-            required ng-options='option.value as option.name for option in categorypageCtrl.sortOptions'>
-          </select>
-          </div>
+    <div class="row">
+      <div class="category-filter">
+        <h3>Filter By</h3>
+        <div class="price">
+          <h4>Price</h4>
+          <input type="checkbox"> Under THB 1,000 <br/>
+          <input type="checkbox"> THB 1,000 to THB 5,000 <br/>
+          <input type="checkbox"> THB 5,000 to THB 10,000 <br />
+          <input type="checkbox"> THB 10,000 & Above <br/>
         </div>
       </div>
-      <div class="col-md-4 text-center">
-        <div class="thumbnail">
-          <img src='http://placehold.it/400x400'>
-          <div class="caption">
-          <p><a class="btn btn-warning category-btn" ng-click="categorypageCtrl.directToAdd()" role="button">Add New Product</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by">
-        <div class="thumbnail">
-          <img src={{product.images[0].link}} ng-if="product.images.length > 0">
-          <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
-          <div class="caption">
-          <h3 id="product-name">{{product.name}}</h3>
 
-          <!-- easy for tester  -->
-          <h5 id="product-serial">[{{product.serialNumber}}]</h5>
-          <b id="product-price">{{product.price}} Baht</b>
-          <p><a class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
-          <p><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
+      <div class="list col-md-9">
+        <div class="row">
+          <div class="sort">
+            <h4>Sort by</h4>
+            <div class="btn-group">
+              <select class="form-control" ng-model="categorypageCtrl.sort_by"
+              ng-change="categorypageCtrl.order()"
+              required ng-options='option.value as option.name for option in categorypageCtrl.sortOptions'>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center" ng-repeat="product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by">
+          <div class="thumbnail">
+            <img src={{product.images[0].link}} ng-if="product.images.length > 0">
+            <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
+            <div class="caption">
+              <h3>{{product.name}}</h3>
+
+              <!-- easy for tester  -->
+              <h5>[{{product.serialNumber}}]</h5>
+              <b>{{product.price}} Baht</b>
+              <p><a class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
+              <p><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<footer></footer>

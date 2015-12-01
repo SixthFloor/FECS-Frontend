@@ -18,7 +18,6 @@
     self.isAuthed = User.isAuthed()
     self.User = User
     self.Cart = Cart
-    console.log(self.User)
 
     if (User.isAuthed()) {
       $http.defaults.headers.common['Authorization'] = User.getToken()

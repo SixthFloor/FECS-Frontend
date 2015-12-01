@@ -109,6 +109,10 @@ every controller that have to identify the customer, authentication service has 
 
     self.logout = function () {
       localStorageService.remove('authToken')
+      self.setEmail('')
+      self.setRole('')
+      self.setFirstname('')
+      self.setLastname('')
     }
     initUser()
   }
