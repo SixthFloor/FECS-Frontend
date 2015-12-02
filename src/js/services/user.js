@@ -12,7 +12,7 @@ every controller that have to identify the customer, authentication service has 
     .service('User', User)
 
   User.$inject = ['localStorageService', '$http']
-  function User (localStorageService, $http) {
+  function User (localStorageService, $http, environment) {
     var self = this
     self.email = ''
     self.firstname = ''
@@ -26,7 +26,7 @@ every controller that have to identify the customer, authentication service has 
           data: {
             token: self.getToken()
           },
-          url: 'http://128.199.133.224/api/authentication/token'
+          url: environment.getBaseAPI() + 'authentication/token'
         }
         $http(req).then(function (res) {
           console.log(res)
@@ -92,7 +92,7 @@ every controller that have to identify the customer, authentication service has 
           email: data.email,
           password: data.pwd
         },
-        url: 'http://128.199.133.224/api/authentication/login'
+        url: environment.getBaseAPI() + 'api/authentication/login'
       }
       $http(req).then(function (res) {
         var response = res.data

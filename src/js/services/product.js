@@ -11,7 +11,7 @@
     .service('productService', productService)
 
   productService.$inject = ['$http']
-  function productService ($http) {
+  function productService ($http, environment) {
     var self = this
     self.valid = true
     self.product = {
@@ -40,7 +40,7 @@
     }
 
     self.addproduct = function (success, error) {
-      var url = 'http://128.199.133.224/api/product/new'
+      var url = environment.getBaseAPI + 'product/new'
       $http.post(url, {
         name: self.product.productName,
         price: self.product.price,
@@ -49,14 +49,14 @@
       }).success(success).error(error)
     }
     self.addproduct2 = function (success, error) {
-      var url = 'http://128.199.133.224/api/catalog/new?category='+self.product.category.name+'&subCategory='+self.product.subcategory.name
+      var url = environment.getBaseAPI + 'catalog/new?category=' + self.product.category.name + '&subCategory=' + self.product.subcategory.name
       $http.post(url, {
         id: self.product.id
       }).success(success).error(error)
     }
 
     self.editproduct = function (success, error, catalogID) {
-      var url = 'http://128.199.133.224/api/product/edit'
+      var url = environment.getBaseAPI + 'product/edit'
       $http.put(url, {
         id: self.product.id,
         serialNumber: self.product.serialNumber,
@@ -65,11 +65,11 @@
         description: self.product.description,
         dimensionDescription: self.product.dimensionDescription
       }).success(success).error(error)
-      $http.get('http://128.199.133.224/api/type/all').success(function (response) {
+      $http.get(environment.getBaseAPI + 'type/all').success(function (response) {
         if (response.status !== 'error') {
-          for( var i=0; i<response.length;i++ ) {
-            if( response[i].category.name === self.product.category.name &&
-                response[i].subCategory.name === self.product.subcategory.name ) {
+          for ( var i = 0; i < response.length;i++) {
+            if ( response[i].category.name === self.product.category.name &&
+              response[i].subCategory.name === self.product.subcategory.name) {
               var newCatalog = {
                 id: catalogID,
                 type: {
@@ -80,7 +80,7 @@
                 }
               }
               console.log(newCatalog)
-              url = 'http://128.199.133.224/api/catalog/edit'
+              url = environment.getBaseAPI + 'catalog/edit'
               $http.put(url, newCatalog).success(success).error(error)
             }
           }

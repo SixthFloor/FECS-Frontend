@@ -35,7 +35,7 @@
 
     self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
-      var url = 'http://128.199.133.224/api/user/new'
+      var url = environment.getBaseAPI + 'user/new'
       $http.post(url, {
         email: self.member.email,
         password: self.member.password,
