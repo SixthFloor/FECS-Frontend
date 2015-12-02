@@ -8,37 +8,42 @@ every controller that have to identify the customer, authentication service has 
 */
 ;(function () {
   angular
-    .module('services.cart', [])
+    .module('services.cart', ['LocalStorageModule'])
     .service('Cart', Cart)
 
   Cart.$inject = ['localStorageService', '$http']
   function Cart (localStorageService, $http) {
     var self = this
 
-    self.itemList = []
+    self.init = function () {
+      var itemList = []
+      localStorageService.set('cart', itemList)
+    }
 
     self.add = function (item) {
-      for (var i = 0; i<self.itemList.length ; i++) {
-        if (self.itemList[i].product.serialNumber === item.product.serialNumber) {
-          self.itemList[i].quantity += item.quantity
+      var itemList = self.getItemList()
+      for (var i = 0; i < itemList.length ; i++) {
+        if (itemList[i].product.serialNumber === item.product.serialNumber) {
+          itemList[i].quantity += item.quantity
           return
         }
       }
-      console.log('push push push');
-      self.itemList.push(item)
-      console.log(self.itemList)
+      itemList.push(item)
+      localStorageService.set('cart', itemList)
     }
 
     self.remove = function (index) {
-      self.itemList.splice(index, 1)
+      var itemList = self.getItemList()
+      itemList.splice(index, 1)
+      localStorageService.set('cart', itemList)
     }
 
     self.getItemList = function () {
-      return self.itemList
+      return localStorageService.get('cart')
     }
 
     self.clear = function () {
-      self.list = []
+      localStorageService.remove('cart')
     }
   }
 })()

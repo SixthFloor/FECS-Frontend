@@ -28,11 +28,7 @@
       self.calTotal()
     }
 
-    self.init = function () {
-      self.itemList = Cart.getItemList()
-      self.calTotal()
-    }
-
-    self.init()
+    self.itemList = Cart.getItemList()
+    self.calTotal()
   }
 })()

@@ -11,8 +11,8 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', ['LocalStorageModule'])
     .service('User', User)
 
-  User.$inject = ['localStorageService', '$http', 'environment']
-  function User (localStorageService, $http, environment) {
+  User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
+  function User (localStorageService, $http, environment, Cart) {
     var self = this
     self.email = ''
     self.firstname = ''
@@ -104,6 +104,7 @@ every controller that have to identify the customer, authentication service has 
           self.setEmail(response.user.email)
           self.setToken(response.token)
           self.setRole(response.role.name)
+          Cart.init()
           success()
         }
       }, function (err) {
@@ -113,6 +114,7 @@ every controller that have to identify the customer, authentication service has 
 
     self.logout = function () {
       localStorageService.remove('authToken')
+      Cart.clear()
       self.setEmail('')
       self.setRole('')
       self.setFirstname('')
