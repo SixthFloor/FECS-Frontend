@@ -29,9 +29,9 @@
     //  API path
     var url = ''
     if (self.category_name !== 'all') {
-      url = 'http://128.199.133.224/api/category/product/' + self.category_name
+      url = $scope.environment.getBaseAPI() + 'category/product/' + self.category_name
     }
-    else url = 'http://128.199.133.224/api/product/all'
+    else url = $scope.environment.getBaseAPI() + 'product/all'
 
     $http.get(url).success(function (response) {
       self.productList = response

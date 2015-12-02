@@ -10,6 +10,7 @@
   angular
     .module('controller.homepage', ['ngAnimate'])
     .controller('HomePageController', HomePageController)
+    .controller('AppController', AppController)
 
   HomePageController.$inject = ['$scope']
   function HomePageController ($scope) {
@@ -28,5 +29,11 @@
       }
     ]
 
+  }
+
+  AppController.$inject = ['$scope', 'environment', 'User']
+  function AppController ($scope, environment, User) {
+    $scope.environment = environment
+    $scope.User = User
   }
 })()

@@ -1,49 +1,48 @@
-<navbar></navbar>
-  <div class="container">
-    <div ng-if="!productpageCtrl.is404">
-        <div class="route">
-          <ol class="breadcrumb breadcrumb-arrow">
-            <li><a href="#/home">Home</a></li>
-            <li><a href="#/category/all">All products</a></li>
-            <li class="active"><span>{{productpageCtrl.product.name}}</span></li>
-          </ol>
-        </div>
-        <div class="row text-center">
-          <hr><h1>{{productpageCtrl.product.name}}</h1><hr>
-        </div>
-        <div class="product">
-          <div class="product-left">
-            <img src={{productpageCtrl.product.images[0].link}} ng-if="productpageCtrl.product.images.length > 0">
-            <img src='http://placehold.it/400x400' ng-if="productpageCtrl.product.images.length == 0">
-          </div>
-          <div class="product-right col-md-4 box-container">
-            <h2>฿{{productpageCtrl.product.price}}</h2>
-            <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
-            <label>In Stock</label>
-            <form class="form-inline margin-5">
-              <div class="form-group">
-                <label >Quantity</label>
-                <input ng-model="quantity"  ng-init="quantity=1" type="number" class="form-control"/>
-              </div>
-            </form><br/>
-            <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-info box-container">
-          <h3>Details</h3>
-          <div class="tab-content">
-            <label><h4><span class="label label-info"><b>Description</b></span></h4></label>
-            <p>{{productpageCtrl.product.description}}</p>
-            <label><h4><span class="label label-info"><b>Size</b></span></h4></label>
-            <p>{{productpageCtrl.product.dimensionDescription}}</p>
-          </div>
-        </div>
-    </div>
-    <div ng-if="productpageCtrl.is404">
-      <div class="text-center margin-5">
-        <h1>Product Not Found</h1>
-        <p>Please check your product serial number again</p><br/>
-        <a href="#/home" class="btn btn-primary"><i class="glyphicon glyphicon-home"/> Back to Home page</a>
+<div class="container">
+  <div ng-if="!productpageCtrl.is404">
+      <div class="route">
+        <ol class="breadcrumb breadcrumb-arrow">
+          <li><a href="#/home">Home</a></li>
+          <li><a href="#/category/all">All products</a></li>
+          <li class="active"><span>{{productpageCtrl.product.name}}</span></li>
+        </ol>
       </div>
+      <div class="row text-center">
+        <hr><h1>{{productpageCtrl.product.name}}</h1><hr>
+      </div>
+      <div class="product">
+        <div class="product-left">
+          <img src={{productpageCtrl.product.images[0].link}} ng-if="productpageCtrl.product.images.length > 0">
+          <img src='http://placehold.it/400x400' ng-if="productpageCtrl.product.images.length == 0">
+        </div>
+        <div class="product-right col-md-4 box-container">
+          <h2>฿{{productpageCtrl.product.price}}</h2>
+          <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
+          <label>In Stock</label>
+          <form class="form-inline margin-5">
+            <div class="form-group">
+              <label >Quantity</label>
+              <input ng-model="quantity"  ng-init="quantity=1" type="number" class="form-control"/>
+            </div>
+          </form><br/>
+          <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-info box-container">
+        <h3>Details</h3>
+        <div class="tab-content">
+          <label><h4><span class="label label-info"><b>Description</b></span></h4></label>
+          <p>{{productpageCtrl.product.description}}</p>
+          <label><h4><span class="label label-info"><b>Size</b></span></h4></label>
+          <p>{{productpageCtrl.product.dimensionDescription}}</p>
+        </div>
+      </div>
+  </div>
+  <div ng-if="productpageCtrl.is404">
+    <div class="text-center margin-5">
+      <h1>Product Not Found</h1>
+      <p>Please check your product serial number again</p><br/>
+      <a href="#/home" class="btn btn-primary"><i class="glyphicon glyphicon-home"/> Back to Home page</a>
     </div>
   </div>
+</div>

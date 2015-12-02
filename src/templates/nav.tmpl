@@ -58,7 +58,7 @@
             </div>
           </ul>
         </li>
-        <li class="dropdown" ng-if="!navbarCtrl.isAuthed">
+        <li class="dropdown" ng-if="!User.isAuthed()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Account <span class="glyphicon glyphicon-chevron-down"></span>
           </a>
@@ -71,13 +71,13 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown" ng-if="navbarCtrl.isAuthed">
+        <li class="dropdown" ng-if="User.isAuthed()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Profile <span class="glyphicon glyphicon-chevron-down"></span>
           </a>
           <ul class="dropdown-menu account">
             <div class="profile">
-              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}</h4>
+              <h4><i class="fa fa-user"></i> {{User.firstname}} {{User.lastname}}</h4>
             </div>
             <div class="menu">
               <li>
