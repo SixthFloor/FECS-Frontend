@@ -237,6 +237,11 @@
           notification.success({
             message: msg
           })
+
+          var url = 'http://128.199.133.224/api/product/delete'
+          $http.delete(url, {
+            serialNumber: self.product.serialNumber
+          })
           var category_bak = self.product.category
           productService.clearProduct()
           if( category_bak !== null ) {

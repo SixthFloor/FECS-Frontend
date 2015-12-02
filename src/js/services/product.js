@@ -89,9 +89,10 @@
     }
 
     self.deleteproduct = function (success, error) {
-      var url = 'http://128.199.133.224/api/product/delete'
+      console.log(self.product.id)
+      var url = 'http://128.199.133.224/api/catalog/deleteByProduct'
       $http.delete(url, {
-        serialNumber: self.product.serialNumber
+        id: self.product.id
       }).success(success).error(error)
     }
   }
