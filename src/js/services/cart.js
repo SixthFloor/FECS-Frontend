@@ -15,31 +15,36 @@ every controller that have to identify the customer, authentication service has 
   function Cart (localStorageService, $http) {
     var self = this
 
-    self.init = function () {
-      var itemList = []
-      localStorageService.set('cart', itemList)
-    }
-
     self.add = function (item) {
       var itemList = self.getItemList()
       for (var i = 0; i < itemList.length ; i++) {
         if (itemList[i].product.serialNumber === item.product.serialNumber) {
           itemList[i].quantity += item.quantity
+          self.updateCart(itemList)
           return
         }
       }
       itemList.push(item)
-      localStorageService.set('cart', itemList)
+      self.updateCart(itemList)
     }
 
     self.remove = function (index) {
       var itemList = self.getItemList()
       itemList.splice(index, 1)
+      self.updateCart(itemList)
+    }
+
+    self.updateCart = function (itemList){
       localStorageService.set('cart', itemList)
     }
 
     self.getItemList = function () {
       return localStorageService.get('cart')
+    }
+
+    self.init = function () {
+      var itemList = []
+      self.updateCart(itemList)
     }
 
     self.clear = function () {

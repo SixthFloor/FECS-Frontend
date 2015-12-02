@@ -28,6 +28,10 @@
       self.calTotal()
     }
 
+    self.checkout = function () {
+
+    }
+
     self.itemList = Cart.getItemList()
     self.calTotal()
   }
