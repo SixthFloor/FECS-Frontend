@@ -36,7 +36,7 @@
     self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
       var url = environment.getBaseAPI() + 'user/new'
-      console.log(url)
+
       $http.post(url, {
         email: self.member.email,
         password: self.member.password,
