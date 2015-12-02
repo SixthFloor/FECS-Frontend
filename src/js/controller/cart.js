@@ -11,8 +11,8 @@
     .module('controller.cart', [])
     .controller('CartController', CartController)
 
-  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Cart']
-  function CartController ($scope, $http, $state, $stateParams, Cart) {
+  CartController.$inject = ['$scope', 'Cart']
+  function CartController ($scope, Cart) {
     var self = this
 
     self.calTotal = function () {

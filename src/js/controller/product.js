@@ -13,8 +13,8 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
-  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart']
-  function ProductPageController ($scope, $http, User, $stateParams, Cart) {
+  ProductPageController.$inject = ['$scope', '$http', '$stateParams', 'Cart']
+  function ProductPageController ($scope, $http, $stateParams, Cart) {
     var self = this
 
     // API path
@@ -33,8 +33,8 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User']
-  function AddProductController ($scope, $http, productService, notification, User) {
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', '$state']
+  function AddProductController ($scope, $http, productService, notification, $state) {
     var self = this
     self.product = productService.product
     self.valid = productService.valid
@@ -53,10 +53,10 @@
     self.direct = function (categoryName) {
       $state.transitionTo('admin/product/add')
       productService.clearProduct()
-      if( categoryName !== 'all' ) {
-        for( var i=0; i<self.categoryList.length;i++ ) {
+      if ( categoryName !== 'all') {
+        for ( var i = 0; i < self.categoryList.length;i++) {
           var cat = self.categoryList[i]
-          if( cat.name === categoryName ) {
+          if ( cat.name === categoryName) {
             self.product.category = cat
           }
         }
@@ -88,10 +88,10 @@
           } else {
             msg = '<span><b>Success!</b> Added new furniture.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
             self.product.id = response.id
-            productService.addproduct2( function (response2) {
-                console.log(response2)
-              }, function (response2) {
-                console.log(response2)
+            productService.addproduct2(function (response2) {
+              console.log(response2)
+            }, function (response2) {
+              console.log(response2)
             })
             notification.success({
               message: msg
@@ -109,8 +109,8 @@
     }
   }
 
-  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService', '$state']
-  function EditProductController ($scope, $http, User, $stateParams, notification, productService, $state) {
+  EditProductController.$inject = ['$scope', '$http', '$stateParams', 'Notification', 'productService', '$state']
+  function EditProductController ($scope, $http, $stateParams, notification, productService, $state) {
     console.log($stateParams.product_id)
     var self = this
     self.product = productService.product
@@ -135,10 +135,10 @@
       $http.get($scope.environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
-          if( self.oldSubcat !== null ) {
-            for( var i=0; i<self.subcategoryList.length;i++ ) {
+          if ( self.oldSubcat !== null) {
+            for ( var i = 0; i < self.subcategoryList.length;i++) {
               var subcat = self.subcategoryList[i]
-              if( subcat.name === self.oldSubcat.name ) {
+              if ( subcat.name === self.oldSubcat.name) {
                 self.product.subcategory = subcat
               }
             }
@@ -151,9 +151,9 @@
       })
     }
     self.changeSubcat = function () {
-      if(self.product.subcategory !== null) {
+      if (self.product.subcategory !== null) {
         self.oldSubcat = self.product.subcategory
-      }  
+      }
     }
 
     // path of real API
@@ -177,9 +177,9 @@
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           self.catalogID = response[0].id
-          for( var i=0; i<self.categoryList.length;i++ ) {
+          for ( var i = 0; i < self.categoryList.length;i++) {
             var cat = self.categoryList[i]
-            if( cat.name === response[0].type.category.name ) {
+            if ( cat.name === response[0].type.category.name) {
               self.product.category = cat
             }
           }
