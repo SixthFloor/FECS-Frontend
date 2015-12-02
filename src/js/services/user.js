@@ -89,7 +89,7 @@ every controller that have to identify the customer, authentication service has 
       var req = {
         method: 'POST',
         data: {
-          email: data.email,
+          email: angular.lowercase(data.email),
           password: data.pwd
         },
         url: environment.getBaseAPI() + 'authentication/login'
