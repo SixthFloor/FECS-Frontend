@@ -13,12 +13,12 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
-  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart']
-  function ProductPageController ($scope, $http, User, $stateParams, Cart) {
+  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart', 'environment']
+  function ProductPageController ($scope, $http, User, $stateParams, Cart, environment) {
     var self = this
 
     // API path
-    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
+    var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
 
     $http.get(url).success(function (response) {
       console.log(response)
@@ -33,15 +33,15 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User']
-  function AddProductController ($scope, $http, productService, notification, User) {
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User', '$state', 'environment']
+  function AddProductController ($scope, $http, productService, notification, User, $state, environment) {
     var self = this
     self.product = productService.product
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
     // Get all categories
-    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
+    $http.get(environment.getBaseAPI() + 'category/all').success(function (response) {
       if (response.status !== 'error') {
         self.categoryList = response
       } else {
@@ -53,10 +53,10 @@
     self.direct = function (categoryName) {
       $state.transitionTo('admin/product/add')
       productService.clearProduct()
-      if( categoryName !== 'all' ) {
-        for( var i=0; i<self.categoryList.length;i++ ) {
+      if ( categoryName !== 'all') {
+        for ( var i = 0; i < self.categoryList.length;i++) {
           var cat = self.categoryList[i]
-          if( cat.name === categoryName ) {
+          if ( cat.name === categoryName) {
             self.product.category = cat
           }
         }
@@ -64,7 +64,7 @@
     }
     // Get subcategories from category
     self.getSubcat = function () {
-      $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
+      $http.get(environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
         } else {
@@ -78,6 +78,12 @@
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
+        if (self.product.description === '') {
+          self.product.description = '-'
+        }
+        if (self.product.dimensionDescription === '') {
+          self.product.dimensionDescription = '-'
+        }
         productService.addproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
@@ -88,10 +94,10 @@
           } else {
             msg = '<span><b>Success!</b> Added new furniture.<br/>' + self.product.productName + ' is now available in FECS store.</span>'
             self.product.id = response.id
-            productService.addproduct2( function (response2) {
-                console.log(response2)
-              }, function (response2) {
-                console.log(response2)
+            productService.addproduct2(function (response2) {
+              console.log(response2)
+            }, function (response2) {
+              console.log(response2)
             })
             notification.success({
               message: msg
@@ -109,8 +115,8 @@
     }
   }
 
-  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService']
-  function EditProductController ($scope, $http, User, $stateParams, notification, productService) {
+  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService', '$state', 'environment']
+  function EditProductController ($scope, $http, User, $stateParams, notification, productService, $state, environment) {
     console.log($stateParams.product_id)
     var self = this
     self.product = productService.product
@@ -121,7 +127,7 @@
     self.oldSubcat = null
 
     // Get all categories
-    $http.get('http://128.199.133.224/api/category/all').success(function (response) {
+    $http.get(environment.getBaseAPI() + 'category/all').success(function (response) {
       if (response.status !== 'error') {
         self.categoryList = response
       } else {
@@ -132,13 +138,13 @@
     })
     // Get subcategories from category
     self.getSubcat = function () {
-      $http.get('http://128.199.133.224/api/category/' + self.product.category.name).success(function (response) {
+      $http.get(environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
-          if( self.oldSubcat !== null ) {
-            for( var i=0; i<self.subcategoryList.length;i++ ) {
+          if ( self.oldSubcat !== null) {
+            for ( var i = 0; i < self.subcategoryList.length;i++) {
               var subcat = self.subcategoryList[i]
-              if( subcat.name === self.oldSubcat.name ) {
+              if ( subcat.name === self.oldSubcat.name) {
                 self.product.subcategory = subcat
               }
             }
@@ -151,13 +157,13 @@
       })
     }
     self.changeSubcat = function () {
-      if(self.product.subcategory !== null) {
+      if (self.product.subcategory !== null) {
         self.oldSubcat = self.product.subcategory
-      }  
+      }
     }
 
     // path of real API
-    var url = 'http://128.199.133.224/api/product/' + $stateParams.product_id
+    var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
@@ -173,13 +179,13 @@
           self.errorMessage = 'Error: Furniture not found'
         }
       })
-      url = 'http://128.199.133.224/api/catalog/' + $stateParams.product_id
+      url = environment.getBaseAPI() + 'catalog/' + $stateParams.product_id
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           self.catalogID = response[0].id
-          for( var i=0; i<self.categoryList.length;i++ ) {
+          for ( var i = 0; i < self.categoryList.length;i++) {
             var cat = self.categoryList[i]
-            if( cat.name === response[0].type.category.name ) {
+            if ( cat.name === response[0].type.category.name) {
               self.product.category = cat
             }
           }
@@ -198,8 +204,14 @@
 
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
-        (self.product.category !== '') && (self.product.subcategory !== '')) {
+        (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
+        if (self.product.description === '') {
+          self.product.description = '-'
+        }
+        if (self.product.dimensionDescription === '') {
+          self.product.dimensionDescription = '-'
+        }
         productService.editproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
@@ -216,11 +228,43 @@
         }, function (response) {
           console.log(response)
         }, self.catalogID)
+        productService.clearProduct()
       } else {
         console.log('should be false')
         productService.valid = false
       }
       self.valid = productService.valid
+    }
+
+    self.delete = function () {
+      productService.deleteproduct(function (response) {
+        if (response.status === 'error') {
+          var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+          notification.error({
+            message: msg,
+            replaceMessage: true
+          })
+        } else {
+          msg = '<span><b>Success!</b> Deleted Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + ' is not in FECS.</span>'
+          notification.success({
+            message: msg
+          })
+
+          var url = environment.getBaseAPI() + 'product/delete'
+          $http.delete(url, {
+            serialNumber: self.product.serialNumber
+          })
+          var category_bak = self.product.category
+          productService.clearProduct()
+          if ( category_bak !== null) {
+            $state.transitionTo('category', {category_name: category_bak.name})
+          } else {
+            $state.transitionTo('category', {category_name: 'all'})
+          }
+        }
+      }, function (response) {
+        console.log(response)
+      })
     }
   }
 })()

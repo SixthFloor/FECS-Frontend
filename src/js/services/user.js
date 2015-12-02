@@ -11,8 +11,8 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', ['LocalStorageModule'])
     .service('User', User)
 
-  User.$inject = ['localStorageService', '$http']
-  function User (localStorageService, $http) {
+  User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
+  function User (localStorageService, $http, environment, Cart) {
     var self = this
     self.email = ''
     self.firstname = ''
@@ -26,7 +26,7 @@ every controller that have to identify the customer, authentication service has 
           data: {
             token: self.getToken()
           },
-          url: 'http://128.199.133.224/api/authentication/token'
+          url: environment.getBaseAPI() + 'authentication/token'
         }
         $http(req).then(function (res) {
           console.log(res)
@@ -76,6 +76,10 @@ every controller that have to identify the customer, authentication service has 
       localStorageService.set('authToken', token)
     }
 
+    self.getEmail = function () {
+      return self.email
+    }
+
     self.getToken = function () {
       var token = localStorageService.get('authToken')
       return token ? token : false
@@ -85,10 +89,10 @@ every controller that have to identify the customer, authentication service has 
       var req = {
         method: 'POST',
         data: {
-          email: data.email,
+          email: angular.lowercase(data.email),
           password: data.pwd
         },
-        url: 'http://128.199.133.224/api/authentication/login'
+        url: environment.getBaseAPI() + 'authentication/login'
       }
       $http(req).then(function (res) {
         var response = res.data
@@ -100,6 +104,7 @@ every controller that have to identify the customer, authentication service has 
           self.setEmail(response.user.email)
           self.setToken(response.token)
           self.setRole(response.role.name)
+          Cart.init()
           success()
         }
       }, function (err) {
@@ -109,6 +114,7 @@ every controller that have to identify the customer, authentication service has 
 
     self.logout = function () {
       localStorageService.remove('authToken')
+      Cart.clear()
       self.setEmail('')
       self.setRole('')
       self.setFirstname('')

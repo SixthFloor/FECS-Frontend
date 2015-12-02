@@ -16,15 +16,16 @@ describe('sort furniture', function() {
     var amountDescription 
     var eachProductDescription 
     var allDetailproduct = element.all(by.css('.ng-binding'))
+    //var allIdproduct = element.all(by.id(''))
     var allTypesort = element.all(by.tagName('option'))
 
   beforeEach(function() {
-    browser.get('http://localhost:3030/#/home')
+    browser.get('http://localhost:3030/#/category/all')
     })
 
 
     it('This is test sort furniture (Not member)', function() {
-      linkAllproduct.click()
+      //linkAllproduct.click()
 
       allProduct.count().then(function(count) {
         amountProduct = count
@@ -34,36 +35,36 @@ describe('sort furniture', function() {
         amountDescription = count
       })
 
-      eachProductDescription = 4
+      eachProductDescription = 3
 
     })
 
     it('Case1: Click All products,then it should show all products ', function() {
-      linkAllproduct.click()
+      //linkAllproduct.click()
       expect(allProduct.count()).toEqual(amountProduct)
       expect(allDetailproduct.count()).toEqual(amountDescription)
-      expect(eachProductDescription).toEqual(amountDescription/amountProduct)
+      expect(eachProductDescription).toEqual(parseInt(amountDescription/amountProduct))
       //Array of name's product
-      for (var i = 0 ; i < amountDescription ; i+=eachProductDescription) {
+      for (var i = 1 ; i < amountDescription ; i+=eachProductDescription) {
         allDetailproduct.get(i).getText().then(function(text) {
           nameProduct.push(text)
           //console.log(nameProduct)
         })
       }
       //Array of id's product
-      for (var i = 1 ; i < amountDescription ; i+=eachProductDescription) {
+      for (var i = 2 ; i < amountDescription ; i+=eachProductDescription) {
         allDetailproduct.get(i).getText().then(function(text) {
           idProduct.push(text)
           //console.log(idProduct)
         })
       }
       //Array of description's product
-      for (var i = 2 ; i < amountDescription ; i+=eachProductDescription) {
+      /*for (var i = 2 ; i < amountDescription ; i+=eachProductDescription) {
         allDetailproduct.get(i).getText().then(function(text) {
           descriptionProduct.push(text)
           //console.log(idProduct)
         })
-      }
+      }*/
       //Array of price's product
       for (var i = 3 ; i < amountDescription ; i+=eachProductDescription) {
         allDetailproduct.get(i).getText().then(function(text) {
@@ -74,9 +75,13 @@ describe('sort furniture', function() {
     })
 
     it('Case2: Click sort dropdown,then it should show 4 sort types(Name A-Z,Name Z-A,Price Low to High,and Price High to Low) ', function() {
-      linkAllproduct.click()
+      //linkAllproduct.click()
+      //expect(allDetailproduct.getText()).toEqual(1)
+      console.log(nameProduct)
+      console.log(idProduct)
+      console.log(priceProduct)
       sortModel.click()
-      expect(allTypesort.count()).toEqual(eachProductDescription)
+      expect(allTypesort.count()).toEqual(4)
 
       /*expect(allTypesort.get(0).getText()).toEqual('Name A - Z')
       expect(allTypesort.get(1).getText()).toEqual('Name Z - A')
@@ -86,7 +91,7 @@ describe('sort furniture', function() {
     })
 
     it('Case3: If select Sort by Name A-Z,then it should sort by A-Z ', function() {
-      linkAllproduct.click()
+      //linkAllproduct.click()
       sortModel.click()
       sortModel.$('[value="string:name"]').click()
 
@@ -96,13 +101,13 @@ describe('sort furniture', function() {
       //console.log(nameProduct)
       //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProduct.length ; i++) {
-        expect(allDetailproduct.get((i*eachProductDescription)+0).getText()).toEqual(nameProduct[i])
+        expect(allDetailproduct.get((i*eachProductDescription)+1).getText()).toEqual(nameProduct[i])
       }
 
     })
 
     it('Case4: If select Sort by Name Z-A,then it should sort by Z-A ', function() {
-      linkAllproduct.click()
+      //linkAllproduct.click()
       sortModel.click()
       sortModel.$('[value="string:-name"]').click()
 
@@ -113,14 +118,14 @@ describe('sort furniture', function() {
       //console.log(nameProduct)
       //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProduct.length ; i++) {
-        expect(allDetailproduct.get((i*eachProductDescription)+0).getText()).toEqual(nameProduct[i])
+        expect(allDetailproduct.get((i*eachProductDescription)+1).getText()).toEqual(nameProduct[i])
       }
 
     })
 
     it('Case5: If select Sort by Price Low to High,then it should sort by Low to High ', function() {
       
-      linkAllproduct.click()     
+      //linkAllproduct.click()     
       sortModel.click()
       sortModel.$('[value="string:price"]').click()
 
@@ -130,13 +135,13 @@ describe('sort furniture', function() {
       //console.log(priceProduct)
       //console.log(priceProduct.length)
       for (var i = 0 ; i < priceProduct.length ; i++) {
-        expect(allDetailproduct.get((i*eachProductDescription)+3).getText()).toEqual(priceProduct[i]+' TH Baht')
+        expect(allDetailproduct.get((i*eachProductDescription)+3).getText()).toEqual(priceProduct[i]+' Baht')
       }
 
     })
 
     it('Case6: If select Sort by Price High to Low,then it should sort by High to Low ', function() {
-      linkAllproduct.click()  
+      //linkAllproduct.click()  
       sortModel.click()
       sortModel.$('[value="string:-price"]').click()
       
@@ -146,7 +151,7 @@ describe('sort furniture', function() {
       //console.log(priceProduct)
       //console.log(priceProduct.length)
       for (var i = 0 ; i < priceProduct.length ; i++) {
-        expect(allDetailproduct.get((i*eachProductDescription)+3).getText()).toEqual(priceProduct[i]+' TH Baht')
+        expect(allDetailproduct.get((i*eachProductDescription)+3).getText()).toEqual(priceProduct[i]+' Baht')
       }
 
     })
