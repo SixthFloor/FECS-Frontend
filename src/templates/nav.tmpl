@@ -11,7 +11,7 @@
           </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li ng-if="navbarCtrl.isAuthed">
           <a ui-sref="cart">
             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
             <span class="badge badge-notify" ng-show="navbarCtrl.Cart.itemList.length != 0">
