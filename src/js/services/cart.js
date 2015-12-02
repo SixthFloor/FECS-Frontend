@@ -42,6 +42,15 @@ every controller that have to identify the customer, authentication service has 
       return localStorageService.get('cart')
     }
 
+    self.getQuantity = function () {
+      var itemList = self.getItemList()
+      var count = 0
+      for (var i = 0; i < itemList.length ; i++) {
+        count += itemList[i].quantity
+      }
+      return count
+    }
+
     self.init = function () {
       var itemList = []
       self.updateCart(itemList)
