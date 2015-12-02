@@ -11,7 +11,7 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', ['LocalStorageModule'])
     .service('User', User)
 
-  User.$inject = ['localStorageService', '$http']
+  User.$inject = ['localStorageService', '$http', 'environment']
   function User (localStorageService, $http, environment) {
     var self = this
     self.email = ''
@@ -92,7 +92,7 @@ every controller that have to identify the customer, authentication service has 
           email: data.email,
           password: data.pwd
         },
-        url: environment.getBaseAPI() + 'api/authentication/login'
+        url: environment.getBaseAPI() + 'authentication/login'
       }
       $http(req).then(function (res) {
         var response = res.data
