@@ -1,9 +1,9 @@
-/* Test case: View furniture */
+/* Test case: View furniture category*/
 /* Created by Niti and Runyasak */
 
 var request = require('request')
 
-describe('view furniture', function() {
+describe('view furniture category', function() {
   	var allProduct = element.all(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
     var categoryButton = $('#category-button')
   	var categoryAllButton =  element(by.css('[href="#/category/all"]'))
@@ -15,59 +15,86 @@ describe('view furniture', function() {
     var allProductName = element.all(by.id('product-name'))
     var allProductSerial = element.all(by.id('product-serial'))
     var allProductPrice = element.all(by.id('product-price'))
+    var allProductImg = element.all(by.id('product-img'))
+
     var furnitureAll = ''
     var furnitureData = ''
 
     // request all furniture from database
-    request
-        .get('http://128.199.133.224/api/product/all')
-        .on('data', function(response) {
-            furnitureData += response
-        })
-        .on('end', function(){
-            furnitureAll = JSON.parse(furnitureData)
-            furnitureAll.sort(function (a, b){
-                return a.name.localeCompare(b.name)
+    function getFurnitureFromAPI(address) {
+        furnitureAll = ''
+        furnitureData = ''
+        request
+            .get(address)
+            .on('data', function(response) {
+                furnitureData += response
             })
-        })
+            .on('end', function(){
+                furnitureAll = JSON.parse(furnitureData)
+                furnitureAll.sort(function (a, b){
+                    return a.name.localeCompare(b.name)
+                })
+            })
+    }
 
     function goToCategoryAll() {
         categoryButton.click()
         categoryAllButton.click()
     }
+
+
+
+    function waitForElement(){
+        return browser.wait( function() {
+                var deferred = protractor.promise.defer()
+                allProduct.get(0).isPresent()
+                    .then(function (isPresent){
+                        deferred.fulfill(isPresent)
+                    })
+                return deferred.promise
+        }, 2000)
+    }
+
 	beforeEach(function() {
   	    browser.get('http://localhost:3030/#')
-        goToCategoryAll()
     })
 
-  	it('should count all product', function() {
-        browser.wait(allProduct.get(0).isPresent()).then( function() {
-            expect(allProduct.count()).toEqual(furnitureAll.length)
-            // allProduct.get(0).getText().then(function(text) {
-            //     console.log(text)
-            // })
-        })
-  	})
+  	// it('should count all product', function() {
+   //      browser.wait(allProduct.get(0).isPresent()).then( function() {
+   //          expect(allProduct.count()).toEqual(furnitureAll.length)
+   //          // allProduct.get(0).getText().then(function(text) {
+   //          //     console.log(text)
+   //          // })
+   //      })
+  	// })
 
-    it('should show all product with complete descriptions at category page', function(){
-        browser.wait(allProduct.get(0).isPresent()).then( function() {
-            for(var i = 0; i < furnitureAll.length; i++){
-                (function (i){
-                    //check product name
-                    allProductName.get(i).getText().then(function(name){
-                        expect(name).toEqual(furnitureAll[i].name)
-                    })
-                    //check product serial
-                    allProductSerial.get(i).getText().then(function(serial){
-                        // console.log(i + ' ' + serial + ' API: ' + furnitureAll[i].serialNumber)
-                        expect(serial.substring(1, serial.length-1)).toEqual(furnitureAll[i].serialNumber)
-                    })
-                    allProductPrice.get(i).getText().then(function(price){
-                        // console.log(i + ' ' + price + ' API: ' + furnitureAll[i].price)
-                        expect(parseInt(price.substring(0, price.length-5))).toEqual(furnitureAll[i].price)
-                    })
-                }(i))
-            }
+    it('should show all product with complete descriptions at category all page', function(){
+            getFurnitureFromAPI('http://128.199.133.224/api/product/all')
+            goToCategoryAll()
+            waitForElement().then( function() {
+                for(var i = 0; i < furnitureAll.length; i++){
+                    (function (i){
+                        // check product name
+                        allProductName.get(i).getText().then(function(name){
+                            expect(name).toEqual(furnitureAll[i].name)
+                        })
+                        // check product serial
+                        allProductSerial.get(i).getText().then(function(serial){
+                            // console.log(i + ' ' + serial + ' API: ' + furnitureAll[i].serialNumber)
+                            expect(serial.substring(1, serial.length-1)).toEqual(furnitureAll[i].serialNumber)
+                        })
+                        // check product price
+                        allProductPrice.get(i).getText().then(function(price){
+                            // console.log(i + ' ' + price + ' API: ' + furnitureAll[i].price)
+                            expect(parseInt(price.substring(0, price.length-5))).toEqual(furnitureAll[i].price)
+                        })
+                        // check product image
+                        allProductImg.get(i).getAttribute('src').then(function(img){
+                            // console.log('src ' + img)
+                            expect(img).toEqual(furnitureAll[i].images[0].link)
+                        })
+                    }(i))
+                }
             // for(var i = 0; i < 5; i++){
             //     (function (i){
             //         allProductSerial.get(i).getText().then(function(serial){
@@ -77,7 +104,41 @@ describe('view furniture', function() {
             //         })
             //     }(i))
             // }
-        })
+            })
+
+    })
+
+
+
+    it('should show all product with complete descriptions at category bedroom page', function(){
+        categoryButton.click()
+        element(by.css('[href="#/category/Bedroom"]')).click()
+        getFurnitureFromAPI('http://128.199.133.224/api/category/product/Bedroom')
+            waitForElement().then( function() {
+                for(var i = 0; i < furnitureAll.length; i++){
+                    (function (i){
+                        // check product name
+                        allProductName.get(i).getText().then(function(name){
+                            expect(name).toEqual(furnitureAll[i].name)
+                        })
+                        // check product serial
+                        allProductSerial.get(i).getText().then(function(serial){
+                            // console.log(i + ' ' + serial + ' API: ' + furnitureAll[i].serialNumber)
+                            expect(serial.substring(1, serial.length-1)).toEqual(furnitureAll[i].serialNumber)
+                        })
+                        // check product price
+                        allProductPrice.get(i).getText().then(function(price){
+                            // console.log(i + ' ' + price + ' API: ' + furnitureAll[i].price)
+                            expect(parseInt(price.substring(0, price.length-5))).toEqual(furnitureAll[i].price)
+                        })
+                        // check product image
+                        allProductImg.get(i).getAttribute('src').then(function(img){
+                            // console.log('src ' + img)
+                            expect(img).toEqual(furnitureAll[i].images[0].link)
+                        })
+                    }(i))
+                }
+            })
     })
 
     // it('PRINT ALL DETAIL FROM API', function(){
@@ -86,23 +147,5 @@ describe('view furniture', function() {
     //     }
 
     // })
-
-  	// it('should be able to view all product and all descriptions are corrected', function() {
-  	// 	for(var i = 0; i < 5; i++){
-   //          (function (i) {
-   //                  browser.wait(allProduct.get(i).isPresent()).then(function(){
-   //                      allViewProductButton.get(i).click();
-   //                      productName.getText().then(function(name) {
-   //                          expect(name).toEqual(furnitureAll[i].name)
-   //                      })
-   //                      browser.navigate().back()
-   //                  })
-   //          }(i))
-            
-  	// // 		// expect(productBlock.getText()).toEqual('YourEnteredTitle')
-  	// // 		// expect(productBlock2.getText()).toEqual(7)
-  	// // 		// linkAllproduct.click()
-  	// 	}
-   //  })
 
 })
