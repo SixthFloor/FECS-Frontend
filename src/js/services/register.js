@@ -5,8 +5,8 @@
     .module('services.register', [])
     .service('registerService', registerService)
 
-  registerService.$inject = ['$http']
-  function registerService ($http) {
+  registerService.$inject = ['$http', 'environment']
+  function registerService ($http, environment) {
     var self = this
 
     self.valid = {
@@ -35,7 +35,7 @@
 
     self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
-      var url = environment.getBaseAPI + 'user/new'
+      var url = environment.getBaseAPI() + 'user/new'
       $http.post(url, {
         email: self.member.email,
         password: self.member.password,
