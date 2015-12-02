@@ -76,6 +76,10 @@ every controller that have to identify the customer, authentication service has 
       localStorageService.set('authToken', token)
     }
 
+    self.getEmail = function () {
+      return self.email
+    }
+
     self.getToken = function () {
       var token = localStorageService.get('authToken')
       return token ? token : false
@@ -109,6 +113,10 @@ every controller that have to identify the customer, authentication service has 
 
     self.logout = function () {
       localStorageService.remove('authToken')
+      self.setEmail('')
+      self.setRole('')
+      self.setFirstname('')
+      self.setLastname('')
     }
     initUser()
   }

@@ -2,19 +2,20 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
+
   specs: ['protractor_test/test_LoginAsMember.js'],
 
   multiCapabilities: [{
-      browserName: 'firefox'
+      // browserName: 'firefox'
     }, {
-      // browserName: 'chrome'
+      browserName: 'chrome'
     }
   ],
 
   baseUrl: 'http://localhost:8080/app/',
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 60000
+    defaultTimeoutInterval: 180000
   },
 
   onPrepare: function () {
