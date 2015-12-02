@@ -87,17 +87,6 @@
           }
         }
       })
-      .state('register.complete', {
-        url: '/complete',
-        data: {
-          permissions: {
-            only: ['anonymous'],
-            redirectTo: 'home'
-          }
-        },
-        parent: 'register',
-        templateUrl: 'templates/register/complete.tmpl'
-      })
       .state('addproduct', {
         url: '/admin/product/add',
         data: {
