@@ -64,39 +64,9 @@
             redirectTo: 'home'
           }
         },
-        views: {
-          '': {
-            templateUrl: 'templates/register/register.tmpl',
-            controller: 'RegisterController',
-            controllerAs: 'registerCtrl'
-          },
-          'step1@register': {
-            templateUrl: 'templates/register/step1.tmpl',
-            controller: 'RegisterController',
-            controllerAs: 'registerCtrl'
-          },
-          'step2@register': {
-            templateUrl: 'templates/register/step2.tmpl',
-            controller: 'RegisterController',
-            controllerAs: 'registerCtrl'
-          },
-          'step3@register': {
-            templateUrl: 'templates/register/step3.tmpl',
-            controller: 'RegisterController',
-            controllerAs: 'registerCtrl'
-          }
-        }
-      })
-      .state('register.complete', {
-        url: '/complete',
-        data: {
-          permissions: {
-            only: ['anonymous'],
-            redirectTo: 'home'
-          }
-        },
-        parent: 'register',
-        templateUrl: 'templates/register/complete.tmpl'
+        templateUrl: 'templates/register/register.tmpl',
+        controller: 'RegisterController',
+        controllerAs: 'registerCtrl'
       })
       .state('addproduct', {
         url: '/admin/product/add',
