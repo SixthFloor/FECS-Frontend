@@ -107,5 +107,17 @@
         controller: 'CartController',
         controllerAs: 'cartCtrl'
       })
+      .state('payment', {
+        url: '/payment/:orderNumber',
+        templateUrl: 'templates/payment.tmpl',
+        controller: 'PaymentController',
+        controllerAs: 'paymentCtrl',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        }
+      })
   }
 })()
