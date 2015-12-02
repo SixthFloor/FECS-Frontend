@@ -1,247 +1,256 @@
 <navbar></navbar>
-  <div class="container">
-    <!-- <h1>Register</h1>
-    <div class="step" ng-show="registerCtrl.steps.step1">
-      <div ui-view="step1"></div>
-    </div>
-    <div class="step" ng-show="registerCtrl.steps.step2">
-      <div ui-view="step2"></div>
-    </div>
-    <div class="step" ng-show="registerCtrl.steps.step3">
-      <div ui-view="step3"></div>
-    </div> -->
-    <div class="timeline">
-      <div class="overlay"></div>
-      <div class="events events-left regis-s1">
-        <div class="content"></div>
-        <div class="overlay"></div>
+  <div ng-if="!paymentCtrl.is404">
+    <div class="container">
+      <!-- <h1>Register</h1>
+      <div class="step" ng-show="registerCtrl.steps.step1">
+        <div ui-view="step1"></div>
       </div>
-      <dl>
-        <dt>Payment</dt>
-        <dd class="pos-right clearfix">
-          <div class="circ"></div>
-          <div class="time">Step 1</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Shipping</h4>
-              <p>
-                <form name="registerForm" class="form-horizontal" role="form">
-                  <div class="form-group">
-                  <div class="register-container">
-                    <button type="button" class="register-btn-danger" ng-click="paymentCtrl.cancle()">Cancle</button>
-                    <button type="button" class="register-btn-default" ng-click="">Later</button>
-                    <button type="button" class="register-btn" ng-click="paymentCtrl.next1()">Next <i class="fa fa-arrow-circle-right"></i></button>
-                  </div>
-                </form>
-              </p>
-            </div>
-          </div>
-        </dd>
-        <dd class="pos-right clearfix">
-          <div class="circ"></div>
-          <div class="time">Step 2</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Payment Information</h4>
-              <p>
-                <form class="form-horizontal" role="form">
-                    <fieldset>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
-                        <div class="col-sm-7">
-                          <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-number">Card number</label>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
-                        <div class="col-sm-9">
-                          <div class="row">
-                            <div class="col-xs-2">
-                              <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                <option>Month</option>
-                                <option value="01">Jan</option>
-                                <option value="02">Feb</option>
-                                <option value="03">Mar</option>
-                                <option value="04">Apr</option>
-                                <option value="05">May</option>
-                                <option value="06">Jun</option>
-                                <option value="07">Jul</option>
-                                <option value="08">Aug</option>
-                                <option value="09">Sep</option>
-                                <option value="10">Oct</option>
-                                <option value="11">Nov</option>
-                                <option value="12">Dec</option>
-                              </select>
-                            </div>
-                            <div class="col-xs-2">
-                              <select class="form-control" name="expiry-year">
-                                <option value="13">2013</option>
-                                <option value="14">2014</option>
-                                <option value="15">2015</option>
-                                <option value="16">2016</option>
-                                <option value="17">2017</option>
-                                <option value="18">2018</option>
-                                <option value="19">2019</option>
-                                <option value="20">2020</option>
-                                <option value="21">2021</option>
-                                <option value="22">2022</option>
-                                <option value="23">2023</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </fieldset>
-                  <div class="register-container">
-                    <div class="alert alert-danger " ng-show="!paymentCtrl.valid.step2">
-                      <strong>Invalid </strong> Credit Card is not valid.
+      <div class="step" ng-show="registerCtrl.steps.step2">
+        <div ui-view="step2"></div>
+      </div>
+      <div class="step" ng-show="registerCtrl.steps.step3">
+        <div ui-view="step3"></div>
+      </div> -->
+      <div class="timeline">
+        <div class="overlay"></div>
+        <div class="events events-left regis-s1">
+          <div class="content"></div>
+          <div class="overlay"></div>
+        </div>
+        <dl>
+          <dt>Payment</dt>
+          <dd class="pos-right clearfix">
+            <div class="circ"></div>
+            <div class="time">Step 1</div>
+            <div class="events">
+              <div class="events-body">
+                <h4 class="events-heading">Shipping</h4>
+                <p>
+                  <form name="registerForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                    <div class="register-container">
+                      <button type="button" class="register-btn-danger" ng-click="paymentCtrl.cancle()">Cancle</button>
+                      <button type="button" class="register-btn-default" ng-click="">Later</button>
+                      <button type="button" class="register-btn" ng-click="paymentCtrl.next1()">Next <i class="fa fa-arrow-circle-right"></i></button>
                     </div>
-                    <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
-                    <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Purchase</button>
-                  </div>
-                </form>
-              </p>
-            </div>
-          </div>
-        </dd>
-        <dd class="pos-right clearfix">
-          <div class="circ"></div>
-          <div class="time">Step 3</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Credit Card Information</h4>
-              <p>
-                <form class="form-horizontal" role="form">
-                    <fieldset>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
-                        <div class="col-sm-7">
-                          <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-number">Card number</label>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
-                        <div class="col-sm-9">
-                          <div class="row">
-                            <div class="col-xs-2">
-                              <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                <option>Month</option>
-                                <option value="01">Jan</option>
-                                <option value="02">Feb</option>
-                                <option value="03">Mar</option>
-                                <option value="04">Apr</option>
-                                <option value="05">May</option>
-                                <option value="06">Jun</option>
-                                <option value="07">Jul</option>
-                                <option value="08">Aug</option>
-                                <option value="09">Sep</option>
-                                <option value="10">Oct</option>
-                                <option value="11">Nov</option>
-                                <option value="12">Dec</option>
-                              </select>
-                            </div>
-                            <div class="col-xs-2">
-                              <select class="form-control" name="expiry-year">
-                                <option value="13">2013</option>
-                                <option value="14">2014</option>
-                                <option value="15">2015</option>
-                                <option value="16">2016</option>
-                                <option value="17">2017</option>
-                                <option value="18">2018</option>
-                                <option value="19">2019</option>
-                                <option value="20">2020</option>
-                                <option value="21">2021</option>
-                                <option value="22">2022</option>
-                                <option value="23">2023</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </fieldset>
                   </form>
-                  <div class="register-container">
-                    <button type="button" class="register-btn" ng-click="registerCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
-                    <button type="button" class="register-btn" ng-click="registerCtrl.submit()">Register <i class="fa fa-user-plus"></i></button>
-                  </div>
-              </p>
+                </p>
+              </div>
             </div>
-          </div>
-        </dd>
-        <dd class="pos-right clearfix complete">
-          <div class="circ"></div>
-          <div class="time">Registration Complete</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Thank you for registering <i class="logo"></i></h4>
-              <p>
-                <div class="member-info">
-                  <div class="member-info-panel">
-                    <div class="panel-heading">Your personal registration information</div>
-                    <div class="panel-body">
-                      <div class="row">
-                        <div class="col-sm-4 attr">E-mail</div>
-                        <div class="col-sm-7">{{registerCtrl.member.email}}</div>
+          </dd>
+          <dd class="pos-right clearfix">
+            <div class="circ"></div>
+            <div class="time">Step 2</div>
+            <div class="events">
+              <div class="events-body">
+                <h4 class="events-heading">Payment Information</h4>
+                <p>
+                  <form class="form-horizontal" role="form">
+                      <fieldset>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
+                          <div class="col-sm-7">
+                            <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="card-number">Card number</label>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
+                          <div class="col-sm-9">
+                            <div class="row">
+                              <div class="col-xs-2">
+                                <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                  <option>Month</option>
+                                  <option value="01">Jan</option>
+                                  <option value="02">Feb</option>
+                                  <option value="03">Mar</option>
+                                  <option value="04">Apr</option>
+                                  <option value="05">May</option>
+                                  <option value="06">Jun</option>
+                                  <option value="07">Jul</option>
+                                  <option value="08">Aug</option>
+                                  <option value="09">Sep</option>
+                                  <option value="10">Oct</option>
+                                  <option value="11">Nov</option>
+                                  <option value="12">Dec</option>
+                                </select>
+                              </div>
+                              <div class="col-xs-2">
+                                <select class="form-control" name="expiry-year">
+                                  <option value="13">2013</option>
+                                  <option value="14">2014</option>
+                                  <option value="15">2015</option>
+                                  <option value="16">2016</option>
+                                  <option value="17">2017</option>
+                                  <option value="18">2018</option>
+                                  <option value="19">2019</option>
+                                  <option value="20">2020</option>
+                                  <option value="21">2021</option>
+                                  <option value="22">2022</option>
+                                  <option value="23">2023</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    <div class="register-container">
+                      <div class="alert alert-danger " ng-show="!paymentCtrl.valid.step2">
+                        <strong>Invalid </strong> Credit Card is not valid.
                       </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Fullname</div>
-                        <div class="col-sm-7">{{registerCtrl.member.firstname}} {{registerCtrl.member.lastname}}
+                      <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
+                      <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Purchase</button>
+                    </div>
+                  </form>
+                </p>
+              </div>
+            </div>
+          </dd>
+          <dd class="pos-right clearfix">
+            <div class="circ"></div>
+            <div class="time">Step 3</div>
+            <div class="events">
+              <div class="events-body">
+                <h4 class="events-heading">Credit Card Information</h4>
+                <p>
+                  <form class="form-horizontal" role="form">
+                      <fieldset>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
+                          <div class="col-sm-7">
+                            <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="card-number">Card number</label>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                          <div class="col-sm-1">
+                              <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
+                          <div class="col-sm-9">
+                            <div class="row">
+                              <div class="col-xs-2">
+                                <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                  <option>Month</option>
+                                  <option value="01">Jan</option>
+                                  <option value="02">Feb</option>
+                                  <option value="03">Mar</option>
+                                  <option value="04">Apr</option>
+                                  <option value="05">May</option>
+                                  <option value="06">Jun</option>
+                                  <option value="07">Jul</option>
+                                  <option value="08">Aug</option>
+                                  <option value="09">Sep</option>
+                                  <option value="10">Oct</option>
+                                  <option value="11">Nov</option>
+                                  <option value="12">Dec</option>
+                                </select>
+                              </div>
+                              <div class="col-xs-2">
+                                <select class="form-control" name="expiry-year">
+                                  <option value="13">2013</option>
+                                  <option value="14">2014</option>
+                                  <option value="15">2015</option>
+                                  <option value="16">2016</option>
+                                  <option value="17">2017</option>
+                                  <option value="18">2018</option>
+                                  <option value="19">2019</option>
+                                  <option value="20">2020</option>
+                                  <option value="21">2021</option>
+                                  <option value="22">2022</option>
+                                  <option value="23">2023</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                    <div class="register-container">
+                      <button type="button" class="register-btn" ng-click="registerCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
+                      <button type="button" class="register-btn" ng-click="registerCtrl.submit()">Register <i class="fa fa-user-plus"></i></button>
+                    </div>
+                </p>
+              </div>
+            </div>
+          </dd>
+          <dd class="pos-right clearfix complete">
+            <div class="circ"></div>
+            <div class="time">Registration Complete</div>
+            <div class="events">
+              <div class="events-body">
+                <h4 class="events-heading">Thank you for registering <i class="logo"></i></h4>
+                <p>
+                  <div class="member-info">
+                    <div class="member-info-panel">
+                      <div class="panel-heading">Your personal registration information</div>
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-4 attr">E-mail</div>
+                          <div class="col-sm-7">{{registerCtrl.member.email}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4 attr">Fullname</div>
+                          <div class="col-sm-7">{{registerCtrl.member.firstname}} {{registerCtrl.member.lastname}}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4 attr">Address</div>
+                          <div class="col-sm-7">{{registerCtrl.member.address}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4 attr">Phone number</div>
+                          <div class="col-sm-7">{{registerCtrl.member.phonenumber}}</div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Address</div>
-                        <div class="col-sm-7">{{registerCtrl.member.address}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Phone number</div>
-                        <div class="col-sm-7">{{registerCtrl.member.phonenumber}}</div>
-                      </div>
                     </div>
+                    <a ui-sref="home">
+                      <button class="register-btn">
+                      <i class="glyphicon glyphicon-home"></i>
+                       Home Page</button></a>
+                       <a ui-sref="login">
+                      <button class="register-btn">
+                      <i class="fa fa-sign-in"></i>
+                       Log in</button></a>
                   </div>
-                  <a ui-sref="home">
-                    <button class="register-btn">
-                    <i class="glyphicon glyphicon-home"></i>
-                     Home Page</button></a>
-                     <a ui-sref="login">
-                    <button class="register-btn">
-                    <i class="fa fa-sign-in"></i>
-                     Log in</button></a>
-                </div>
-              </p>
+                </p>
+              </div>
             </div>
-          </div>
-        </dd>
-      </dl>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div ng-if="paymentCtrl.is404">
+    <div class="text-center margin-5">
+      <h1>Order Not Found</h1>
+      <p>Please check your order code again</p><br/>
+      <a href="#/home" class="btn btn-primary"><i class="glyphicon glyphicon-home"/> Back to Home page</a>
     </div>
   </div>
 <footer></footer>

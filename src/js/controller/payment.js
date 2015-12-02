@@ -11,8 +11,8 @@
     .module('controller.payment', [])
     .controller('PaymentController', PaymentController)
 
-  PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams']
-  function PaymentController ($scope, $http, $state, $stateParams) {
+  PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'environment']
+  function PaymentController ($scope, $http, $state, $stateParams, environment) {
     var self = this 
     var url = environment.getBaseAPI() + 'payment/' + $stateParams.orderNumber
     self.valid = {
@@ -24,8 +24,8 @@
       step2: false,
       step3: false
     }
+    self.is404 = false
 
-    self.User = User
     self.order = null
     self.payment = {
       card: {
@@ -36,19 +36,19 @@
       cvc: '',
       price: 0
     }
-
-    self.getOrder = function () {
-      $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
-        if (response.status !== 'error') {
-          self.order = response
-          if(self.order.status !== 'Not pay') {
-            $state.transitionTo('home')
-          }
-        } else {
-          console.log(response.message)
-        }
-      })
-    }
+    $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
+      self.order = response
+      if(self.order.status !== 'Not pay') {
+        $state.transitionTo('home')
+      }
+      // Calculate total price of products in cart
+      for( var i=0; i<self.order.cart.length;i++ ) {
+        self.payment.price += self.order.cart[i].product.price
+      }
+    }).error(function (response) {
+      console.log('Error')
+      self.is404 = true
+    })
 
     self.back = function () {
       self.valid.step1 = true
