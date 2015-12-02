@@ -78,10 +78,10 @@
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
-        if(self.product.description === '') {
+        if (self.product.description === '') {
           self.product.description = '-'
         }
-        if(self.product.dimensionDescription === '') {
+        if (self.product.dimensionDescription === '') {
           self.product.dimensionDescription = '-'
         }
         productService.addproduct(function (response) {
@@ -206,10 +206,10 @@
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
-        if(self.product.description === '') {
+        if (self.product.description === '') {
           self.product.description = '-'
         }
-        if(self.product.dimensionDescription === '') {
+        if (self.product.dimensionDescription === '') {
           self.product.dimensionDescription = '-'
         }
         productService.editproduct(function (response) {
@@ -245,21 +245,20 @@
             replaceMessage: true
           })
         } else {
-          msg = '<span><b>Success!</b> Deleted Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + " is not in FECS.</span>"
+          msg = '<span><b>Success!</b> Deleted Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + ' is not in FECS.</span>'
           notification.success({
             message: msg
           })
 
-          var url = 'http://128.199.133.224/api/product/delete'
+          var url = environment.getBaseAPI() + 'product/delete'
           $http.delete(url, {
             serialNumber: self.product.serialNumber
           })
           var category_bak = self.product.category
           productService.clearProduct()
-          if( category_bak !== null ) {
+          if ( category_bak !== null) {
             $state.transitionTo('category', {category_name: category_bak.name})
-          }
-          else {
+          } else {
             $state.transitionTo('category', {category_name: 'all'})
           }
         }

@@ -10,7 +10,7 @@
     .module('services.product', [])
     .service('productService', productService)
 
-  productService.$inject = ['$http']
+  productService.$inject = ['$http', 'environment']
   function productService ($http, environment) {
     var self = this
     self.valid = true
@@ -90,7 +90,7 @@
 
     self.deleteproduct = function (success, error) {
       console.log(self.product.id)
-      var url = 'http://128.199.133.224/api/catalog/deleteByProduct'
+      var url = environment.getBaseAPI() + 'catalog/deleteByProduct'
       $http.delete(url, {
         id: self.product.id
       }).success(success).error(error)
