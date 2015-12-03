@@ -106,6 +106,7 @@
         }, function (response) {
           console.log(response)
         })
+        productService.clearProduct()
       } else {
         console.log('should be false')
         productService.valid = false
@@ -228,7 +229,6 @@
         }, function (response) {
           console.log(response)
         }, self.catalogID)
-        productService.clearProduct()
       } else {
         console.log('should be false')
         productService.valid = false
