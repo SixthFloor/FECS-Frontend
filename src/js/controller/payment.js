@@ -86,22 +86,28 @@
       }
     }
     self.next2 = function () {
-      $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
-        if (response.valid) {
-          self.valid.step2 = true
+      // $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
+      //   if (response.valid) {
+      //     self.valid.step2 = true
+      //     self.steps.step1 = false
+      //     self.steps.step2 = false
+      //     self.steps.step3 = true
+      //     console.log('Step2 next')
+      //     self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
+      //   } else {
+      //     console.log('credit card is not valid')
+      //     self.valid.step2 = false
+      //   }
+      // }).error(function (response) {
+      //   self.valid.step2 = false
+      //   console.log(response)
+      // })
+      self.valid.step2 = true
           self.steps.step1 = false
           self.steps.step2 = false
           self.steps.step3 = true
           console.log('Step2 next')
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
-        } else {
-          console.log('credit card is not valid')
-          self.valid.step2 = false
-        }
-      }).error(function (response) {
-        self.valid.step2 = false
-        console.log(response)
-      })
     }
     self.cancle = function () {
       $http.put(environment.getBaseAPI() + 'order/cancle', {id: self.order.id}).success(function (response) {
@@ -117,10 +123,12 @@
         if (response.status !== 'error') {
           console.log('Paid')
           self.paidOrder()
+          self.order.date = response.date
         } else {
           console.log(response)
         }
       })
+          self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
     }
     self.paidOrder = function () {
       var toSend = {
