@@ -41,7 +41,14 @@
         email: self.member.email,
         password: self.member.password,
         firstName: self.member.firstname,
-        lastName: self.member.lastname
+        lastName: self.member.lastname,
+        address1: self.member.adr1,
+        address2: self.member.adr2,
+        province: self.member.province,
+        zipcode: self.member.zip,
+        telephone_number: self.member.phonenumber,
+        card_name: '555-555-555',
+        expirationDate: 12344325
       }).success(success).error(error)
     }
   }
