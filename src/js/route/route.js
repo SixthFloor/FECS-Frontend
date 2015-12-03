@@ -109,15 +109,15 @@
       })
       .state('payment', {
         url: '/payment/:orderNumber',
-        templateUrl: 'templates/payment.tmpl',
-        controller: 'PaymentController',
-        controllerAs: 'paymentCtrl',
         data: {
           permissions: {
             except: ['anonymous'],
             redirectTo: 'home'
           }
-        }
+        },
+        templateUrl: 'templates/payment.tmpl',
+        controller: 'PaymentController',
+        controllerAs: 'paymentCtrl'
       })
   }
 })()

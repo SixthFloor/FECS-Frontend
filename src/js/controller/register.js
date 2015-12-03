@@ -20,7 +20,7 @@
 
     self.moveElement = $('.timeline>dl')
     self.height = self.moveElement.height() + 40
-
+    console.log($('.timeline>dl'))
     self.moveElement.resize(function () {
       self.height = self.moveElement.height() + 40
     })
