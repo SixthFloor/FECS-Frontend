@@ -16,7 +16,7 @@
   ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart', 'environment']
   function ProductPageController ($scope, $http, User, $stateParams, Cart, environment) {
     var self = this
-
+    self.User = User
     // API path
     var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
 
