@@ -11,10 +11,12 @@
     .module('controller.payment', [])
     .controller('PaymentController', PaymentController)
 
-  PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'environment']
-  function PaymentController ($scope, $http, $state, $stateParams, environment) {
+  PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'environment', 'User']
+  function PaymentController ($scope, $http, $state, $stateParams, environment, User) {
     var self = this
     var url = environment.getBaseAPI() + 'payment/' + $stateParams.orderNumber
+    self.email = ''
+    self.User = User
     self.valid = {
       step1: true,
       step2: true
@@ -26,6 +28,7 @@
     }
     self.is404 = false
 
+    self.shippingList = []
     self.order = null
     self.payment = {
       card: {
@@ -43,7 +46,7 @@
       }
       // Calculate total price of products in cart
       for( var i=0; i<self.order.cart.length;i++ ) {
-        self.payment.price += self.order.cart[i].product.price
+        self.payment.price += self.order.cart[i].product.price*self.order.cart[i].quantity
       }
       console.log(self.order)
     }).error(function (response) {
@@ -69,7 +72,7 @@
       }
     }
     self.next1 = function () {
-      if (self.order.shipping !== null) {
+      if (self.email === self.User.email  && self.order.shipping !== null) {
         self.valid.step1 = true
         self.steps.step1 = false
         self.steps.step2 = true
