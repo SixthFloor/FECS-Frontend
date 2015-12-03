@@ -31,9 +31,11 @@
     self.checkout = function () {
       console.log(User.user_id)
       console.log(Cart.getItemList())
-      var url = 'hello/api/order/new'
+      var url = 'http://10.2.35.214:8080/api/order/new'
       $http.post(url, {
-        user_id: User.user_id,
+        user: {
+          id: User.user_id
+        },
         cart: Cart.getItemList()
       }).success(function (response) {
         console.log('create new order')
