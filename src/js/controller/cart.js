@@ -28,11 +28,11 @@
       self.calTotal()
     }
 
-    self.init = function () {
-      self.itemList = Cart.getItemList()
-      self.calTotal()
+    self.checkout = function () {
+
     }
 
-    self.init()
+    self.itemList = Cart.getItemList()
+    self.calTotal()
   }
 })()

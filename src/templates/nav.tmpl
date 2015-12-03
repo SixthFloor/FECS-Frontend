@@ -11,11 +11,11 @@
           </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li ng-if="navbarCtrl.isAuthed">
           <a ui-sref="cart">
-            <i class="glyphicon glyphicon-shopping-cart"></i> Cart 
+            <i class="glyphicon glyphicon-shopping-cart"></i> Cart
             <span class="badge badge-notify" ng-show="navbarCtrl.Cart.itemList.length != 0">
-              {{navbarCtrl.Cart.itemList.length}}
+              {{navbarCtrl.Cart.getQuantity()}}
             </span>
           </a>
         </li>
@@ -54,7 +54,7 @@
                 <a ui-sref="category({category_name: 'Living Room'})">
                   <i class="icon-armchair-chair-streamline"></i>Living room
                 </a>
-              </li>        
+              </li>
             </div>
           </ul>
         </li>

@@ -8,36 +8,56 @@ every controller that have to identify the customer, authentication service has 
 */
 ;(function () {
   angular
-    .module('services.cart', [])
+    .module('services.cart', ['LocalStorageModule'])
     .service('Cart', Cart)
 
   Cart.$inject = ['localStorageService', '$http']
   function Cart (localStorageService, $http) {
     var self = this
 
-    self.itemList = []
-
     self.add = function (item) {
-      for (var i=0;i<self.itemList.length ; i++) {
-        if (self.itemList[i].product === item.product) {
-          self.itemList[i].quantity += item.quantity
+      var itemList = self.getItemList()
+      for (var i = 0; i < itemList.length ; i++) {
+        if (itemList[i].product.serialNumber === item.product.serialNumber) {
+          itemList[i].quantity += item.quantity
+          self.updateCart(itemList)
           return
         }
       }
-      self.itemList.push(item)
-      console.log(self.itemList)
+      itemList.push(item)
+      self.updateCart(itemList)
     }
 
     self.remove = function (index) {
-      self.itemList.splice(index, 1)
+      var itemList = self.getItemList()
+      itemList.splice(index, 1)
+      self.updateCart(itemList)
+    }
+
+    self.updateCart = function (itemList){
+      localStorageService.set('cart', itemList)
     }
 
     self.getItemList = function () {
-      return self.itemList
+      return localStorageService.get('cart')
+    }
+
+    self.getQuantity = function () {
+      var itemList = self.getItemList()
+      var count = 0
+      for (var i = 0; i < itemList.length ; i++) {
+        count += itemList[i].quantity
+      }
+      return count
+    }
+
+    self.init = function () {
+      var itemList = []
+      self.updateCart(itemList)
     }
 
     self.clear = function () {
-      self.list = []
+      localStorageService.remove('cart')
     }
   }
 })()
