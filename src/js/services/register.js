@@ -30,7 +30,10 @@
       adr1: '',
       adr2: '',
       province: '',
-      zip: ''
+      zip: '',
+      card_name: '',
+      card_number: '',
+      expirationDate: ''
     }
 
     self.regis = function (success, error) {
@@ -47,7 +50,8 @@
         province: self.member.province,
         zipcode: self.member.zip,
         telephone_number: self.member.phonenumber,
-        card_name: '555-555-555',
+        card_name: self.member.card_name,
+        card_number: self.member.card_number,
         expirationDate: 12344325
       }).success(success).error(error)
     }
