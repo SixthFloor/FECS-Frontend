@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center" ng-if="categorypageCtrl.User.isAdmin()">
           <div class="thumbnail">
             <img src='http://placehold.it/400x400'>
             <div class="caption">
@@ -59,7 +59,7 @@
               <h5 id="product-serial">[{{product.serialNumber}}]</h5>
               <b id="product-price">{{product.price}} Baht</b>
               <p><a class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
-              <p><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
+              <p ng-if="categorypageCtrl.User.isAdmin()"><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
             </div>
           </div>
         </div>

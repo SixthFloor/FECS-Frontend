@@ -11,9 +11,10 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'environment']
-  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, environment) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'environment', 'User']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, environment, User) {
     var self = this
+    self.User = User
     var orderBy = $filter('orderBy')
     console.log($stateParams.category_name)
     self.productList = {}
