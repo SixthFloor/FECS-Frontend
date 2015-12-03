@@ -42,19 +42,20 @@
       cvc: '',
       price: 0
     }
-    // $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
-    //   self.order = response
-    //   if(self.order.status !== 'Not pay') {
-    //     $state.transitionTo('home')
-    //   }
-    //   // Calculate total price of products in cart
-    //   for( var i=0; i<self.order.cart.length;i++ ) {
-    //     self.payment.price += self.order.cart[i].product.price
-    //   }
-    // }).error(function (response) {
-    //   console.log('Error')
-    //   self.is404 = true
-    // })
+    $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
+      self.order = response
+      if(self.order.status !== 0) { // status !== 'Not Pay'
+        $state.transitionTo('home')
+      }
+      // Calculate total price of products in cart
+      for( var i=0; i<self.order.cart.length;i++ ) {
+        self.payment.price += self.order.cart[i].product.price
+      }
+      console.log(self.order)
+    }).error(function (response) {
+      console.log('Error')
+      self.is404 = true
+    })
 
     self.back = function () {
       self.valid.step1 = true
@@ -74,8 +75,7 @@
       }
     }
     self.next1 = function () {
-      // if (self.order.shipping !== '') {
-      if (true) {
+      if (self.order.shipping !== null) {
         self.valid.step1 = true
         self.steps.step1 = false
         self.steps.step2 = true
