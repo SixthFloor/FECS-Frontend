@@ -124,9 +124,23 @@
                         </div>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="card-holder-name">Security Code</label>
+                      <div class="col-sm-2">
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" class="form-control" name="card-cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.payment.cvv">
+                      </div>
+                      <div class="alert alert-danger" ng-show="paymentCtrl.payment.cvv.length != 3">
+                        <strong>ENTER</strong> Card Verification Value.
+                      </div>
+                    </div>
                   </fieldset>
                 </form>
                 <div class="register-container">
+                  <div class="row">
+                    <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step2">
+                      <strong>Error</strong> your credit card cannot validate.
+                    </div>
+                  </div>
                   <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
                   <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Next <i class="fa fa-arrow-circle-right"></i></button>
                 </div>
