@@ -13,7 +13,7 @@
 
   PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'environment']
   function PaymentController ($scope, $http, $state, $stateParams, environment) {
-    var self = this 
+    var self = this
     var url = environment.getBaseAPI() + 'payment/' + $stateParams.orderNumber
     self.valid = {
       step1: true,
@@ -25,12 +25,6 @@
       step3: false
     }
     self.is404 = false
-    self.moveElement = $('.timeline>dl')
-    self.height = self.moveElement.height() + 40
-
-    self.moveElement.resize(function () {
-      self.height = self.moveElement.height() + 40
-    })
 
     self.order = null
     self.payment = {
@@ -80,7 +74,7 @@
         self.steps.step1 = false
         self.steps.step2 = true
         self.steps.step3 = false
-        console.log('Step1 next')
+        console.log('Step1 next Payment')
         self.moveElement.css('margin-top', '-' + self.height + 'px')
       } else {
         console.log('form not valid')
@@ -88,31 +82,31 @@
       }
     }
     self.next2 = function () {
-      $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
-        if (response.status !== 'error') {
-          var valid = response
-          if(response.valid) {
-            self.valid.step2 = true
-            self.steps.step1 = false
-            self.steps.step2 = false
-            self.steps.step3 = true
-            console.log('Step2 next')
-            self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
-          }
-          else {
-            console.log('credit card is not valid')
-            self.valid.step2 = false
-          }
-        } else {
-          self.valid.step2 = false
-          console.log(response)
-        }
-      })
+      // $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
+      // if (response.status !== 'error') {
+      if (true) {
+        // var valid = response
+        // if (response.valid) {
+        self.valid.step2 = true
+        self.steps.step1 = false
+        self.steps.step2 = false
+        self.steps.step3 = true
+        console.log('Step2 next')
+        self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
+      // } else {
+      //   console.log('credit card is not valid')
+      //   self.valid.step2 = false
+      // }
+      } else {
+        self.valid.step2 = false
+        console.log(response)
+      }
+    // })
     }
     self.cancle = function () {
-      $http.put(environment.getBaseAPI() + 'order/cancle', {id:self.order.id}).success(function (response) {
+      $http.put(environment.getBaseAPI() + 'order/cancle', {id: self.order.id}).success(function (response) {
         if (response.status !== 'error') {
-          console.log(self.order.orderNumber+'Cancled')
+          console.log(self.order.orderNumber + 'Cancled')
         } else {
           console.log(response)
         }
@@ -140,6 +134,16 @@
         } else {
           console.log(response)
         }
+      })
+    }
+    self.init = function () {
+      self.moveElement = angular.element('.timeline dl')
+      console.log(self.moveElement)
+
+      self.height = self.moveElement.height() + 40
+
+      self.moveElement.resize(function () {
+        self.height = self.moveElement.height() + 40
       })
     }
   }
