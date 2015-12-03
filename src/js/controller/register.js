@@ -92,7 +92,7 @@
         (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
         (self.checkEmail(self.member.email)) &&
         (self.member.firstname !== '') && (self.member.lastname !== '')) {
-        self.member.card_number = self.num1 + '-' self.num2 + '-' self.num3 + '-' self.num4
+        self.member.card_number = self.num1 + '-' + self.num2 + '-' + self.num3 + '-' + self.num4
         registerService.regis(function (response) {
           console.log('Submit regis')
           // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
