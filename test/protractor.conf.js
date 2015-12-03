@@ -4,14 +4,17 @@ exports.config = {
 
   specs: ['protractor_test/in-progress/test_ViewFurnitureCategory.js'],
 
-  multiCapabilities: [{
-      // browserName: 'firefox'
-    }, {
-      browserName: 'chrome'
-    }
-  ],
+  capabilities: { 
+    browserName: 'chrome'
+  },
 
-  baseUrl: 'http://localhost:8080/app/',
+  // multiCapabilities: [{
+  //     browserName: 'firefox'
+  //   }, {
+  //     browserName: 'chrome'
+  // }],
+
+  // baseUrl: 'http://localhost:8080/app/',
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 180000

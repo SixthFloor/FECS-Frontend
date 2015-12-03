@@ -94,21 +94,18 @@
         (self.member.firstname !== '') && (self.member.lastname !== '')) {
         registerService.regis(function (response) {
           console.log('Submit regis')
-          if (response.status === 'error') {
-            var msg = '<span><b>Registration not possible </b> ' + response.message + '.</span>'
-            notification.error({
-              message: msg,
-              replaceMessage: true
-            })
-          } else {
-            // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
-            // notification.success({
-            //   message: msg
-            // })
-            // $state.transitionTo('login')
-            self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
-          }
+          // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
+          // notification.success({
+          //   message: msg
+          // })
+          // $state.transitionTo('login')
+          self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         }, function (response) {
+          var msg = '<span><b>Registration not possible </b> ' + response.description + '.</span>'
+          notification.error({
+            message: msg,
+            replaceMessage: true
+          })
           console.log(response)
         })
       } else {

@@ -14,37 +14,18 @@ every controller that have to identify the customer, authentication service has 
   User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
   function User (localStorageService, $http, environment, Cart) {
     var self = this
+    self.user_id = ''
     self.email = ''
     self.firstname = ''
     self.lastname = ''
     self.role = ''
 
-    function initUser () {
-      if (self.isAuthed()) {
-        var req = {
-          method: 'POST',
-          data: {
-            token: self.getToken()
-          },
-          url: environment.getBaseAPI() + 'authentication/token'
-        }
-        $http(req).then(function (res) {
-          console.log(res)
-          var response = res.data
-          if (response.status === 'error') {
-            console.log('error')
-          } else {
-            self.setFirstname(response.user.firstName)
-            self.setLastname(response.user.lastName)
-            self.setEmail(response.user.email)
-            self.setRole(response.role.name)
-            console.log('success')
-            console.log(self)
-          }
-        }, function (err) {
-          console.log(err)
-        })
-      }
+    function initUser (response) {
+      self.user_id = response.user.id
+      self.firstname = response.user.firstName
+      self.lastname = response.user.lastName
+      self.email = response.user.email
+      self.setRole(response.role.name)
     }
 
     self.isAuthed = function () {
@@ -56,28 +37,12 @@ every controller that have to identify the customer, authentication service has 
       return (self.role === 'owner' || self.role === 'staff' || self.role === 'admin')
     }
 
-    self.setEmail = function (email) {
-      self.email = email
-    }
-
-    self.setFirstname = function (firstname) {
-      self.firstname = firstname
-    }
-
-    self.setLastname = function (lastname) {
-      self.lastname = lastname
-    }
-
     self.setRole = function (role) {
       self.role = role
     }
 
     self.setToken = function (token) {
       localStorageService.set('authToken', token)
-    }
-
-    self.getEmail = function () {
-      return self.email
     }
 
     self.getToken = function () {
@@ -99,11 +64,8 @@ every controller that have to identify the customer, authentication service has 
         if (response.status === 'error') {
           error({error: response.message})
         } else {
-          self.setFirstname(response.user.firstName)
-          self.setLastname(response.user.lastName)
-          self.setEmail(response.user.email)
+          initUser(response)
           self.setToken(response.token)
-          self.setRole(response.role.name)
           Cart.init()
           success()
         }
@@ -115,11 +77,11 @@ every controller that have to identify the customer, authentication service has 
     self.logout = function () {
       localStorageService.remove('authToken')
       Cart.clear()
-      self.setEmail('')
+      self.user_id = ''
+      self.email = ''
+      self.firstname = ''
+      self.lastname = ''
       self.setRole('')
-      self.setFirstname('')
-      self.setLastname('')
     }
-    initUser()
   }
 })()

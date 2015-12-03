@@ -34,7 +34,7 @@ every controller that have to identify the customer, authentication service has 
       self.updateCart(itemList)
     }
 
-    self.updateCart = function (itemList){
+    self.updateCart = function (itemList) {
       localStorageService.set('cart', itemList)
     }
 
