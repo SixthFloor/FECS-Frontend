@@ -19,14 +19,16 @@
           <div class="product-right col-md-4 box-container">
             <h2>฿{{productpageCtrl.product.price}}</h2>
             <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
-            <label>In Stock</label>
-            <form class="form-inline margin-5">
-              <div class="form-group">
-                <label >Quantity</label>
-                <input ng-model="quantity"  ng-init="quantity=1" min="1" type="number" class="form-control"/>
-              </div>
-            </form><br/>
-            <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
+            <div ng-if="productpageCtrl.User.isAuthed()">
+              <label>In Stock</label>
+              <form class="form-inline margin-5">
+                <div class="form-group">
+                  <label >Quantity</label>
+                  <input ng-model="quantity"  ng-init="quantity=1" min="1" type="number" class="form-control"/>
+                </div>
+              </form><br/>
+              <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
+            </div>
           </div>
         </div>
         <div class="product-info box-container">
