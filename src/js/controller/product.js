@@ -96,6 +96,7 @@
             self.product.id = response.id
             productService.addproduct2(function (response2) {
               console.log(response2)
+              productService.clearProduct()
             }, function (response2) {
               console.log(response2)
             })
@@ -106,7 +107,6 @@
         }, function (response) {
           console.log(response)
         })
-        productService.clearProduct()
       } else {
         console.log('should be false')
         productService.valid = false
