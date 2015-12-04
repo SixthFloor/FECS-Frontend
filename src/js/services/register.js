@@ -25,21 +25,22 @@
       confirmpassword: '',
       firstname: '',
       lastname: '',
-      phonenumber: '',
-      address: '',
-      adr1: '',
-      adr2: '',
-      province: '',
-      zip: '',
-      card_name: '',
-      card_number: '',
-      expirationDate: ''
+      phonenumber: null,
+      address: null,
+      adr1: null,
+      adr2: null,
+      province: null,
+      zip: null,
+      card_name: null,
+      card_number: null,
+      expirationDate: null
     }
 
     self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
       var expdate = Date.parse(self.member.expirationDate) / 1000
       console.log(expdate)
+      console.log(self.member.expirationDate)
       var url = environment.getBaseAPI() + 'user/new'
       var parameter = {
         email: self.member.email,
