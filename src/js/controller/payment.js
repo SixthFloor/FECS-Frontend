@@ -73,7 +73,7 @@
     }
     self.next1 = function () {
       // if (self.email === self.User.email && self.order.shipping !== null) {
-      if (self.email === self.User.email) {
+      if (!(self.User.zip.length != 5 || self.User.province === '' || (self.User.adr1 === '' && self.User.adr2 === ''))) {
         self.valid.step1 = true
         self.steps.step1 = false
         self.steps.step2 = true
