@@ -56,7 +56,7 @@
               <h3 id="product-name">{{product.name}}</h3>
 
               <!-- easy for tester  -->
-              <h5 id="product-serial">[{{product.serialNumber}}]</h5>
+              <h5 id="product-serial" ng-if="categorypageCtrl.User.isAdmin()">[{{product.serialNumber}}]</h5>
               <b id="product-price">{{product.price}} Baht</b>
               <p><a class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
               <p ng-if="categorypageCtrl.User.isAdmin()"><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
