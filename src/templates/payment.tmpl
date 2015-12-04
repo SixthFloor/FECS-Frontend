@@ -17,13 +17,31 @@
               <h4 class="events-heading">Shipping</h4>
               <p>
                 <form name="registerForm" class="form-horizontal" role="form">
+                  <div class="alert alert-danger control-label col-sm-3" ng-show="paymentCtrl.User.zip.length != 5 || paymentCtrl.User.province === '' || (paymentCtrl.User.adr1 === '' && paymentCtrl.User.adr2 === '')">
+                    <strong>Warning</strong> Please enter your exist address.
+                  </div>
                   <div class="form-group">
-                    <label class="control-label col-sm-3" for="email">Confirm E-mail</label>
-                    <div class="col-sm-7">
-                      <input type="email" name="memberEmail" class="form-control" placeholder="ENTER YOUR E-MAIL" ng-model="paymentCtrl.email">
-                      <div class="alert alert-danger" ng-show="paymentCtrl.email !== paymentCtrl.User.email && !paymentCtrl.valid.step1">
-                        <strong>Re-enter</strong> E-mail address is incorrect.
-                      </div>
+                    <label class="control-label col-sm-3">Address1</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.adr1"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3">Address2</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.adr2"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" >Province </label>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" ng-model="paymentCtrl.User.province">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" >ZIP code </label>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" maxlength="5" ng-model="paymentCtrl.User.zip">
                     </div>
                   </div>
                   <div class="form-group">
@@ -67,61 +85,34 @@
                     <div class="form-group">
                       <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD" ng-model="paymentCtrl.payment.card.holder_name">
+                        <input type="text" class="form-control" name="card-holder-name"
+                        id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD"
+                        ng-model="paymentCtrl.payment.card.holder_name">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label" for="card-number">Card number</label>
                       <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          <input type="text" maxlength="4" class="form-control"
+                          ng-model="paymentCtrl.num1" name="card-number" placeholder="XXXX"></input>
                       </div>
                       <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          <input type="text" maxlength="4" class="form-control"
+                          ng-model="paymentCtrl.num2" name="card-number" placeholder="XXXX"></input>
                       </div>
                       <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          <input type="text" maxlength="4" class="form-control"
+                          ng-model="paymentCtrl.num3" name="card-number" placeholder="XXXX"></input>
                       </div>
                       <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
+                          <input type="text" maxlength="4" class="form-control"
+                          ng-model="paymentCtrl.num4" name="card-number" placeholder="XXXX"></input>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
                       <div class="col-sm-9">
-                        <div class="row">
-                          <div class="col-xs-2">
-                            <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                              <option>Month</option>
-                              <option value="01">Jan</option>
-                              <option value="02">Feb</option>
-                              <option value="03">Mar</option>
-                              <option value="04">Apr</option>
-                              <option value="05">May</option>
-                              <option value="06">Jun</option>
-                              <option value="07">Jul</option>
-                              <option value="08">Aug</option>
-                              <option value="09">Sep</option>
-                              <option value="10">Oct</option>
-                              <option value="11">Nov</option>
-                              <option value="12">Dec</option>
-                            </select>
-                          </div>
-                          <div class="col-xs-2">
-                            <select class="form-control" name="expiry-year">
-                              <option value="13">2013</option>
-                              <option value="14">2014</option>
-                              <option value="15">2015</option>
-                              <option value="16">2016</option>
-                              <option value="17">2017</option>
-                              <option value="18">2018</option>
-                              <option value="19">2019</option>
-                              <option value="20">2020</option>
-                              <option value="21">2021</option>
-                              <option value="22">2022</option>
-                              <option value="23">2023</option>
-                            </select>
-                          </div>
-                        </div>
+                        <input type="month" ng-model="paymentCtrl.payment.card.exp_date">
                       </div>
                     </div>
                     <div class="form-group">
@@ -148,7 +139,7 @@
             </div>
           </div>
         </dd>
-        <dd class="pos-right clearfix complete">
+        <dd class="pos-right clearfix">
           <div class="circ"></div>
           <div class="time">Step 3</div>
           <div class="events">
@@ -160,34 +151,50 @@
                     <div class="panel-heading">Purchase Information</div>
                     <div class="panel-body">
                       <div class="row">
-                        <div class="col-sm-5 attr">Order number</div>
+                        <div class="col-sm-4 attr">Order number</div>
                         <div class="col-sm-7">{{paymentCtrl.order.orderNumber}}</div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-5 attr">Customer</div>
+                        <div class="col-sm-4 attr">Customer</div>
                         <div class="col-sm-7">{{paymentCtrl.User.firstname}} {{paymentCtrl.User.lastname}}</div>
                       </div>
+                      <div class="row" ng-if="paymentCtrl.User.adr1 !== ''">
+                        <div class="col-sm-4 attr">Address</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.adr1}}</div>
+                      </div>
+                      <div class="row" ng-if="paymentCtrl.User.adr2 !== ''">
+                        <div class="col-sm-4 attr">Address</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.adr2}}</div>
+                      </div>
                       <div class="row">
-                        <div class="col-sm-5 attr">Shipping date</div>
+                        <div class="col-sm-4 attr">Province</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.province}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 attr">Zip code</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.zip}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 attr">Shipping date</div>
                         <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-5 attr">Total price</div>
+                        <div class="col-sm-4 attr">Total price</div>
                         <div class="col-sm-7">{{paymentCtrl.payment.price}}</div>
                       </div>
                     </div>
                     <div class="panel-heading">Credit Card Information</div>
                     <div class="panel-body">
                       <div class="row">
-                        <div class="col-sm-5 attr">Card holder's name</div>
+                        <div class="col-sm-4 attr">Card holder's name</div>
                         <div class="col-sm-7">{{paymentCtrl.payment.card.holder_name}}</div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-5 attr">Card number</div>
+                        <div class="col-sm-4 attr">Card number</div>
                         <div class="col-sm-7">{{paymentCtrl.payment.card.no}}</div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-5 attr">Expiration date</div>
+                        <div class="col-sm-4 attr">Expiration date</div>
                         <div class="col-sm-7">{{paymentCtrl.payment.card.exp_date}}</div>
                       </div>
                     </div>
@@ -239,7 +246,7 @@
                     <button class="register-btn">
                     <i class="glyphicon glyphicon-home"></i>
                      Home Page</button></a>
-                     <a ui-sref="">
+                     <a ui-sref="home">
                     <button class="register-btn">
                     <i class="fa fa-list-ul"></i>
                      History</button></a>

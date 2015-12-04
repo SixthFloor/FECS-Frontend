@@ -18,6 +18,10 @@ every controller that have to identify the customer, authentication service has 
     self.email = ''
     self.firstname = ''
     self.lastname = ''
+    self.adr1 = ''
+    self.adr2 = ''
+    self.province = ''
+    self.zip = ''
     self.role = ''
 
     function initUser (response) {
@@ -25,6 +29,10 @@ every controller that have to identify the customer, authentication service has 
       self.firstname = response.user.firstName
       self.lastname = response.user.lastName
       self.email = response.user.email
+      self.adr1 = ''
+      self.adr2 = ''
+      self.province = ''
+      self.zip = ''
       self.setRole(response.role.name)
     }
 
