@@ -14,7 +14,7 @@
         <li ng-if="navbarCtrl.isAuthed">
           <a ui-sref="cart">
             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-            <span class="badge badge-notify" ng-show="navbarCtrl.Cart.itemList.length != 0">
+            <span class="badge badge-notify" ng-show="navbarCtrl.Cart.getItemList().length != 0">
               {{navbarCtrl.Cart.getQuantity()}}
             </span>
           </a>
