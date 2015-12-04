@@ -30,11 +30,16 @@
       adr1: '',
       adr2: '',
       province: '',
-      zip: ''
+      zip: '',
+      card_name: '',
+      card_number: '',
+      expirationDate: ''
     }
 
     self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
+      var expdate = Date.parse(self.member.expirationDate) / 1000
+      console.log(expdate)
       var url = environment.getBaseAPI() + 'user/new'
 
       $http.post(url, {
@@ -47,8 +52,9 @@
         province: self.member.province,
         zipcode: self.member.zip,
         telephone_number: self.member.phonenumber,
-        card_name: '555-555-555',
-        expirationDate: 12344325
+        card_name: self.member.card_name,
+        card_number: self.member.card_number,
+        expirationDate: expdate
       }).success(success).error(error)
     }
   }
