@@ -77,9 +77,12 @@
           </a>
           <ul class="dropdown-menu account">
             <div class="profile">
-              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}</h4>
+              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}<span ng-if="navbarCtrl.User.isAdmin()"> <b>({{navbarCtrl.User.role}})</b></span></h4>
             </div>
             <div class="menu">
+              <li>
+                <a href="#"><i class="fa fa-list-ul"></i> Purchased History </a>
+              </li>
               <li>
                 <a href="#"><i class="fa fa-cog"></i> Setting </a>
               </li>
