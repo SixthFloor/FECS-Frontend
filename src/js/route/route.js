@@ -103,6 +103,12 @@
       })
       .state('cart', {
         url: '/cart',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
         templateUrl: 'templates/cart.tmpl',
         controller: 'CartController',
         controllerAs: 'cartCtrl'

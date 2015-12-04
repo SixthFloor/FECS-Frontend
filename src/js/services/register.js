@@ -41,8 +41,7 @@
       var expdate = Date.parse(self.member.expirationDate) / 1000
       console.log(expdate)
       var url = environment.getBaseAPI() + 'user/new'
-
-      $http.post(url, {
+      var parameter = {
         email: self.member.email,
         password: self.member.password,
         firstName: self.member.firstname,
@@ -53,9 +52,11 @@
         zipcode: self.member.zip,
         telephone_number: self.member.phonenumber,
         card_name: self.member.card_name,
-        card_number: self.member.card_number,
-        expirationDate: expdate
-      }).success(success).error(error)
+        expirationDate: expdate,
+        card_number: self.member.card_number
+      }
+      console.log(parameter)
+      $http.post(url, parameter).success(success).error(error)
     }
   }
 })()
