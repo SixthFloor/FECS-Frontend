@@ -19,7 +19,10 @@
             <td>
               <img src={{item.product.images[0].link}} width="100"/></td>
             <td>{{item.product.name}}</td>
-            <td>{{item.quantity}}</td>
+            <td class="quantity-input">
+              <input ng-model="quantity"  ng-init="quantity=item.quantity" ng-change="cartCtrl.changeQuantity($index,quantity)"
+              min="1" type="number" class="form-control"/>
+            </td>
             <td>{{item.quantity*item.product.price}}</td>
             <td><button type="button" class="btn btn-danger" ng-click="cartCtrl.removeItem($index)">
               <span class="glyphicon glyphicon-remove"></span></button></td>

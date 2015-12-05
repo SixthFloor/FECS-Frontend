@@ -28,6 +28,12 @@
       self.calTotal()
     }
 
+    self.changeQuantity = function(index, quantity) {
+      self.itemList[index].quantity = quantity
+      Cart.updateCart(self.itemList)
+      self.calTotal()
+    }
+
     self.checkout = function () {
       console.log(User.user_id)
       console.log(Cart.getItemList())
