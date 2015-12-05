@@ -17,19 +17,19 @@
               <h4 class="events-heading">Shipping</h4>
               <p>
                 <form name="registerForm" class="form-horizontal" role="form">
-                  <div class="alert alert-danger control-label col-sm-3" ng-show="paymentCtrl.User.zip.length != 5 || paymentCtrl.User.province === '' || (paymentCtrl.User.adr1 === '' && paymentCtrl.User.adr2 === '')">
+                  <div class="alert alert-danger control-label col-sm-3" ng-show="paymentCtrl.User.zipcode.length != 5 || paymentCtrl.User.province === '' || (paymentCtrl.User.address1 === '' && paymentCtrl.User.address2 === '')">
                     <strong>Warning</strong> Please enter your exist address.
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Address1</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.adr1"></input>
+                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address1"></input>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-3">Address2</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.adr2"></input>
+                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address2"></input>
                     </div>
                   </div>
                   <div class="form-group">
@@ -41,7 +41,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" >ZIP code </label>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control" maxlength="5" ng-model="paymentCtrl.User.zip">
+                      <input type="text" class="form-control" maxlength="5" ng-model="paymentCtrl.User.zipcode">
                     </div>
                   </div>
                   <div class="form-group">
@@ -160,11 +160,11 @@
                       </div>
                       <div class="row" ng-if="paymentCtrl.User.adr1 !== ''">
                         <div class="col-sm-4 attr">Address</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.adr1}}</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.address1}}</div>
                       </div>
                       <div class="row" ng-if="paymentCtrl.User.adr2 !== ''">
                         <div class="col-sm-4 attr">Address</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.adr2}}</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.address2}}</div>
                       </div>
                       <div class="row">
                         <div class="col-sm-4 attr">Province</div>
@@ -172,7 +172,7 @@
                       </div>
                       <div class="row">
                         <div class="col-sm-4 attr">Zip code</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.zip}}</div>
+                        <div class="col-sm-7">{{paymentCtrl.User.zipcode}}</div>
                       </div>
                       <div class="row">
                         <div class="col-sm-4 attr">Shipping date</div>

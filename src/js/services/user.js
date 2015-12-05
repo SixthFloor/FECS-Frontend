@@ -18,10 +18,14 @@ every controller that have to identify the customer, authentication service has 
     self.email = ''
     self.firstname = ''
     self.lastname = ''
-    self.adr1 = ''
-    self.adr2 = ''
+    self.address1 = ''
+    self.address2 = ''
     self.province = ''
-    self.zip = ''
+    self.zipcode = ''
+    self.telephone_number = ''
+    self.card_name = ''
+    self.expirationDate = ''
+    self.card_number = ''
     self.role = ''
 
     function initUser (response) {
@@ -29,11 +33,16 @@ every controller that have to identify the customer, authentication service has 
       self.firstname = response.user.firstName
       self.lastname = response.user.lastName
       self.email = response.user.email
-      self.adr1 = ''
-      self.adr2 = ''
-      self.province = ''
-      self.zip = ''
+      self.address1 = response.user.address1
+      self.address2 = response.user.address2
+      self.province = response.user.province
+      self.zipcode = response.user.zipcode
+      self.telephone_number = response.user.telephone_number
+      self.card_name = response.user.card_name
+      self.expirationDate = response.user.expirationDate
+      self.card_number = response.user.card_number
       self.setRole(response.role.name)
+      console.log(self)
     }
 
     self.isAuthed = function () {
@@ -89,6 +98,14 @@ every controller that have to identify the customer, authentication service has 
       self.email = ''
       self.firstname = ''
       self.lastname = ''
+      self.address1 = ''
+      self.address2 = ''
+      self.province = ''
+      self.zipcode = ''
+      self.telephone_number = ''
+      self.card_name = ''
+      self.expirationDate = ''
+      self.card_number = ''
       self.setRole('')
     }
   }

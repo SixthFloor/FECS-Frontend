@@ -33,26 +33,26 @@
     self.payment = {
       card: {
         no: '',
-        holder_name: '',
-        exp_date: ''
+        holder_name: self.User.card_name,
+        exp_date: self.User.expirationDate
       },
       cvv: '',
       price: 0
     }
-    // $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
-    //   self.order = response
-    //   if(self.order.status !== 0) { // status !== 'Not Pay'
-    //     $state.transitionTo('home')
-    //   }
-    //   // Calculate total price of products in cart
-    //   for( var i=0; i<self.order.cart.length;i++ ) {
-    //     self.payment.price += self.order.cart[i].product.price*self.order.cart[i].quantity
-    //   }
-    //   console.log(self.order)
-    // }).error(function (response) {
-    //   console.log('Error')
-    //   self.is404 = true
-    // })
+    $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
+      self.order = response
+      if(self.order.status !== 0) { // status !== 'Not Pay'
+        $state.transitionTo('home')
+      }
+      // Calculate total price of products in cart
+      for( var i=0; i<self.order.cart.length;i++ ) {
+        self.payment.price += self.order.cart[i].product.price*self.order.cart[i].quantity
+      }
+      console.log(self.order)
+    }).error(function (response) {
+      console.log('Error')
+      self.is404 = true
+    })
 
     self.back = function () {
       self.valid.step1 = true
@@ -73,7 +73,7 @@
     }
     self.next1 = function () {
       // if (self.email === self.User.email && self.order.shipping !== null) {
-      if (!(self.User.zip.length != 5 || self.User.province === '' || (self.User.adr1 === '' && self.User.adr2 === ''))) {
+      if (!(self.User.zipcode.length != 5 || self.User.province === '' || (self.User.address1 === '' && self.User.address2 === '')) && self.order.shipping !== null) {
         self.valid.step1 = true
         self.steps.step1 = false
         self.steps.step2 = true
@@ -86,28 +86,28 @@
       }
     }
     self.next2 = function () {
-      // $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
-      //   if (response.valid) {
-      //     self.valid.step2 = true
-      //     self.steps.step1 = false
-      //     self.steps.step2 = false
-      //     self.steps.step3 = true
-      //     console.log('Step2 next')
-      //     self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
-      //   } else {
-      //     console.log('credit card is not valid')
-      //     self.valid.step2 = false
-      //   }
-      // }).error(function (response) {
-      //   self.valid.step2 = false
-      //   console.log(response)
-      // })
-      self.valid.step2 = true
+      $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
+        if (response) {
+          self.valid.step2 = true
           self.steps.step1 = false
           self.steps.step2 = false
           self.steps.step3 = true
           console.log('Step2 next')
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
+        } else {
+          console.log('credit card is not valid')
+          self.valid.step2 = false
+        }
+      }).error(function (response) {
+        self.valid.step2 = false
+        console.log(response)
+      })
+      // self.valid.step2 = true
+      //     self.steps.step1 = false
+      //     self.steps.step2 = false
+      //     self.steps.step3 = true
+      //     console.log('Step2 next')
+      //     self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
     }
     self.cancle = function () {
       $http.put(environment.getBaseAPI() + 'order/cancle', {id: self.order.id}).success(function (response) {
