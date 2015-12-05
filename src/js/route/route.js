@@ -113,13 +113,12 @@
         controller: 'CartController',
         controllerAs: 'cartCtrl'
       })
-<<<<<<< HEAD
       .state('setting', {
         url: '/setting',
         templateUrl: 'templates/setting.tmpl',
         controller: 'SettingController',
         controllerAs: 'settingCtrl'
-=======
+      })
       .state('payment', {
         url: '/payment/:orderNumber',
         data: {
@@ -131,7 +130,6 @@
         templateUrl: 'templates/payment.tmpl',
         controller: 'PaymentController',
         controllerAs: 'paymentCtrl'
->>>>>>> origin/dev
       })
   }
 })()
