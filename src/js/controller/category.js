@@ -11,9 +11,10 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService']
-  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'environment', 'User']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, environment, User) {
     var self = this
+    self.User = User
     var orderBy = $filter('orderBy')
     console.log($stateParams.category_name)
     self.productList = {}
@@ -29,9 +30,9 @@
     //  API path
     var url = ''
     if (self.category_name !== 'all') {
-      url = 'http://128.199.133.224/api/category/product/' + self.category_name
+      url = environment.getBaseAPI() + 'category/product/' + self.category_name
     }
-    else url = 'http://128.199.133.224/api/product/all'
+    else url = environment.getBaseAPI() + 'product/all'
 
     $http.get(url).success(function (response) {
       self.productList = response

@@ -5,8 +5,8 @@
     .module('services.register', [])
     .service('registerService', registerService)
 
-  registerService.$inject = ['$http']
-  function registerService ($http) {
+  registerService.$inject = ['$http', 'environment']
+  function registerService ($http, environment) {
     var self = this
 
     self.valid = {
@@ -25,23 +25,39 @@
       confirmpassword: '',
       firstname: '',
       lastname: '',
-      phonenumber: '',
-      address: '',
-      adr1: '',
-      adr2: '',
-      province: '',
-      zip: ''
+      phonenumber: null,
+      address: null,
+      adr1: null,
+      adr2: null,
+      province: null,
+      zip: null,
+      card_name: null,
+      card_number: null,
+      expirationDate: null
     }
 
     self.regis = function (success, error) {
       self.member.address = self.member.adr1 + ' ' + self.member.adr2 + ' ' + self.member.province + ' ' + self.member.zip
-      var url = 'http://128.199.133.224/api/user/new'
-      $http.post(url, {
+      var expdate = Date.parse(self.member.expirationDate) / 1000
+      console.log(expdate)
+      console.log(self.member.expirationDate)
+      var url = environment.getBaseAPI() + 'user/new'
+      var parameter = {
         email: self.member.email,
         password: self.member.password,
         firstName: self.member.firstname,
-        lastName: self.member.lastname
-      }).success(success).error(error)
+        lastName: self.member.lastname,
+        address1: self.member.adr1,
+        address2: self.member.adr2,
+        province: self.member.province,
+        zipcode: self.member.zip,
+        telephone_number: self.member.phonenumber,
+        card_name: self.member.card_name,
+        expirationDate: expdate,
+        card_number: self.member.card_number
+      }
+      console.log(parameter)
+      $http.post(url, parameter).success(success).error(error)
     }
   }
 })()

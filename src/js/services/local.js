@@ -26,25 +26,26 @@ every controller that have to identify the customer, authentication service has 
         var req = {
           method: 'GET',
           headers: {
-            'email': 'waranyu.1234@gmail.com',
+            'email': 'waranyu.4321@gmail.com',
             'password': '12345678'
           },
           url: 'http://128.199.133.224/api/user/location'
         }
         $http(req).then(function (res) {
-          console.log(res)
           var response = res.data
           if (response.status === 'error') {
-            console.log('error22')
+            console.log('error')
           } else {
+            console.log("IN LAW")
+            console.log(response)
             // self.setAddress1(response.local.address1)
             // self.setAddress2(response.local.address2)
-            self.setProvince(response.local.province)
+            self.setProvince(response.user.province)
             self.setZipcode(response.local.zipcode)
             self.setTelephoneNumber(response.local.telephone_number)
             self.setRole(response.role.name)
-            console.log('success22')
-            console.log(self)
+            
+            // console.log(self)
           }
         }, function (err) {
           console.log(err)

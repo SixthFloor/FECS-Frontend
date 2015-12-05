@@ -96,6 +96,9 @@
     margin: 3% 0px;
   }
 }
+.quantity-input{
+  width: 10%;
+}
 .total{
   @extend .well;
   @extend .row;
