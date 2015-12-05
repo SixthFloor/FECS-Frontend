@@ -24,3 +24,11 @@ $gray-bg: #ECF0F1;
 	color: red !important;
 	border-style: solid;
 }
+
+.add-btn{
+	@extend .btn;
+	@extend .btn-primary;
+	width: 75%;
+	height: 40px;
+	margin-bottom: 20px;
+}

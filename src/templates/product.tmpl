@@ -29,9 +29,9 @@
                 </div>
               </form><br/>
               <button ng-if="productpageCtrl.User.isAuthed()" ng-click="productpageCtrl.addToCart(quantity)"
-              class="btn btn-primary" name="">Add to Cart</button>
+              class="add-btn" name="">Add to Cart</button>
               <button ng-if="!productpageCtrl.User.isAuthed()" ui-sref="login"
-              class="btn btn-primary" name="">Add to Cart</button>
+              class="add-btn" name="">Add to Cart</button>
             </div>
             <div ng-if="productpageCtrl.product.quantity == 0">
               <p class="outofstock">
