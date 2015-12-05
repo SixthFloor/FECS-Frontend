@@ -11,8 +11,8 @@
     .module('controller.cart', [])
     .controller('CartController', CartController)
 
-  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Cart', 'User']
-  function CartController ($scope, $http, $state, $stateParams, Cart, User) {
+  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Cart', 'User', 'environment']
+  function CartController ($scope, $http, $state, $stateParams, Cart, User, environment) {
     var self = this
 
     self.calTotal = function () {
@@ -31,7 +31,7 @@
     self.checkout = function () {
       console.log(User.user_id)
       console.log(Cart.getItemList())
-      var url = 'http://10.2.35.214:8080/api/order/new'
+      var url = environment.getBaseAPI() + 'order/new'
       $http.post(url, {
         user: {
           id: User.user_id
@@ -39,6 +39,12 @@
         cart: Cart.getItemList()
       }).success(function (response) {
         console.log('create new order')
+        console.log(response)
+        Cart.init()
+        $state.transitionTo('payment', {orderNumber: response})
+      }).error(function (response) {
+        console.log('error')
+        console.log(response)
       })
     }
 
