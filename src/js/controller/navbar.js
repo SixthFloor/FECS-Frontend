@@ -26,9 +26,8 @@
     }
 
     self.search = function (query) {
-      console.log(query)
       searchService.setQuery(query)
-      $state.transitionTo('category', {category_name: 'search'})
+      $state.transitionTo('category', {category_name: 'search'}, {reload: true})
     }
   }
 })()
