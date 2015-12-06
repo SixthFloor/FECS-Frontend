@@ -27,8 +27,8 @@
       }
     })
 
-    self.cancle = function () {
-      $http.put(environment.getBaseAPI() + 'order/cc', {id: self.order.id}).success(function (response) {
+    self.cancle = function (ccId) {
+      $http.put(environment.getBaseAPI() + 'order/cc', {id: ccId}).success(function (response) {
         if (response.status !== 'error') {
           console.log(self.order.orderNumber + 'Cancled')
         } else {

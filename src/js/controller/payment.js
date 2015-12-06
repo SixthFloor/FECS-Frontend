@@ -37,7 +37,8 @@
         exp_date: self.User.expirationDate
       },
       cvv: '',
-      price: 0
+      price: 0,
+      shipping: null
     }
     $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
       self.order = response
@@ -51,6 +52,12 @@
       console.log(self.order)
     }).error(function (response) {
       console.log('Error')
+      self.is404 = true
+    })
+
+    $http.get(environment.getBaseAPI() + 'shipping/all').success(function (response) {
+      self.shippingList = response
+    }).error(function (response) {
       self.is404 = true
     })
 
@@ -73,7 +80,7 @@
     }
     self.next1 = function () {
       // if (self.email === self.User.email && self.order.shipping !== null) {
-      if (!(self.User.zipcode.length != 5 || self.User.province === '' || (self.User.address1 === '' && self.User.address2 === '')) && self.order.shipping !== null) {
+      if (!(self.User.zipcode.length !== 5 || self.User.province === null || (self.User.address1 === null && self.User.address2 === null)) && self.order.shipping !== null) {
         self.valid.step1 = true
         self.steps.step1 = false
         self.steps.step2 = true
@@ -102,34 +109,13 @@
         self.valid.step2 = false
         console.log(response)
       })
-      // self.valid.step2 = true
-      //     self.steps.step1 = false
-      //     self.steps.step2 = false
-      //     self.steps.step3 = true
-      //     console.log('Step2 next')
-      //     self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
     }
     self.submit = function () {
-      $http.post(environment.getBaseAPI() + 'payment/pay', self.payment).success(function (response) {
+      $http.post(environment.getBaseAPI() + 'payment/pay?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
         if (response.status !== 'error') {
           console.log('Paid')
-          self.paidOrder()
           self.order.date = response.date
-        } else {
-          console.log(response)
-        }
-      })
           self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
-    }
-    self.paidOrder = function () {
-      var toSend = {
-        id: self.order.id,
-        shipping: self.order.shipping
-      }
-      $http.put(environment.getBaseAPI() + 'order/paid', toSend).success(function (response) {
-        if (response.status !== 'error') {
-          console.log('Order status changed to "Paid"')
-          $state.transitionTo('home')
         } else {
           console.log(response)
         }
@@ -138,9 +124,7 @@
     self.init = function () {
       self.moveElement = angular.element('.timeline dl')
       console.log(self.moveElement)
-
       self.height = self.moveElement.height() + 40
-
       self.moveElement.resize(function () {
         self.height = self.moveElement.height() + 40
       })
