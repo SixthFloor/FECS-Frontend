@@ -97,12 +97,12 @@
         }
         registerService.regis(function (response) {
           console.log('Submit regis')
-          // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
-          // notification.success({
-          //   message: msg
-          // })
-          // $state.transitionTo('login')
-          self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
+        // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
+        // notification.success({
+        //   message: msg
+        // })
+        // $state.transitionTo('login')
+        // self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         }, function (response) {
           var msg = '<span><b>Registration not possible </b> ' + response.description + '.</span>'
           notification.error({
