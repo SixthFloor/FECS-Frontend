@@ -11,6 +11,7 @@
       'services.cart',
       'services.permission',
       'services.environment',
+      'services.search',
       'controller.homepage',
       'controller.login',
       'controller.register',

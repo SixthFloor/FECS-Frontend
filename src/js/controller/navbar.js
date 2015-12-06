@@ -11,8 +11,8 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', '$http', '$state', 'User', 'Cart', 'environment']
-  function NavbarController ($scope, $http, $state, User, Cart, environment) {
+  NavbarController.$inject = ['$scope', '$http', '$state', 'User', 'Cart', 'environment', 'searchService']
+  function NavbarController ($scope, $http, $state, User, Cart, environment, searchService) {
     var self = this
 
     self.isAuthed = User.isAuthed()
@@ -26,12 +26,8 @@
     }
 
     self.search = function (query) {
-      // var url = environment.getBaseAPI() + 'product/search?query=' + query
-      // console.log(url)
-      // $http.get(url).success(function (response) {
-      //   self.productList = response
-      //   console.log(self.productList)
-      // })
+      console.log(query)
+      searchService.setQuery(query)
       $state.transitionTo('category', {category_name: 'search'})
     }
   }
