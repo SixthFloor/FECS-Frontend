@@ -109,15 +109,6 @@
       //     console.log('Step2 next')
       //     self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
     }
-    self.cancle = function () {
-      $http.put(environment.getBaseAPI() + 'order/cancle', {id: self.order.id}).success(function (response) {
-        if (response.status !== 'error') {
-          console.log(self.order.orderNumber + 'Cancled')
-        } else {
-          console.log(response)
-        }
-      })
-    }
     self.submit = function () {
       $http.post(environment.getBaseAPI() + 'payment/pay', self.payment).success(function (response) {
         if (response.status !== 'error') {
