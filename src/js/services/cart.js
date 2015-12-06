@@ -1,10 +1,9 @@
 /* global angular */
 
 /**
-* Login service Module
+* Cart service Module
 *
-* @description Login service Module use for provides authentication service for the projecet
-every controller that have to identify the customer, authentication service has to implement this service
+* @description Cart service Module use to manage and store item in the cart using local Storage Service
 */
 ;(function () {
   angular

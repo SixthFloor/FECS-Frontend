@@ -32,10 +32,14 @@
     if (self.category_name !== 'all') {
       url = environment.getBaseAPI() + 'category/product/' + self.category_name
     }
-    else url = environment.getBaseAPI() + 'product/all'
+    else {
+      url = environment.getBaseAPI() + 'product/all'
+    }
 
+    console.log(url)
     $http.get(url).success(function (response) {
       self.productList = response
+      console.log(self.productList)
     })
 
     self.viewProduct = function (id) {
