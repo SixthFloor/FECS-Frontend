@@ -41,7 +41,7 @@
         <b>Baht</b>
       </div>
     </div>
-    <div class="checkout">
+    <div class="checkout" ng-if="cartCtrl.itemList.length > 0">
       <button class="checkout-btn" ng-click="cartCtrl.checkout()" type="button" name="button">Checkout</button>
     </div>
   </div>
