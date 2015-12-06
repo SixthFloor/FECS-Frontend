@@ -18,6 +18,7 @@
       'controller.categorypage',
       'controller.cart',
       'controller.payment',
+      'controller.order',
       'controller.navbar',
       'directive.navbar',
       'directive.footer'

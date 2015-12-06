@@ -46,7 +46,7 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.isAuthed = function () {
-      if (self.getToken()) return true
+      if (self.getToken() && self.user_id != '') return true
       else return false
     }
 

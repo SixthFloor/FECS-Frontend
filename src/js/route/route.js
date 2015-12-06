@@ -125,5 +125,17 @@
         controller: 'PaymentController',
         controllerAs: 'paymentCtrl'
       })
+      .state('order', {
+        url: '/order',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/order.tmpl',
+        controller: 'OrderController',
+        controllerAs: 'orderCtrl'
+      })
   }
 })()
