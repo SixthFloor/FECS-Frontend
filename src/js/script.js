@@ -10,7 +10,7 @@
       'services.notification',
       'services.cart',
       'services.permission',
-      'services.local',
+      'services.locate',
       'services.environment',
       'controller.homepage',
       'controller.login',

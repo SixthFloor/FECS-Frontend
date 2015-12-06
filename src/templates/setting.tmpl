@@ -12,7 +12,7 @@
         <uib-tab heading="User">
           <div class="form-group">
             <label>Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" value="{{settingCtrl.User.email}}">
+            <input type="email" class="form-control" id="email" placeholder="Email" value="{{settingCtrl.User.email}}" readonly="">
           </div>
           <div class="form-group">
             <label>Password</label>
@@ -30,42 +30,42 @@
           </div>
           <div class="form-group">
             <label>Address1</label>
-            <input type="text" class="form-control" id="address1" placeholder="Address1" value="{{settingCtrl.Local.address1}}">
+            <input type="text" class="form-control" id="address1" placeholder="Address1" value="{{settingCtrl.Locate.address1}}">
           </div>
           <div class="form-group">
             <label>Address2</label>
-            <input type="text" class="form-control" id="address2" placeholder="Address2">
+            <input type="text" class="form-control" id="address2" placeholder="Address2" value="{{settingCtrl.Locate.address2}}">
           </div>
           <div class="form-group">
             <label>Province</label>
-            <input type="text" class="form-control" id="province" placeholder="Provnice" value="{{settingCtrl.Local.province}}">
+            <input type="text" class="form-control" id="province" placeholder="Provnice" value="{{settingCtrl.Locate.province}}">
           </div>
           <div class="form-group">
             <label>Zip Code</label>
-            <input type="text" class="form-control" id="zipcode" placeholder="Zip Code">
+            <input type="text" class="form-control" id="zipcode" placeholder="Zip Code" value="{{settingCtrl.Locate.zipcode}}">
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" value="{{settingCtrl.Locate.telephone_number}}">
           </div>
         </uib-tab>
         <uib-tab heading="Card ID">
           <div class="form-group">
             <label>Card Holder's Name</label>
-            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name">
+            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name" value="{{settingCtrl.Locate.card_name}}">
           </div>
           <div class="form-group">
             <label>Card Number</label>
-            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" value="{{settingCtrl.Locate.card_number}}">
           </div>
           <div class="form-group">
             <label>Expiration Date</label>
-            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date">
+            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date" value="{{settingCtrl.Locate.expirationDate}}">
           </div>
         </uib-tab>
       </uib-tabset>
       <div class="text-center">
-        <button type="submit" class="btn btn-lg btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="settingCtrl.submit()">Edit Profile</button>
       </div>
     </form>
   </div>
