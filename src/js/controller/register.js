@@ -102,7 +102,7 @@
         //   message: msg
         // })
         // $state.transitionTo('login')
-        // self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
+          self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         }, function (response) {
           var msg = '<span><b>Registration not possible </b> ' + response.description + '.</span>'
           notification.error({
