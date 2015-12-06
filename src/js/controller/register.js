@@ -93,7 +93,7 @@
         (self.checkEmail(self.member.email)) &&
         (self.member.firstname !== '') && (self.member.lastname !== '')) {
         if (self.num1 && self.num2 && self.num3 && self.num4) {
-          self.member.card_number = self.num1 + '-' + self.num2 + '-' + self.num3 + '-' + self.num4
+          self.member.card_number = self.num1 + self.num2 + self.num3 + self.num4
         }
         registerService.regis(function (response) {
           console.log('Submit regis')
