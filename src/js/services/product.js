@@ -10,8 +10,8 @@
     .module('services.product', [])
     .service('productService', productService)
 
-  productService.$inject = ['$http', 'environment']
-  function productService ($http, environment) {
+  productService.$inject = ['$http']
+  function productService ($http) {
     var self = this
     self.valid = true
     self.product = {
@@ -45,7 +45,7 @@
         name: self.product.productName,
         price: self.product.price,
         description: self.product.description,
-        dimensionDescription: self.product.dimensionDescription,
+        dimensionDescription: self.product.dimensionDescription
       }).success(success).error(error)
     }
     self.addproduct2 = function (success, error) {
