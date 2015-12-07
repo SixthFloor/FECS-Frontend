@@ -25,7 +25,11 @@
 
     self.search = function (query) {
       searchService.setQuery(query)
-      $state.transitionTo('category', {category_name: 'search'}, {reload: true})
+      if (!$state.is('category')) {
+        $state.transitionTo('category', {category_name: 'search'}, {reload: true})
+      } else {
+        $scope.productList.getProductList('search')
+      }
     }
   }
 })()

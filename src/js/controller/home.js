@@ -31,9 +31,10 @@
 
   }
 
-  AppController.$inject = ['$scope', 'environment', 'User']
-  function AppController ($scope, environment, User) {
+  AppController.$inject = ['$scope', 'environment', 'User', 'productList']
+  function AppController ($scope, environment, User, productList) {
     $scope.environment = environment
     $scope.User = User
+    $scope.productList = productList
   }
 })()

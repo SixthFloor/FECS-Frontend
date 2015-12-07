@@ -35,10 +35,9 @@ every controller that have to identify the customer, authentication service has 
           data: {
             token: self.getToken()
           },
-          url: 'http://128.199.133.224/api/authentication/token'
+          url: environment.getBaseAPI() + 'authentication/token'
         }
         $http(req).then(function (res) {
-          console.log(res)
           var response = res.data
           if (response.status === 'error') {
             console.log('error')
@@ -47,8 +46,6 @@ every controller that have to identify the customer, authentication service has 
             self.setLastname(response.user.lastName)
             self.setEmail(response.user.email)
             self.setRole(response.role.name)
-            console.log('success')
-            console.log(self)
             var req = {
               method: 'GET',
               url: environment.getBaseAPI() + 'user/' + self.email
@@ -58,7 +55,6 @@ every controller that have to identify the customer, authentication service has 
               if (response.status === 'error') {
                 console.log('error')
               } else {
-                console.log(response)
                 self.setUserID(response.id)
                 self.setAddress1(response.address1)
                 self.setAddress2(response.address2)
@@ -162,7 +158,7 @@ every controller that have to identify the customer, authentication service has 
         if (response.status === 'error') {
           error({error: response.message})
         } else {
-          initUser(response)
+          initUser()
           self.setToken(response.token)
           Cart.init()
           success()

@@ -40,7 +40,7 @@ a:focus, a:hover {
 .custom-wrapper {
     min-height: 100%;
 }
-[ui-view].ng-enter, [ui-view].ng-leave {
+[ui-view].ng-enter, [ui-view].ng-leavee {
   position: absolute;
   top: 66px;
   bottom: 50px;
@@ -48,14 +48,21 @@ a:focus, a:hover {
   right: 0;
   width: 100%;
   height: 100%;
-  -webkit-transition: opacity .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  -o-transition: opacity .5s ease-in-out;
-  transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -o-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
   .login-bg {
     top: -66px;
     bottom: -50px;
   }
+}
+
+.productList.ng-enter, .productList.ng-leave {
+  -webkit-transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -o-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
 }
 
 [ui-view].ng-enter {

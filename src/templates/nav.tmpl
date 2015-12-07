@@ -4,15 +4,15 @@
       <a class="navbar-brand" ui-sref="home">SЇxthFloor</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
-      <form ng-submit="navbarCtrl.search(query)" class="navbar-form navbar-left" role="search">
-         <div class="form-search search-only">
+      <form name="search" class="navbar-form navbar-left" role="search">
+          <div class="form-search search-only">
             <i class="search-icon-custom glyphicon glyphicon-search"></i>
             <input type="text" ng-model="query"
-            class="form-control search-field " maxlength="50" placeholder="Type to Search...">
+            class="form-control search-field" ng-change="navbarCtrl.search(query)" maxlength="50" placeholder="Type to Search..." required>
           </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="User.isAuthed">
+        <li ng-if="User.isAuthed()">
           <a ui-sref="cart">
             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
             <span class="badge badge-notify" ng-show="navbarCtrl.Cart.getItemList().length != 0">
