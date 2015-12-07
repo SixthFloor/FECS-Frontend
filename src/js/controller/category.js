@@ -25,7 +25,19 @@
     self.category_name = $stateParams.category_name
 
     self.init = function () {
-      $scope.productList.getProductList(self.category_name)
+      //  API path
+      self.url = ''
+      if (self.category_name === 'search') {
+        self.url = $scope.environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
+      }
+      else if (self.category_name !== 'all') {
+        self.url = $scope.environment.getBaseAPI() + 'category/product/' + self.category_name
+      }
+      else self.url = $scope.environment.getBaseAPI() + 'product/all'
+
+      $http.get(self.url).success(function (response) {
+        self.productList = response
+      })
     }
 
     self.viewProduct = function (id) {
@@ -47,6 +59,46 @@
       $state.transitionTo('addproduct')
     }
 
+    self.clear = function () {
+      console.log('clear')
+      self.price = 0
+      self.init()
+    }
+
+    self.filterPrice = function () {
+      console.log('filter price')
+      $http.get(self.url).success(function (response) {
+        self.productList = response
+      }).then(function(response) {
+        var list = self.productList
+        var filter = []
+        for (var i = 0; i < list.length; i++) {
+          switch (self.price) {
+            case '1':
+              if(list[i].price < 1000) {
+                filter.push(list[i])
+              }
+            break
+            case '2':
+              if(list[i].price >= 1000 && list[i].price <= 5000) {
+                filter.push(list[i])
+              }
+            break
+            case '3':
+              if(list[i].price >= 5000 && list[i].price <= 10000) {
+                filter.push(list[i])
+              }
+            break
+            case '4':
+              if(list[i].price > 10000) {
+                filter.push(list[i])
+              }
+            break
+          }
+        }
+        self.productList = filter
+      })
+    }
     self.init()
   }
 })()
