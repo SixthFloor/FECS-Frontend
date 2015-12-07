@@ -18,14 +18,13 @@
 
     self.getProductList = function (type) {
       var url = ''
-      if (type === 'search') {
+      if (type === 'search' && searchService.getSearchQuery()) {
         url = environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
       } else if (type !== 'all') {
         url = environment.getBaseAPI() + 'category/product/' + type
       } else {
         url = environment.getBaseAPI() + 'product/all'
       }
-      console.log(url)
       $http.get(url).success(function (response) {
         self.products = response
       })
