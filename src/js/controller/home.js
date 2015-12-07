@@ -10,7 +10,6 @@
   angular
     .module('controller.homepage', ['ngAnimate'])
     .controller('HomePageController', HomePageController)
-    .controller('AppController', AppController)
 
   HomePageController.$inject = ['$scope']
   function HomePageController ($scope) {
@@ -29,12 +28,5 @@
       }
     ]
 
-  }
-
-  AppController.$inject = ['$scope', 'environment', 'User', 'productList']
-  function AppController ($scope, environment, User, productList) {
-    $scope.environment = environment
-    $scope.User = User
-    $scope.productList = productList
   }
 })()

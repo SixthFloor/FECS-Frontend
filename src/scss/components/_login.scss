@@ -13,17 +13,17 @@ $white:	#000 !default;
   z-index: 3;
 }
 .login-bg {
-  // background-position: 0% -20px;
+  background-position: 0% -20px;
   background-image: url(../img/home-page/image-2.jpg);
   background-repeat: no-repeat;
   -webkit-background-size: 105%;
   -moz-background-size: 105%;
   -o-background-size: 105%;
-  background-size: 105% 105%;
+  background-size: 105%;
   background-position-x: center;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px);
   top: 0;
   left: 0;
   z-index: -1;

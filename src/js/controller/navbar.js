@@ -11,21 +11,18 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', '$http', '$state', 'Cart', 'searchService']
-  function NavbarController ($scope, $http, $state, Cart, searchService) {
+  NavbarController.$inject = ['$scope', '$http', 'User', 'Cart']
+  function NavbarController ($scope, $http, User, Cart) {
     var self = this
 
+    self.isAuthed = User.isAuthed()
+    self.User = User
     self.Cart = Cart
 
-    if ($scope.User.isAuthed()) {
-      $http.defaults.headers.common['Authorization'] = $scope.User.getToken()
+    if (User.isAuthed()) {
+      $http.defaults.headers.common['Authorization'] = User.getToken()
     } else {
       delete $http.defaults.headers.common['Authorization']
-    }
-
-    self.search = function (query) {
-      searchService.setQuery(query)
-      $state.transitionTo('category', {category_name: 'search'}, {reload: true})
     }
   }
 })()

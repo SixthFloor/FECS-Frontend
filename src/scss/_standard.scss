@@ -40,17 +40,10 @@ a:focus, a:hover {
 .custom-wrapper {
     min-height: 100%;
 }
-<<<<<<< HEAD
-[ui-view].ng-enter, [ui-view].ng-leavee {
-  position: absolute;
-  top: 66px;
-  bottom: 50px;
-=======
 [ui-view].ng-enter, [ui-view].ng-leave {
   position: absolute;
   top: 0;
   bottom: 0;
->>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
   left: 0;
   right: 0;
   width: 100%;
@@ -59,13 +52,6 @@ a:focus, a:hover {
   -moz-transition: opacity .5s ease-in-out;
   -o-transition: opacity .5s ease-in-out;
   transition: opacity .5s ease-in-out;
-  .login-bg {
-    top: -66px;
-    bottom: -50px;
-  }
-}
-
-.productList.ng-enter, .productList.ng-leave {
 }
 
 [ui-view].ng-enter {
