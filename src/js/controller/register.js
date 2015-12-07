@@ -20,7 +20,7 @@
 
     self.moveElement = $('.timeline>dl')
     self.height = self.moveElement.height() + 40
-
+    console.log($('.timeline>dl'))
     self.moveElement.resize(function () {
       self.height = self.moveElement.height() + 40
     })
@@ -92,23 +92,23 @@
         (self.member.password.length >= 8 && self.member.confirmpassword.length >= 8) &&
         (self.checkEmail(self.member.email)) &&
         (self.member.firstname !== '') && (self.member.lastname !== '')) {
+        if (self.num1 && self.num2 && self.num3 && self.num4) {
+          self.member.card_number = self.num1 + self.num2 + self.num3 + self.num4
+        }
         registerService.regis(function (response) {
           console.log('Submit regis')
-          if (response.status === 'error') {
-            var msg = '<span><b>Registration not possible </b> ' + response.message + '.</span>'
-            notification.error({
-              message: msg,
-              replaceMessage: true
-            })
-          } else {
-            // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
-            // notification.success({
-            //   message: msg
-            // })
-            // $state.transitionTo('login')
-            self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
-          }
+        // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
+        // notification.success({
+        //   message: msg
+        // })
+        // $state.transitionTo('login')
+          self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         }, function (response) {
+          var msg = '<span><b>Registration not possible </b> ' + response.description + '.</span>'
+          notification.error({
+            message: msg,
+            replaceMessage: true
+          })
           console.log(response)
         })
       } else {

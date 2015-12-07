@@ -11,8 +11,8 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', '$http', 'Cart']
-  function NavbarController ($scope, $http, Cart) {
+  NavbarController.$inject = ['$scope', '$http', '$state', 'User', 'Cart', 'environment', 'searchService']
+  function NavbarController ($scope, $http, $state, User, Cart, environment, searchService) {
     var self = this
 
     self.Cart = Cart
@@ -21,6 +21,11 @@
       $http.defaults.headers.common['Authorization'] = $scope.User.getToken()
     } else {
       delete $http.defaults.headers.common['Authorization']
+    }
+
+    self.search = function (query) {
+      searchService.setQuery(query)
+      $state.transitionTo('category', {category_name: 'search'}, {reload: true})
     }
   }
 })()

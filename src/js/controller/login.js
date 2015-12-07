@@ -36,7 +36,7 @@
           message: msg
         })
       }, function (err) {
-        var msg = '<span><b>Oh snap!</b> ' + err.error + '.</span>'
+        var msg = '<span><b>Login Failed</b> ' + err.error.description + '.</span>'
         notification.error({
           message: msg,
           replaceMessage: true

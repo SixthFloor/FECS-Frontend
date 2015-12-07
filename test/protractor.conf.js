@@ -2,17 +2,19 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
+  specs: ['protractor_test/in-progress/test_ViewFurnitureCategory.js'],
 
-  specs: ['protractor_test/test_LoginAsMember.js'],
+  capabilities: { 
+    browserName: 'chrome'
+  },
 
-  multiCapabilities: [{
-      // browserName: 'firefox'
-    }, {
-      browserName: 'chrome'
-    }
-  ],
+  // multiCapabilities: [{
+  //     browserName: 'firefox'
+  //   }, {
+  //     browserName: 'chrome'
+  // }],
 
-  baseUrl: 'http://localhost:8080/app/',
+  // baseUrl: 'http://localhost:8080/app/',
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 180000

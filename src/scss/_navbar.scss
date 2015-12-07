@@ -28,7 +28,7 @@
             text-transform: uppercase;
             transition: color .3s;
             font-weight: 400;
-        } 
+        }
     }
     li:before {
         content: "";
@@ -173,7 +173,7 @@
     overflow: hidden;
     z-index: 777;
     top: 65px;
-    border-radius: 0px; 
+    border-radius: 0px;
     box-shadow: none;
     .subcategory {
         float: left;
@@ -224,7 +224,7 @@
                 color: #969696;
             }
         }
-    } 
+    }
 }
 .account {
     top: 65px;
@@ -237,7 +237,7 @@
     z-index: 777;
     padding: 0;
     margin-right: -1px;
-    border-radius: 0px; 
+    border-radius: 0px;
     box-shadow: none;
     li {
         float: left;
@@ -274,7 +274,7 @@
     }
     .profile {
         max-width: 320px;
-        margin: 0 auto;    
+        margin: 0 auto;
         background: #ECECEC;
         display: block;
         padding: 5px 15px 5px;
@@ -288,9 +288,9 @@
             letter-spacing: 2px;
             font-weight: 400;
             width: 100%;
-            text-align: left;    
+            text-align: left;
             text-transform: uppercase;
-            overflow: hidden; 
+            overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }

@@ -4,18 +4,19 @@
       <a class="navbar-brand" ui-sref="home">SЇxthFloor</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
-      <form class="navbar-form navbar-left" role="search">
+      <form ng-submit="navbarCtrl.search(query)" class="navbar-form navbar-left" role="search">
          <div class="form-search search-only">
             <i class="search-icon-custom glyphicon glyphicon-search"></i>
-            <input type="text" class="form-control search-field " maxlength="50" placeholder="Type to Search...">
+            <input type="text" ng-model="query"
+            class="form-control search-field " maxlength="50" placeholder="Type to Search...">
           </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li ng-if="navbarCtrl.isAuthed">
           <a ui-sref="cart">
-            <i class="glyphicon glyphicon-shopping-cart"></i> Cart 
-            <span class="badge badge-notify" ng-show="navbarCtrl.Cart.itemList.length != 0">
-              {{navbarCtrl.Cart.itemList.length}}
+            <i class="glyphicon glyphicon-shopping-cart"></i> Cart
+            <span class="badge badge-notify" ng-show="navbarCtrl.Cart.getItemList().length != 0">
+              {{navbarCtrl.Cart.getQuantity()}}
             </span>
           </a>
         </li>
@@ -54,7 +55,7 @@
                 <a ui-sref="category({category_name: 'Living Room'})">
                   <i class="icon-armchair-chair-streamline"></i>Living room
                 </a>
-              </li>        
+              </li>
             </div>
           </ul>
         </li>
@@ -77,9 +78,12 @@
           </a>
           <ul class="dropdown-menu account">
             <div class="profile">
-              <h4><i class="fa fa-user"></i> {{User.firstname}} {{User.lastname}}</h4>
+              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}<span ng-if="navbarCtrl.User.isAdmin()"> <b>({{navbarCtrl.User.role}})</b></span></h4>
             </div>
             <div class="menu">
+              <li>
+                <a href="#/order"><i class="fa fa-list-ul"></i> Order History </a>
+              </li>
               <li>
                 <a href="#"><i class="fa fa-cog"></i> Setting </a>
               </li>

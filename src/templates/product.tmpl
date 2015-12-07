@@ -10,22 +10,34 @@
       <div class="row text-center">
         <hr><h1>{{productpageCtrl.product.name}}</h1><hr>
       </div>
-      <div class="product">
-        <div class="product-left">
-          <img src={{productpageCtrl.product.images[0].link}} ng-if="productpageCtrl.product.images.length > 0">
-          <img src='http://placehold.it/400x400' ng-if="productpageCtrl.product.images.length == 0">
-        </div>
-        <div class="product-right col-md-4 box-container">
-          <h2>฿{{productpageCtrl.product.price}}</h2>
-          <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
-          <label>In Stock</label>
-          <form class="form-inline margin-5">
-            <div class="form-group">
-              <label >Quantity</label>
-              <input ng-model="quantity"  ng-init="quantity=1" type="number" class="form-control"/>
+        <div class="product">
+          <div class="product-left">
+            <img src={{productpageCtrl.product.images[0].link}} ng-if="productpageCtrl.product.images.length > 0">
+            <img src='http://placehold.it/400x400' ng-if="productpageCtrl.product.images.length == 0">
+          </div>
+          <div class="product-right col-md-4 box-container">
+            <h2>฿{{productpageCtrl.product.price}}</h2>
+            <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
+            <div ng-if="productpageCtrl.product.quantity != 0">
+              <h5>In Stock: {{productpageCtrl.product.quantity}}</h5>
+              <form class="form-inline margin-5">
+                <div class="form-group">
+                  <label >Quantity:</label>
+                  <input ng-model="quantity"  ng-init="quantity=1"
+                  min="1" max={{productpageCtrl.product.quantity}} type="number" class="form-control"/>
+                </div>
+              </form><br/>
+              <button ng-if="productpageCtrl.User.isAuthed()" ng-click="productpageCtrl.addToCart(quantity)"
+              class="add-btn" name="">Add to Cart</button>
+              <button ng-if="!productpageCtrl.User.isAuthed()" ui-sref="login"
+              class="add-btn" name="">Add to Cart</button>
             </div>
-          </form><br/>
-          <button ng-click="productpageCtrl.addToCart(quantity)" class="btn btn-primary" name="">Add to Cart</button>
+            <div ng-if="productpageCtrl.product.quantity == 0">
+              <p class="outofstock">
+                OUT OF STOCK
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="product-info box-container">

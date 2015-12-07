@@ -16,7 +16,7 @@
   ProductPageController.$inject = ['$scope', '$http', '$stateParams', 'Cart']
   function ProductPageController ($scope, $http, $stateParams, Cart) {
     var self = this
-
+    self.User = User
     // API path
     var url = $scope.environment.getBaseAPI() + 'product/' + $stateParams.product_id
 
@@ -78,6 +78,12 @@
       if ((self.product.productName !== '') && (self.product.price !== '') &&
         (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
+        if (self.product.description === '') {
+          self.product.description = '-'
+        }
+        if (self.product.dimensionDescription === '') {
+          self.product.dimensionDescription = '-'
+        }
         productService.addproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
@@ -90,6 +96,7 @@
             self.product.id = response.id
             productService.addproduct2(function (response2) {
               console.log(response2)
+              productService.clearProduct()
             }, function (response2) {
               console.log(response2)
             })
@@ -198,8 +205,14 @@
 
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
-        (self.product.category !== '') && (self.product.subcategory !== '')) {
+        (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
+        if (self.product.description === '') {
+          self.product.description = '-'
+        }
+        if (self.product.dimensionDescription === '') {
+          self.product.dimensionDescription = '-'
+        }
         productService.editproduct(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'

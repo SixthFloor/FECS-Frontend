@@ -11,61 +11,47 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', ['LocalStorageModule'])
     .service('User', User)
 
-  User.$inject = ['localStorageService', '$http']
-  function User (localStorageService, $http) {
+  User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
+  function User (localStorageService, $http, environment, Cart) {
     var self = this
+    self.user_id = ''
     self.email = ''
     self.firstname = ''
     self.lastname = ''
+    self.address1 = ''
+    self.address2 = ''
+    self.province = ''
+    self.zipcode = ''
+    self.telephone_number = ''
+    self.card_name = ''
+    self.expirationDate = ''
+    self.card_number = ''
     self.role = ''
 
-    function initUser () {
-      if (self.isAuthed()) {
-        var req = {
-          method: 'POST',
-          data: {
-            token: self.getToken()
-          },
-          url: 'http://128.199.133.224/api/authentication/token'
-        }
-        $http(req).then(function (res) {
-          console.log(res)
-          var response = res.data
-          if (response.status === 'error') {
-            console.log('error')
-          } else {
-            self.setFirstname(response.user.firstName)
-            self.setLastname(response.user.lastName)
-            self.setEmail(response.user.email)
-            self.setRole(response.role.name)
-            console.log('success')
-            console.log(self)
-          }
-        }, function (err) {
-          console.log(err)
-        })
-      }
+    function initUser (response) {
+      self.user_id = response.user.id
+      self.firstname = response.user.firstName
+      self.lastname = response.user.lastName
+      self.email = response.user.email
+      self.address1 = response.user.address1
+      self.address2 = response.user.address2
+      self.province = response.user.province
+      self.zipcode = response.user.zipcode
+      self.telephone_number = response.user.telephone_number
+      self.card_name = response.user.card_name
+      self.expirationDate = response.user.expirationDate
+      self.card_number = response.user.card_number
+      self.setRole(response.role.name)
+      console.log(self)
     }
 
     self.isAuthed = function () {
-      if (self.getToken()) return true
+      if (self.getToken() && self.user_id != '') return true
       else return false
     }
 
     self.isAdmin = function () {
       return (self.role === 'owner' || self.role === 'staff' || self.role === 'admin')
-    }
-
-    self.setEmail = function (email) {
-      self.email = email
-    }
-
-    self.setFirstname = function (firstname) {
-      self.firstname = firstname
-    }
-
-    self.setLastname = function (lastname) {
-      self.lastname = lastname
     }
 
     self.setRole = function (role) {
@@ -74,10 +60,6 @@ every controller that have to identify the customer, authentication service has 
 
     self.setToken = function (token) {
       localStorageService.set('authToken', token)
-    }
-
-    self.getEmail = function () {
-      return self.email
     }
 
     self.getToken = function () {
@@ -89,21 +71,19 @@ every controller that have to identify the customer, authentication service has 
       var req = {
         method: 'POST',
         data: {
-          email: data.email,
+          email: angular.lowercase(data.email),
           password: data.pwd
         },
-        url: 'http://128.199.133.224/api/authentication/login'
+        url: environment.getBaseAPI() + 'authentication/login'
       }
       $http(req).then(function (res) {
         var response = res.data
         if (response.status === 'error') {
           error({error: response.message})
         } else {
-          self.setFirstname(response.user.firstName)
-          self.setLastname(response.user.lastName)
-          self.setEmail(response.user.email)
+          initUser(response)
           self.setToken(response.token)
-          self.setRole(response.role.name)
+          Cart.init()
           success()
         }
       }, function (err) {
@@ -113,11 +93,20 @@ every controller that have to identify the customer, authentication service has 
 
     self.logout = function () {
       localStorageService.remove('authToken')
-      self.setEmail('')
+      Cart.clear()
+      self.user_id = ''
+      self.email = ''
+      self.firstname = ''
+      self.lastname = ''
+      self.address1 = ''
+      self.address2 = ''
+      self.province = ''
+      self.zipcode = ''
+      self.telephone_number = ''
+      self.card_name = ''
+      self.expirationDate = ''
+      self.card_number = ''
       self.setRole('')
-      self.setFirstname('')
-      self.setLastname('')
     }
-    initUser()
   }
 })()

@@ -1,50 +1,52 @@
 <div class="container">
   <div class="timeline">
     <div class="overlay"></div>
-    <div class="events events-left regis-s1">
-      <div class="content"></div>
-      <div class="overlay"></div>
-    </div>
-    <dl>
-      <dt>Register</dt>
-      <dd class="pos-right clearfix">
-        <div class="circ"></div>
-        <div class="time">Step 1</div>
-        <div class="events">
-          <div class="events-body">
-            <h4 class="events-heading">Account ЇnformΛtЇon</h4>
-            <p>
-              <form name="registerForm" class="form-horizontal" role="form">
-                <div class="form-group">
-                  <span class="require-star">*</span>
-                  <label class="control-label col-sm-3" for="email">E-mail</label>
-                  <div class="col-sm-7">
-                    <input type="email" name="memberEmail" class="form-control" placeholder="ENTER YOUR E-MAIL" ng-model="registerCtrl.member.email">
-                    <div class="alert alert-danger" ng-show="!registerCtrl.checkEmail(registerCtrl.member.email) &&
-                  (registerCtrl.member.email != '')">
-                      <strong>Re-enter</strong> E-mail address is not valid
+      <div class="events events-left regis-s1">
+        <div class="content"></div>
+        <div class="overlay"></div>
+      </div>
+      <dl>
+        <dt>Register</dt>
+        <dd class="pos-right clearfix">
+          <div class="circ"></div>
+          <div class="time">Step 1</div>
+          <div class="events">
+            <div class="events-body">
+              <h4 class="events-heading">Account ЇnformΛtЇon</h4>
+              <p>
+                <form name="registerForm" class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <span class="require-star">*</span>
+                    <label class="control-label col-sm-3" for="email">E-mail</label>
+                    <div class="col-sm-7">
+                      <input type="email" name="memberEmail" class="form-control"
+                      placeholder="ENTER YOUR E-MAIL" ng-model="registerCtrl.member.email" required>
+                      <div class="alert alert-danger" ng-show="!registerCtrl.checkEmail(registerCtrl.member.email) &&
+                    (registerCtrl.member.email != '')">
+                        <strong>Re-enter</strong> E-mail address is not valid
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <span class="require-star">*</span>
-                  <label class="control-label col-sm-3" for="pwd">Password</label>
-                  <div class="col-sm-7">
-                    <input type="password" class="form-control" placeholder="ENTER PASSWORD"
-                    maxlength="20" ng-model="registerCtrl.member.password">
+                  <div class="form-group">
+                    <span class="require-star">*</span>
+                    <label class="control-label col-sm-3" for="pwd">Password</label>
+                    <div class="col-sm-7">
+                      <input type="password" name="pass" class="form-control" placeholder="ENTER PASSWORD"
+                      maxlength="20" ng-model="registerCtrl.member.password" required>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <span class="require-star">*</span>
-                  <label class="control-label col-sm-3" maxlength="20" for="pwd">Confirm password</label>
-                  <div class="col-sm-7">
-                    <input type="password" class="form-control" placeholder="RE-ENTER PASSWORD"
-                    maxlength="20" ng-model="registerCtrl.member.confirmpassword">
+                  <div class="form-group">
+                    <span class="require-star">*</span>
+                    <label class="control-label col-sm-3" maxlength="20" for="pwd">Confirm password</label>
+                    <div class="col-sm-7">
+                      <input type="password" name="repass"class="form-control" placeholder="RE-ENTER PASSWORD"
+                      maxlength="20" ng-model="registerCtrl.member.confirmpassword">
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="alert alert-danger col-sm-4 col-sm-offset-2" ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password">
-                    <strong>Re-enter</strong> Password does not match
+                  <div class="row">
+                    <div class="alert alert-danger col-sm-4 col-sm-offset-2"
+                    ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password && registerCtrl.member.confirmpassword.length > 0">
+                      <strong>Re-enter</strong> Password does not match
                   </div>
                 </div>
                 <div class="row">
@@ -131,75 +133,75 @@
             </p>
           </div>
         </div>
-      </dd>
-      <dd class="pos-right clearfix">
-        <div class="circ"></div>
-        <div class="time">Step 3</div>
-        <div class="events">
-          <div class="events-body">
-            <h4 class="events-heading">Credit Card Information</h4>
-            <p>
-              <form class="form-horizontal" role="form">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
-                      <div class="col-sm-7">
-                        <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="card-number">Card number</label>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
-                      <div class="col-sm-9">
-                        <div class="row">
-                          <div class="col-xs-2">
-                            <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                              <option>Month</option>
-                              <option value="01">Jan</option>
-                              <option value="02">Feb</option>
-                              <option value="03">Mar</option>
-                              <option value="04">Apr</option>
-                              <option value="05">May</option>
-                              <option value="06">Jun</option>
-                              <option value="07">Jul</option>
-                              <option value="08">Aug</option>
-                              <option value="09">Sep</option>
-                              <option value="10">Oct</option>
-                              <option value="11">Nov</option>
-                              <option value="12">Dec</option>
-                            </select>
-                          </div>
-                          <div class="col-xs-2">
-                            <select class="form-control" name="expiry-year">
-                              <option value="13">2013</option>
-                              <option value="14">2014</option>
-                              <option value="15">2015</option>
-                              <option value="16">2016</option>
-                              <option value="17">2017</option>
-                              <option value="18">2018</option>
-                              <option value="19">2019</option>
-                              <option value="20">2020</option>
-                              <option value="21">2021</option>
-                              <option value="22">2022</option>
-                              <option value="23">2023</option>
-                            </select>
-                          </div>
+        </dd>
+        <dd class="pos-right clearfix">
+          <div class="circ"></div>
+          <div class="time">Step 3</div>
+          <div class="events">
+            <div class="events-body">
+              <h4 class="events-heading">Credit Card Information</h4>
+              <p>
+                <form class="form-horizontal" role="form">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
+                        <div class="col-sm-7">
+                          <input type="text" class="form-control" name="card-holder-name"
+                          id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD"
+                          ng-model="registerCtrl.member.card_name">
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="card-number">Card number</label>
+                        <div class="col-sm-1">
+                            <input type="text" maxlength="4" class="form-control"
+                            ng-model="registerCtrl.num1" name="card-number" placeholder="XXXX"></input>
+                        </div>
+                        <div class="col-sm-1">
+                            <input type="text" maxlength="4" class="form-control"
+                            ng-model="registerCtrl.num2" name="card-number" placeholder="XXXX"></input>
+                        </div>
+                        <div class="col-sm-1">
+                            <input type="text" maxlength="4" class="form-control"
+                            ng-model="registerCtrl.num3" name="card-number" placeholder="XXXX"></input>
+                        </div>
+                        <div class="col-sm-1">
+                            <input type="text" maxlength="4" class="form-control"
+                            ng-model="registerCtrl.num4" name="card-number" placeholder="XXXX"></input>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
+                        <div class="col-sm-9">
+                          <!-- <input type="month" ng-model="registerCtrl.member.expirationDate"> -->
+                          <select ng-model="registerCtrl.member.expirationDate.month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select ng-model="registerCtrl.member.expirationDate.year">
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                          </select>
+                        </div>
                     </div>
                   </fieldset>
                 </form>
@@ -233,7 +235,12 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Address</div>
-                      <div class="col-sm-7">{{registerCtrl.member.address}}</div>
+                      <div class="col-sm-7">
+						<p>{{registerCtrl.member.adr1}}</p>
+                         <p>{{registerCtrl.member.adr2}}</p>
+                         <p>{{registerCtrl.member.province}}</p>
+                         <p>{{registerCtrl.member.zip}}</p>
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Phone number</div>
@@ -256,4 +263,3 @@
       </dd>
     </dl>
   </div>
-</div>
