@@ -27,9 +27,9 @@
                   min="1" max={{productpageCtrl.product.quantity}} type="number" class="form-control"/>
                 </div>
               </form><br/>
-              <button ng-if="productpageCtrl.User.isAuthed()" ng-click="productpageCtrl.addToCart(quantity)"
+              <button ng-if="User.isAuthed()" ng-click="productpageCtrl.addToCart(quantity)"
               class="add-btn" name="">Add to Cart</button>
-              <button ng-if="!productpageCtrl.User.isAuthed()" ui-sref="login"
+              <button ng-if="!User.isAuthed()" ui-sref="login"
               class="add-btn" name="">Add to Cart</button>
             </div>
             <div ng-if="productpageCtrl.product.quantity == 0">
