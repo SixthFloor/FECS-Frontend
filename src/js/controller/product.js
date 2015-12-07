@@ -13,12 +13,11 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
-  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart', 'environment']
-  function ProductPageController ($scope, $http, User, $stateParams, Cart, environment) {
+  ProductPageController.$inject = ['$scope', '$http', '$stateParams', 'Cart']
+  function ProductPageController ($scope, $http, $stateParams, Cart) {
     var self = this
-    self.User = User
     // API path
-    var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
+    var url = $scope.environment.getBaseAPI() + 'product/' + $stateParams.product_id
 
     $http.get(url).success(function (response) {
       console.log(response)
@@ -33,15 +32,15 @@
     }
   }
 
-  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User', '$state', 'environment']
-  function AddProductController ($scope, $http, productService, notification, User, $state, environment) {
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', '$state']
+  function AddProductController ($scope, $http, productService, notification, $state) {
     var self = this
     self.product = productService.product
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
     // Get all categories
-    $http.get(environment.getBaseAPI() + 'category/all').success(function (response) {
+    $http.get($scope.environment.getBaseAPI() + 'category/all').success(function (response) {
       if (response.status !== 'error') {
         self.categoryList = response
       } else {
@@ -64,7 +63,7 @@
     }
     // Get subcategories from category
     self.getSubcat = function () {
-      $http.get(environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
+      $http.get($scope.environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
         } else {
@@ -116,8 +115,8 @@
     }
   }
 
-  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService', '$state', 'environment']
-  function EditProductController ($scope, $http, User, $stateParams, notification, productService, $state, environment) {
+  EditProductController.$inject = ['$scope', '$http', '$stateParams', 'Notification', 'productService', '$state']
+  function EditProductController ($scope, $http, $stateParams, notification, productService, $state) {
     console.log($stateParams.product_id)
     var self = this
     self.product = productService.product
@@ -128,7 +127,7 @@
     self.oldSubcat = null
 
     // Get all categories
-    $http.get(environment.getBaseAPI() + 'category/all').success(function (response) {
+    $http.get($scope.environment.getBaseAPI() + 'category/all').success(function (response) {
       if (response.status !== 'error') {
         self.categoryList = response
       } else {
@@ -139,7 +138,7 @@
     })
     // Get subcategories from category
     self.getSubcat = function () {
-      $http.get(environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
+      $http.get($scope.environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
           if ( self.oldSubcat !== null) {
@@ -164,7 +163,7 @@
     }
 
     // path of real API
-    var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
+    var url = $scope.environment.getBaseAPI() + 'product/' + $stateParams.product_id
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
@@ -180,7 +179,7 @@
           self.errorMessage = 'Error: Furniture not found'
         }
       })
-      url = environment.getBaseAPI() + 'catalog/' + $stateParams.product_id
+      url = $scope.environment.getBaseAPI() + 'catalog/' + $stateParams.product_id
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           self.catalogID = response[0].id
@@ -250,7 +249,7 @@
             message: msg
           })
 
-          var url = environment.getBaseAPI() + 'product/delete'
+          var url = $scope.environment.getBaseAPI() + 'product/delete'
           $http.delete(url, {
             serialNumber: self.product.serialNumber
           })

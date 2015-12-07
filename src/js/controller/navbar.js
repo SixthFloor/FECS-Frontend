@@ -11,16 +11,14 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', '$http', '$state', 'User', 'Cart', 'environment', 'searchService']
-  function NavbarController ($scope, $http, $state, User, Cart, environment, searchService) {
+  NavbarController.$inject = ['$scope', '$http', '$state', 'Cart', 'searchService']
+  function NavbarController ($scope, $http, $state, Cart, searchService) {
     var self = this
 
-    self.isAuthed = User.isAuthed()
-    self.User = User
     self.Cart = Cart
 
-    if (User.isAuthed()) {
-      $http.defaults.headers.common['Authorization'] = User.getToken()
+    if ($scope.User.isAuthed()) {
+      $http.defaults.headers.common['Authorization'] = $scope.User.getToken()
     } else {
       delete $http.defaults.headers.common['Authorization']
     }

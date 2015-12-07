@@ -12,7 +12,7 @@
           </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="navbarCtrl.isAuthed">
+        <li ng-if="User.isAuthed">
           <a ui-sref="cart">
             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
             <span class="badge badge-notify" ng-show="navbarCtrl.Cart.getItemList().length != 0">
@@ -59,7 +59,7 @@
             </div>
           </ul>
         </li>
-        <li class="dropdown" ng-if="!navbarCtrl.isAuthed">
+        <li class="dropdown" ng-if="!User.isAuthed()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Account <span class="glyphicon glyphicon-chevron-down"></span>
           </a>
@@ -72,13 +72,13 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown" ng-if="navbarCtrl.isAuthed">
+        <li class="dropdown" ng-if="User.isAuthed()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Profile <span class="glyphicon glyphicon-chevron-down"></span>
           </a>
           <ul class="dropdown-menu account">
             <div class="profile">
-              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}<span ng-if="navbarCtrl.User.isAdmin()"> <b>({{navbarCtrl.User.role}})</b></span></h4>
+              <h4><i class="fa fa-user"></i> {{User.firstname}} {{User.lastname}}<span ng-if="User.isAdmin()"> <b>({{User.role}})</b></span></h4>
             </div>
             <div class="menu">
               <li>
