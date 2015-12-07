@@ -11,8 +11,8 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', '$http', '$state', 'User', 'Cart', 'environment', 'searchService']
-  function NavbarController ($scope, $http, $state, User, Cart, environment, searchService) {
+  NavbarController.$inject = ['$scope', '$http', '$state', 'Cart', 'searchService']
+  function NavbarController ($scope, $http, $state, Cart, searchService) {
     var self = this
 
     self.Cart = Cart
