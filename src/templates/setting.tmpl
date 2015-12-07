@@ -1,66 +1,66 @@
 <navbar></navbar>
+<div ng-if="!settingCtrl.is404">
   <div class="container">
     <div class="route">
       <ol class="breadcrumb breadcrumb-arrow">
         <li><a href="#/home">Home</a></li>
-        <li class="active">Setting</li>
+        <li class="active"><span>Setting</span></li>
       </ol>
     </div>
-    
-    <form>
+    <form role="form">
       <uib-tabset justified="true">
         <uib-tab heading="User">
           <div class="form-group">
             <label>Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" value="{{settingCtrl.User.email}}" readonly="">
+            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="settingCtrl.profile.email">
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="settingCtrl.profile.password">
           </div>
         </uib-tab>
         <uib-tab heading="Information">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control" id="firstname" placeholder="First Name" value="{{settingCtrl.User.firstname}}">
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="settingCtrl.profile.firstName">
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="{{settingCtrl.User.lastname}}">
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="settingCtrl.profile.lastName">
           </div>
           <div class="form-group">
             <label>Address1</label>
-            <input type="text" class="form-control" id="address1" placeholder="Address1" value="{{settingCtrl.Locate.address1}}">
+            <input type="text" class="form-control" id="address1" placeholder="Address1" ng-model="settingCtrl.profile.address1">
           </div>
           <div class="form-group">
             <label>Address2</label>
-            <input type="text" class="form-control" id="address2" placeholder="Address2" value="{{settingCtrl.Locate.address2}}">
+            <input type="text" class="form-control" id="address2" placeholder="Address2" ng-model="settingCtrl.profile.address2">
           </div>
           <div class="form-group">
             <label>Province</label>
-            <input type="text" class="form-control" id="province" placeholder="Provnice" value="{{settingCtrl.Locate.province}}">
+            <input type="text" class="form-control" id="province" placeholder="Provnice" ng-model="settingCtrl.profile.province">
           </div>
           <div class="form-group">
             <label>Zip Code</label>
-            <input type="text" class="form-control" id="zipcode" placeholder="Zip Code" value="{{settingCtrl.Locate.zipcode}}">
+            <input type="text" class="form-control" id="zipcode" placeholder="Zip Code" ng-model="settingCtrl.profile.zipcode">
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" value="{{settingCtrl.Locate.telephone_number}}">
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" ng-model="settingCtrl.profile.telephone_number">
           </div>
         </uib-tab>
         <uib-tab heading="Card ID">
           <div class="form-group">
             <label>Card Holder's Name</label>
-            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name" value="{{settingCtrl.Locate.card_name}}">
+            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name" ng-model="settingCtrl.profile.card_name">
           </div>
           <div class="form-group">
             <label>Card Number</label>
-            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" value="{{settingCtrl.Locate.card_number}}">
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" ng-model="settingCtrl.profile.card_number">
           </div>
           <div class="form-group">
             <label>Expiration Date</label>
-            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date" value="{{settingCtrl.Locate.expirationDate}}">
+            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date" ng-model="settingCtrl.profile.expirationDate">
           </div>
         </uib-tab>
       </uib-tabset>
@@ -69,4 +69,8 @@
       </div>
     </form>
   </div>
+</div>
+<div ng-if="settingCtrl.is404">
+  <h1>User not found</h1>
+</div>
 <footer></footer>
