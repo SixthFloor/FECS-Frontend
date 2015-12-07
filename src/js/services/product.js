@@ -9,6 +9,16 @@
   angular
     .module('services.product', [])
     .service('productService', productService)
+    .factory('storeProduct', productList)
+
+  productList.$inject = ['$http', 'environment']
+  function productList ($http, environment) {
+    return {
+      store: {
+        products: []
+      }
+    }
+  }
 
   productService.$inject = ['$http', 'environment']
   function productService ($http, environment) {
