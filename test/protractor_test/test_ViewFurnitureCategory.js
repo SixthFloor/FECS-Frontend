@@ -4,33 +4,28 @@
 var request = require('request')
 
 describe('view furniture category', function() {
-  //  locator for button at homepage
-	var allProduct = element.all(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
-  var categoryButton = $('#category-button')
-	var categoryAllButton =  element(by.css('[href="#/category/all"]'))
+
+  var allProduct = element.all(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
+  var checkAllProduct = element(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
 
   //  locator for product
-	var allViewProductButton = element.all(by.css('[ng-click="categorypageCtrl.viewProduct(product.serialNumber)"]'))
   var allProductName = element.all(by.id('product-name'))
-  var allProductSerial = element.all(by.id('product-serial'))
   var allProductPrice = element.all(by.id('product-price'))
   var allProductImg = element.all(by.id('product-img'))
 
   //  variable for receive data from API
   var furnitureAll = ''
-  var furnitureData = ''
 
   // request all furniture from database
   function getFurnitureFromAPI(address) {
     furnitureAll = ''
-    furnitureData = ''
     request
       .get(address)
       .on('data', function(response) {
-          furnitureData += response
+          furnitureAll += response
       })
       .on('end', function(){
-          furnitureAll = JSON.parse(furnitureData)
+          furnitureAll = JSON.parse(furnitureAll)
           furnitureAll.sort(function (a, b){
               return a.name.localeCompare(b.name)
           })
@@ -38,7 +33,7 @@ describe('view furniture category', function() {
   }
 
   function goToCategory(room) {
-    categoryButton.click()
+    $('#category-button').click()
     switch(room) {
       case 'all':
         element(by.css('[href="#/category/all"]')).click()
@@ -64,12 +59,12 @@ describe('view furniture category', function() {
   function waitForElement(){
     return browser.wait( function() {
             var deferred = protractor.promise.defer()
-              allProduct.get(0).isPresent()
+              checkAllProduct.isPresent()
                 .then(function (isPresent){
                   deferred.fulfill(isPresent)
                 })
               return deferred.promise
-            }, 2000)
+            }, 5000, 'Server should start within 5 seconds')
   }
 
   function expectProductDescription(){
@@ -80,18 +75,14 @@ describe('view furniture category', function() {
           allProductName.get(i).getText().then(function(name){
             expect(name).toEqual(furnitureAll[i].name)
           })
-          // check product serial
-          allProductSerial.get(i).getText().then(function(serial){
-            expect(serial.substring(1, serial.length-1)).toEqual(furnitureAll[i].serialNumber)
-          })
           // check product price
           allProductPrice.get(i).getText().then(function(price){
             expect(parseInt(price.substring(0, price.length-5))).toEqual(furnitureAll[i].price)
           })
-          // check product image
-          allProductImg.get(i).getAttribute('src').then(function(img){
-            expect(img).toEqual(furnitureAll[i].images[0].link)
-          })
+          // // check product image
+          // allProductImg.get(i).getAttribute('src').then(function(img){
+          //   expect(img).toEqual(furnitureAll[i].images[0].link)
+          // })
         }(i))
       }
     })
@@ -99,6 +90,7 @@ describe('view furniture category', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3030/#')
+    browser.ignoreSynchronization=false
   })
 
   it('should show all product with complete descriptions at category all page', function(){
