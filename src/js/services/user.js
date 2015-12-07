@@ -29,25 +29,25 @@ every controller that have to identify the customer, authentication service has 
     self.role = ''
 
     function initUser () {
-      if (self.isAuthed()) {
-        var req = {
-          method: 'POST',
-          data: {
-            token: self.getToken()
-          },
-          url: 'http://128.199.133.224/api/authentication/token'
-        }
-        $http(req).then(function (res) {
-          console.log(res)
-          var response = res.data
-          if (response.status === 'error') {
-            console.log('error')
-          } else {
+      // if (self.isAuthed()) {
+      //   var req = {
+      //     method: 'POST',
+      //     data: {
+      //       token: self.getToken()
+      //     },
+      //     url: 'http://128.199.133.224/api/authentication/token'
+      //   }
+      //   $http(req).then(function (res) {
+      //     console.log(res)
+      //     var response = res.data
+      //     if (response.status === 'error') {
+      //       console.log('error')
+      //     } else {
             self.setFirstname(response.user.firstName)
             self.setLastname(response.user.lastName)
             self.setEmail(response.user.email)
             self.setRole(response.role.name)
-            console.log('success')
+            // console.log('success')
             console.log(self)
             var req = {
               method: 'GET',
@@ -72,11 +72,11 @@ every controller that have to identify the customer, authentication service has 
             }, function (err) {
               console.log(err)
             })
-          }
-        }, function (err) {
-          console.log(err)
-        })
-      }
+          // }
+        // }, function (err) {
+          // console.log(err)
+        // })
+      // }
     }
 
     self.isAuthed = function () {
