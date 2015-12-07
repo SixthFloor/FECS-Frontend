@@ -10,21 +10,17 @@
     .module('controller.settingpage', ['ui.bootstrap'])
     .controller('SettingController', SettingController)
 
-  SettingController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Locate', 'Notification', 'User']
-  function SettingController ($scope, $http, $state, $stateParams, Locate, Notification, User) {
+  SettingController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Notification', 'User']
+  function SettingController ($scope, $http, $state, $stateParams, Notification, User) {
     var self = this
     self.isAuthed = User.isAuthed()
-    self.Locate = Locate
-    self.profile = Locate.profile
-    self.valid = Locate.valid
     self.i = 0
 
     self.submit = function () {
       console.log($stateParams)
-      if ((self.profile.email !== '') &&
-        (self.profile.firstName !== '') && (self.profile.lastName !== '')) {
-        Locate.valid = true
-        Locate.editprofile(function (response) {
+      if ((self.email !== '') &&
+        (self.firstName !== '') && (self.lastName !== '')) {
+        User.editprofile(function (response) {
           if (response.status === 'error') {
             var msg = '<span><b>Oh snap!</b>.</span>'
             notification.error({
@@ -42,9 +38,7 @@
         }, self.i)
       } else {
         console.log('should be false')
-        Locate.valid = false
       }
-      self.valid = Locate.valid
     }
   }
 })()
