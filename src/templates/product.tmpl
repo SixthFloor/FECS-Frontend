@@ -1,5 +1,5 @@
-<div class="container">
-  <div ng-if="!productpageCtrl.is404">
+<div class="container page-container">
+  <div ng-if="!productpageCtrl.is404" class="page-content">
       <div class="route">
         <ol class="breadcrumb breadcrumb-arrow">
           <li><a href="#/home">Home</a></li>
@@ -12,7 +12,7 @@
       </div>
         <div class="product">
           <div class="product-left">
-            <img src={{productpageCtrl.product.images[0].link}} ng-if="productpageCtrl.product.images.length > 0">
+            <img src={{productpageCtrl.product.images[0].link}} ng-if="productpageCtrl.product.images.length > 0" height="450px">
             <img src='http://placehold.it/400x400' ng-if="productpageCtrl.product.images.length == 0">
           </div>
           <div class="product-right col-md-4 box-container">
