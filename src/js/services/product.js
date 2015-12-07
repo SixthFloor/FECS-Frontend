@@ -45,7 +45,7 @@
         name: self.product.productName,
         price: self.product.price,
         description: self.product.description,
-        dimensionDescription: self.product.dimensionDescription,
+        dimensionDescription: self.product.dimensionDescription
       }).success(success).error(error)
     }
     self.addproduct2 = function (success, error) {

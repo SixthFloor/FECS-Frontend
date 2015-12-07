@@ -6,10 +6,9 @@ describe('Login as member', function() {
   var linkAccount =   element.all(by.css('.dropdown-toggle'))
   var linkSignin = element(by.css('[ui-sref="login"]'))
   var linkSignout = element(by.css('[ui-sref="logout"]'))
-  var linkHome = element(by.css('[ui-sref="home"]'))
   var email = element(by.model('loginCtrl.data.email'))
   var password = element(by.model('loginCtrl.data.pwd'))
-  var loginButton = element(by.buttonText('Sign in'))
+  var loginButton = element(by.buttonText('Log in'))
   var notifications = element.all(by.css('.ui-notification'))
 
   function Login(a,b) {
