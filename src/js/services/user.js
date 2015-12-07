@@ -14,9 +14,9 @@ every controller that have to identify the customer, authentication service has 
   User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
   function User (localStorageService, $http, environment, Cart) {
     var self = this
-    self.user_id = '375'
+    self.user_id = ''
     self.email = ''
-    self.password = '12345678'
+    self.password = ''
     self.firstname = ''
     self.lastname = ''
     self.address1 = ''
