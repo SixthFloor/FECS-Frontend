@@ -24,13 +24,13 @@ body {
   overflow-y: scroll;
 }
 a, a:visited {
-    color: #000;
+    // color: #000;
     transition: all .15s ease-out;
     font-weight: normal;
     text-decoration: none;
 }
 a:focus, a:hover {
-    color: #969696;
+    // color: #969696;
     text-decoration: none;
 }
 .clear {
@@ -70,7 +70,7 @@ a:focus, a:hover {
 }
 
 [ui-view].ng-leave {
-  opacity: 1; 
+  opacity: 1;
 }
 
 [ui-view].ng-leave-active {
