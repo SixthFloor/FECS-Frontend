@@ -24,6 +24,10 @@
     }
 
     self.search = function (query) {
+      /* If search with empty should query nothing, but if call the api with empty string it will return all product */
+      if (query === '') {
+        query = '%'
+      }
       searchService.setQuery(query)
       $state.transitionTo('category', {category_name: 'search'}, {reload: true})
     }
