@@ -13,6 +13,7 @@
   SettingController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Notification', 'User']
   function SettingController ($scope, $http, $state, $stateParams, Notification, User) {
     var self = this
+    self.User = User
     self.isAuthed = User.isAuthed()
     self.i = 0
 
