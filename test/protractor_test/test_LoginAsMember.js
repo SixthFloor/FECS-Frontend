@@ -36,7 +36,28 @@ describe('Login as member', function() {
 
   })
 
-  it('Case 2: If access complete,then when logout it should logout success ', function() {
+  it('Case 1.1: If access complete,then when logout it should logout success ', function() {
+    linkAccount.get(1).click()
+    linkSignout.click()
+    expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
+    //browser.sleep(5000)
+
+  })
+
+  it('Case 2: If email and password correct and UPPER ,then it should access complete like LOWER', function() {
+
+    linkAccount.get(1).click()
+    linkSignin.click()
+    expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/login')
+    Login('NARA@GMAIL.com','12345678')
+    loginButton.click()
+    expect(notifications.getText()).toEqual([ 'Well done! Login successfully.' ])
+    //browser.sleep(5000)
+    //element(by.linkText(' Sign out ')).click()
+
+  })
+
+  it('Case 2.1: If access complete,then when logout it should logout success ', function() {
     linkAccount.get(1).click()
     linkSignout.click()
     expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
