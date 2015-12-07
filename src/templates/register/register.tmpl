@@ -44,9 +44,22 @@
                     </div>
                   </div>
                   <div class="row">
+<<<<<<< HEAD
                     <div class="alert alert-danger col-sm-4 col-sm-offset-2"
                     ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password && registerCtrl.member.confirmpassword.length > 0">
                       <strong>Re-enter</strong> Password does not match
+=======
+                    <div class="alert alert-danger col-sm-4 col-sm-offset-2"
+                    ng-show="registerCtrl.member.confirmpassword != registerCtrl.member.password && registerCtrl.member.confirmpassword.length > 0">
+                      <strong>Re-enter</strong> Password does not match
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="alert alert-danger col-sm-4 col-sm-offset-2"
+                    ng-show="(registerCtrl.member.password.length) < 8 && registerCtrl.member.password.length != 0">
+                      <strong>Re-enter</strong> Password should be between 8-20 characters
+                    </div>
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
                   </div>
                 </div>
                 <div class="row">
@@ -173,6 +186,7 @@
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
                         <div class="col-sm-9">
+<<<<<<< HEAD
                           <!-- <input type="month" ng-model="registerCtrl.member.expirationDate"> -->
                           <select ng-model="registerCtrl.member.expirationDate.month">
                             <option value="1">1</option>
@@ -201,6 +215,9 @@
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
                           </select>
+=======
+                          <input type="month" ng-model="registerCtrl.member.expirationDate">
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
                         </div>
                     </div>
                   </fieldset>
@@ -211,6 +228,7 @@
                 </div>
             </p>
           </div>
+<<<<<<< HEAD
         </div>
       </dd>
       <dd class="pos-right clearfix complete">
@@ -231,6 +249,37 @@
                     <div class="row">
                       <div class="col-sm-4 attr">Fullname</div>
                       <div class="col-sm-7">{{registerCtrl.member.firstname}} {{registerCtrl.member.lastname}}
+=======
+        </dd>
+        <dd class="pos-right clearfix complete">
+          <div class="circ"></div>
+          <div class="time">Registration Complete</div>
+          <div class="events">
+            <div class="events-body">
+              <h4 class="events-heading">Thank you for registering <i class="logo"></i></h4>
+              <p>
+                <div class="member-info">
+                  <div class="member-info-panel">
+                    <div class="panel-heading">Your personal registration information</div>
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-sm-4 attr">E-mail</div>
+                        <div class="col-sm-7">{{registerCtrl.member.email}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 attr">Fullname</div>
+                        <div class="col-sm-7">{{registerCtrl.member.firstname}} {{registerCtrl.member.lastname}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 attr">Address</div>
+                        <div class="col-sm-7">
+                          <p>{{registerCtrl.member.adr1}}</p>
+                          <p>{{registerCtrl.member.adr2}}</p>
+                          <p>{{registerCtrl.member.province}}</p>
+                          <p>{{registerCtrl.member.zip}}</p>
+                        </div>
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
                       </div>
                     </div>
                     <div class="row">
@@ -247,6 +296,17 @@
                       <div class="col-sm-7">{{registerCtrl.member.phonenumber}}</div>
                     </div>
                   </div>
+<<<<<<< HEAD
+=======
+                  <a ui-sref="home">
+                    <button class="register-btn">
+                    <i class="glyphicon glyphicon-home"></i>
+                     Home Page</button></a>
+                     <a ui-sref="login">
+                    <button class="register-btn">
+                    <i class="fa fa-sign-in"></i>
+                     Log in</button></a>
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
                 </div>
                 <a ui-sref="home">
                   <button class="register-btn">
@@ -263,3 +323,7 @@
       </dd>
     </dl>
   </div>
+<<<<<<< HEAD
+=======
+<footer></footer>
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e

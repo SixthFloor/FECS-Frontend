@@ -109,6 +109,18 @@
       //     console.log('Step2 next')
       //     self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
     }
+<<<<<<< HEAD
+=======
+    self.cancle = function () {
+      $http.put(environment.getBaseAPI() + 'order/cancle', {id: self.order.id}).success(function (response) {
+        if (response.status !== 'error') {
+          console.log(self.order.orderNumber + 'Cancled')
+        } else {
+          console.log(response)
+        }
+      })
+    }
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     self.submit = function () {
       $http.post(environment.getBaseAPI() + 'payment/pay', self.payment).success(function (response) {
         if (response.status !== 'error') {

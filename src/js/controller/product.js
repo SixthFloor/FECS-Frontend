@@ -13,11 +13,20 @@
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
 
+<<<<<<< HEAD
   ProductPageController.$inject = ['$scope', '$http', '$stateParams', 'Cart']
   function ProductPageController ($scope, $http, $stateParams, Cart) {
     var self = this
     // API path
     var url = $scope.environment.getBaseAPI() + 'product/' + $stateParams.product_id
+=======
+  ProductPageController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Cart', 'environment']
+  function ProductPageController ($scope, $http, User, $stateParams, Cart, environment) {
+    var self = this
+    self.User = User
+    // API path
+    var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
 
     $http.get(url).success(function (response) {
       console.log(response)
@@ -32,15 +41,24 @@
     }
   }
 
+<<<<<<< HEAD
   AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', '$state']
   function AddProductController ($scope, $http, productService, notification, $state) {
+=======
+  AddProductController.$inject = ['$scope', '$http', 'productService', 'Notification', 'User', '$state', 'environment']
+  function AddProductController ($scope, $http, productService, notification, User, $state, environment) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     var self = this
     self.product = productService.product
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
     // Get all categories
+<<<<<<< HEAD
     $http.get($scope.environment.getBaseAPI() + 'category/all').success(function (response) {
+=======
+    $http.get(environment.getBaseAPI() + 'category/all').success(function (response) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
       if (response.status !== 'error') {
         self.categoryList = response
       } else {
@@ -63,7 +81,11 @@
     }
     // Get subcategories from category
     self.getSubcat = function () {
+<<<<<<< HEAD
       $http.get($scope.environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
+=======
+      $http.get(environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
         if (response.status !== 'error') {
           self.subcategoryList = response
         } else {
@@ -115,8 +137,13 @@
     }
   }
 
+<<<<<<< HEAD
   EditProductController.$inject = ['$scope', '$http', '$stateParams', 'Notification', 'productService', '$state']
   function EditProductController ($scope, $http, $stateParams, notification, productService, $state) {
+=======
+  EditProductController.$inject = ['$scope', '$http', 'User', '$stateParams', 'Notification', 'productService', '$state', 'environment']
+  function EditProductController ($scope, $http, User, $stateParams, notification, productService, $state, environment) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     console.log($stateParams.product_id)
     var self = this
     self.product = productService.product
@@ -127,7 +154,11 @@
     self.oldSubcat = null
 
     // Get all categories
+<<<<<<< HEAD
     $http.get($scope.environment.getBaseAPI() + 'category/all').success(function (response) {
+=======
+    $http.get(environment.getBaseAPI() + 'category/all').success(function (response) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
       if (response.status !== 'error') {
         self.categoryList = response
       } else {
@@ -138,7 +169,11 @@
     })
     // Get subcategories from category
     self.getSubcat = function () {
+<<<<<<< HEAD
       $http.get($scope.environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
+=======
+      $http.get(environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
         if (response.status !== 'error') {
           self.subcategoryList = response
           if ( self.oldSubcat !== null) {
@@ -163,7 +198,11 @@
     }
 
     // path of real API
+<<<<<<< HEAD
     var url = $scope.environment.getBaseAPI() + 'product/' + $stateParams.product_id
+=======
+    var url = environment.getBaseAPI() + 'product/' + $stateParams.product_id
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
@@ -179,7 +218,11 @@
           self.errorMessage = 'Error: Furniture not found'
         }
       })
+<<<<<<< HEAD
       url = $scope.environment.getBaseAPI() + 'catalog/' + $stateParams.product_id
+=======
+      url = environment.getBaseAPI() + 'catalog/' + $stateParams.product_id
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           self.catalogID = response[0].id
@@ -249,7 +292,11 @@
             message: msg
           })
 
+<<<<<<< HEAD
           var url = $scope.environment.getBaseAPI() + 'product/delete'
+=======
+          var url = environment.getBaseAPI() + 'product/delete'
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
           $http.delete(url, {
             serialNumber: self.product.serialNumber
           })

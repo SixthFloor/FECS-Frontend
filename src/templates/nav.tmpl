@@ -12,7 +12,11 @@
           </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
         <li ng-if="User.isAuthed()">
+=======
+        <li ng-if="navbarCtrl.isAuthed">
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
           <a ui-sref="cart">
             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
             <span class="badge badge-notify" ng-show="navbarCtrl.Cart.getItemList().length != 0">
@@ -65,10 +69,10 @@
           </a>
           <ul class="dropdown-menu account">
             <li>
-              <a ui-sref="register"><i class="fa fa-user-plus"></i> Create Account </a>
+              <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign up </a>
             </li>
             <li>
-              <a ui-sref="login"><i class="fa fa-sign-in"></i> Log in </a>
+              <a ui-sref="login"><i class="fa fa-sign-in"></i> Sign in </a>
             </li>
           </ul>
         </li>
@@ -78,6 +82,7 @@
           </a>
           <ul class="dropdown-menu account">
             <div class="profile">
+<<<<<<< HEAD
               <h4><i class="fa fa-user"></i> {{User.firstname}} {{User.lastname}}<span ng-if="User.isAdmin()"> <b>({{User.role}})</b></span></h4>
             </div>
             <div class="menu">
@@ -86,9 +91,19 @@
               </li>
               <li>
                 <a href="#"><i class="fa fa-cog"></i> Setting </a>
+=======
+              <h4><i class="fa fa-user"></i> {{navbarCtrl.User.firstname}} {{navbarCtrl.User.lastname}}<span ng-if="navbarCtrl.User.isAdmin()"> <b>({{navbarCtrl.User.role}})</b></span></h4>
+            </div>
+            <div class="menu">
+              <li>
+                <a ui-sref="setting"><i class="fa fa-cog"></i> Setting </a>
               </li>
               <li>
-                <a ui-sref="logout"><i class="fa fa-sign-out"></i> Log out </a>
+                <a href="#"><i class="fa fa-list-ul"></i> Purchased History </a>
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
+              </li>
+              <li>
+                <a ui-sref="logout"><i class="fa fa-sign-out"></i> Sign out </a>
               </li>
             </div>
           </ul>

@@ -113,6 +113,12 @@
         controller: 'CartController',
         controllerAs: 'cartCtrl'
       })
+      .state('setting', {
+        url: '/setting',
+        templateUrl: 'templates/setting.tmpl',
+        controller: 'SettingController',
+        controllerAs: 'settingCtrl'
+      })
       .state('payment', {
         url: '/payment/:orderNumber',
         data: {

@@ -93,6 +93,7 @@
         (self.checkEmail(self.member.email)) &&
         (self.member.firstname !== '') && (self.member.lastname !== '')) {
         if (self.num1 && self.num2 && self.num3 && self.num4) {
+<<<<<<< HEAD
           self.member.card_number = self.num1 + self.num2 + self.num3 + self.num4
         }
         registerService.regis(function (response) {
@@ -102,6 +103,17 @@
         //   message: msg
         // })
         // $state.transitionTo('login')
+=======
+          self.member.card_number = self.num1 + '-' + self.num2 + '-' + self.num3 + '-' + self.num4
+        }
+        registerService.regis(function (response) {
+          console.log('Submit regis')
+          // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
+          // notification.success({
+          //   message: msg
+          // })
+          // $state.transitionTo('login')
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
           self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         }, function (response) {
           var msg = '<span><b>Registration not possible </b> ' + response.description + '.</span>'

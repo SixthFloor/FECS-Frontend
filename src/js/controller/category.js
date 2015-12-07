@@ -11,9 +11,15 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
+<<<<<<< HEAD
   CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'searchService']
   function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, searchService) {
+=======
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'environment', 'User']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, environment, User) {
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     var self = this
+    self.User = User
     var orderBy = $filter('orderBy')
     self.sortOptions = [
       { name: 'Name A - Z', value: 'name' },
@@ -24,6 +30,7 @@
     self.sort_by = self.sortOptions[0].value
     self.category_name = $stateParams.category_name
 
+<<<<<<< HEAD
     self.init = function () {
       //  API path
       self.url = ''
@@ -34,6 +41,14 @@
         self.url = $scope.environment.getBaseAPI() + 'category/product/' + self.category_name
       }
       else self.url = $scope.environment.getBaseAPI() + 'product/all'
+=======
+    //  API path
+    var url = ''
+    if (self.category_name !== 'all') {
+      url = environment.getBaseAPI() + 'category/product/' + self.category_name
+    }
+    else url = environment.getBaseAPI() + 'product/all'
+>>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
 
       $http.get(self.url).success(function (response) {
         self.productList = response

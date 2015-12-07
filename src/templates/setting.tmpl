@@ -1,0 +1,76 @@
+<navbar></navbar>
+<div ng-if="!settingCtrl.is404">
+  <div class="container">
+    <div class="route">
+      <ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/home">Home</a></li>
+        <li class="active"><span>Setting</span></li>
+      </ol>
+    </div>
+    <form role="form">
+      <uib-tabset justified="true">
+        <uib-tab heading="User">
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="settingCtrl.email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="settingCtrl.password">
+          </div>
+        </uib-tab>
+        <uib-tab heading="Information">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="settingCtrl.firstName">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="settingCtrl.lastName">
+          </div>
+          <div class="form-group">
+            <label>Address1</label>
+            <input type="text" class="form-control" id="address1" placeholder="Address1" ng-model="settingCtrl.address1">
+          </div>
+          <div class="form-group">
+            <label>Address2</label>
+            <input type="text" class="form-control" id="address2" placeholder="Address2" ng-model="settingCtrl.address2">
+          </div>
+          <div class="form-group">
+            <label>Province</label>
+            <input type="text" class="form-control" id="province" placeholder="Provnice" ng-model="settingCtrl.province">
+          </div>
+          <div class="form-group">
+            <label>Zip Code</label>
+            <input type="text" class="form-control" id="zipcode" placeholder="Zip Code" ng-model="settingCtrl.zipcode">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" ng-model="settingCtrl.telephone_number">
+          </div>
+        </uib-tab>
+        <uib-tab heading="Card ID">
+          <div class="form-group">
+            <label>Card Holder's Name</label>
+            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name" ng-model="settingCtrl.card_name">
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" ng-model="settingCtrl.card_number">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date" ng-model="settingCtrl.expirationDate">
+          </div>
+        </uib-tab>
+      </uib-tabset>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" ng-click="settingCtrl.submit()">Edit Profile</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div ng-if="settingCtrl.is404">
+  <h1>User not found</h1>
+</div>
+<footer></footer>
