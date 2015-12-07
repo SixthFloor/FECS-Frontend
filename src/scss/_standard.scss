@@ -40,7 +40,7 @@ a:focus, a:hover {
 .custom-wrapper {
     min-height: 100%;
 }
-[ui-view].ng-enter, [ui-view].ng-leave {
+[ui-view].ng-enter, [ui-view].ng-leavee {
   position: absolute;
   top: 66px;
   bottom: 50px;
@@ -56,6 +56,9 @@ a:focus, a:hover {
     top: -66px;
     bottom: -50px;
   }
+}
+
+.productList.ng-enter, .productList.ng-leave {
 }
 
 [ui-view].ng-enter {

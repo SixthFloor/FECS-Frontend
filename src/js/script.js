@@ -12,6 +12,7 @@
       'services.permission',
       'services.environment',
       'services.search',
+      'services.products',
       'controller.homepage',
       'controller.login',
       'controller.register',

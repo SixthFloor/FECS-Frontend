@@ -15,8 +15,6 @@
   function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, searchService) {
     var self = this
     var orderBy = $filter('orderBy')
-    console.log($stateParams.category_name)
-    self.productList = {}
     self.sortOptions = [
       { name: 'Name A - Z', value: 'name' },
       { name: 'Name Z - A', value: '-name' },
@@ -26,21 +24,9 @@
     self.sort_by = self.sortOptions[0].value
     self.category_name = $stateParams.category_name
 
-    //  API path
-    var url = ''
-    if (self.category_name === 'search') {
-      url = $scope.environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
-    } else if (self.category_name !== 'all') {
-      url = $scope.environment.getBaseAPI() + 'category/product/' + self.category_name
-    } else {
-      url = $scope.environment.getBaseAPI() + 'product/all'
+    self.init = function () {
+      $scope.productList.getProductList(self.category_name)
     }
-    console.log(url)
-    $http.get(url).success(function (response) {
-      self.productList = response
-      console.log('Product List')
-      console.log(self.productList)
-    })
 
     self.viewProduct = function (id) {
       $state.transitionTo('product', {product_id: id})
@@ -60,5 +46,7 @@
       productService.clearProduct()
       $state.transitionTo('addproduct')
     }
+
+    self.init()
   }
 })()

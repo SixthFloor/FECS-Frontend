@@ -10,8 +10,8 @@
     .module('services.product', [])
     .service('productService', productService)
 
-  productService.$inject = ['$http']
-  function productService ($http) {
+  productService.$inject = ['$http', 'environment']
+  function productService ($http, environment) {
     var self = this
     self.valid = true
     self.product = {
