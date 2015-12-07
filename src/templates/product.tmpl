@@ -8,7 +8,7 @@
         </ol>
       </div>
       <div class="row text-center">
-        <hr><h1>{{productpageCtrl.product.name}}</h1><hr>
+        <hr><h1 id="product-name">{{productpageCtrl.product.name}}</h1><hr>
       </div>
         <div class="product">
           <div class="product-left">
@@ -16,10 +16,10 @@
             <img src='http://placehold.it/400x400' ng-if="productpageCtrl.product.images.length == 0">
           </div>
           <div class="product-right col-md-4 box-container">
-            <h2>฿{{productpageCtrl.product.price}}</h2>
-            <h6>Serial number: {{productpageCtrl.product.serialNumber}}</h6>
+            <h2 id="product-price">฿{{productpageCtrl.product.price}}</h2>
+            <h6 id="product-serial">Serial number: {{productpageCtrl.product.serialNumber}}</h6>
             <div ng-if="productpageCtrl.product.quantity != 0">
-              <h5>In Stock: {{productpageCtrl.product.quantity}}</h5>
+              <h5 id="product-quantity">In Stock: {{productpageCtrl.product.quantity}}</h5>
               <form class="form-inline margin-5">
                 <div class="form-group">
                   <label >Quantity:</label>
@@ -44,9 +44,9 @@
         <h3>Details</h3>
         <div class="tab-content">
           <label><h4><span class="label label-info"><b>Description</b></span></h4></label>
-          <p>{{productpageCtrl.product.description}}</p>
+          <p id="product-description">{{productpageCtrl.product.description}}</p>
           <label><h4><span class="label label-info"><b>Size</b></span></h4></label>
-          <p>{{productpageCtrl.product.dimensionDescription}}</p>
+          <p id="product-dimensionDescription">{{productpageCtrl.product.dimensionDescription}}</p>
         </div>
       </div>
   </div>

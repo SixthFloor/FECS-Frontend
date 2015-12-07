@@ -5,9 +5,6 @@ var request = require('request')
 
 describe('view furniture category', function() {
 
-  var allProduct = element.all(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
-  var checkAllProduct = element(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
-
   //  locator for product
   var allProductName = element.all(by.id('product-name'))
   var allProductPrice = element.all(by.id('product-price'))
@@ -59,7 +56,7 @@ describe('view furniture category', function() {
   function waitForElement(){
     return browser.wait( function() {
             var deferred = protractor.promise.defer()
-              checkAllProduct.isPresent()
+              element(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by')).isPresent()
                 .then(function (isPresent){
                   deferred.fulfill(isPresent)
                 })
@@ -90,7 +87,6 @@ describe('view furniture category', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3030/#')
-    browser.ignoreSynchronization=false
   })
 
   it('should show all product with complete descriptions at category all page', function(){
