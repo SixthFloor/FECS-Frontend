@@ -28,8 +28,6 @@
     self.init = function () {
       //  API path
       self.url = ''
-      console.log('init')
-      console.log(searchService.getSearchQuery())
       if (self.category_name === 'search' || searchService.getSearchQuery() !== '') {
         self.url = $scope.environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
       }
@@ -40,7 +38,6 @@
 
       $http.get(self.url).success(function (response) {
         storeProduct.store.products = response
-        console.log(self.productList)
       })
     }
 
