@@ -15,59 +15,60 @@
           <div class="events-body">
             <h4 class="events-heading">Shipping</h4>
             <p>
-              <form name="registerForm" class="form-horizontal" role="form">
-                <div class="alert alert-danger control-label col-sm-3" ng-show="paymentCtrl.User.zipcode.length != 5 || paymentCtrl.User.province === '' || (paymentCtrl.User.address1 === '' && paymentCtrl.User.address2 === '')">
-                  <strong>Warning</strong> Please enter your exist address.
-                </div>
+              <form name="payment1" class="form-horizontal" ng-submit="paymentCtrl.next1()">
                 <div class="form-group">
+                  <span class="require-star">*</span>
                   <label class="control-label col-sm-3">Address1</label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address1"></input>
+                    <input name="address1" type="text" class="form-control" rows="5" ng-model="User.address1" required></input>
+                    <div class="alert alert-danger" ng-show="payment1.address1.$dirty && payment1.address1.$invalid">
+                      <strong>Warning</strong> Please enter your exist address.
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3">Address2</label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address2"></input>
+                    <input type="text" class="form-control" rows="5" ng-model="User.address2"></input>
                   </div>
                 </div>
                 <div class="form-group">
+                  <span class="require-star">*</span>
                   <label class="control-label col-sm-3" >Province </label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" ng-model="paymentCtrl.User.province">
+                    <input name="province" type="text" class="form-control" ng-model="User.province" required>
+                    <div class="alert alert-danger" ng-show="payment1.province.$dirty && payment1.province.$invalid">
+                      <strong>Warning</strong> Please enter your province.
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
+                  <span class="require-star">*</span>
                   <label class="control-label col-sm-3" >ZIP code </label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" maxlength="5" ng-model="paymentCtrl.User.zipcode">
+                    <input name="zipcode" type="text" class="form-control" maxlength="5" ng-model="User.zipcode" required>
+                    <div class="alert alert-danger" ng-show="payment1.zipcode.$dirty && payment1.zipcode.$invalid">
+                      <strong>Warning</strong> Please enter your zipcode.
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-3 control-label" for="shipping-date">Shipping date</label>
-                  <div class="col-sm-9">
-                    <div class="row">
-                      <div class="col-sm-8">
-                        <select class="form-control col-sm-3" name="shipping-date" id="shipping-date" ng-model="paymentCtrl.order.shipping" ng-options="shipping as shipping.date | amCalendar for shipping in paymentCtrl.shippingList">
-                          <option value="" disabled selected>AVAILABLE DATE</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="alert alert-danger" ng-show="paymentCtrl.order.shipping === null && !paymentCtrl.valid.step1">
+                  <span class="require-star">*</span>
+                  <label class="col-sm-3 control-label" for="shippingdate">Shipping date</label>
+                  <div class="col-sm-8">
+                    <select class="form-control col-sm-3" name="shippingdate" id="shippingdate" ng-model="paymentCtrl.order.shipping" ng-options="shipping as shipping.date | amCalendar for shipping in paymentCtrl.shippingList" required>
+                      <option value="" disabled selected>AVAILABLE DATE</option>
+                    </select>
+                    <div class="alert alert-danger" ng-show="payment1.shippingdate.$dirty && payment1.shippingdate.$invalid">
                       <strong>SELECT</strong> available shipping date.
                     </div>
                   </div>
                 </div>
-              </form>
-              <div class="register-container">
-                <div class="row">
-                  <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step1">
-                    <strong>Invalid Form</strong> Please check for the required information
-                  </div>
+                <div class="register-container">
+                  <a href="#/order"><button type="button" class="register-btn"><i class="fa fa-list-ul"></i> Later</button></a>
+                  <button type="submit" class="register-btn">Next <i class="fa fa-arrow-circle-right"></i></button>
                 </div>
-                <a href="#/order"><button type="button" class="register-btn"><i class="fa fa-list-ul"></i> Later</button></a>
-                <button type="button" class="register-btn" ng-click="paymentCtrl.next1()">Next <i class="fa fa-arrow-circle-right"></i></button>
-              </div>
+              </form>
             </p>
           </div>
         </div>
@@ -79,58 +80,94 @@
           <div class="events-body">
             <h4 class="events-heading">Payment Information</h4>
             <p>
-              <form class="form-horizontal" role="form">
+              <form name="payment2" class="form-horizontal" ng-submit="paymentCtrl.next2()">
                 <fieldset>
                   <div class="form-group">
+                    <span class="require-star">*</span>
                     <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" name="card-holder-name"
+                      <input type="text" class="form-control" name="cardholdername"
                       id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD"
-                      ng-model="paymentCtrl.User.card_name">
+                      ng-model="User.card_name" required>
+                      <div class="alert alert-danger" ng-show="payment2.cardholdername.$dirty && payment2.cardholdername.$invalid">
+                        <strong>Warning</strong> Please enter card holdername.
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
+                    <span class="require-star">*</span>
                     <label class="col-sm-3 control-label" for="card-number">Card number</label>
-                    <div class="col-sm-1">
-                        <input type="text" maxlength="4" class="form-control"
-                        ng-model="paymentCtrl.num1" name="card-number" placeholder="XXXX"></input>
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="text" maxlength="4" class="form-control"
-                        ng-model="paymentCtrl.num2" name="card-number" placeholder="XXXX"></input>
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="text" maxlength="4" class="form-control"
-                        ng-model="paymentCtrl.num3" name="card-number" placeholder="XXXX"></input>
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="text" maxlength="4" class="form-control"
-                        ng-model="paymentCtrl.num4" name="card-number" placeholder="XXXX"></input>
+                    <div class="col-sm-7">
+                      <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" maxlength="4" size="4" class="form-control"
+                            ng-model="paymentCtrl.num1" name="cardnumber1" placeholder="XXXX" required></input>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" maxlength="4" size="4" class="form-control"
+                            ng-model="paymentCtrl.num2" name="cardnumber2" placeholder="XXXX" required></input>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" maxlength="4" size="4" class="form-control"
+                            ng-model="paymentCtrl.num3" name="cardnumber3" placeholder="XXXX" required></input>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" maxlength="4" size="4" class="form-control"
+                            ng-model="paymentCtrl.num4" name="cardnumber4" placeholder="XXXX" required></input>
+                        </div>
+                      </div>
+                      <div class="alert alert-danger" ng-show="(payment2.cardnumber1.$dirty && payment2.cardnumber1.$invalid) || (payment2.cardnumber2.$dirty && payment2.cardnumber2.$invalid) || (payment2.cardnumber3.$dirty && payment2.cardnumber3.$invalid) || (payment2.cardnumber4.$dirty && payment2.cardnumber4.$invalid)">
+                          <strong>Warning</strong> Please enter card number.
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
+                    <span class="require-star">*</span>
                     <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
-                    <div class="col-sm-9">
-                      <input type="month" ng-model="paymentCtrl.User.expirationDate">
+                    <div class="col-sm-7">
+                      <!-- <input type="month" ng-model="paymentCtrl.User.expirationDate"> -->
+                      <select ng-model="User.expirationDate.month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select ng-model="User.expirationDate.year">
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                          </select>
                     </div>
                   </div>
                   <div class="form-group">
+                    <span class="require-star">*</span>
                     <label class="col-sm-3 control-label" for="card-holder-name">Security Code</label>
                     <div class="col-sm-2">
-                      <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" class="form-control" name="card-cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.cvv">
-                    </div>
-                    <div class="alert alert-danger" ng-show="paymentCtrl.payment.cvv.length != 3">
-                      <strong>ENTER</strong> Card Verification Value.
+                      <input type="text" maxlength="3" size="3" class="form-control" name="cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.cvv" required>
+                      <div class="alert alert-danger" ng-show="payment2.cvv.$dirty && payment2.cvv.$invalid">
+                        <strong>Warning</strong> Please enter credit card security code.
+                      </div>
                     </div>
                   </div>
                 </fieldset>
               </form>
               <div class="register-container">
-                <div class="row">
-                  <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step2">
-                    <strong>Error</strong> your credit card cannot validate.
-                  </div>
-                </div>
                 <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
                 <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Purchase <i class="fa fa-arrow-circle-right"></i></button>
               </div>
@@ -155,27 +192,27 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Customer</div>
-                      <div class="col-sm-7">{{paymentCtrl.User.firstname}} {{paymentCtrl.User.lastname}}</div>
+                      <div class="col-sm-7">{{User.firstname}} {{User.lastname}}</div>
                     </div>
                     <div class="row" ng-if="paymentCtrl.User.adr1 !== ''">
                       <div class="col-sm-4 attr">Address</div>
-                      <div class="col-sm-7">{{paymentCtrl.User.address1}}</div>
+                      <div class="col-sm-7">{{User.address1}}</div>
                     </div>
                     <div class="row" ng-if="paymentCtrl.User.adr2 !== ''">
                       <div class="col-sm-4 attr">Address</div>
-                      <div class="col-sm-7">{{paymentCtrl.User.address2}}</div>
+                      <div class="col-sm-7">{{User.address2}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Province</div>
-                      <div class="col-sm-7">{{paymentCtrl.User.province}}</div>
+                      <div class="col-sm-7">{{User.province}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Zip code</div>
-                      <div class="col-sm-7">{{paymentCtrl.User.zipcode}}</div>
+                      <div class="col-sm-7">{{User.zipcode}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Shipping date</div>
-                      <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.shipping.date | amCalendar}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Total price</div>
@@ -190,11 +227,11 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Card number</div>
-                      <div class="col-sm-7">{{paymentCtrl.payment.card.no}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.getCardNoFormat()}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Expiration date</div>
-                      <div class="col-sm-7">{{paymentCtrl.payment.card.exp_date}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.card.exp_date | amDateFormat:'MM/YYYY'}}</div>
                     </div>
                   </div>
                 </div>
@@ -229,7 +266,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5 attr">Shipping date</div>
-                      <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.shipping.date | amCalendar}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-5 attr">Total price</div>
@@ -237,7 +274,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-5 attr">Purchased date</div>
-                      <div class="col-sm-7">{{paymentCtrl.order.date}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.date | amCalendar}}</div>
                     </div>
                   </div>
                 </div>

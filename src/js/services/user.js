@@ -11,8 +11,8 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', ['LocalStorageModule'])
     .service('User', User)
 
-  User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
-  function User (localStorageService, $http, environment, Cart) {
+  User.$inject = ['localStorageService', '$http', 'environment', 'Cart', 'moment']
+  function User (localStorageService, $http, environment, Cart, moment) {
     var self = this
     self.user_id = ''
     self.email = ''
@@ -24,7 +24,10 @@ every controller that have to identify the customer, authentication service has 
     self.zipcode = ''
     self.telephone_number = ''
     self.card_name = ''
-    self.expirationDate = ''
+    self.expirationDate = {
+      year: '2015',
+      month: '1'
+    }
     self.card_number = ''
     self.role = ''
 
@@ -119,7 +122,11 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.setCardExpDate = function (exp) {
-      self.expirationDate = exp
+      if (exp) {
+        var date = moment(exp)
+        self.expirationDate.year = date.year()
+        self.expirationDate.month = date.month()
+      }
     }
 
     self.setUserID = function (uID) {

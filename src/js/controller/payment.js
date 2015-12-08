@@ -11,22 +11,14 @@
     .module('controller.payment', [])
     .controller('PaymentController', PaymentController)
 
-  PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'environment', 'User']
-  function PaymentController ($scope, $http, $state, $stateParams, environment, User) {
+  PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'moment']
+  function PaymentController ($scope, $http, $state, $stateParams, moment) {
     var self = this
-    var url = environment.getBaseAPI() + 'payment/' + $stateParams.orderNumber
-    self.User = $scope.User
-    console.log('USSSSERRR')
-    console.log(self.User)
     self.num1 = ''
     self.num2 = ''
     self.num3 = ''
     self.num4 = ''
     self.cvv = ''
-    self.valid = {
-      step1: true,
-      step2: true
-    }
     self.steps = {
       step1: true,
       step2: false,
@@ -36,7 +28,7 @@
 
     self.shippingList = []
     self.order = null
-    $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
+    $http.get($scope.environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
       self.order = response
       if (self.order.status !== 0) { // status !== 'Not Pay'
         $state.transitionTo('home')
@@ -48,49 +40,46 @@
       self.is404 = true
     })
 
-    $http.get(environment.getBaseAPI() + 'shipping/all').success(function (response) {
+    $http.get($scope.environment.getBaseAPI() + 'shipping/all').success(function (response) {
       self.shippingList = response
     }).error(function (response) {
       self.is404 = true
     })
 
+    self.getCardNoFormat = function () {
+      return self.payment.card.no.substring(0, 4) + '-' + self.payment.card.no.substring(4, 8) + '-' + self.payment.card.no.substring(8, 12) + '-' + self.payment.card.no.substring(12, 16)
+    }
+
     self.back = function () {
-      self.valid.step1 = true
-      self.valid.step2 = true
       if (self.steps.step2) {
-        self.steps.step1 = true
-        self.steps.step2 = false
-        self.steps.step3 = false
-        console.log('Step2 back')
         self.moveElement.css('margin-top', '0px')
       } else if (self.steps.step3) {
-        self.steps.step1 = false
-        self.steps.step2 = true
-        self.steps.step3 = false
-        console.log('Step3 back')
         self.moveElement.css('margin-top', '-' + self.height + 'px')
       }
     }
     self.next1 = function () {
-      // if (self.email === self.User.email && self.order.shipping !== null) {
-      if (!(self.User.zipcode.length !== 5 || self.User.province === null || (self.User.address1 === null && self.User.address2 === null)) && self.order.shipping !== null) {
-        self.valid.step1 = true
-        self.steps.step1 = false
-        self.steps.step2 = true
-        self.steps.step3 = false
-        console.log('Step1 next Payment')
-        self.moveElement.css('margin-top', '-' + self.height + 'px')
+      if ($scope.$$childHead.payment1.$invalid) {
+        $scope.$$childHead.payment1.$setDirty(true)
+        $scope.$$childHead.payment1.address1.$setDirty(true)
+        $scope.$$childHead.payment1.province.$setDirty(true)
+        $scope.$$childHead.payment1.zipcode.$setDirty(true)
+        $scope.$$childHead.payment1.shippingdate.$setDirty(true)
       } else {
-        console.log('form not valid')
-        self.valid.step1 = false
+        self.moveElement.css('margin-top', '-' + self.height + 'px')
       }
     }
     self.next2 = function () {
+      var exp_date = moment.utc([
+        $scope.User.expirationDate.year,
+        parseInt($scope.User.expirationDate.month, 10) - 1,
+        1,
+        0
+      ])
       self.payment = {
         card: {
           no: self.num1 + self.num2 + self.num3 + self.num4,
-          holder_name: self.User.card_name,
-          exp_date: self.User.expirationDate
+          holder_name: $scope.User.card_name,
+          exp_date: exp_date
         },
         cvv: self.cvv,
         price: 0,
@@ -99,29 +88,30 @@
       for ( var i = 0; i < self.order.cart.length;i++) {
         self.payment.price += self.order.cart[i].product.price * self.order.cart[i].quantity
       }
-      console.log(self.payment)
-      $http.post(environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
-        if (response) {
-          self.valid.step2 = true
-          self.steps.step1 = false
-          self.steps.step2 = false
-          self.steps.step3 = true
-          console.log('Step2 next')
+      if (!$scope.$$childHead.payment2.$invalid) {
+        $http.post($scope.environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
+          console.log(response)
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
-        } else {
-          console.log('credit card is not valid')
+        }).error(function (response) {
           self.valid.step2 = false
-        }
-      }).error(function (response) {
-        self.valid.step2 = false
-        console.log(response)
-      })
+          console.log(response)
+        })
+      } else {
+        $scope.$$childHead.payment2.$setDirty(true)
+        $scope.$$childHead.payment2.cardholdername.$setDirty(true)
+        $scope.$$childHead.payment2.cardnumber1.$setDirty(true)
+        $scope.$$childHead.payment2.cardnumber2.$setDirty(true)
+        $scope.$$childHead.payment2.cardnumber3.$setDirty(true)
+        $scope.$$childHead.payment2.cardnumber4.$setDirty(true)
+        $scope.$$childHead.payment2.cvv.$setDirty(true)
+      }
     }
     self.submit = function () {
       console.log(self.payment)
-      $http.post(environment.getBaseAPI() + 'payment/pay?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
+      $http.post($scope.environment.getBaseAPI() + 'payment/pay?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
         if (response.status !== 'error') {
           console.log('Paid')
+          console.log(response)
           self.order.date = response.date
           self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         } else {
@@ -133,7 +123,6 @@
     }
     self.init = function () {
       self.moveElement = angular.element('.timeline dl')
-      console.log(self.moveElement)
       self.height = self.moveElement.height() + 40
       self.moveElement.resize(function () {
         self.height = self.moveElement.height() + 40
