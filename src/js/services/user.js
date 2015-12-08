@@ -30,6 +30,7 @@ every controller that have to identify the customer, authentication service has 
 
     function initUser () {
       if (self.isAuthed()) {
+        $http.defaults.headers.common['Authorization'] = self.getToken()
         var req = {
           method: 'POST',
           data: {
@@ -46,6 +47,7 @@ every controller that have to identify the customer, authentication service has 
             self.setLastname(response.user.lastName)
             self.setEmail(response.user.email)
             self.setRole(response.role.name)
+            console.log(self.getToken())
             var req = {
               method: 'GET',
               url: environment.getBaseAPI() + 'user/' + self.email
@@ -169,6 +171,7 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.logout = function () {
+      delete $http.defaults.headers.common['Authorization']
       localStorageService.remove('authToken')
       Cart.clear()
       self.user_id = ''
