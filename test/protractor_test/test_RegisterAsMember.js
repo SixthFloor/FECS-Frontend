@@ -41,7 +41,7 @@ describe('Register as member', function () {
     })
 
     it('Case 2: If e-mail,password are corrected and click next button,it should go next step', function () {
-        email.sendKeys("pedtesting20@gmail.com")
+        email.sendKeys("pedtesting21@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -66,7 +66,7 @@ describe('Register as member', function () {
     })
 
     it('Case 5: If register with same e-mail, notification should appear register unsuccessful', function () {
-        email.sendKeys("pedtesting20@gmail.com")
+        email.sendKeys("pedtesting21@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -88,7 +88,7 @@ describe('Register as member', function () {
     })
 
     it('Case 6: If register with password shorter than 8 letters and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester21@gmail.com")
+        email.sendKeys("pedtester22@gmail.com")
         password.sendKeys("12345")
         confirmpassword.sendKeys("12345")
         nextButton1.click()
@@ -97,7 +97,7 @@ describe('Register as member', function () {
     })
 
     it('Case 7: If register email with incorrect form and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester21-gmail.com")
+        email.sendKeys("pedtester22-gmail.com")
         password.sendKeys("1235678")
         confirmpassword.sendKeys("1235678")
         nextButton1.click()
@@ -115,7 +115,7 @@ describe('Register as member', function () {
     })
 
     it('Case 9: If register without lastname and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester21@gmail.com")
+        email.sendKeys("pedtester22@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -127,7 +127,7 @@ describe('Register as member', function () {
     })
 
      it('Case 10: If register with email that is registered but with UpperCase, it should not login successed', function(){
-        email.sendKeys("PEDTesting20@gmail.com")
+        email.sendKeys("PEDTesting21@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -140,7 +140,7 @@ describe('Register as member', function () {
     })
 
       it('Case 11: If register password with special charactor and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester21@gmail.com")
+        email.sendKeys("pedtester22@gmail.com")
         password.sendKeys("!@#$%^&*")
         confirmpassword.sendKeys("!@#$%^&*")
         nextButton1.click()
