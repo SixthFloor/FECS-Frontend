@@ -16,6 +16,7 @@ every controller that have to identify the customer, authentication service has 
     var self = this
     self.user_id = ''
     self.email = ''
+    self.password = ''
     self.firstname = ''
     self.lastname = ''
     self.address1 = ''
@@ -27,6 +28,7 @@ every controller that have to identify the customer, authentication service has 
     self.expirationDate = ''
     self.card_number = ''
     self.role = ''
+    self.validEditProfile = true
 
     function initUser () {
       if (self.isAuthed()) {
@@ -211,30 +213,33 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.editprofile = function (data, success, error) {
-      console.log(self)
-      // var url = environment.getBaseAPI() + 'user/edit'
-      // $http.put(url, {
-      //   id: self.user_id,
-      //   email: self.email,
-      //   password: data.pwd,
-      //   firstName: self.firstname,
-      //   lastName: self.lastname
-      // }).success(function(response){ console.log(response)}).error(function(response){ console.log(response)})
-
-      var url = environment.getBaseAPI() + 'user/location'
-      var config = {
-        headers: {
-          'email': self.email,
-          'password': data.pwd
-        }
-      }
-      $http.put(url, config, {
-        address1: self.address1,
-        address2: self.address2,
-        province: self.province,
-        zipcode: self.zipcode,
-        telephone_number: self.telephone_number
+      console.log(self.user_id)
+      console.log(self.email)
+      var url = environment.getBaseAPI() + 'user/edit'
+      
+      $http.put(url, {
+        id: self.user_id,
+        email: self.email,
+        password: self.password,
+        firstName: self.firstname,
+        lastName: self.lastname
       }).success(function(response){ console.log(response)}).error(function(response){ console.log(response)})
+
+      // var url = environment.getBaseAPI() + 'user/location'
+      // var config = {
+      //   headers: {
+      //     'Content-type': 'application/json',
+      //     'email': self.email,
+      //     'password': data.pwd
+      //   }
+      // }
+      // $http.put(url, config, {
+      //   address1: self.address1,
+      //   address2: self.address2,
+      //   province: self.province,
+      //   zipcode: self.zipcode,
+      //   telephone_number: self.telephone_number
+      // }).success(function(response){ console.log(response)}).error(function(response){ console.log(response)})
 
       // var req = {
       //  method: 'PUT',

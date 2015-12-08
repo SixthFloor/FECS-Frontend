@@ -30,6 +30,8 @@
         email: self.User.email,
         pwd: self.data.pwd
       }
+
+      self.User.validEditProfile = true
       User.confirmProfile(data, function () {
         User.editprofile(data, function () {
           $state.go('setting', {}, {reload: true})
