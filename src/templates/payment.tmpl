@@ -1,269 +1,267 @@
-<navbar></navbar>
-  <div ng-if="!paymentCtrl.is404">
-    <div class="container">
-    <div class="timeline">
+<div ng-if="!paymentCtrl.is404">
+  <div class="container">
+  <div class="timeline">
+    <div class="overlay"></div>
+    <div class="events events-left regis-s1">
+      <div class="content"></div>
       <div class="overlay"></div>
-      <div class="events events-left regis-s1">
-        <div class="content"></div>
-        <div class="overlay"></div>
-      </div>
-      <dl data-ng-init="paymentCtrl.init()">
-        <dt>Payment</dt>
-        <dd class="pos-right clearfix">
-          <div class="circ"></div>
-          <div class="time">Step 1</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Shipping</h4>
-              <p>
-                <form name="registerForm" class="form-horizontal" role="form">
-                  <div class="alert alert-danger control-label col-sm-3" ng-show="paymentCtrl.User.zipcode.length != 5 || paymentCtrl.User.province === '' || (paymentCtrl.User.address1 === '' && paymentCtrl.User.address2 === '')">
-                    <strong>Warning</strong> Please enter your exist address.
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3">Address1</label>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address1"></input>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3">Address2</label>
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address2"></input>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3" >Province </label>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" ng-model="paymentCtrl.User.province">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3" >ZIP code </label>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" maxlength="5" ng-model="paymentCtrl.User.zipcode">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="shipping-date">Shipping date</label>
-                    <div class="col-sm-9">
-                      <div class="row">
-                        <div class="col-sm-8">
-                          <select class="form-control col-sm-3" name="shipping-date" id="shipping-date" ng-model="paymentCtrl.order.shipping" ng-options="shipping as shipping.date for shipping in paymentCtrl.shippingList">
-                            <option value="" disabled selected>AVAILABLE DATE</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="alert alert-danger" ng-show="paymentCtrl.order.shipping === null && !paymentCtrl.valid.step1">
-                        <strong>SELECT</strong> available shipping date.
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                <div class="register-container">
-                  <div class="row">
-                    <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step1">
-                      <strong>Invalid Form</strong> Please check for the required information
-                    </div>
-                  </div>
-                  <button type="button" class="register-btn" ng-click="paymentCtrl.cancle()"><i class="fa fa-list-ul"> Later</i></button>
-                  <button type="button" class="register-btn" ng-click="paymentCtrl.next1()">Next <i class="fa fa-arrow-circle-right"></i></button>
+    </div>
+    <dl data-ng-init="paymentCtrl.init()">
+      <dt>Payment</dt>
+      <dd class="pos-right clearfix">
+        <div class="circ"></div>
+        <div class="time">Step 1</div>
+        <div class="events">
+          <div class="events-body">
+            <h4 class="events-heading">Shipping</h4>
+            <p>
+              <form name="registerForm" class="form-horizontal" role="form">
+                <div class="alert alert-danger control-label col-sm-3" ng-show="paymentCtrl.User.zipcode.length != 5 || paymentCtrl.User.province === '' || (paymentCtrl.User.address1 === '' && paymentCtrl.User.address2 === '')">
+                  <strong>Warning</strong> Please enter your exist address.
                 </div>
-              </p>
-            </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3">Address1</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address1"></input>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3">Address2</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" rows="5" ng-model="paymentCtrl.User.address2"></input>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3" >Province </label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" ng-model="paymentCtrl.User.province">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3" >ZIP code </label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" maxlength="5" ng-model="paymentCtrl.User.zipcode">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="shipping-date">Shipping date</label>
+                  <div class="col-sm-9">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <select class="form-control col-sm-3" name="shipping-date" id="shipping-date" ng-model="paymentCtrl.order.shipping" ng-options="shipping as shipping.date for shipping in paymentCtrl.shippingList">
+                          <option value="" disabled selected>AVAILABLE DATE</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="alert alert-danger" ng-show="paymentCtrl.order.shipping === null && !paymentCtrl.valid.step1">
+                      <strong>SELECT</strong> available shipping date.
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="register-container">
+                <div class="row">
+                  <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step1">
+                    <strong>Invalid Form</strong> Please check for the required information
+                  </div>
+                </div>
+                <a href="#/order"><button type="button" class="register-btn"><i class="fa fa-list-ul"> Later</i></button></a>
+                <button type="button" class="register-btn" ng-click="paymentCtrl.next1()">Next <i class="fa fa-arrow-circle-right"></i></button>
+              </div>
+            </p>
           </div>
-        </dd>
-        <dd class="pos-right clearfix">
-          <div class="circ"></div>
-          <div class="time">Step 2</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Payment Information</h4>
-              <p>
-                <form class="form-horizontal" role="form">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
-                      <div class="col-sm-7">
-                        <input type="text" class="form-control" name="card-holder-name"
-                        id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD"
-                        ng-model="paymentCtrl.payment.card.holder_name">
-                      </div>
+        </div>
+      </dd>
+      <dd class="pos-right clearfix">
+        <div class="circ"></div>
+        <div class="time">Step 2</div>
+        <div class="events">
+          <div class="events-body">
+            <h4 class="events-heading">Payment Information</h4>
+            <p>
+              <form class="form-horizontal" role="form">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="card-holder-name">Card holder's name</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" name="card-holder-name"
+                      id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD"
+                      ng-model="paymentCtrl.payment.card.holder_name">
                     </div>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="card-number">Card number</label>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control"
-                          ng-model="paymentCtrl.num1" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control"
-                          ng-model="paymentCtrl.num2" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control"
-                          ng-model="paymentCtrl.num3" name="card-number" placeholder="XXXX"></input>
-                      </div>
-                      <div class="col-sm-1">
-                          <input type="text" maxlength="4" class="form-control"
-                          ng-model="paymentCtrl.num4" name="card-number" placeholder="XXXX"></input>
-                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="card-number">Card number</label>
+                    <div class="col-sm-1">
+                        <input type="text" maxlength="4" class="form-control"
+                        ng-model="paymentCtrl.num1" name="card-number" placeholder="XXXX"></input>
                     </div>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
-                      <div class="col-sm-9">
-                        <input type="month" ng-model="paymentCtrl.payment.card.exp_date">
-                      </div>
+                    <div class="col-sm-1">
+                        <input type="text" maxlength="4" class="form-control"
+                        ng-model="paymentCtrl.num2" name="card-number" placeholder="XXXX"></input>
                     </div>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label" for="card-holder-name">Security Code</label>
-                      <div class="col-sm-2">
-                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" class="form-control" name="card-cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.payment.cvv">
-                      </div>
-                      <div class="alert alert-danger" ng-show="paymentCtrl.payment.cvv.length != 3">
-                        <strong>ENTER</strong> Card Verification Value.
-                      </div>
+                    <div class="col-sm-1">
+                        <input type="text" maxlength="4" class="form-control"
+                        ng-model="paymentCtrl.num3" name="card-number" placeholder="XXXX"></input>
                     </div>
-                  </fieldset>
-                </form>
+                    <div class="col-sm-1">
+                        <input type="text" maxlength="4" class="form-control"
+                        ng-model="paymentCtrl.num4" name="card-number" placeholder="XXXX"></input>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
+                    <div class="col-sm-9">
+                      <input type="month" ng-model="paymentCtrl.payment.card.exp_date">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="card-holder-name">Security Code</label>
+                    <div class="col-sm-2">
+                      <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" class="form-control" name="card-cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.payment.cvv">
+                    </div>
+                    <div class="alert alert-danger" ng-show="paymentCtrl.payment.cvv.length != 3">
+                      <strong>ENTER</strong> Card Verification Value.
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+              <div class="register-container">
+                <div class="row">
+                  <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step2">
+                    <strong>Error</strong> your credit card cannot validate.
+                  </div>
+                </div>
+                <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
+                <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Purchase <i class="fa fa-arrow-circle-right"></i></button>
+              </div>
+            </p>
+          </div>
+        </div>
+      </dd>
+      <dd class="pos-right clearfix">
+        <div class="circ"></div>
+        <div class="time">Step 3</div>
+        <div class="events">
+          <div class="events-body">
+            <h4 class="events-heading">Purchase Confirmation</h4>
+            <p>
+              <div class="member-info">
+                <div class="member-info-panel">
+                  <div class="panel-heading">Purchase Information</div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-sm-4 attr">Order number</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.orderNumber}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Customer</div>
+                      <div class="col-sm-7">{{paymentCtrl.User.firstname}} {{paymentCtrl.User.lastname}}</div>
+                    </div>
+                    <div class="row" ng-if="paymentCtrl.User.adr1 !== ''">
+                      <div class="col-sm-4 attr">Address</div>
+                      <div class="col-sm-7">{{paymentCtrl.User.address1}}</div>
+                    </div>
+                    <div class="row" ng-if="paymentCtrl.User.adr2 !== ''">
+                      <div class="col-sm-4 attr">Address</div>
+                      <div class="col-sm-7">{{paymentCtrl.User.address2}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Province</div>
+                      <div class="col-sm-7">{{paymentCtrl.User.province}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Zip code</div>
+                      <div class="col-sm-7">{{paymentCtrl.User.zipcode}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Shipping date</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Total price</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.price}}</div>
+                    </div>
+                  </div>
+                  <div class="panel-heading">Credit Card Information</div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-sm-4 attr">Card holder's name</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.card.holder_name}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Card number</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.card.no}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 attr">Expiration date</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.card.exp_date}}</div>
+                    </div>
+                  </div>
+                </div>
                 <div class="register-container">
                   <div class="row">
-                    <div class="alert alert-danger col-sm-4 col-sm-offset-1" ng-show="!paymentCtrl.valid.step2">
-                      <strong>Error</strong> your credit card cannot validate.
+                    <div class="alert alert-danger col-sm-4 col-sm-offset-1">
+                      <strong>Warning</strong> If you click 'Purchase' button, you cannot undo.
                     </div>
                   </div>
                   <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
-                  <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Purchase <i class="fa fa-arrow-circle-right"></i></button>
+                  <button type="button" class="register-btn" ng-click="paymentCtrl.submit()">Purchase <i class="fa fa-credit-card-alt"></i></button>
                 </div>
-              </p>
-            </div>
+              </div>
+            </p>
           </div>
-        </dd>
-        <dd class="pos-right clearfix">
-          <div class="circ"></div>
-          <div class="time">Step 3</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Purchase Confirmation</h4>
-              <p>
-                <div class="member-info">
-                  <div class="member-info-panel">
-                    <div class="panel-heading">Purchase Information</div>
-                    <div class="panel-body">
-                      <div class="row">
-                        <div class="col-sm-4 attr">Order number</div>
-                        <div class="col-sm-7">{{paymentCtrl.order.orderNumber}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Customer</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.firstname}} {{paymentCtrl.User.lastname}}</div>
-                      </div>
-                      <div class="row" ng-if="paymentCtrl.User.adr1 !== ''">
-                        <div class="col-sm-4 attr">Address</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.address1}}</div>
-                      </div>
-                      <div class="row" ng-if="paymentCtrl.User.adr2 !== ''">
-                        <div class="col-sm-4 attr">Address</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.address2}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Province</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.province}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Zip code</div>
-                        <div class="col-sm-7">{{paymentCtrl.User.zipcode}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Shipping date</div>
-                        <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Total price</div>
-                        <div class="col-sm-7">{{paymentCtrl.payment.price}}</div>
-                      </div>
-                    </div>
-                    <div class="panel-heading">Credit Card Information</div>
-                    <div class="panel-body">
-                      <div class="row">
-                        <div class="col-sm-4 attr">Card holder's name</div>
-                        <div class="col-sm-7">{{paymentCtrl.payment.card.holder_name}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Card number</div>
-                        <div class="col-sm-7">{{paymentCtrl.payment.card.no}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4 attr">Expiration date</div>
-                        <div class="col-sm-7">{{paymentCtrl.payment.card.exp_date}}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="register-container">
+        </div>
+      </dd>
+      <dd class="pos-right clearfix complete">
+        <div class="circ"></div>
+        <div class="time">Purchased</div>
+        <div class="events">
+          <div class="events-body">
+            <h4 class="events-heading">Thank you for purchasing <i class="logo"></i></h4>
+            <p>
+              <div class="member-info">
+                <div class="member-info-panel">
+                  <div class="panel-heading">Your recent purchased information</div>
+                  <div class="panel-body">
                     <div class="row">
-                      <div class="alert alert-danger col-sm-4 col-sm-offset-1">
-                        <strong>Warning</strong> If you click 'Purchase' button, you cannot undo.
-                      </div>
+                      <div class="col-sm-5 attr">Order number</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.orderNumber}}</div>
                     </div>
-                    <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
-                    <button type="button" class="register-btn" ng-click="paymentCtrl.submit()">Purchase <i class="fa fa-credit-card-alt"></i></button>
-                  </div>
-                </div>
-              </p>
-            </div>
-          </div>
-        </dd>
-        <dd class="pos-right clearfix complete">
-          <div class="circ"></div>
-          <div class="time">Purchased</div>
-          <div class="events">
-            <div class="events-body">
-              <h4 class="events-heading">Thank you for purchasing <i class="logo"></i></h4>
-              <p>
-                <div class="member-info">
-                  <div class="member-info-panel">
-                    <div class="panel-heading">Your recent purchased information</div>
-                    <div class="panel-body">
-                      <div class="row">
-                        <div class="col-sm-5 attr">Order number</div>
-                        <div class="col-sm-7">{{paymentCtrl.order.orderNumber}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-5 attr">Shipping date</div>
-                        <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-5 attr">Total price</div>
-                        <div class="col-sm-7">{{paymentCtrl.payment.price}}</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-5 attr">Purchased date</div>
-                        <div class="col-sm-7">{{paymentCtrl.order.date}}</div>
-                      </div>
+                    <div class="row">
+                      <div class="col-sm-5 attr">Shipping date</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.shipping.date}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-5 attr">Total price</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.price}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-5 attr">Purchased date</div>
+                      <div class="col-sm-7">{{paymentCtrl.order.date}}</div>
                     </div>
                   </div>
-                  <a ui-sref="home">
-                    <button class="register-btn">
-                    <i class="glyphicon glyphicon-home"></i>
-                     Home Page</button></a>
-                     <a ui-sref="home">
-                    <button class="register-btn">
-                    <i class="fa fa-list-ul"></i>
-                     History</button></a>
                 </div>
-              </p>
-            </div>
+                <a ui-sref="home">
+                  <button class="register-btn">
+                  <i class="glyphicon glyphicon-home"></i>
+                   Home Page</button></a>
+                   <a ui-sref="home">
+                  <button class="register-btn">
+                  <i class="fa fa-list-ul"></i>
+                   History</button></a>
+              </div>
+            </p>
           </div>
-        </dd>
-      </dl>
-    </div>
+        </div>
+      </dd>
+    </dl>
   </div>
+</div>
+</div>
+<div ng-if="paymentCtrl.is404">
+  <div class="text-center margin-5">
+    <h1>Order Not Found</h1>
+    <p>Please check your order code again</p><br/>
+    <a href="#/home" class="btn btn-primary"><i class="glyphicon glyphicon-home"/> Back to Home page</a>
   </div>
-  <div ng-if="paymentCtrl.is404">
-    <div class="text-center margin-5">
-      <h1>Order Not Found</h1>
-      <p>Please check your order code again</p><br/>
-      <a href="#/home" class="btn btn-primary"><i class="glyphicon glyphicon-home"/> Back to Home page</a>
-    </div>
-  </div>
-<footer></footer>
+</div>

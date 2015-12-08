@@ -11,8 +11,8 @@
     .module('controller.register', [])
     .controller('RegisterController', RegisterController)
 
-  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'Notification', 'User']
-  function RegisterController ($scope, $http, registerService, $location, $state, notification, User) {
+  RegisterController.$inject = ['$scope', '$http', 'registerService', '$location', '$state', 'Notification']
+  function RegisterController ($scope, $http, registerService, $location, $state, notification) {
     var self = this
     self.member = registerService.member
     self.valid = registerService.valid
@@ -93,15 +93,15 @@
         (self.checkEmail(self.member.email)) &&
         (self.member.firstname !== '') && (self.member.lastname !== '')) {
         if (self.num1 && self.num2 && self.num3 && self.num4) {
-          self.member.card_number = self.num1 + '-' + self.num2 + '-' + self.num3 + '-' + self.num4
+          self.member.card_number = self.num1 + self.num2 + self.num3 + self.num4
         }
         registerService.regis(function (response) {
           console.log('Submit regis')
-          // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
-          // notification.success({
-          //   message: msg
-          // })
-          // $state.transitionTo('login')
+        // msg = '<span><b>Success!</b> Welcome ' + self.member.firstname + ' to FECS. <br/> Please Login to the system.</span>'
+        // notification.success({
+        //   message: msg
+        // })
+        // $state.transitionTo('login')
           self.moveElement.css('margin-top', '-' + (self.height * 3) + 'px')
         }, function (response) {
           var msg = '<span><b>Registration not possible </b> ' + response.description + '.</span>'

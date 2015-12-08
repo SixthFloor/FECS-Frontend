@@ -110,15 +110,6 @@
         console.log(response)
       })
     }
-    self.cancle = function () {
-      $http.put(environment.getBaseAPI() + 'order/cancle', {id: self.order.id}).success(function (response) {
-        if (response.status !== 'error') {
-          console.log(self.order.orderNumber + 'Cancled')
-        } else {
-          console.log(response)
-        }
-      })
-    }
     self.submit = function () {
       $http.post(environment.getBaseAPI() + 'payment/pay?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
         if (response.status !== 'error') {

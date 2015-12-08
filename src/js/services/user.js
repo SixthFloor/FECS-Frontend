@@ -14,9 +14,8 @@ every controller that have to identify the customer, authentication service has 
   User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
   function User (localStorageService, $http, environment, Cart) {
     var self = this
-    self.user_id = '375'
+    self.user_id = ''
     self.email = ''
-    self.password = ''
     self.firstname = ''
     self.lastname = ''
     self.address1 = ''
@@ -29,7 +28,7 @@ every controller that have to identify the customer, authentication service has 
     self.card_number = ''
     self.role = ''
 
-    function initUser (response) {
+    function initUser () {
       if (self.isAuthed()) {
         $http.defaults.headers.common['Authorization'] = self.getToken()
         var req = {
@@ -40,16 +39,15 @@ every controller that have to identify the customer, authentication service has 
           url: environment.getBaseAPI() + 'authentication/token'
         }
         $http(req).then(function (res) {
-          console.log(res)
           var response = res.data
           if (response.status === 'error') {
             console.log('error')
           } else {
-            console.log(self)
             self.setFirstname(response.user.firstName)
             self.setLastname(response.user.lastName)
             self.setEmail(response.user.email)
             self.setRole(response.role.name)
+            console.log(self.getToken())
             var req = {
               method: 'GET',
               url: environment.getBaseAPI() + 'user/' + self.email
@@ -59,7 +57,6 @@ every controller that have to identify the customer, authentication service has 
               if (response.status === 'error') {
                 console.log('error')
               } else {
-                console.log(response)
                 self.setUserID(response.id)
                 self.setAddress1(response.address1)
                 self.setAddress2(response.address2)
@@ -92,13 +89,8 @@ every controller that have to identify the customer, authentication service has 
     self.setRole = function (role) {
       self.role = role
     }
-
     self.setEmail = function (email) {
       self.email = email
-    }
-
-    self.setPassword = function (password) {
-      self.password = password
     }
 
     self.setFirstname = function (firstname) {
@@ -178,27 +170,6 @@ every controller that have to identify the customer, authentication service has 
       })
     }
 
-    self.confirmProfile = function (data, success, error) {
-      var req = {
-        method: 'POST',
-        data: {
-          email: angular.lowercase(data.email),
-          password: data.pwd
-        },
-        url: environment.getBaseAPI() + 'authentication/login'
-      }
-      $http(req).then(function (res) {
-        var response = res.data
-        if (response.status === 'error') {
-          error({error: response.message})
-        } else {
-          success()
-        }
-      }, function (err) {
-        error({error: err.data})
-      })
-    }
-
     self.logout = function () {
       delete $http.defaults.headers.common['Authorization']
       localStorageService.remove('authToken')
@@ -221,16 +192,12 @@ every controller that have to identify the customer, authentication service has 
     self.editprofile = function (success, error) {
       var url = environment.getBaseAPI() + 'user/edit'
       $http.put(url, {
-        id: self.user_id,
-        email: self.email,
-        password: self.password,
-        firstName: self.firstname,
-        lastName: self.lastname
-      }).success(function(response){
-        console.log(response)
-      }).error(function(res){
-        console.log(res)
-      })
+        id: self.profile.id,
+        email: self.profile.email,
+        password: self.profile.password,
+        firstName: self.profile.firstName,
+        lastName: self.profile.lastName
+      }).success(success).error(error)
     }
 
     initUser()

@@ -113,12 +113,6 @@
         controller: 'CartController',
         controllerAs: 'cartCtrl'
       })
-      .state('setting', {
-        url: '/setting',
-        templateUrl: 'templates/setting.tmpl',
-        controller: 'SettingController',
-        controllerAs: 'settingCtrl'
-      })
       .state('payment', {
         url: '/payment/:orderNumber',
         data: {
@@ -130,6 +124,18 @@
         templateUrl: 'templates/payment.tmpl',
         controller: 'PaymentController',
         controllerAs: 'paymentCtrl'
+      })
+      .state('order', {
+        url: '/order',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/order.tmpl',
+        controller: 'OrderController',
+        controllerAs: 'orderCtrl'
       })
   }
 })()

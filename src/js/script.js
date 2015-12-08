@@ -18,8 +18,8 @@
       'controller.productpage',
       'controller.categorypage',
       'controller.cart',
-      'controller.settingpage',
       'controller.payment',
+      'controller.order',
       'controller.navbar',
       'directive.navbar',
       'directive.footer'
