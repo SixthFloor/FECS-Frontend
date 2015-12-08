@@ -11,8 +11,8 @@
     .controller('LoginController', LoginController)
     .controller('LogoutController', LogoutController)
 
-  LoginController.$inject = ['$scope', '$state', 'Notification', 'User']
-  function LoginController ($scope, $state, notification, User) {
+  LoginController.$inject = ['$scope', '$state', 'Notification']
+  function LoginController ($scope, $state, notification) {
     var self = this
     self.show = false
     self.data = {
@@ -29,7 +29,7 @@
         email: self.data.email,
         pwd: self.data.pwd
       }
-      User.login(data, function () {
+      $scope.User.login(data, function () {
         $state.go('home', {}, {reload: true})
         var msg = '<span><b>Well done!</b> Login successfully.</span>'
         notification.success({
@@ -45,12 +45,12 @@
     }
   }
 
-  LogoutController.$inject = ['$scope', '$state', 'Notification', 'User']
-  function LogoutController ($scope, $state, notification, User) {
+  LogoutController.$inject = ['$scope', '$state', 'Notification']
+  function LogoutController ($scope, $state, notification) {
     var self = this
 
     self.logout = function () {
-      User.logout()
+      $scope.User.logout()
       var msg = '<span><b>Logout Success!</b> Thank you for using our services :)</span>'
       notification.success({
         message: msg

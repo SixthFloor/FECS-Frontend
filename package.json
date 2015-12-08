@@ -48,5 +48,7 @@
     "protractor-jasmine2-html-reporter": "0.0.5",
     "require-dir": "^0.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "protractor": "^3.0.0"
+  }
 }

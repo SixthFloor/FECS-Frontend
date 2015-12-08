@@ -11,18 +11,33 @@
     .module('controller.navbar', [])
     .controller('NavbarController', NavbarController)
 
-  NavbarController.$inject = ['$scope', '$http', 'User', 'Cart']
-  function NavbarController ($scope, $http, User, Cart) {
+  NavbarController.$inject = ['$scope', '$http', '$state', 'Cart', 'searchService', 'storeProduct']
+  function NavbarController ($scope, $http, $state, Cart, searchService, storeProduct) {
     var self = this
 
-    self.isAuthed = User.isAuthed()
-    self.User = User
     self.Cart = Cart
 
-    if (User.isAuthed()) {
-      $http.defaults.headers.common['Authorization'] = User.getToken()
+    if ($scope.User.isAuthed()) {
+      $http.defaults.headers.common['Authorization'] = $scope.User.getToken()
     } else {
       delete $http.defaults.headers.common['Authorization']
+    }
+
+    self.search = function (query) {
+      /* If search with empty should query nothing, but if call the api with empty string it will return all product */
+      if (query === undefined) {
+        query = ''
+      }
+      searchService.setQuery(query)
+      if (!$state.is('category')) {
+        $state.transitionTo('category', {category_name: 'search'}, {reload: true})
+      } else {
+        var url = $scope.environment.getBaseAPI() + 'product/search?query=' + query
+        console.log(url)
+        $http.get(url).success(function (response) {
+          storeProduct.store.products = response
+        })
+      }
     }
   }
 })()

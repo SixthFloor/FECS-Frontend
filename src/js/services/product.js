@@ -9,6 +9,16 @@
   angular
     .module('services.product', [])
     .service('productService', productService)
+    .factory('storeProduct', productList)
+
+  productList.$inject = ['$http', 'environment']
+  function productList ($http, environment) {
+    return {
+      store: {
+        products: []
+      }
+    }
+  }
 
   productService.$inject = ['$http', 'environment']
   function productService ($http, environment) {
@@ -45,7 +55,7 @@
         name: self.product.productName,
         price: self.product.price,
         description: self.product.description,
-        dimensionDescription: self.product.dimensionDescription,
+        dimensionDescription: self.product.dimensionDescription
       }).success(success).error(error)
     }
     self.addproduct2 = function (success, error) {

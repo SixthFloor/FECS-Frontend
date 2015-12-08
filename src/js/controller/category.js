@@ -11,13 +11,11 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'environment', 'User']
-  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, environment, User) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'searchService', 'storeProduct']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, searchService, storeProduct) {
     var self = this
-    self.User = User
     var orderBy = $filter('orderBy')
-    console.log($stateParams.category_name)
-    self.productList = {}
+    self.productList = storeProduct.store
     self.sortOptions = [
       { name: 'Name A - Z', value: 'name' },
       { name: 'Name Z - A', value: '-name' },
@@ -27,16 +25,22 @@
     self.sort_by = self.sortOptions[0].value
     self.category_name = $stateParams.category_name
 
-    //  API path
-    var url = ''
-    if (self.category_name !== 'all') {
-      url = environment.getBaseAPI() + 'category/product/' + self.category_name
-    }
-    else url = environment.getBaseAPI() + 'product/all'
+    self.init = function () {
+      //  API path
+      self.url = ''
+      if (self.category_name === 'search') {
+        self.url = $scope.environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
+      }
+      else if (self.category_name !== 'all') {
+        self.url = $scope.environment.getBaseAPI() + 'category/product/' + self.category_name
+      }
+      else self.url = $scope.environment.getBaseAPI() + 'product/all'
 
-    $http.get(url).success(function (response) {
-      self.productList = response
-    })
+      $http.get(self.url).success(function (response) {
+        storeProduct.store.products = response
+        console.log(self.productList)
+      })
+    }
 
     self.viewProduct = function (id) {
       $state.transitionTo('product', {product_id: id})
@@ -56,5 +60,47 @@
       productService.clearProduct()
       $state.transitionTo('addproduct')
     }
+
+    self.clear = function () {
+      console.log('clear')
+      self.price = 0
+      self.init()
+    }
+
+    self.filterPrice = function () {
+      console.log('filter price')
+      // $http.get(self.url).success(function (response) {
+      //   storeProduct.store.products = response
+      // }).then(function (response) {
+      var list = storeProduct.store.products
+      var filter = []
+      for (var i = 0; i < list.length; i++) {
+        switch (self.price) {
+          case '1':
+            if (list[i].price < 1000) {
+              filter.push(list[i])
+            }
+            break
+          case '2':
+            if (list[i].price >= 1000 && list[i].price <= 5000) {
+              filter.push(list[i])
+            }
+            break
+          case '3':
+            if (list[i].price >= 5000 && list[i].price <= 10000) {
+              filter.push(list[i])
+            }
+            break
+          case '4':
+            if (list[i].price > 10000) {
+              filter.push(list[i])
+            }
+            break
+        }
+      }
+      storeProduct.store.products = filter
+    // })
+    }
+    self.init()
   }
 })()

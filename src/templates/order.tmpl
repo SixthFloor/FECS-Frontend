@@ -1,44 +1,42 @@
-<navbar></navbar>
-  <div class="container">
-    <div name="title"><h1><span class="fa fa-list-ul"></span> Order History</h1></div>
-    <div class="panel panel-default">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Order Number</th>
-            <th>Total Price</th>
-            <th>Order Date</th>
-            <th>Status</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="order in orderCtrl.orders">
-            <td>{{order.orderNumber}}</td>
-            <td>{{orderCtrl.getPrice(order)}}</td>
-            <td>{{order.orderDate}}</td>
-            <td>{{order.status}}</td>
-            <td ng-if="order.status === 0">
-              <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoPay(id)">
-              Pay</button>
-              <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="orderCtrl.cancle(id)">
-              <span class="glyphicon glyphicon-remove"></span></button></td>
-            <td ng-if="order.status === 1">Cancled</td>
-            <td ng-if="order.status > 1">Paid</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container">
+  <div name="title"><h1><span class="fa fa-list-ul"></span> Order History</h1></div>
+  <div class="panel panel-default">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order Number</th>
+          <th>Total Price</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="order in orderCtrl.orders">
+          <td>{{order.orderNumber}}</td>
+          <td>{{orderCtrl.getPrice(order)}}</td>
+          <td>{{order.orderDate}}</td>
+          <td>{{order.status}}</td>
+          <td ng-if="order.status === 0">
+            <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoPay(id)">
+            Pay</button>
+            <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="orderCtrl.cancle(id)">
+            <span class="glyphicon glyphicon-remove"></span></button></td>
+          <td ng-if="order.status === 1">Cancled</td>
+          <td ng-if="order.status > 1">Paid</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="total">
+    <div class="col-md-6">
+      <b>Money spent: </b>
     </div>
-    <div class="total">
-      <div class="col-md-6">
-        <b>Money spent: </b>
-      </div>
-      <div class="col-md-4 text-right">
-        <b>{{orderCtrl.totalSpent}}</b>
-      </div>
-      <div class="col-md-2">
-        <b>Baht</b>
-      </div>
+    <div class="col-md-4 text-right">
+      <b>{{orderCtrl.totalSpent}}</b>
+    </div>
+    <div class="col-md-2">
+      <b>Baht</b>
     </div>
   </div>
-<footer></footer>
+</div>
