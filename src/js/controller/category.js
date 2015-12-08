@@ -64,13 +64,11 @@
     }
 
     self.clear = function () {
-      console.log('clear')
       self.price = 0
       self.init()
     }
 
     self.filterPrice = function (list) {
-      console.log('filter price')
       // $http.get(self.url).success(function (response) {
       //   storeProduct.store.products = response
       // }).then(function (response) {
