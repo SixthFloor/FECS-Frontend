@@ -19,8 +19,8 @@
 
     self.search = function (query) {
       /* If search with empty should query nothing, but if call the api with empty string it will return all product */
-      if (query === undefined) {
-        query = ''
+      if (query === '') {
+        query = '%'
       }
       searchService.setQuery(query)
       if (!$state.is('category')) {

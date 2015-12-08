@@ -63,7 +63,6 @@
         expirationDate: expdate_unix,
         card_number: self.member.card_number
       }
-      console.log(parameter)
       $http.post(url, parameter).success(success).error(error)
     }
   }
