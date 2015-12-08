@@ -71,9 +71,8 @@ describe('filter furniture', function() {
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
       expect(allTypefilter.count()).toEqual(4)
-      //browser.sleep(5000)
+
       under1.click()
-      //browser.sleep(5000)
 
       allProduct.count().then(function(count) {
         amountProductU1 = count
@@ -87,10 +86,7 @@ describe('filter furniture', function() {
         amountProductPriceU1 = count
       })
 
-      clearButton.click()
-      //browser.sleep(5000)
       to5.click()
-      //browser.sleep(5000)
 
       allProduct.count().then(function(count) {
         amountProductTo5 = count
@@ -104,10 +100,7 @@ describe('filter furniture', function() {
         amountProductPriceTo5 = count
       })
 
-      clearButton.click()
-      //browser.sleep(5000)
       to10.click()
-      //browser.sleep(5000)
 
       allProduct.count().then(function(count) {
         amountProductTo10 = count
@@ -121,10 +114,7 @@ describe('filter furniture', function() {
         amountProductPriceTo10 = count
       })
 
-      clearButton.click()
-      //browser.sleep(5000)
       above10.click()
-      //browser.sleep(5000)
 
       allProduct.count().then(function(count) {
         amountProductA10 = count
@@ -145,13 +135,8 @@ describe('filter furniture', function() {
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
-      //browser.sleep(5000)
+
       under1.click()
-      //browser.sleep(5000)
-      expect(allProduct.count()).toEqual(amountProductU1)
-      expect(allProductName.count()).toEqual(amountProductNameU1)
-      expect(allProductPrice.count()).toEqual(amountProductPriceU1)
-      
       //Array of name's product
       for (var i = 0 ; i < amountProductNameU1 ; i++) {
         allProductName.get(i).getText().then(function(text) {
@@ -166,10 +151,8 @@ describe('filter furniture', function() {
           //console.log(idProduct)
         })
       }
-      clearButton.click()
-      //browser.sleep(5000)
+
       to5.click()
-      //browser.sleep(5000)
       //Array of name's product
       for (var i = 0 ; i < amountProductNameTo5 ; i++) {
         allProductName.get(i).getText().then(function(text) {
@@ -184,10 +167,8 @@ describe('filter furniture', function() {
           //console.log(idProduct)
         })
       }
-      clearButton.click()
-      //browser.sleep(5000)
+
       to10.click()
-      //browser.sleep(5000)
       //Array of name's product
       for (var i = 0 ; i < amountProductNameTo10 ; i++) {
         allProductName.get(i).getText().then(function(text) {
@@ -202,10 +183,8 @@ describe('filter furniture', function() {
           //console.log(idProduct)
         })
       }
-      clearButton.click()
-      //browser.sleep(5000)
+
       above10.click()
-      //browser.sleep(5000)
       //Array of name's product
       for (var i = 0 ; i < amountProductNameA10 ; i++) {
         allProductName.get(i).getText().then(function(text) {
@@ -249,49 +228,34 @@ describe('filter furniture', function() {
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
-      //browser.sleep(5000)
-      under1.click()
-      //browser.sleep(5000)
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:name"]').click()
 
       //sort by name's product A-Z
       nameProductU1.sort() 
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProductU1.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductU1[i])
       }
 
-      clearButton.click()
-      //browser.sleep(5000)
       to5.click()
+      //sort by name's product A-Z
       nameProductTo5.sort() 
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProductTo5.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductTo5[i])
       }
-      clearButton.click()
-      //browser.sleep(5000)
-      to10.click()
-      nameProductTo10.sort() 
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
+      to10.click()
+      //sort by name's product A-Z
+      nameProductTo10.sort() 
       for (var i = 0 ; i < nameProductTo10.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductTo10[i])
       }
-      clearButton.click()
-      //browser.sleep(5000)
-      above10.click()
-      nameProductA10.sort() 
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
+      above10.click()
+      //sort by name's product A-Z
+      nameProductA10.sort() 
       for (var i = 0 ; i < nameProductA10.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductA10[i])
       }
@@ -303,50 +267,38 @@ describe('filter furniture', function() {
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
-      //browser.sleep(5000)
-      under1.click()
-      //browser.sleep(5000)
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:-name"]').click()
 
       //sort by name's product Z-A
       nameProductU1.sort()
       nameProductU1.reverse() 
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProductU1.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductU1[i])
       }
 
-      clearButton.click()
-      //browser.sleep(5000)
       to5.click()
+      //sort by name's product Z-A
       nameProductTo5.sort() 
       nameProductTo5.reverse()
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProductTo5.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductTo5[i])
       }
-      clearButton.click()
-      //browser.sleep(5000)
+
       to10.click()
+      //sort by name's product Z-A
       nameProductTo10.sort() 
       nameProductTo10.reverse()
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProductTo10.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductTo10[i])
       }
-      clearButton.click()
-      //browser.sleep(5000)
+
       above10.click()
+      //sort by name's product Z-A
       nameProductA10.sort() 
       nameProductA10.reverse()
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < nameProductA10.length ; i++) {
         expect(allProductName.get(i).getText()).toEqual(nameProductA10[i])
       }
@@ -358,49 +310,34 @@ describe('filter furniture', function() {
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
-      //browser.sleep(5000)
-      under1.click()
-      //browser.sleep(5000)
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:price"]').click()
 
       //sort by price's product Low to High 
       priceProductU1.sort(function(a, b){return a-b}) 
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < priceProductU1.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductU1[i]+' Baht')
       }
 
-      clearButton.click()
-      //browser.sleep(5000)
       to5.click()
+      //sort by price's product Low to High 
       priceProductTo5.sort(function(a, b){return a-b})
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < priceProductTo5.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductTo5[i]+' Baht')
       }
-      clearButton.click()
-      //browser.sleep(5000)
-      to10.click()
-      priceProductTo10.sort(function(a, b){return a-b}) 
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
+      to10.click()
+      //sort by price's product Low to High 
+      priceProductTo10.sort(function(a, b){return a-b}) 
       for (var i = 0 ; i < priceProductTo10.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductTo10[i]+' Baht')
       }
-      clearButton.click()
-      //browser.sleep(5000)
-      above10.click()
-      priceProductA10.sort(function(a, b){return a-b}) 
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
+      above10.click()
+      //sort by price's product Low to High 
+      priceProductA10.sort(function(a, b){return a-b}) 
       for (var i = 0 ; i < priceProductA10.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductA10[i]+' Baht')
       }
@@ -412,56 +349,41 @@ describe('filter furniture', function() {
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
-      //browser.sleep(5000)
-      under1.click()
-      //browser.sleep(5000)
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:-price"]').click()
       
       //sort by price's product High to Low
       priceProductU1.sort(function(a, b){return b-a}) 
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < priceProductU1.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductU1[i]+' Baht')
       }
 
-      clearButton.click()
-      //browser.sleep(5000)
       to5.click()
+      //sort by price's product High to Low
       priceProductTo5.sort(function(a, b){return b-a})
-
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
       for (var i = 0 ; i < priceProductTo5.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductTo5[i]+' Baht')
       }
-      clearButton.click()
-      //browser.sleep(5000)
-      to10.click()
-      priceProductTo10.sort(function(a, b){return b-a}) 
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
+      to10.click()
+      //sort by price's product High to Low
+      priceProductTo10.sort(function(a, b){return b-a}) 
       for (var i = 0 ; i < priceProductTo10.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductTo10[i]+' Baht')
       }
-      clearButton.click()
-      //browser.sleep(5000)
-      above10.click()
-      priceProductA10.sort(function(a, b){return b-a}) 
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
+      above10.click()
+      //sort by price's product High to Low
+      priceProductA10.sort(function(a, b){return b-a}) 
       for (var i = 0 ; i < priceProductA10.length ; i++) {
         expect(allProductPrice.get(i).getText()).toEqual(priceProductA10[i]+' Baht')
       }
 
     })
 
-    /*it('Case 7: Login as member, then test', function() {
+    it('Case 7: Login as member, then test', function() {
 
     accountButton.click()
     linkSignin.click()
@@ -469,90 +391,168 @@ describe('filter furniture', function() {
     Login('nara@gmail.com','12345678')
     loginButton.click()
     browser.sleep(5000)
-    //element(by.linkText(' Sign out ')).click()
 
     })
 
-    it('Case8: If select Sort by Name A-Z,then it should sort by A-Z ', function() {
+    it('Case3: If select Sort by Name A-Z,then it should sort by A-Z ', function() {
       
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:name"]').click()
 
       //sort by name's product A-Z
-      nameProduct.sort() 
+      nameProductU1.sort() 
+      for (var i = 0 ; i < nameProductU1.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductU1[i])
+      }
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
-      for (var i = 0 ; i < nameProduct.length ; i++) {
-        expect(allProductName.get(i).getText()).toEqual(nameProduct[i])
+      to5.click()
+      //sort by name's product A-Z
+      nameProductTo5.sort() 
+      for (var i = 0 ; i < nameProductTo5.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductTo5[i])
+      }
+
+      to10.click()
+      //sort by name's product A-Z
+      nameProductTo10.sort() 
+      for (var i = 0 ; i < nameProductTo10.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductTo10[i])
+      }
+
+      above10.click()
+      //sort by name's product A-Z
+      nameProductA10.sort() 
+      for (var i = 0 ; i < nameProductA10.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductA10[i])
       }
 
     })
 
-    it('Case9: If select Sort by Name Z-A,then it should sort by Z-A ', function() {
+    it('Case4: If select Sort by Name Z-A,then it should sort by Z-A ', function() {
       
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:-name"]').click()
 
       //sort by name's product Z-A
-      nameProduct.sort()
-      nameProduct.reverse()
+      nameProductU1.sort()
+      nameProductU1.reverse() 
+      for (var i = 0 ; i < nameProductU1.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductU1[i])
+      }
 
-      //console.log(nameProduct)
-      //console.log(nameProduct.length)
-      for (var i = 0 ; i < nameProduct.length ; i++) {
-        expect(allProductName.get(i).getText()).toEqual(nameProduct[i])
+      to5.click()
+      //sort by name's product Z-A
+      nameProductTo5.sort() 
+      nameProductTo5.reverse()
+      for (var i = 0 ; i < nameProductTo5.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductTo5[i])
+      }
+
+      to10.click()
+      //sort by name's product Z-A
+      nameProductTo10.sort() 
+      nameProductTo10.reverse()
+      for (var i = 0 ; i < nameProductTo10.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductTo10[i])
+      }
+
+      above10.click()
+      //sort by name's product Z-A
+      nameProductA10.sort() 
+      nameProductA10.reverse()
+      for (var i = 0 ; i < nameProductA10.length ; i++) {
+        expect(allProductName.get(i).getText()).toEqual(nameProductA10[i])
       }
 
     })
 
-    it('Case10: If select Sort by Price Low to High,then it should sort by Low to High ', function() {
-      
+    it('Case5: If select Sort by Price Low to High,then it should sort by Low to High ', function() {
+
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:price"]').click()
 
       //sort by price's product Low to High 
-      priceProduct.sort(function(a, b){return a-b})
-      
-      //console.log(priceProduct)
-      //console.log(priceProduct.length)
-      for (var i = 0 ; i < priceProduct.length ; i++) {
-        expect(allProductPrice.get(i).getText()).toEqual(priceProduct[i]+' Baht')
+      priceProductU1.sort(function(a, b){return a-b}) 
+      for (var i = 0 ; i < priceProductU1.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductU1[i]+' Baht')
+      }
+
+      to5.click()
+      //sort by price's product Low to High 
+      priceProductTo5.sort(function(a, b){return a-b})
+      for (var i = 0 ; i < priceProductTo5.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductTo5[i]+' Baht')
+      }
+
+      to10.click()
+      //sort by price's product Low to High 
+      priceProductTo10.sort(function(a, b){return a-b}) 
+      for (var i = 0 ; i < priceProductTo10.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductTo10[i]+' Baht')
+      }
+
+      above10.click()
+      //sort by price's product Low to High 
+      priceProductA10.sort(function(a, b){return a-b}) 
+      for (var i = 0 ; i < priceProductA10.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductA10[i]+' Baht')
       }
 
     })
 
-    it('Case11: If select Sort by Price High to Low,then it should sort by High to Low ', function() {
+    it('Case6: If select Sort by Price High to Low,then it should sort by High to Low ', function() {
       
       categoryButton.click()
       linkAllproduct.click()
       expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
 
+      under1.click()
       sortModel.click()
       sortModel.$('[value="string:-price"]').click()
       
       //sort by price's product High to Low
-      priceProduct.sort(function(a, b){return b-a})
-      
-      //console.log(priceProduct)
-      //console.log(priceProduct.length)
-      for (var i = 0 ; i < priceProduct.length ; i++) {
-        expect(allProductPrice.get(i).getText()).toEqual(priceProduct[i]+' Baht')
+      priceProductU1.sort(function(a, b){return b-a}) 
+      for (var i = 0 ; i < priceProductU1.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductU1[i]+' Baht')
       }
 
-    })*/
+      to5.click()
+      //sort by price's product High to Low
+      priceProductTo5.sort(function(a, b){return b-a})
+      for (var i = 0 ; i < priceProductTo5.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductTo5[i]+' Baht')
+      }
+
+      to10.click()
+      //sort by price's product High to Low
+      priceProductTo10.sort(function(a, b){return b-a}) 
+      for (var i = 0 ; i < priceProductTo10.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductTo10[i]+' Baht')
+      }
+
+      above10.click()
+      //sort by price's product High to Low
+      priceProductA10.sort(function(a, b){return b-a}) 
+      for (var i = 0 ; i < priceProductA10.length ; i++) {
+        expect(allProductPrice.get(i).getText()).toEqual(priceProductA10[i]+' Baht')
+      }
+
+    })
 
     
         
