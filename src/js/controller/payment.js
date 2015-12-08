@@ -38,7 +38,7 @@
     self.order = null
     $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
       self.order = response
-      if(self.order.status !== 0) { // status !== 'Not Pay'
+      if (self.order.status !== 0) { // status !== 'Not Pay'
         $state.transitionTo('home')
       }
       // Calculate total price of products in cart
@@ -86,9 +86,9 @@
       }
     }
     self.next2 = function () {
-      var payment = {
+      self.payment = {
         card: {
-          no: self.num1+self.num2+self.num3+self.num4,
+          no: self.num1 + self.num2 + self.num3 + self.num4,
           holder_name: self.User.card_name,
           exp_date: self.User.expirationDate
         },
@@ -96,10 +96,11 @@
         price: 0,
         shipping: self.order.shipping
       }
-      for( var i=0; i<self.order.cart.length;i++ ) {
-        payment.price += self.order.cart[i].product.price*self.order.cart[i].quantity
+      for ( var i = 0; i < self.order.cart.length;i++) {
+        self.payment.price += self.order.cart[i].product.price * self.order.cart[i].quantity
       }
-      $http.post(environment.getBaseAPI() + 'payment/validate', payment).success(function (response) {
+      console.log(self.payment)
+      $http.post(environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
         if (response) {
           self.valid.step2 = true
           self.steps.step1 = false
@@ -117,6 +118,7 @@
       })
     }
     self.submit = function () {
+      console.log(self.payment)
       $http.post(environment.getBaseAPI() + 'payment/pay?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
         if (response.status !== 'error') {
           console.log('Paid')
@@ -125,6 +127,8 @@
         } else {
           console.log(response)
         }
+      }).error(function (response) {
+        console.log(response)
       })
     }
     self.init = function () {
