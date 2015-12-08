@@ -14,7 +14,7 @@ every controller that have to identify the customer, authentication service has 
   User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
   function User (localStorageService, $http, environment, Cart) {
     var self = this
-    self.user_id = ''
+    self.user_id = '375'
     self.email = ''
     self.password = ''
     self.firstname = ''
@@ -194,7 +194,6 @@ every controller that have to identify the customer, authentication service has 
         if (response.status === 'error') {
           error({error: response.message})
         } else {
-          editprofile()
           success()
         }
       }, function (err) {
@@ -223,12 +222,16 @@ every controller that have to identify the customer, authentication service has 
     self.editprofile = function (success, error) {
       var url = environment.getBaseAPI() + 'user/edit'
       $http.put(url, {
-        id: self.id,
+        id: self.user_id,
         email: self.email,
         password: self.password,
-        firstName: self.firstName,
-        lastName: self.lastName
-      }).success(success).error(error)
+        firstName: self.firstname,
+        lastName: self.lastname
+      }).success(function(response){
+        console.log(response)
+      }).error(function(res){
+        console.log(res)
+      })
     }
 
     initUser()

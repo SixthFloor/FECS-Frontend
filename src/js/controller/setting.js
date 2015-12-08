@@ -31,13 +31,26 @@
         pwd: self.data.pwd
       }
       User.confirmProfile(data, function () {
-        $state.go('setting', {}, {reload: true})
         var msg = '<span><b>Well done!</b> Confirm successfully.</span>'
         notification.success({
           message: msg
         })
       }, function (err) {
         var msg = '<span><b>Confirm Failed</b> ' + err.error.description + '.</span>'
+        notification.error({
+          message: msg,
+          replaceMessage: true
+        })
+      })
+
+      User.editprofile(function () {
+        $state.go('setting', {}, {reload: true})
+        var msg = '<span><b>Well done!</b> Edit Profile successfully.</span>'
+        notification.success({
+          message: msg
+        })
+      }, function (err) {
+        var msg = '<span><b>EDIT FAILED</b></span>'
         notification.error({
           message: msg,
           replaceMessage: true
