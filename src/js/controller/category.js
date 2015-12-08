@@ -96,10 +96,13 @@
               filter.push(list[i])
             }
             break
+          default:
+            filter = storeProduct.store.products
         }
       }
-      storeProduct.store.products = filter
-    // })
+      // storeProduct.store.products = filter
+      // })
+      return filter
     }
     self.init()
   }

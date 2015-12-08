@@ -5,7 +5,7 @@
 	  </div>
 	  <form class="login-form" name="loginForm" ng-submit="loginCtrl.login()">
 	    <div class="form-group has-success has-feedback">
-	      <input type="text" class="form-control login-field" placeholder="ENTER YOUR EMAIL" ng-model="loginCtrl.data.email" tabindex="0" uib-tooltip="Input your email..." tooltip-trigger="focus" tooltip-placement="right" tooltip-class="customClass">
+	      <input type="email" class="form-control login-field" placeholder="ENTER YOUR EMAIL" ng-model="loginCtrl.data.email" tabindex="0" uib-tooltip="Input your email..." tooltip-trigger="focus" tooltip-placement="right" tooltip-class="customClass" required>
 	      <span class="glyphicon glyphicon-user login-field-icon " aria-hidden="true"></span>
 	    </div>
 
