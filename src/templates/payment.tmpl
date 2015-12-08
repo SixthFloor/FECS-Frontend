@@ -48,7 +48,7 @@
                   <div class="col-sm-9">
                     <div class="row">
                       <div class="col-sm-8">
-                        <select class="form-control col-sm-3" name="shipping-date" id="shipping-date" ng-model="paymentCtrl.order.shipping" ng-options="shipping as shipping.date for shipping in paymentCtrl.shippingList">
+                        <select class="form-control col-sm-3" name="shipping-date" id="shipping-date" ng-model="paymentCtrl.order.shipping" ng-options="shipping as shipping.date | amCalendar for shipping in paymentCtrl.shippingList">
                           <option value="" disabled selected>AVAILABLE DATE</option>
                         </select>
                       </div>
