@@ -69,10 +69,11 @@
             </div>
           </div>
         </div>
-        <div class="notfound" ng-if="categorypageCtrl.category_name == 'search' && categorypageCtrl.productList.length == 0">
+        <div class="notfound" ng-if="categorypageCtrl.category_name == 'search' && categorypageCtrl.filterPrice(categorypageCtrl.productList.products).length == 0">
           <div class="text-center margin-5">
             <h3>Product Not Found</h3>
-            <p>Please check your product name or serial number again</p><br/>
+            <p ng-show="categorypageCtrl.productList.products.length == 0">Please check your product name or serial number again</p>
+            <p ng-show="categorypageCtrl.productList.products.length != 0">There is no product in this filter</p>
           </div>
         </div>
       </div>
