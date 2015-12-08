@@ -15,8 +15,14 @@
   function PaymentController ($scope, $http, $state, $stateParams, environment, User) {
     var self = this
     var url = environment.getBaseAPI() + 'payment/' + $stateParams.orderNumber
-    self.email = ''
-    self.User = User
+    self.User = $scope.User
+    console.log('USSSSERRR')
+    console.log(self.User)
+    self.num1 = ''
+    self.num2 = ''
+    self.num3 = ''
+    self.num4 = ''
+    self.cvv = ''
     self.valid = {
       step1: true,
       step2: true
@@ -30,25 +36,12 @@
 
     self.shippingList = []
     self.order = null
-    self.payment = {
-      card: {
-        no: '',
-        holder_name: self.User.card_name,
-        exp_date: self.User.expirationDate
-      },
-      cvv: '',
-      price: 0,
-      shipping: null
-    }
     $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
       self.order = response
       if(self.order.status !== 0) { // status !== 'Not Pay'
         $state.transitionTo('home')
       }
       // Calculate total price of products in cart
-      for( var i=0; i<self.order.cart.length;i++ ) {
-        self.payment.price += self.order.cart[i].product.price*self.order.cart[i].quantity
-      }
       console.log(self.order)
     }).error(function (response) {
       console.log('Error')
@@ -93,7 +86,20 @@
       }
     }
     self.next2 = function () {
-      $http.post(environment.getBaseAPI() + 'payment/validate', self.payment).success(function (response) {
+      var payment = {
+        card: {
+          no: self.num1+self.num2+self.num3+self.num4,
+          holder_name: self.User.card_name,
+          exp_date: self.User.expirationDate
+        },
+        cvv: self.cvv,
+        price: 0,
+        shipping: self.order.shipping
+      }
+      for( var i=0; i<self.order.cart.length;i++ ) {
+        payment.price += self.order.cart[i].product.price*self.order.cart[i].quantity
+      }
+      $http.post(environment.getBaseAPI() + 'payment/validate', payment).success(function (response) {
         if (response) {
           self.valid.step2 = true
           self.steps.step1 = false

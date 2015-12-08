@@ -86,7 +86,7 @@
                     <div class="col-sm-7">
                       <input type="text" class="form-control" name="card-holder-name"
                       id="card-holder-name" placeholder="ENTER NAME AS IT APPEARS ON YOUR CARD"
-                      ng-model="paymentCtrl.payment.card.holder_name">
+                      ng-model="paymentCtrl.User.card_name">
                     </div>
                   </div>
                   <div class="form-group">
@@ -111,13 +111,13 @@
                   <div class="form-group">
                     <label class="col-sm-3 control-label" for="expiry-month">Expiration date</label>
                     <div class="col-sm-9">
-                      <input type="month" ng-model="paymentCtrl.payment.card.exp_date">
+                      <input type="month" ng-model="paymentCtrl.User.expirationDate">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 control-label" for="card-holder-name">Security Code</label>
                     <div class="col-sm-2">
-                      <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" class="form-control" name="card-cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.payment.cvv">
+                      <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" class="form-control" name="card-cvv" id="card-cvv" placeholder="CVV" ng-model="paymentCtrl.cvv">
                     </div>
                     <div class="alert alert-danger" ng-show="paymentCtrl.payment.cvv.length != 3">
                       <strong>ENTER</strong> Card Verification Value.
