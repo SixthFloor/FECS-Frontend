@@ -66,39 +66,35 @@
     }
 
     self.filterPrice = function (list) {
-      // $http.get(self.url).success(function (response) {
-      //   storeProduct.store.products = response
-      // }).then(function (response) {
-      // var list = storeProduct.store.products
       var filter = []
-      for (var i = 0; i < list.length; i++) {
-        switch (self.price) {
-          case '1':
-            if (list[i].price < 1000) {
-              filter.push(list[i])
-            }
-            break
-          case '2':
-            if (list[i].price >= 1000 && list[i].price <= 5000) {
-              filter.push(list[i])
-            }
-            break
-          case '3':
-            if (list[i].price >= 5000 && list[i].price <= 10000) {
-              filter.push(list[i])
-            }
-            break
-          case '4':
-            if (list[i].price > 10000) {
-              filter.push(list[i])
-            }
-            break
-          default:
-            filter = list
+      if (list !== undefined) {
+        for (var i = 0; i < list.length; i++) {
+          switch (self.price) {
+            case '1':
+              if (list[i].price < 1000) {
+                filter.push(list[i])
+              }
+              break
+            case '2':
+              if (list[i].price >= 1000 && list[i].price <= 5000) {
+                filter.push(list[i])
+              }
+              break
+            case '3':
+              if (list[i].price >= 5000 && list[i].price <= 10000) {
+                filter.push(list[i])
+              }
+              break
+            case '4':
+              if (list[i].price > 10000) {
+                filter.push(list[i])
+              }
+              break
+            default:
+                filter = list
+          }
         }
       }
-      // storeProduct.store.products = filter
-      // })
       return filter
     }
     self.init()

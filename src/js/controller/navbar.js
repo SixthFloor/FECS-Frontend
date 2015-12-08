@@ -27,7 +27,6 @@
         $state.transitionTo('category', {category_name: 'search'}, {reload: true})
       } else {
         var url = $scope.environment.getBaseAPI() + 'product/search?query=' + query
-        console.log(url)
         $http.get(url).success(function (response) {
           storeProduct.store.products = response
         })
