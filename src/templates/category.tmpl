@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 text-center productList" ng-if="categorypageCtrl.productList.products.length > 0" ng-repeat="product in categorypageCtrl.productList.products | orderBy:categorypageCtrl.sort_by">
+        <div class="col-md-4 text-center productList" ng-if="categorypageCtrl.productList.products.length > 0" ng-repeat="product in categorypageCtrl.filterPrice() | orderBy:categorypageCtrl.sort_by">
           <div class="thumbnail">
             <img id="product-img" src={{product.images[0].link}} ng-if="product.images.length > 0">
             <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
