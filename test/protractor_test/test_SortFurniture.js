@@ -1,22 +1,15 @@
-<<<<<<< HEAD
 /* Test case: Sort furniutre*/
 /* Created by Niti*/
-=======
-
->>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
 
 
 describe('sort furniture', function() {
 
     var categoryButton =   element.all(by.css('.dropdown-toggle')).get(0)
-<<<<<<< HEAD
     var accountButton =   element.all(by.css('.dropdown-toggle')).get(1)
     var linkSignin = element(by.css('[ui-sref="login"]'))
     var email = element(by.model('loginCtrl.data.email'))
     var password = element(by.model('loginCtrl.data.pwd'))
     var loginButton = element(by.buttonText('Log in'))
-=======
->>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     var linkAllproduct = element(by.css('[href="#/category/all"]'))
     var allProduct = element.all(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by'))
     var allProductName = element.all(by.id('product-name'))
@@ -33,17 +26,13 @@ describe('sort furniture', function() {
     var amountProductPrice
     var eachProductDescription 
 
-<<<<<<< HEAD
     function Login(a,b) {
-    email.sendKeys(a)
-    password.sendKeys(b)
+      email.sendKeys(a)
+      password.sendKeys(b)
     }
 
     beforeEach(function() {
-=======
-  beforeEach(function() {
->>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
-    browser.get('http://localhost:3030/#')
+      browser.get('http://localhost:3030/#')
     })
 
 
@@ -202,7 +191,6 @@ describe('sort furniture', function() {
 
     })
 
-<<<<<<< HEAD
     it('Case 7: Login as member, then test', function() {
 
     accountButton.click()
@@ -296,8 +284,6 @@ describe('sort furniture', function() {
 
     })
 
-=======
->>>>>>> 16a6fa4d3f466f17199d25b25e419d51f178797e
     
         
 })

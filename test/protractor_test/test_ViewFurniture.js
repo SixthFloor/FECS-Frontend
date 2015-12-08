@@ -6,15 +6,16 @@ var request = require('request')
 
 describe('view furniture', function() {
 
-  var furnitureData = ''
-  var allViewProductButton = element.all(by.css('[ng-click="categorypageCtrl.viewProduct(product.serialNumber)"]'))
+  var allViewProductButton = element.all(by.id('view-button'))
 
-  var allProductName = element.all(by.id('product-name'))
-  var allProductPrice = element.all(by.id('product-price'))
-  var allProductSerial = element.all(by.id('product-serial'))
-  var allProductDescription = element.all(by.id('product-description'))
-  var allProductDimensionDescription = element.all(by.id('product-dimensionDescription'))
-  var allProductQuantity = element.all(by.id('product-quantity'))
+  var productName = $('#product-name')
+  var productPrice = $('#product-price')
+  var productSerial = $('#product-serial')
+  var productQuantity = $('#product-quantity')
+  var productDescription = $('#product-description')
+  var productDemensionDescription = $('#product-dimensionDescription')
+
+  var furnitureData = ''
 
 	// request all furniture from database
   request
@@ -32,7 +33,7 @@ describe('view furniture', function() {
   function waitForElement(){
     return browser.wait( function() {
             var deferred = protractor.promise.defer()
-              element(by.repeater('product in categorypageCtrl.productList | orderBy:categorypageCtrl.sort_by')).isPresent()
+              $('#product').isPresent()
                 .then(function (isPresent){
                   deferred.fulfill(isPresent)
                 })
@@ -46,34 +47,38 @@ describe('view furniture', function() {
         (function (i){
           allViewProductButton.get(i).click()
           // check product name
-          allProductName.get(i).getText().then(function(name){
+          productName.getText().then(function(name){
             expect(name).toEqual(furnitureAll[i].name)
           })
           // check product price
-          allProductPrice.get(i).getText().then(function(price){
+          productPrice.getText().then(function(price){
             expect(parseInt(price.substring(1))).toEqual(furnitureAll[i].price)
           })
-          // Serial number: AG7718
           // check product serial
-          allProductSerial.get(i).getText().then(function(serial){
+          productSerial.getText().then(function(serial){
             expect(serial.substring(15)).toEqual(furnitureAll[i].serialNumber)
           })
-          // check product dimension description
-          allProductQuantity.get(i).getText().then(function(quantity){
-            expect(parseInt(quantity.substring(10))).toEqual(furnitureAll[i].quantity)
-          })
+          // check product quantity
+          if(furnitureAll[i].quantity == 0){
+            expect($('#outofstock').isPresent())
+          } else {
+            productQuantity.getText().then(function(quantity){
+              expect(parseInt(quantity.substring(10))).toEqual(furnitureAll[i].quantity)
+            })
+          }
           // check product description
-          allProductDescription.get(i).getText().then(function(description){
+          productDescription.getText().then(function(description){
             expect(description).toEqual(furnitureAll[i].description)
           })
           // check product dimension description
-          allProductDimensionDescription.get(i).getText().then(function(dimensionDescription){
-            expect(dimensionDescription).toEqual(furnitureAll[i].dimensionDescription)
+          productDemensionDescription.getText().then(function(dimensionDescription){
+            expect(dimensionDescription).toEqual(furnitureAll[i].dimensionDescription.replace(/(\r\n|\n|\r)/gm," "))
           })
           // // check product image
           // allProductImg.get(i).getAttribute('src').then(function(img){
           //   expect(img).toEqual(furnitureAll[i].images[0].link)
           // })
+          browser.navigate().back()
         }(i))
       }
     })
@@ -84,6 +89,8 @@ describe('view furniture', function() {
   })
 
 	it('should be able to view all product and all descriptions are corrected', function() {
+    $('#category-button').click()
+    element(by.css('[href="#/category/all"]')).click()
   	expectProductDescription()
   })
 =======

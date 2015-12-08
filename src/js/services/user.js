@@ -31,12 +31,13 @@ every controller that have to identify the customer, authentication service has 
 
     function initUser (response) {
       if (self.isAuthed()) {
+        $http.defaults.headers.common['Authorization'] = self.getToken()
         var req = {
           method: 'POST',
           data: {
             token: self.getToken()
           },
-          url: 'http://128.199.133.224/api/authentication/token'
+          url: environment.getBaseAPI() + 'authentication/token'
         }
         $http(req).then(function (res) {
           console.log(res)
@@ -49,9 +50,6 @@ every controller that have to identify the customer, authentication service has 
             self.setLastname(response.user.lastName)
             self.setEmail(response.user.email)
             self.setRole(response.role.name)
-            self.setPassword(response.user.password)
-            // console.log('success')
-            console.log(self)
             var req = {
               method: 'GET',
               url: environment.getBaseAPI() + 'user/' + self.email
@@ -170,8 +168,8 @@ every controller that have to identify the customer, authentication service has 
         if (response.status === 'error') {
           error({error: response.message})
         } else {
-          initUser(response)
           self.setToken(response.token)
+          initUser()
           Cart.init()
           success()
         }
@@ -202,6 +200,7 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.logout = function () {
+      delete $http.defaults.headers.common['Authorization']
       localStorageService.remove('authToken')
       Cart.clear()
       self.user_id = ''
