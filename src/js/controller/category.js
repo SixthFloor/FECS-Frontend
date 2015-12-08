@@ -11,10 +11,11 @@
     .module('controller.categorypage', [])
     .controller('CategoryPageController', CategoryPageController)
 
-  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'searchService']
-  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, searchService) {
+  CategoryPageController.$inject = ['$scope', '$http', '$state', '$stateParams', '$filter', 'productService', 'searchService', 'storeProduct']
+  function CategoryPageController ($scope, $http, $state, $stateParams, $filter, productService, searchService, storeProduct) {
     var self = this
     var orderBy = $filter('orderBy')
+    self.productList = storeProduct.store
     self.sortOptions = [
       { name: 'Name A - Z', value: 'name' },
       { name: 'Name Z - A', value: '-name' },
@@ -36,7 +37,8 @@
       else self.url = $scope.environment.getBaseAPI() + 'product/all'
 
       $http.get(self.url).success(function (response) {
-        self.productList = response
+        storeProduct.store.products = response
+        console.log(self.productList)
       })
     }
 
@@ -67,37 +69,40 @@
 
     self.filterPrice = function () {
       console.log('filter price')
-      $http.get(self.url).success(function (response) {
-        self.productList = response
-      }).then(function(response) {
-        var list = self.productList
-        var filter = []
-        for (var i = 0; i < list.length; i++) {
-          switch (self.price) {
-            case '1':
-              if(list[i].price < 1000) {
-                filter.push(list[i])
-              }
+      // $http.get(self.url).success(function (response) {
+      //   storeProduct.store.products = response
+      // }).then(function (response) {
+      var list = storeProduct.store.products
+      var filter = []
+      for (var i = 0; i < list.length; i++) {
+        switch (self.price) {
+          case '1':
+            if (list[i].price < 1000) {
+              filter.push(list[i])
+            }
             break
-            case '2':
-              if(list[i].price >= 1000 && list[i].price <= 5000) {
-                filter.push(list[i])
-              }
+          case '2':
+            if (list[i].price >= 1000 && list[i].price <= 5000) {
+              filter.push(list[i])
+            }
             break
-            case '3':
-              if(list[i].price >= 5000 && list[i].price <= 10000) {
-                filter.push(list[i])
-              }
+          case '3':
+            if (list[i].price >= 5000 && list[i].price <= 10000) {
+              filter.push(list[i])
+            }
             break
-            case '4':
-              if(list[i].price > 10000) {
-                filter.push(list[i])
-              }
+          case '4':
+            if (list[i].price > 10000) {
+              filter.push(list[i])
+            }
             break
-          }
+          default:
+            filter = storeProduct.store.products
         }
-        self.productList = filter
-      })
+      }
+      // storeProduct.store.products = filter
+      // })
+      return filter
     }
     self.init()
   }

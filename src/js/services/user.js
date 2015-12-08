@@ -158,8 +158,8 @@ every controller that have to identify the customer, authentication service has 
         if (response.status === 'error') {
           error({error: response.message})
         } else {
-          initUser()
           self.setToken(response.token)
+          initUser()
           Cart.init()
           success()
         }
