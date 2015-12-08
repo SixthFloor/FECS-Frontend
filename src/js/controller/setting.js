@@ -11,35 +11,38 @@
     .controller('SettingController', SettingController)
 
   SettingController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Notification', 'User']
-  function SettingController ($scope, $http, $state, $stateParams, Notification, User) {
+  function SettingController ($scope, $http, $state, $stateParams, notification, User) {
     var self = this
     self.User = User
-    self.isAuthed = User.isAuthed()
-    self.i = 0
+    // self.isAuthed = User.isAuthed()
+    self.show = false
+    self.data = {
+      email: '',
+      pwd: ''
+    }
+
+    self.toggleLogin = function () {
+      self.show = !self.show
+    }
 
     self.submit = function () {
-      console.log($stateParams)
-      if ((self.email !== '') &&
-        (self.firstName !== '') && (self.lastName !== '')) {
-        User.editprofile(function (response) {
-          if (response.status === 'error') {
-            var msg = '<span><b>Oh snap!</b>.</span>'
-            notification.error({
-              message: msg,
-              replaceMessage: true
-            })
-          } else {
-            msg = '<span><b>Success!</b> Edited Furniture ID</span>'
-              notification.success({
-              message: msg
-            })
-          }
-        }, function (response) {
-          console.log(response)
-        }, self.i)
-      } else {
-        console.log('should be false')
+      var data = {
+        email: self.User.email,
+        pwd: self.data.pwd
       }
+      User.confirmProfile(data, function () {
+        $state.go('setting', {}, {reload: true})
+        var msg = '<span><b>Well done!</b> Confirm successfully.</span>'
+        notification.success({
+          message: msg
+        })
+      }, function (err) {
+        var msg = '<span><b>Confirm Failed</b> ' + err.error.description + '.</span>'
+        notification.error({
+          message: msg,
+          replaceMessage: true
+        })
+      })
     }
   }
 })()

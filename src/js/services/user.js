@@ -29,7 +29,7 @@ every controller that have to identify the customer, authentication service has 
     self.card_number = ''
     self.role = ''
 
-    function initUser () {
+    function initUser (response) {
       if (self.isAuthed()) {
         var req = {
           method: 'POST',
@@ -49,6 +49,7 @@ every controller that have to identify the customer, authentication service has 
             self.setLastname(response.user.lastName)
             self.setEmail(response.user.email)
             self.setRole(response.role.name)
+            self.setPassword(response.user.password)
             // console.log('success')
             console.log(self)
             var req = {
@@ -93,8 +94,13 @@ every controller that have to identify the customer, authentication service has 
     self.setRole = function (role) {
       self.role = role
     }
+
     self.setEmail = function (email) {
       self.email = email
+    }
+
+    self.setPassword = function (password) {
+      self.password = password
     }
 
     self.setFirstname = function (firstname) {
@@ -167,6 +173,28 @@ every controller that have to identify the customer, authentication service has 
           initUser(response)
           self.setToken(response.token)
           Cart.init()
+          success()
+        }
+      }, function (err) {
+        error({error: err.data})
+      })
+    }
+
+    self.confirmProfile = function (data, success, error) {
+      var req = {
+        method: 'POST',
+        data: {
+          email: angular.lowercase(data.email),
+          password: data.pwd
+        },
+        url: environment.getBaseAPI() + 'authentication/login'
+      }
+      $http(req).then(function (res) {
+        var response = res.data
+        if (response.status === 'error') {
+          error({error: response.message})
+        } else {
+          editprofile()
           success()
         }
       }, function (err) {
