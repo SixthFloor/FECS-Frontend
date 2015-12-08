@@ -189,15 +189,72 @@ every controller that have to identify the customer, authentication service has 
       self.setRole('')
     }
 
-    self.editprofile = function (success, error) {
-      var url = environment.getBaseAPI() + 'user/edit'
-      $http.put(url, {
-        id: self.profile.id,
-        email: self.profile.email,
-        password: self.profile.password,
-        firstName: self.profile.firstName,
-        lastName: self.profile.lastName
-      }).success(success).error(error)
+    self.confirmProfile = function (data, success, error) {
+      var req = {
+        method: 'POST',
+        data: {
+          email: angular.lowercase(data.email),
+          password: data.pwd
+        },
+        url: environment.getBaseAPI() + 'authentication/login'
+      }
+      $http(req).then(function (res) {
+        var response = res.data
+        if (response.status === 'error') {
+          error({error: response.message})
+        } else {
+          success()
+        }
+      }, function (err) {
+        error({error: err.data})
+      })
+    }
+
+    self.editprofile = function (data, success, error) {
+      console.log(self)
+      // var url = environment.getBaseAPI() + 'user/edit'
+      // $http.put(url, {
+      //   id: self.user_id,
+      //   email: self.email,
+      //   password: data.pwd,
+      //   firstName: self.firstname,
+      //   lastName: self.lastname
+      // }).success(function(response){ console.log(response)}).error(function(response){ console.log(response)})
+
+      var url = environment.getBaseAPI() + 'user/location'
+      var config = {
+        headers: {
+          'email': self.email,
+          'password': data.pwd
+        }
+      }
+      $http.put(url, config, {
+        address1: self.address1,
+        address2: self.address2,
+        province: self.province,
+        zipcode: self.zipcode,
+        telephone_number: self.telephone_number
+      }).success(function(response){ console.log(response)}).error(function(response){ console.log(response)})
+
+      // var req = {
+      //  method: 'PUT',
+      //  url: environment.getBaseAPI() + 'user/location',
+      //  headers: {
+      //     'email': self.email,
+      //     'password': data.pwd
+      //  },
+      //  data: ''
+      // }
+
+      // $http(req).then(function(response){
+      //   address1: self.address1,
+      //   address2: self.address2,
+      //   province: self.province,
+      //   zipcode: self.zipcode,
+      //   telephone_number: self.telephone_number
+      // }, function(response){
+      //   console.log(response)
+      // });
     }
 
     initUser()
