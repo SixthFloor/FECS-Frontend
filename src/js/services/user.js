@@ -29,6 +29,7 @@ every controller that have to identify the customer, authentication service has 
     self.role = ''
 
     function setUser (data) {
+      $http.defaults.headers.common['Authorization'] = self.getToken()
       self.setUserID(data.user.id)
       self.setAddress1(data.user.address1)
       self.setAddress2(data.user.address2)
@@ -45,7 +46,6 @@ every controller that have to identify the customer, authentication service has 
     }
     function initUser () {
       if (self.isAuthed()) {
-        $http.defaults.headers.common['Authorization'] = self.getToken()
         var req = {
           method: 'POST',
           data: {
