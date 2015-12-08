@@ -3,7 +3,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 exports.config = {
 
 
-  specs: ['protractor_test/in-progress/test_FilterFurniture.js'],
+  specs: ['protractor_test/in-progress/test_AddEditProduct.js'],
 
   capabilities: { 
     browserName: 'chrome'
@@ -22,6 +22,7 @@ exports.config = {
   // },
 
   onPrepare: function () {
+    browser.manage().window().setSize(1600, 1000)
     jasmine.getEnv().addReporter(new HtmlReporter({
          baseDirectory: './reports',
          takeScreenShotsOnlyForFailedSpecs: true,
