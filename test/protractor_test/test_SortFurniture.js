@@ -27,12 +27,12 @@ describe('sort furniture', function() {
     var eachProductDescription 
 
     function Login(a,b) {
-    email.sendKeys(a)
-    password.sendKeys(b)
+      email.sendKeys(a)
+      password.sendKeys(b)
     }
 
     beforeEach(function() {
-    browser.get('http://localhost:3030/#')
+      browser.get('http://localhost:3030/#')
     })
 
 

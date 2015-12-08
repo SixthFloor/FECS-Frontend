@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 text-center productList" ng-if="categorypageCtrl.productList.products.length > 0" ng-repeat="product in categorypageCtrl.productList.products | orderBy:categorypageCtrl.sort_by">
+        <div id="product" class="col-md-4 text-center productList" ng-if="categorypageCtrl.productList.products.length > 0" ng-repeat="product in categorypageCtrl.productList.products | orderBy:categorypageCtrl.sort_by">
           <div class="thumbnail">
             <img id="product-img" src={{product.images[0].link}} ng-if="product.images.length > 0">
             <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
@@ -63,7 +63,7 @@
               <!-- easy for tester  -->
               <h5 id="product-serial" ng-if="User.isAdmin()">[{{product.serialNumber}}]</h5>
               <b id="product-price">{{product.price}} Baht</b>
-              <p><a class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
+              <p><a id="view-button" class="btn btn-primary category-btn" ng-click="categorypageCtrl.viewProduct(product.serialNumber)" role="button">View</a></p>
               <p ng-if="User.isAdmin()"><a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a></p>
             </div>
           </div>

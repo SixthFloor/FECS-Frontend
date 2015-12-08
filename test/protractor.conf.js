@@ -2,7 +2,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
-  specs: ['protractor_test/test_RegisterAsMember.js'],
+  specs: ['protractor_test/*.js'],
 
   capabilities: { 
     browserName: 'chrome'
@@ -16,16 +16,15 @@ exports.config = {
 
   // baseUrl: 'http://localhost:8080/app/',
 
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 180000
-  },
+  // jasmineNodeOpts: {
+  //   defaultTimeoutInterval: 180000
+  // },
 
   onPrepare: function () {
     jasmine.getEnv().addReporter(new HtmlReporter({
-         baseDirectory: 'reports/',
+         baseDirectory: './reports',
          takeScreenShotsOnlyForFailedSpecs: true,
          docTitle: 'Test Report',
-         preserveDirectory: true,
          docName: 'report.html'
       }))
   }
