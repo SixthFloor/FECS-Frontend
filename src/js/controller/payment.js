@@ -51,11 +51,10 @@
     }
 
     self.back = function () {
-      if (self.steps.step2) {
-        self.moveElement.css('margin-top', '0px')
-      } else if (self.steps.step3) {
-        self.moveElement.css('margin-top', '-' + self.height + 'px')
-      }
+      var top = parseInt($scope.paymentCtrl.moveElement.css('margin-top').match(/\-+\d+/))
+      var new_top = top + self.height
+      console.log(top + self.height)
+      self.moveElement.css('margin-top', '-' + new_top + 'px')
     }
     self.next1 = function () {
       if ($scope.$$childHead.payment1.$invalid) {
@@ -93,8 +92,9 @@
           console.log(response)
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
         }).error(function (response) {
-          self.valid.step2 = false
-          console.log(response)
+          console.log('ERROR step 2')
+          $scope.$$childHead.payment2.$setValidity('cardfail', false)
+          console.log($scope.$$childHead.payment2)
         })
       } else {
         $scope.$$childHead.payment2.$setDirty(true)

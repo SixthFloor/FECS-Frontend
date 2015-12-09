@@ -166,11 +166,14 @@
                     </div>
                   </div>
                 </fieldset>
-              </form>
               <div class="register-container">
+                <div class="alert alert-danger" ng-show="payment2.$error.cardfail && payment2.$error.cardfail">
+                  <strong>ERROR</strong> Credit card is invalid.
+                </div>
                 <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
-                <button type="button" class="register-btn" ng-click="paymentCtrl.next2()">Purchase <i class="fa fa-arrow-circle-right"></i></button>
+                <button type="submit" class="register-btn">Purchase <i class="fa fa-arrow-circle-right"></i></button>
               </div>
+              </form>
             </p>
           </div>
         </div>
