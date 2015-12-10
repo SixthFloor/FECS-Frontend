@@ -28,7 +28,7 @@
     self.init = function () {
       //  API path
       self.url = ''
-      if (self.category_name === 'search') {
+      if (self.category_name === 'search' || searchService.getSearchQuery() !== '') {
         self.url = $scope.environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
       }
       else if (self.category_name !== 'all') {
@@ -38,7 +38,6 @@
 
       $http.get(self.url).success(function (response) {
         storeProduct.store.products = response
-        console.log(self.productList)
       })
     }
 
@@ -62,46 +61,40 @@
     }
 
     self.clear = function () {
-      console.log('clear')
       self.price = 0
       self.init()
     }
 
-    self.filterPrice = function () {
-      console.log('filter price')
-      // $http.get(self.url).success(function (response) {
-      //   storeProduct.store.products = response
-      // }).then(function (response) {
-      var list = storeProduct.store.products
+    self.filterPrice = function (list) {
       var filter = []
-      for (var i = 0; i < list.length; i++) {
-        switch (self.price) {
-          case '1':
-            if (list[i].price < 1000) {
-              filter.push(list[i])
-            }
-            break
-          case '2':
-            if (list[i].price >= 1000 && list[i].price <= 5000) {
-              filter.push(list[i])
-            }
-            break
-          case '3':
-            if (list[i].price >= 5000 && list[i].price <= 10000) {
-              filter.push(list[i])
-            }
-            break
-          case '4':
-            if (list[i].price > 10000) {
-              filter.push(list[i])
-            }
-            break
-          default:
-            filter = storeProduct.store.products
+      if (list !== undefined) {
+        for (var i = 0; i < list.length; i++) {
+          switch (self.price) {
+            case '1':
+              if (list[i].price < 1000) {
+                filter.push(list[i])
+              }
+              break
+            case '2':
+              if (list[i].price >= 1000 && list[i].price <= 5000) {
+                filter.push(list[i])
+              }
+              break
+            case '3':
+              if (list[i].price >= 5000 && list[i].price <= 10000) {
+                filter.push(list[i])
+              }
+              break
+            case '4':
+              if (list[i].price > 10000) {
+                filter.push(list[i])
+              }
+              break
+            default:
+                filter = list
+          }
         }
       }
-      // storeProduct.store.products = filter
-      // })
       return filter
     }
     self.init()

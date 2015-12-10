@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div id="product" class="col-md-4 text-center productList" ng-if="categorypageCtrl.productList.products.length > 0" ng-repeat="product in categorypageCtrl.filterPrice() | orderBy:categorypageCtrl.sort_by">
+        <div id="product" class="col-md-4 text-center productList" ng-if="categorypageCtrl.productList.products.length > 0" ng-repeat="product in categorypageCtrl.filterPrice(categorypageCtrl.productList.products) | orderBy:categorypageCtrl.sort_by">
           <div class="thumbnail">
             <img id="product-img" src={{product.images[0].link}} ng-if="product.images.length > 0">
             <img src='http://placehold.it/400x400' ng-if="product.images.length == 0">
@@ -69,10 +69,11 @@
             </div>
           </div>
         </div>
-        <div class="notfound" ng-if="categorypageCtrl.category_name == 'search' && categorypageCtrl.productList.length == 0">
+        <div class="notfound" ng-if="categorypageCtrl.productList.products.length == 0 || categorypageCtrl.filterPrice(categorypageCtrl.productList.products).length == 0">
           <div class="text-center margin-5">
             <h3>Product Not Found</h3>
-            <p>Please check your product name or serial number again</p><br/>
+            <p ng-if="categorypageCtrl.productList.products.length == 0">Please check your product name or serial number again</p>
+            <p ng-if="categorypageCtrl.productList.products.length != 0">There is no product in this filter</p>
           </div>
         </div>
       </div>
