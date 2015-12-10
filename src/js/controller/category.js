@@ -28,7 +28,7 @@
     self.init = function () {
       //  API path
       self.url = ''
-      if (self.category_name === 'search') {
+      if (self.category_name === 'search' || searchService.getSearchQuery() !== '') {
         self.url = $scope.environment.getBaseAPI() + 'product/search?query=' + searchService.getSearchQuery()
       }
       else if (self.category_name !== 'all') {
@@ -38,7 +38,6 @@
 
       $http.get(self.url).success(function (response) {
         storeProduct.store.products = response
-        console.log(self.productList)
       })
     }
 
@@ -62,17 +61,15 @@
     }
 
     self.clear = function () {
-      console.log('clear')
       self.price = 0
       self.init()
     }
 
-    self.filterPrice = function () {
-      console.log('filter price')
+    self.filterPrice = function (list) {
       // $http.get(self.url).success(function (response) {
       //   storeProduct.store.products = response
       // }).then(function (response) {
-      var list = storeProduct.store.products
+      // var list = storeProduct.store.products
       var filter = []
       for (var i = 0; i < list.length; i++) {
         switch (self.price) {
@@ -97,7 +94,7 @@
             }
             break
           default:
-            filter = storeProduct.store.products
+            filter = list
         }
       }
       // storeProduct.store.products = filter
