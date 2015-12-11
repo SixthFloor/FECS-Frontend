@@ -57,10 +57,41 @@ frisby.create('should be responsed with user detail when login with corrected us
   })
 .toss()
 
-frisby.create('should be responsed with internal server error when login with incorrect user')
+frisby.create('should be responsed with internal server error when login with incorrect email')
   .post('http://128.199.133.224/api/authentication/login', {
       "email": "nara123@gmail.com",
       "password": "12345678"
+  },{json: true}).
+  expectJSON(
+    {
+      "description": "Internal Server Error"
+    })
+  .toss()
+
+frisby.create('should be responsed with internal server error when login with incorrect password')
+  .post('http://128.199.133.224/api/authentication/login', {
+      "email": "nara123@gmail.com",
+      "password": "1234567"
+  },{json: true}).
+  expectJSON(
+    {
+      "description": "Internal Server Error"
+    })
+  .toss()
+
+frisby.create('should be responsed with bad request when login with email only')
+  .post('http://128.199.133.224/api/authentication/login', {
+      "email": "nara@gmail.com"
+  },{json: true}).
+  expectJSON(
+    {
+      "description": "Internal Server Error"
+    })
+  .toss()
+
+frisby.create('should be responsed with internal server error when login with password only')
+  .post('http://128.199.133.224/api/authentication/login', {
+      "password": "1234567"
   },{json: true}).
   expectJSON(
     {
