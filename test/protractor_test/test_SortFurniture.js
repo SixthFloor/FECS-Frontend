@@ -283,7 +283,4 @@ describe('sort furniture', function() {
       }
 
     })
-
-    
-        
 })

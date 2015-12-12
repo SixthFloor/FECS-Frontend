@@ -1,6 +1,9 @@
 /* Test case: Register As Member */
 /* Created by Kittinan */
 
+var request = require('request')
+var q = require('q')
+
 describe('Register as member', function () {
 
     var email = element(by.model('registerCtrl.member.email'))
@@ -23,6 +26,38 @@ describe('Register as member', function () {
     var step2 = element(by.id('registerCtrl.steps.step2'))
     var step3 = element(by.id('registerCtrl.steps.step3'))
     // var registerComplete = element(by.binding(element(by.css('.attr'))))
+
+
+    // request.post({url:'http://128.199.133.224/api/authentication/login', 
+    //   form: {
+    //   "email": "nara@gmail.com",
+    //   "password": "12345678"
+    // }}, 
+    //   function(err,httpResponse,body){
+    //     console.log(body)
+    // })
+
+    var postData = {
+      "email": "nara@gmail.com",
+      "password": "12345678"
+    }
+
+    var url = 'http://128.199.133.224/api/authentication/login'
+    var options = {
+      method: 'post',
+      body: postData,
+      json: true,
+      url: url
+    }
+    request(options, function (err, res, body) {
+      console.log(body.token)
+    })
+    // .on('end', function(){
+    //   console.log(tokenData)
+    //   tokenData = JSON.parse(tokenData)
+    // })
+    console.log(tokenData)
+    
 
     function enterResgiterPage(){
         browser.get('http://localhost:3030/#/register')

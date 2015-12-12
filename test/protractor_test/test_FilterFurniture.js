@@ -1,5 +1,5 @@
-/* Test case: Filter furniutre*/
-/* Created by Niti*/
+/* Test case: Filter furniutre */
+/* Created by Niti */
 
 
 describe('filter furniture', function() {

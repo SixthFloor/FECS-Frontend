@@ -61,7 +61,7 @@ describe('sort furniture', function() {
 
     })
 
-    /*it('Case1:If you put Invalid Form(you just put only category),then it can not add product', function() {
+    it('Case1:If you put Invalid Form(you just put only category),then it can not add product', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -69,32 +69,77 @@ describe('sort furniture', function() {
       addNewProductButton.click()
 
       categoryModel.click()
-      categoryModel.$('[label="Bedroom"]').click()
+      Edit('TEST PUT ONLY NAME','')
+      furnitureDescription.sendKeys('test put ony name (invalid form),then it can not add product')
       addProductButton.click()
       expect(invalidShow.isDisplayed()).toBeTruthy()
 
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
       categoryModel.click()
       categoryModel.$('[label="Bathroom"]').click()
+      furnitureDescription.sendKeys('test put ony category (invalid form),then it can not add product')
       addProductButton.click()
       expect(invalidShow.isDisplayed()).toBeTruthy()
 
-      categoryModel.click()
-      categoryModel.$('[label="Kitchen"]').click()
-      addProductButton.click()
-      expect(invalidShow.isDisplayed()).toBeTruthy()
-
-      categoryModel.click()
-      categoryModel.$('[label="Dinning Room"]').click()
-      addProductButton.click()
-      expect(invalidShow.isDisplayed()).toBeTruthy()
-
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
       categoryModel.click()
       categoryModel.$('[label="Living Room"]').click()
+      subcategoryModel.click()
+      subcategoryModel.$('[label="Table"]').click()
+      furnitureDescription.sendKeys('test put category+subcategory (invalid form),then it can not add product')
       addProductButton.click()
       expect(invalidShow.isDisplayed()).toBeTruthy()
-      browser.sleep(5000)
+
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
+      Edit('','5000')
+      furnitureDescription.sendKeys('test put ony price (invalid form),then it can not add product')
+      addProductButton.click()
+      expect(invalidShow.isDisplayed()).toBeTruthy()
+
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
+      Edit('TEST PUT NAME AND PRICE','5000')
+      furnitureDescription.sendKeys('test put name+price (invalid form),then it can not add product')
+      addProductButton.click()
+      expect(invalidShow.isDisplayed()).toBeTruthy()
+
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
+      categoryModel.click()
+      categoryModel.$('[label="Bathroom"]').click()
+      Edit('TEST PUT NAME AND CATEGORY','')
+      furnitureDescription.sendKeys('test put name+category (invalid form),then it can not add product')
+      addProductButton.click()
+      expect(invalidShow.isDisplayed()).toBeTruthy()
+
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
+      categoryModel.click()
+      categoryModel.$('[label="Living Room"]').click()
+      subcategoryModel.click()
+      subcategoryModel.$('[label="Sofa"]').click()
+      Edit('TEST PUT NAME AND CATEGORY+SUBCATEGORY','')
+      furnitureDescription.sendKeys('test put name+category+subcategory (invalid form),then it can not add product')
+      addProductButton.click()
+      expect(invalidShow.isDisplayed()).toBeTruthy()
+
+      browser.get('http://localhost:3030/#/category/all')
+      addNewProductButton.click()
+      categoryModel.click()
+      categoryModel.$('[label="Living Room"]').click()
+      subcategoryModel.click()
+      subcategoryModel.$('[label="Cabinet & Storage"]').click()
+      Edit('','5000')
+      furnitureDescription.sendKeys('test put price+category+subcategory (invalid form),then it can not add product')
+      addProductButton.click()
+      expect(invalidShow.isDisplayed()).toBeTruthy()
+
+      //browser.sleep(5000)
       
-    })*/
+    })
 
     it('Case2:If you put Correct Form,then it can add product', function() {
       
@@ -161,7 +206,7 @@ describe('sort furniture', function() {
       subcategoryModel.click()
       subcategoryModel.$('[label="Wardrobe"]').click()
       Edit('TEST ADD PRODUCT DESCRIPTION AND DIMENSION','5000')
-      furnitureDimension.sendKeys('test write dimension and dimension')
+      furnitureDimension.sendKeys('5m x 5.5m')
       furnitureDescription.sendKeys('test write description and dimension')
       //addProductButton.click()
       browser.sleep(5000)
@@ -184,7 +229,7 @@ describe('sort furniture', function() {
       //addProductButton.click()
       browser.sleep(5000)
 
-      //browser.get('http://localhost:3030/#/category/all')
+      browser.get('http://localhost:3030/#/category/all')
       addNewProductButton.click()
 
       categoryModel.click()
@@ -194,6 +239,7 @@ describe('sort furniture', function() {
       Edit('TEST SAME PRODUCT NAME AND SAME TYPE','5000')
       furnitureDescription.sendKeys('test product name is the same and same type(second add product)')
       //addProductButton.click()
+      //expect(invalidShow.isDisplayed()).toBeTruthy()
       browser.sleep(5000)
       
     })
@@ -214,7 +260,7 @@ describe('sort furniture', function() {
       //addProductButton.click()
       browser.sleep(5000)
 
-      //browser.get('http://localhost:3030/#/category/all')
+      browser.get('http://localhost:3030/#/category/all')
       addNewProductButton.click()
 
       categoryModel.click()
@@ -244,7 +290,7 @@ describe('sort furniture', function() {
       //addProductButton.click()
       browser.sleep(5000)
 
-      //browser.get('http://localhost:3030/#/category/all')
+      browser.get('http://localhost:3030/#/category/all')
       addNewProductButton.click()
 
       categoryModel.click()
@@ -276,7 +322,7 @@ describe('sort furniture', function() {
       
     })
 
-    it('Case9:The price should not be Integer not float', function() {
+    it('Case10:The price should be Integer not float', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -294,7 +340,7 @@ describe('sort furniture', function() {
       
     })
 
-    /*it('Case5:If you put Invalid Form(you just put only name and price),then it can not add product', function() {
+    it('Case11:The price should be Integer not word', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -302,17 +348,17 @@ describe('sort furniture', function() {
       addNewProductButton.click()
 
       categoryModel.click()
-      categoryModel.$('[label="Bedroom"]').click()
+      categoryModel.$('[label="Dinning Room"]').click()
       subcategoryModel.click()
-      subcategoryModel.$('[label="Bed"]').click()
-      //Edit('TEST1','5000')
-      addProductButton.click()
-      expect(invalidShow.isDisplayed()).toBeTruthy()
+      subcategoryModel.$('[label="Table"]').click()
+      Edit('TEST ADD PRODUCT WORD PRICE','five thousand')
+      furnitureDescription.sendKeys('test add product with word price(five thousand)')
+      //addProductButton.click()
       browser.sleep(5000)
       
     })
 
-    it('Case6:If you put Invalid Form(you just put name,price,and category),then it can not add product', function() {
+    it('Case12:The name of product should be UPPER case not lower case', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -320,17 +366,17 @@ describe('sort furniture', function() {
       addNewProductButton.click()
 
       categoryModel.click()
-      categoryModel.$('[label="Bedroom"]').click()
+      categoryModel.$('[label="Dinning Room"]').click()
       subcategoryModel.click()
-      subcategoryModel.$('[label="Bed"]').click()
-      //Edit('TEST1','5000')
-      addProductButton.click()
-      expect(invalidShow.isDisplayed()).toBeTruthy()
+      subcategoryModel.$('[label="Chair"]').click()
+      Edit('test name product lower case','5000')
+      furnitureDescription.sendKeys('test name product with lower case')
+      //addProductButton.click()
       browser.sleep(5000)
       
     })
 
-    it('Case7:If you put Invalid Form(you just put name,category,and subcategory),then it can not add product', function() {
+    it('Case13:The dimension should be (ex. 5m x 5.5m) not anything else', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -338,33 +384,15 @@ describe('sort furniture', function() {
       addNewProductButton.click()
 
       categoryModel.click()
-      categoryModel.$('[label="Bedroom"]').click()
+      categoryModel.$('[label="Dinning Room"]').click()
       subcategoryModel.click()
-      subcategoryModel.$('[label="Bed"]').click()
-      //Edit('TEST1','5000')
-      addProductButton.click()
-      expect(invalidShow.isDisplayed()).toBeTruthy()
+      subcategoryModel.$('[label="Storage"]').click()
+      Edit('TEST ADD PRODUCT WRONG DIMENSION','5000')
+      furnitureDimension.sendKeys('test add product with wrong dimension')
+      //addProductButton.click()
       browser.sleep(5000)
       
     })
-
-    it('Case8:If you put Invalid Form(you just put price,category,and subcategory),then it can not add product', function() {
-      
-      categoryButton.click()
-      linkAllproduct.click()
-      expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/category/all')
-      addNewProductButton.click()
-
-      categoryModel.click()
-      categoryModel.$('[label="Bedroom"]').click()
-      subcategoryModel.click()
-      subcategoryModel.$('[label="Bed"]').click()
-      //Edit('TEST1','5000')
-      addProductButton.click()
-      expect(invalidShow.isDisplayed()).toBeTruthy()
-      browser.sleep(5000)
-      
-    })*/
 
     
         

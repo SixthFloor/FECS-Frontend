@@ -92,6 +92,11 @@ describe('view furniture', function() {
     element(by.css('[href="#/category/all"]')).click()
   	expectProductDescription()
   })
-	
 
+  it('should appear \"Product Not Found\" page when access to product with wrong serial number', function() {
+    browser.get('http://localhost:3030/#/product/BS3212')
+    $('#product-notfound').getText().then(function(text) {
+      expect(text).toEqual('Product Not Found')
+    })
+  })
 })
