@@ -2,7 +2,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
-  specs: ['protractor_test/test_ViewFurniture.js'],
+  specs: ['protractor_test/test_ViewFurnitureCategory.js'],
 
   capabilities: { 
     browserName: 'chrome'

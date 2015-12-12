@@ -1,8 +1,6 @@
 /* API Test case: Login As Member*/
 /* Created by Runyasak */
 
-
-
 var frisby = require('frisby')
 
 var email = "nara@gmail.com"
