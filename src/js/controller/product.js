@@ -167,6 +167,7 @@
     if ($stateParams.product_id !== '') {
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
+          console.log(response)
           self.product.id = response.id
           self.product.serialNumber = response.serialNumber
           self.product.productName = response.name
@@ -262,6 +263,19 @@
           }
         }
       }, function (response) {
+        console.log(response)
+      })
+    }
+
+    self.addToStock = function (quantity) {
+      var list = []
+      var url = $scope.environment.getBaseAPI() + 'real-product/new'
+      for (var i = 0; i < quantity; i++) {
+        list.push({ id:self.product.id })
+      }
+      $http.post(url, list).success( function(response){
+        console.log('Real product added')
+      }).error( function(response){
         console.log(response)
       })
     }

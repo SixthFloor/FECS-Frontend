@@ -11,8 +11,8 @@ every controller that have to identify the customer, authentication service has 
     .module('services.login', ['LocalStorageModule'])
     .service('User', User)
 
-  User.$inject = ['localStorageService', '$http', 'environment', 'Cart']
-  function User (localStorageService, $http, environment, Cart) {
+  User.$inject = ['localStorageService', '$http', 'environment', 'Cart', 'moment']
+  function User (localStorageService, $http, environment, Cart, moment) {
     var self = this
     self.user_id = ''
     self.email = ''
@@ -24,13 +24,31 @@ every controller that have to identify the customer, authentication service has 
     self.zipcode = ''
     self.telephone_number = ''
     self.card_name = ''
-    self.expirationDate = ''
+    self.expirationDate = {
+      year: '2015',
+      month: '1'
+    }
     self.card_number = ''
     self.role = ''
 
+    function setUser (data) {
+      $http.defaults.headers.common['Authorization'] = self.getToken()
+      self.setUserID(data.user.id)
+      self.setAddress1(data.user.address1)
+      self.setAddress2(data.user.address2)
+      self.setProvince(data.user.province)
+      self.setZipcode(data.user.zipcode)
+      self.setTelephoneNumber(data.user.telephone_number)
+      self.setCardName(data.user.card_name)
+      self.setCardNumber(data.user.card_number)
+      self.setCardExpDate(data.user.expirationDate)
+      self.setFirstname(data.user.firstName)
+      self.setLastname(data.user.lastName)
+      self.setEmail(data.user.email)
+      self.setRole(data.role.name)
+    }
     function initUser () {
       if (self.isAuthed()) {
-        $http.defaults.headers.common['Authorization'] = self.getToken()
         var req = {
           method: 'POST',
           data: {
@@ -41,38 +59,12 @@ every controller that have to identify the customer, authentication service has 
         $http(req).then(function (res) {
           var response = res.data
           if (response.status === 'error') {
-            console.log('error')
+            self.logout()
           } else {
-            self.setFirstname(response.user.firstName)
-            self.setLastname(response.user.lastName)
-            self.setEmail(response.user.email)
-            self.setRole(response.role.name)
-            console.log(self.getToken())
-            var req = {
-              method: 'GET',
-              url: environment.getBaseAPI() + 'user/' + self.email
-            }
-            $http(req).then(function (res) {
-              var response = res.data
-              if (response.status === 'error') {
-                console.log('error')
-              } else {
-                self.setUserID(response.id)
-                self.setAddress1(response.address1)
-                self.setAddress2(response.address2)
-                self.setProvince(response.province)
-                self.setZipcode(response.zipcode)
-                self.setTelephoneNumber(response.telephone_number)
-                self.setCardName(response.card_name)
-                self.setCardNumber(response.card_number)
-                self.setCardExpDate(response.expirationDate)
-              }
-            }, function (err) {
-              console.log(err)
-            })
+            setUser(response)
           }
         }, function (err) {
-          console.log(err)
+          self.logout()
         })
       }
     }
@@ -130,7 +122,11 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.setCardExpDate = function (exp) {
-      self.expirationDate = exp
+      if (exp) {
+        var date = moment(exp)
+        self.expirationDate.year = date.year()
+        self.expirationDate.month = date.month()
+      }
     }
 
     self.setUserID = function (uID) {
@@ -161,7 +157,7 @@ every controller that have to identify the customer, authentication service has 
           error({error: response.message})
         } else {
           self.setToken(response.token)
-          initUser()
+          setUser(response)
           Cart.init()
           success()
         }

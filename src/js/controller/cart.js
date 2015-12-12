@@ -35,7 +35,7 @@
     }
 
     self.checkout = function () {
-      console.log($scope.User.user_id)
+      console.log($scope.User)
       console.log(Cart.getItemList())
       var url = $scope.environment.getBaseAPI() + 'order/new'
       $http.post(url, {

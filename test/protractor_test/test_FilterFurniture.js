@@ -1,4 +1,4 @@
-/* Test case: Sort furniutre*/
+/* Test case: Filter furniutre*/
 /* Created by Niti*/
 
 
@@ -394,7 +394,7 @@ describe('filter furniture', function() {
 
     })
 
-    it('Case3: If select Sort by Name A-Z,then it should sort by A-Z ', function() {
+    it('Case8: If select Sort by Name A-Z,then it should sort by A-Z ', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -433,7 +433,7 @@ describe('filter furniture', function() {
 
     })
 
-    it('Case4: If select Sort by Name Z-A,then it should sort by Z-A ', function() {
+    it('Case9: If select Sort by Name Z-A,then it should sort by Z-A ', function() {
       
       categoryButton.click()
       linkAllproduct.click()
@@ -476,7 +476,7 @@ describe('filter furniture', function() {
 
     })
 
-    it('Case5: If select Sort by Price Low to High,then it should sort by Low to High ', function() {
+    it('Case10: If select Sort by Price Low to High,then it should sort by Low to High ', function() {
 
       categoryButton.click()
       linkAllproduct.click()
@@ -515,7 +515,7 @@ describe('filter furniture', function() {
 
     })
 
-    it('Case6: If select Sort by Price High to Low,then it should sort by High to Low ', function() {
+    it('Case11: If select Sort by Price High to Low,then it should sort by High to Low ', function() {
       
       categoryButton.click()
       linkAllproduct.click()

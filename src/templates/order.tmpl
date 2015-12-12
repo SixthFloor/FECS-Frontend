@@ -15,7 +15,7 @@
         <tr ng-repeat="order in orderCtrl.orders">
           <td>{{order.orderNumber}}</td>
           <td>{{orderCtrl.getPrice(order)}}</td>
-          <td>{{order.orderDate}}</td>
+          <td>{{order.orderDate | amCalendar}}</td>
           <td>{{order.status}}</td>
           <td ng-if="order.status === 0">
             <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoPay(id)">

@@ -19,6 +19,7 @@ exports.config = {
   // },
 
   onPrepare: function () {
+    browser.manage().window().setSize(1600, 1000)
     jasmine.getEnv().addReporter(new HtmlReporter({
          baseDirectory: './reports',
          takeScreenShotsOnlyForFailedSpecs: true,
