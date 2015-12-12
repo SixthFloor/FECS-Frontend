@@ -2,7 +2,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
-  specs: ['protractor_test/test_ViewFurniture.js'],
+  specs: ['protractor_test/in-progress/test_AddEditProduct.js'],
 
   capabilities: { 
     browserName: 'chrome'
@@ -16,9 +16,9 @@ exports.config = {
 
   // baseUrl: 'http://localhost:8080/app/',
 
-  // jasmineNodeOpts: {
-  //   defaultTimeoutInterval: 180000
-  // },
+  jasmineNodeOpts: {
+    defaultTimeoutInterval: 180000
+  },
 
   onPrepare: function () {
     browser.manage().window().setSize(1600, 1000)
