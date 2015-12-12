@@ -99,6 +99,4 @@ describe('view furniture', function() {
       expect(text).toEqual('Product Not Found')
     })
   })
-	
-
 })

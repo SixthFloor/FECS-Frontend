@@ -60,7 +60,6 @@ describe('view furniture category', function() {
             var deferred = protractor.promise.defer()
               allProduct.isPresent()
                 .then(function (isPresent){
-                  console.log(isPresent)
                   deferred.fulfill(isPresent)
                 })
               return deferred.promise
@@ -69,7 +68,7 @@ describe('view furniture category', function() {
 
   function expectProductDescription(){
     waitForElement().then( function(){
-      for(var i = 0; i < furnitureAll.length; i++){
+      for(var i = 0; i < 2; i++){
         (function (i){
           // check product name
           allProductName.get(i).getText().then(function(name){
