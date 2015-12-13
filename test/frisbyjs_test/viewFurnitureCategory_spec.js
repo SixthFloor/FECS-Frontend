@@ -11,9 +11,12 @@ function expectCategory(test_content, address){
         "serialNumber": String,
         "name": String,
         "price": Number,
-        "images": Array
+        "description": String,
+        "dimensionDescription": String,
+        "images": Array,
+        "quantity": Number
       })
-        .toss()
+  .toss()
 }
 
 describe('should be responsed with product details from all category', function(){
