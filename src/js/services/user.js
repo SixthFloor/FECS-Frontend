@@ -213,64 +213,50 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.editprofile = function (data, success, error) {
-      console.log(self.user_id)
-      console.log(self.email)
-      // var url = environment.getBaseAPI() + 'user/edit'
-      
-      // $http.put(url, {
-        // 'id': self.user_id,
-        // 'email': self.email,
-        // 'password': self.password,
-        // 'firstName': self.firstname,
-        // 'lastName': self.lastname,
-        // 'address1': self.address1,
-        // 'address2': self.address2,
-        // 'province': self.province,
-        // 'zipcode': self.zipcode,
-        // 'telephone_number': self.telephone_number
-      // }).success(function(response){ console.log(response)}).error(function(response){ console.log(response)})
+      if(self.zipcode == '') self.zipcode = '00000'
+
       var req = {
        method: 'PUT',
        url: environment.getBaseAPI() + 'user/' + self.email,
        data: {
-        "id": self.user_id,
-        "email": self.email,
-        "password": self.password,
-        "firstName": self.firstname,
-        "lastName": self.lastname,
-        "address1": self.address1,
-        "address2": self.address2,
-        "province": self.province,
-        "zipcode": self.zipcode,
-        "telephone_number": self.telephone_number
-       }
+          id: self.user_id,
+          email: self.email,
+          password: self.password,
+          firstName: self.firstname,
+          lastName: self.lastname,
+          address1: self.address1,
+          address2: self.address2,
+          province: self.province,
+          zipcode: self.zipcode,
+          telephone_number: self.telephone_number
+        }
       }
 
       $http(req).then(function(response){
-        console.log(response)
+        var req = {
+         method: 'PUT',
+         url: environment.getBaseAPI() + 'user/payment',
+         headers: {
+            email: self.email,
+            password: data.pwd
+         },
+         data: {
+            card_name: self.card_name,
+            expirationDate: self.expirationDate,
+            card_number: self.card_number
+          }
+        }
+
+        $http(req).then(function(response){
+          success()
+        }, function(response){
+          error()
+        });
       }, function(response){
-        console.log(response)
+        error()
       });
 
-      // var req = {
-      //  method: 'PUT',
-      //  url: environment.getBaseAPI() + 'user/payment',
-      //  headers: {
-      //     email: self.email,
-      //     password: data.pwd
-      //  },
-      //  data: {
-      //     card_name: self.card_name,
-      //     expirationDate: self.expirationDate,
-      //     card_number: self.card_number
-      //  }
-      // }
-
-      // $http(req).then(function(response){
-      //   console.log(response)
-      // }, function(response){
-      //   console.log(response)
-      // });
+      
     }
 
     initUser()
