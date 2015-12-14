@@ -143,5 +143,11 @@
         controller: 'SettingController',
         controllerAs: 'settingCtrl'
       })
+      .state('admin.user', {
+        url: '/admin/user',
+        templateUrl: 'templates/admin/user.tmpl',
+        controller: 'UserController',
+        controllerAs: 'userCtrl'
+      })
   }
 })()

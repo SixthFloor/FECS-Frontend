@@ -72,6 +72,18 @@
             </li>
           </ul>
         </li>
+        <li class="dropdown" ng-if="User.isAuthed() && User.isAdmin()">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Admin <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+          <ul class="dropdown-menu account">
+            <div class="menu">
+              <li>
+                <a ui-sref="admin.user"><i class="fa fa-users"></i> Manage User </a>
+              </li>
+            </div>
+          </ul>
+        </li>
         <li class="dropdown" ng-if="User.isAuthed()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Profile <span class="glyphicon glyphicon-chevron-down"></span>
