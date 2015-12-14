@@ -1,0 +1,78 @@
+<div ng-if="!settingCtrl.is404">
+  <div class="container">
+    <div class="route">
+      <ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/home">Home</a></li>
+        <li class="active"><span>Setting</span></li>
+      </ol>
+    </div>
+    <form role="form" name="settingForm" ng-submit="settingCtrl.submit()">
+      <uib-tabset justified="true">
+        <uib-tab heading="User">
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="settingCtrl.User.email" readonly="">
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" class="form-control login-field" id="password" ng-model="settingCtrl.User.password" placeholder="New Password" pattern=".{8,20}" required tabindex="0" uib-tooltip="Password should be between 8-20 characters..." tooltip-trigger="focus" tooltip-placement="top" tooltip-class="customClass">
+          </div>
+        </uib-tab>
+        <uib-tab heading="Information">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="settingCtrl.User.firstname">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="settingCtrl.User.lastname">
+          </div>
+          <div class="form-group">
+            <label>Address1</label>
+            <input type="text" class="form-control" id="address1" placeholder="Address1" ng-model="settingCtrl.User.address1">
+          </div>
+          <div class="form-group">
+            <label>Address2</label>
+            <input type="text" class="form-control" id="address2" placeholder="Address2" ng-model="settingCtrl.User.address2">
+          </div>
+          <div class="form-group">
+            <label>Province</label>
+            <input type="text" class="form-control" id="province" placeholder="Provnice" ng-model="settingCtrl.User.province">
+          </div>
+          <div class="form-group">
+            <label>Zip Code</label>
+            <input type="text" class="form-control login-field" ng-model="settingCtrl.User.zipcode" placeholder="Zip Code" pattern=".{5}" tabindex="0" uib-tooltip="Zipcode should be 5 characters..." tooltip-trigger="focus" tooltip-placement="top" tooltip-class="customClass">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" ng-model="settingCtrl.User.telephone_number">
+          </div>
+        </uib-tab>
+        <uib-tab heading="Card ID">
+          <div class="form-group">
+            <label>Card Holder's Name</label>
+            <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name" ng-model="settingCtrl.User.card_name">
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" ng-model="settingCtrl.User.card_number">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <input type="text" class="form-control" id="expDate" placeholder="Expiration Date" ng-model="settingCtrl.User.expirationDate">
+          </div>
+        </uib-tab>
+      </uib-tabset>
+      <div class="form-group has-success has-feedback">
+        <input type="password" class="form-control login-field" ng-model="settingCtrl.data.pwd" placeholder="Old Password" pattern=".{8,20}" required tabindex="0" uib-tooltip="Password should be between 8-20 characters..." tooltip-trigger="focus" tooltip-placement="top" tooltip-class="customClass">
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-lg btn-block btn-login" type="submit" ng-disabled="!settingForm.$valid">Edit Profile</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div ng-if="settingCtrl.is404">
+  <h1>User not found</h1>
+</div>
+<footer></footer>

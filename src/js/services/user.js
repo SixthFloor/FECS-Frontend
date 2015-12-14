@@ -16,6 +16,7 @@ every controller that have to identify the customer, authentication service has 
     var self = this
     self.user_id = ''
     self.email = ''
+    self.password = ''
     self.firstname = ''
     self.lastname = ''
     self.address1 = ''
@@ -30,6 +31,7 @@ every controller that have to identify the customer, authentication service has 
     }
     self.card_number = ''
     self.role = ''
+    self.validEditProfile = true
 
     function setUser (data) {
       $http.defaults.headers.common['Authorization'] = self.getToken()
@@ -185,15 +187,72 @@ every controller that have to identify the customer, authentication service has 
       self.setRole('')
     }
 
-    self.editprofile = function (success, error) {
-      var url = environment.getBaseAPI() + 'user/edit'
-      $http.put(url, {
-        id: self.profile.id,
-        email: self.profile.email,
-        password: self.profile.password,
-        firstName: self.profile.firstName,
-        lastName: self.profile.lastName
-      }).success(success).error(error)
+    self.confirmProfile = function (data, success, error) {
+      var req = {
+        method: 'POST',
+        data: {
+          email: angular.lowercase(data.email),
+          password: data.pwd
+        },
+        url: environment.getBaseAPI() + 'authentication/login'
+      }
+      $http(req).then(function (res) {
+        var response = res.data
+        if (response.status === 'error') {
+          error({error: response.message})
+        } else {
+          success()
+        }
+      }, function (err) {
+        error({error: err.data})
+      })
+    }
+
+    self.editprofile = function (data, success, error) {
+      if(self.zipcode == '') self.zipcode = '00000'
+
+      var req = {
+       method: 'PUT',
+       url: environment.getBaseAPI() + 'user/' + self.email,
+       data: {
+          id: self.user_id,
+          email: self.email,
+          password: self.password,
+          firstName: self.firstname,
+          lastName: self.lastname,
+          address1: self.address1,
+          address2: self.address2,
+          province: self.province,
+          zipcode: self.zipcode,
+          telephone_number: self.telephone_number
+        }
+      }
+
+      $http(req).then(function(response){
+        var req = {
+         method: 'PUT',
+         url: environment.getBaseAPI() + 'user/payment',
+         headers: {
+            email: self.email,
+            password: data.pwd
+         },
+         data: {
+            card_name: self.card_name,
+            expirationDate: self.expirationDate,
+            card_number: self.card_number
+          }
+        }
+
+        $http(req).then(function(response){
+          success()
+        }, function(response){
+          error()
+        });
+      }, function(response){
+        error()
+      });
+
+      
     }
 
     initUser()

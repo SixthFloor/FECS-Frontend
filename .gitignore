@@ -7,3 +7,6 @@ www/
 npm-debug.log
 test/test_reports/
 test/reports/
+npm-debug.log
+package.json
+

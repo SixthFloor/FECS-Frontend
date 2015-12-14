@@ -137,5 +137,11 @@
         controller: 'OrderController',
         controllerAs: 'orderCtrl'
       })
+      .state('setting', {
+        url: '/setting',
+        templateUrl: 'templates/setting.tmpl',
+        controller: 'SettingController',
+        controllerAs: 'settingCtrl'
+      })
   }
 })()

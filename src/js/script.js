@@ -20,6 +20,7 @@
       'controller.cart',
       'controller.payment',
       'controller.order',
+      'controller.settingpage',
       'controller.navbar',
       'directive.navbar',
       'directive.footer'
