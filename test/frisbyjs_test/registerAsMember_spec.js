@@ -94,11 +94,19 @@ describe('should be responsed with \".....\" when register with password longer 
       .toss()
 })
 
-describe('should be responsed with \".....\" when register with password including special letters', function(){
+describe('should be responsed with \"Password connot use special character\" when register with password including special letters', function(){
   setFullDetail()
   password = '!@#$%^&*'
   postNewUser()
-    .expectJSON({"description": "....."})
+    .expectJSON({"description": "Password connot use special character"})
+      .toss()
+})
+
+describe('should be responsed with \"This email format cannot use\" when register with incorrect format', function(){
+  setFullDetail()
+  password = 'runyatest17-gmail.com'
+  postNewUser()
+    .expectJSON({"description": "This email format cannot use"})
       .toss()
 })
 

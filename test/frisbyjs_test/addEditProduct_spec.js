@@ -18,7 +18,7 @@ describe('Add edit product', function(){
       frisby.create('post product detail as json to add product - 1')
         .addHeaders(post_headers)
         .post('http://128.199.133.224/api/product/new', {
-          "name": "Runyatest",
+          "name": "Runyatestbb",
           "price": 200,
           "description": "This furniture is added by API testing with frisby.",
           "dimensionDescription": "Not too big and not too small."
@@ -31,7 +31,6 @@ describe('Add edit product', function(){
           "price": Number,
           "description": String,
           "dimensionDescription": String,
-          "images": Array,
           "quantity": Number
         })
       .toss()
@@ -39,7 +38,7 @@ describe('Add edit product', function(){
     })
   })
 
-  it('should be responsed ..... when add exist product\n', function(done){
+  it('should be responsed \"This name has used\" when add exist product\n', function(done){
     request.post({url:'http://128.199.133.224/api/authentication/login', json: { 
       "email":"nara@gmail.com",
       "password": "12345678"
@@ -51,28 +50,21 @@ describe('Add edit product', function(){
       frisby.create('post product detail as json to add product - 2')
         .addHeaders(post_headers)
         .post('http://128.199.133.224/api/product/new', {
-          "name": "Runyatest",
+          "name": "Runyatesthhhhhh",
           "price": 200,
           "description": "This furniture is added by API testing with frisby.",
           "dimensionDescription": "Not too big and not too small."
         },{json: true})
         .inspectJSON()
-        .expectJSONTypes({
-          "id": Number,
-          "serialNumber": String,
-          "name": String,
-          "price": Number,
-          "description": String,
-          "dimensionDescription": String,
-          "images": Array,
-          "quantity": Number
+        .expectJSON({
+          "description": "This name has used"
         })
       .toss()
       done()
     })
   })
 
-  it('should be responsed \"Bad Request\" when add product with incorrect form', function(done){  
+  it('should be responsed \"Create FurnitureDescription failed\" when add product with incorrect form', function(done){  
     request.post({url:'http://128.199.133.224/api/authentication/login', json: { 
       "email":"nara@gmail.com",
       "password": "12345678"
@@ -84,7 +76,10 @@ describe('Add edit product', function(){
       frisby.create('post product detail as json to add product')
         .addHeaders(post_headers)
         .post('http://128.199.133.224/api/product/new', {
-          "name": "Runyatest"
+          "name": "Runyatest",
+          "price": null,
+          "description": null,
+          "dimensionDescription": null
         },{json: true})
         .inspectJSON()
         .expectJSON({
@@ -102,6 +97,7 @@ describe('Add edit product', function(){
     }}, function(err,httpResponse,body){
       var post_headers = {
         'Content-Type': 'application/json',
+        'Authorization': null
       }
       frisby.create('post product detail as json to add product')
         .addHeaders(post_headers)

@@ -89,7 +89,6 @@ describe('View furniture category', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3030/#')
-    browser.ignoreSynchronization=false
   })
 
   it('should show all product with complete descriptions at category all page', function(){

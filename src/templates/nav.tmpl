@@ -7,7 +7,7 @@
       <form ng-submit="navbarCtrl.search(query)" name="search" class="navbar-form navbar-left" role="search">
           <div class="form-search search-only">
             <i class="search-icon-custom glyphicon glyphicon-search"></i>
-            <input type="text" ng-model="query"
+            <input type="text" id="search-field" ng-model="query"
             class="form-control search-field" maxlength="50" placeholder="Type to Search..." ng-change="navbarCtrl.search(query)">
           </div>
       </form>

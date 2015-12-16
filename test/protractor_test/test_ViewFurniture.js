@@ -47,6 +47,8 @@ describe('View furniture', function() {
           allViewProductButton.get(i).click()
           // check product name
           productName.getText().then(function(name){
+            // console.log(furnitureAll[i].name)
+            // console.log(name)
             expect(name).toEqual(furnitureAll[i].name)
           })
           // check product price
@@ -69,19 +71,20 @@ describe('View furniture', function() {
           productDescription.getText().then(function(description){
             // console.log('web: ' + description)
             // console.log('api: ' + furnitureAll[i].description.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
-            expect(description).toEqual(furnitureAll[i].description.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
+            expect(description).toEqual(furnitureAll[i].description.replace(/(\r\n|\r|\n|\\n){1,}/g, ' ').trim())
           })
           // check product dimension description
           productDemensionDescription.getText().then(function(dimensionDescription){
             // console.log('web: ' + dimensionDescription)
             // console.log('api: ' + furnitureAll[i].dimensionDescription.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
-            expect(dimensionDescription).toEqual(furnitureAll[i].dimensionDescription.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
+            expect(dimensionDescription).toEqual(furnitureAll[i].dimensionDescription.replace(/(\r\n|\r|\n|\\n){1,}/g, ' ').trim())
           })
           // // check product image
           // allProductImg.get(i).getAttribute('src').then(function(img){
           //   expect(img).toEqual(furnitureAll[i].images[0].link)
           // })
-          browser.navigate().back()
+          // browser.navigate().back()
+          browser.get('http://localhost:3030/#/category/all')
         }(i))
       }
     })
@@ -94,11 +97,15 @@ describe('View furniture', function() {
 	it('should be able to view all product and all descriptions are corrected', function() {
     $('#category-button').click()
     element(by.css('[href="#/category/all"]')).click()
+    allViewProductButton.then(function(element){
+      console.log(element.length)
+    })
+    console.log(furnitureAll.length)
   	expectProductDescription()
   })
 
   it('should appear \"Product Not Found\" page when access to product with wrong serial number', function() {
-    browser.get('http://localhost:3030/#/product/BS3212')
+    browser.get('http://localhost:3030/#/product/993212')
     $('#product-notfound').getText().then(function(text) {
       expect(text).toEqual('Product Not Found')
     })

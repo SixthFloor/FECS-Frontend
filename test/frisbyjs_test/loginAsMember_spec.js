@@ -103,7 +103,7 @@ describe('should be responsed with \"Internal Server Error\" when login with pas
   setDefaultDetail()
   email = null
   postLogin()
-    .expectJSON({ "description": "Internal Server Error" })
+    .expectJSON({ "description": "Email is empty" })
       .toss()
 })
 
