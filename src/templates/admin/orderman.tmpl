@@ -9,6 +9,7 @@
           <th>Total Price</th>
           <th>Order Date</th>
           <th>Status</th>
+          <th>View</th>
           <th>Shipping</th>
         </tr>
       </thead>
@@ -19,6 +20,10 @@
           <td>{{ordermanCtrl.getPrice(order)}}</td>
           <td>{{order.orderDate | amCalendar}}</td>
           <td>{{order.status}}</td>
+          <td>
+            <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.gotoView(id)">
+            Cart</button>
+          </td>
           <td ng-if="order.status === 0">
             <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.cancle(id)">
             Cancle <span class="glyphicon glyphicon-remove"></span></button></td>

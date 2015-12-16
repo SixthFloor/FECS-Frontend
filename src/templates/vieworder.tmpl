@@ -1,0 +1,37 @@
+<div class="container">
+  <div name="title"><h1>View Order Cart <span class="glyphicon glyphicon-shopping-cart"></span></h1></div>
+  <div class="panel panel-default">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>rder: {{vieworderCtrl.order.orderNumber}}O</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in vieworderCtrl.itemList track by $index">
+          <td>{{$index+1}}</td>
+          <td>
+            <img src={{item.product.images[0].link}} width="100"/></td>
+          <td>{{item.product.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.quantity*item.product.price}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="total">
+    <div class="col-md-6">
+      <b>Total Price: </b>
+  </div>
+  <div class="col-md-4 text-right">
+    <b>{{vieworderCtrl.total}}</b>
+  </div>
+    <div class="col-md-2">
+      <b>Baht</b>
+    </div>
+  </div>
+</div>

@@ -137,6 +137,18 @@
         controller: 'OrderController',
         controllerAs: 'orderCtrl'
       })
+      .state('vieworder', {
+        url: '/vieworder/:orderNumber',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/vieworder.tmpl',
+        controller: 'ViewOrderController',
+        controllerAs: 'vieworderCtrl'
+      })
       .state('orderman', {
         url: '/admin/orderman',
         data: {
