@@ -5,6 +5,7 @@
       <b>Select Month: </b>
       <!-- Month dropdown -->
       <select class="form-control" name="month" onchange="" size="1">
+          <option selected disabled>Choose here</option>
           <option value="01">January</option>
           <option value="02">February</option>
           <option value="03">March</option>
@@ -23,6 +24,7 @@
       <b>Select Year: </b>
       <!-- Year dropdown -->
       <select class="form-control" name="year" onchange="" size="1">
+          <option selected disabled>Choose here</option>
           <option value="2015">2015</option>
           <option value="2016">2016</option>
           <option value="2017">2017</option>
@@ -35,32 +37,27 @@
     <table class="table">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Remove</th>
+          <th>Shipping Date</th>
+          <th>Order Number</th>
+          <th>Customer Name</th>
+          <th>Address</th>
+          <th>Order Date</th>
+          <th>Order Information</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in cartCtrl.itemList track by $index">
-          <td>{{$index+1}}</td>
+        <tr ng-repeat="order in shippingCtrl.orderList">
+          <td>{{order.shipping | amCalendar}}</td>
+          <td>{{order.orderNumber}}</td>
+          <td>{{order.user.firstName + order.user.lastName}}</td>
           <td>
-            <img src={{item.product.images[0].link}} width="100"/></td>
-          <td>{{item.product.name}}</td>
-          <td class="quantity-input">
-            <input ng-model="quantity"  ng-init="quantity=item.quantity" ng-change="cartCtrl.changeQuantity($index,quantity)"
-            min="1" type="number" class="form-control"/>
+            {{order.user.address}}
           </td>
-          <td>{{item.quantity*item.product.price}}</td>
-          <td><button type="button" class="btn btn-danger" ng-click="cartCtrl.removeItem($index)">
-            <span class="glyphicon glyphicon-remove"></span></button></td>
+          <td>{{order.orderDate | amCalendar}}</td>
+          <td><button type="button" class="btn btn-info" ng-click="shippingCtrl.gotoView(order.orderNumber)">
+            View</button></td>
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="checkout" ng-if="cartCtrl.itemList.length > 0">
-    <button class="checkout-btn" ng-click="cartCtrl.checkout()" type="button" name="button">Checkout</button>
   </div>
 </div>
