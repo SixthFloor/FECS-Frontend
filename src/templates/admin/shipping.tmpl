@@ -1,5 +1,5 @@
 <div class="container">
-  <div name="title"><h1>View Shipping Order<span class="fa fa-truck"></span></h1></div>
+  <div name="title"><h1>Shipping Order<span class="fa fa-truck"></span></h1></div>
   <div class="select-shipping">
     <div class="month">
       <b>Select Month: </b>
@@ -43,7 +43,7 @@
           <th>Order Number</th>
           <th>Customer Name</th>
           <th>Address</th>
-          <th>Order Date</th>
+          <th>Shipping Status</th>
           <th>Order Information</th>
         </tr>
       </thead>
@@ -51,18 +51,22 @@
         <tr ng-repeat="shipping in shippingCtrl.orderList" ng-if="shippingCtrl.orderList.length > 0">
           <td>{{shipping.date | amCalendar}}</td>
           <td>{{shipping.orderNumber}}</td>
-          <td>{{shipping.user.firstName + shipping.user.lastName}}</td>
+          <td>{{shipping.user.firstName}} {{shipping.user.lastName}}</td>
           <td>
             {{shipping.user.address}}
           </td>
-          <td>{{shipping.status}}</td>
+          <td>
+            <span ng-if="shipping.status === 1">Reserved</span>
+            <span ng-if="shipping.status === 2">In progress</span>
+            <span ng-if="shipping.status === 3">Done</span>
+          </td>
           <td><button type="button" class="btn btn-info" ng-click="shippingCtrl.gotoView(shipping.orderNumber)">
             View</button></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="noshipping" ng-if="shippingCtrl.orderList[0] == null">
-    {{shippingCtrl.msg}}
+  <div class="noshipping" ng-if="shippingCtrl.orderList.length == 0">
+    None of shipping slots is shown
   </div>
 </div>

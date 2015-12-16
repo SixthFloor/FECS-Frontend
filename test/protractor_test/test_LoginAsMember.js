@@ -4,7 +4,7 @@
 describe('Login as member', function() {
 
   var linkAccount =   element.all(by.css('.dropdown-toggle')).get(1)
-  var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(2)
+  var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(1)
   var linkSignin = element(by.css('[ui-sref="login"]'))
   var linkSignout = element(by.css('[ui-sref="logout"]'))
   var email = element(by.model('loginCtrl.data.email'))

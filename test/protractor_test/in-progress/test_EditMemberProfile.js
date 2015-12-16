@@ -2,7 +2,7 @@
 /* Created by Niti*/
 
 
-describe('sort furniture', function() {
+describe('edit member profile', function() {
 
     var accountButton =   element.all(by.css('.dropdown-toggle')).get(1)
     var profileButton =   element.all(by.css('.dropdown-toggle')).get(1)
@@ -20,6 +20,9 @@ describe('sort furniture', function() {
     var province = element(by.id('province'))
     var zipCode = element(by.model('settingCtrl.User.zipcode'))
     var phoneNumber = element(by.id('phoneNumber'))
+    var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(1)
+    var linkSignout = element(by.css('[ui-sref="logout"]'))
+    var notifications = element.all(by.css('.ui-notification'))
 
     function Login(a,b) {
       email.sendKeys(a)
@@ -73,6 +76,14 @@ describe('sort furniture', function() {
 
       //browser.sleep(5000)
       //element(by.linkText(' Sign out ')).click()
+
+    })
+
+    it('logout after test', function() {
+      linkAccountAfterLogin.click()
+      linkSignout.click()
+      expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
+      browser.sleep(5000)
 
     })
         
