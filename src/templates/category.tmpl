@@ -15,11 +15,13 @@
       <hr/><h2>{{header}}</h2><hr/>
     </span>
   </div> -->
-  
+
   <div class="row">
     <div class="category-filter">
-      <div>
-        <a class="btn btn-warning category-btn" ng-click="categorypageCtrl.directToAdd()" role="button">Add New Product</a>
+      <div ng-if="User.isAdmin()">
+        <h3>Add New Product</h3>
+        <a class="btn btn-warning category-btn" ng-click="categorypageCtrl.directToAdd()" role="button">New Product
+          <i class="fa fa-plus-square"></i></a>
       </div>
       <h3>Filter By</h3>
       <div class="price">
