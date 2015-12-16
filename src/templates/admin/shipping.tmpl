@@ -4,7 +4,8 @@
     <div class="month">
       <b>Select Month: </b>
       <!-- Month dropdown -->
-      <select class="form-control" name="month" onchange="" size="1">
+      <select class="form-control" name="month" ng-model="shippingCtrl.selectMonth"
+      ng-change="shippingCtrl.selectOrder(shippingCtrl.selectMonth,shippingCtrl.selectYear)" size="1">
           <option selected disabled>Choose here</option>
           <option value="01">January</option>
           <option value="02">February</option>
@@ -23,7 +24,8 @@
     <div class="year">
       <b>Select Year: </b>
       <!-- Year dropdown -->
-      <select class="form-control" name="year" onchange="" size="1">
+      <select class="form-control" name="year" ng-model="shippingCtrl.selectYear"
+      ng-change="shippingCtrl.selectOrder(shippingCtrl.selectMonth,shippingCtrl.selectYear)" size="1">
           <option selected disabled>Choose here</option>
           <option value="2015">2015</option>
           <option value="2016">2016</option>
@@ -46,18 +48,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="order in shippingCtrl.orderList">
-          <td>{{order.shipping | amCalendar}}</td>
-          <td>{{order.orderNumber}}</td>
-          <td>{{order.user.firstName + order.user.lastName}}</td>
+        <tr ng-repeat="shipping in shippingCtrl.orderList" ng-if="shippingCtrl.orderList.length > 0">
+          <td>{{shipping.date | amCalendar}}</td>
+          <td>{{shipping.orderNumber}}</td>
+          <td>{{shipping.user.firstName + shipping.user.lastName}}</td>
           <td>
-            {{order.user.address}}
+            {{shipping.user.address}}
           </td>
-          <td>{{order.orderDate | amCalendar}}</td>
+          <td>{{shipping.status}}</td>
           <td><button type="button" class="btn btn-info" ng-click="shippingCtrl.gotoView(order.orderNumber)">
             View</button></td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="noshipping" ng-if="shippingCtrl.orderList[0] == null">
+    {{shippingCtrl.msg}}
   </div>
 </div>

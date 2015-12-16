@@ -11,40 +11,30 @@
     .module('controller.shipping', [])
     .controller('ShippingController', ShippingController)
 
-  ShippingController.$inject = ['$scope', '$http', '$state']
-  function ShippingController ($scope, $http, $state) {
+  ShippingController.$inject = ['$scope', '$http', '$state', 'moment']
+  function ShippingController ($scope, $http, $state, moment) {
     var self = this
-    self.orderList = [{
-      orderNumber: 55,
-      orderDate: 1450258183000,
-      user:{
-        firstName: 'Guro',
-        lastName: 'GreenBlooD',
-        address: 'This is my home'
-      },
-      shipping: 1450228183000
-    },{
-      orderNumber: 55,
-      orderDate: 1450258183000,
-      user:{
-        firstName: 'Guro',
-        lastName: 'GreenBlooD',
-        address: 'This is my home'
-      },
-      shipping: 1450458183000
-    },{
-      orderNumber: 55,
-      orderDate: 1450258183000,
-      user:{
-        firstName: 'Guro',
-        lastName: 'GreenBlooD',
-        address: 'This is my home'
-      },
-      shipping: 1450378183000
-    }]
+
+    var date = moment(new Date())
+    self.currentYear = date.year()
+    self.currentMonth = date.month()
+    self.selectMonth = String(self.currentMonth)
+    self.selectYear = String(self.currentYear)
+
+    self.selectOrder = function (selectMonth, selectYear) {
+      var url = $scope.environment.getBaseAPI() + 'shipping/view?month=' + selectMonth + '&year=' + selectYear
+
+      $http.get(url).success(function (response) {
+        if (response.description == 'None of shipping slots is inprogress') {
+          self.msg = response.description
+        }
+        self.orderList = response
+      })
+    }
 
     self.gotoView = function (orderNo) {
       $state.transitionTo('vieworder', {orderNumber: orderNo})
     }
+    self.selectOrder(self.currentMonth, self.currentYear)
   }
 })()
