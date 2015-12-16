@@ -149,5 +149,17 @@
         controller: 'UserController',
         controllerAs: 'userCtrl'
       })
+      .state('shipping', {
+        url: '/admin/shipping',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'admin'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/admin/shipping.tmpl',
+        controller: 'ShippingController',
+        controllerAs: 'shippingCtrl'
+      })
   }
 })()
