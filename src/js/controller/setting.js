@@ -39,8 +39,8 @@
           notification.success({
             message: msg
           })
-        }, function () {
-          var msg = '<span><b>Edit Failed!</b></span>'
+        }, function (err) {
+          var msg = '<span><b>Edit Failed!</b>.</span>'
           notification.error({
             message: msg,
             replaceMessage: true
