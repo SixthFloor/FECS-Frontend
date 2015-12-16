@@ -17,16 +17,20 @@
           <td>{{order.orderNumber}}</td>
           <td>{{orderCtrl.getPrice(order)}}</td>
           <td>{{order.orderDate | amCalendar}}</td>
-          <td>{{order.status}}</td>
+          <td>
+            <span ng-if="order.status === 0">No pay</span>
+            <span ng-if="order.status === 1">Cancled</span>
+            <span ng-if="order.status > 1">Paid</span>
+          </td>
           <td>
             <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoView(id)">
-            Cart</button>
+            Info</button>
           </td>
           <td ng-if="order.status === 0">
             <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoPay(id)">
             Pay</button>
             <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="orderCtrl.cancle(id)">
-            <span class="glyphicon glyphicon-remove"></span></button></td>
+            Cancle <span class="glyphicon glyphicon-remove"></span></button></td>
           <td ng-if="order.status === 1">Cancled</td>
           <td ng-if="order.status > 1">Paid</td>
         </tr>

@@ -19,7 +19,11 @@
           <td>{{ordermanCtrl.getFullname(order)}}</td>
           <td>{{ordermanCtrl.getPrice(order)}}</td>
           <td>{{order.orderDate | amCalendar}}</td>
-          <td>{{order.status}}</td>
+          <td>
+            <span ng-if="order.status === 0">No pay</span>
+            <span ng-if="order.status === 1">Cancled</span>
+            <span ng-if="order.status > 1">Paid</span>
+          </td>
           <td>
             <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.gotoView(id)">
             Info</button>
