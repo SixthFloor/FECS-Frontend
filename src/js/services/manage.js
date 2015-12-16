@@ -10,36 +10,27 @@
     .module('services.manage', ['LocalStorageModule'])
     .service('Manage', Manage)
 
-  Manage.$inject = ['localStorageService', '$http', 'environment', 'User']
-  function Manage (localStorageService, $http, environment, User) {
+  Manage.$inject = ['localStorageService', '$http', '$filter', '$q', 'environment', 'User']
+  function Manage (localStorageService, $http, $filter, $q, environment, User) {
     var self = this
     self.userlist = null
-
-    function initManage() {
-      $http.defaults.headers.common['Authorization'] = self.getToken()
-      if (self.isAuthed()) {
-        var req = {
-          method: 'GET',
-          url: environment.getBaseAPI() + 'user/all'
-        }
-        $http(req).then(function (response) {
-          self.userlist = response.data
-        }, function (response) {
-          console.log(response)
-        })
+    self.getData = getData
+    function getData (params) {
+      var deferred = $q.defer()
+      var req = {
+        method: 'GET',
+        url: environment.getBaseAPI() + 'user/all'
       }
+      $http(req).then(function (response) {
+        self.userlist = response.data
+        var orderedData = params.sorting() ? $filter('orderBy')(self.userlist, params.orderBy()) : self.userlist
+        orderedData = params.filter() ? $filter('filter')(orderedData, params.filter()) : orderedData
+        params.total(orderedData.length)
+        deferred.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()))
+      }, function (response) {
+        deferred.reject(response)
+      })
+      return deferred.promise
     }
-
-    self.isAuthed = function () {
-      if (self.getToken()) return true
-      else return false
-    }
-
-    self.getToken = function () {
-      var token = localStorageService.get('authToken')
-      return token ? token : false
-    }
-
-    initManage()
   }
 })()

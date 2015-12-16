@@ -52,9 +52,11 @@
 
     self.back = function () {
       var top = parseInt($scope.paymentCtrl.moveElement.css('margin-top').match(/\-+\d+/))
+      self.moveElement.removeAttr('style')
       var new_top = top + self.height
-      console.log(top + self.height)
-      self.moveElement.css('margin-top', '-' + new_top + 'px')
+      console.log('Top: ' + top)
+      console.log('New Top: ' + (top + self.height))
+      self.moveElement.css('margin-top', new_top + 'px')
     }
     self.next1 = function () {
       if ($scope.$$childHead.payment1.$invalid) {
@@ -68,17 +70,19 @@
       }
     }
     self.next2 = function () {
+      console.log(parseInt($scope.User.expirationDate.month, 10) - 1)
       var exp_date = moment.utc([
         $scope.User.expirationDate.year,
         parseInt($scope.User.expirationDate.month, 10) - 1,
         1,
         0
       ])
+      self.cardfail = false
       self.payment = {
         card: {
           no: self.num1 + self.num2 + self.num3 + self.num4,
           holder_name: $scope.User.card_name,
-          exp_date: exp_date
+          exp_date: exp_date.valueOf().toString()
         },
         cvv: self.cvv,
         price: 0,
@@ -89,12 +93,10 @@
       }
       if (!$scope.$$childHead.payment2.$invalid) {
         $http.post($scope.environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
-          console.log(response)
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
+          self.cardfail = false
         }).error(function (response) {
-          console.log('ERROR step 2')
-          $scope.$$childHead.payment2.$setValidity('cardfail', false)
-          console.log($scope.$$childHead.payment2)
+          self.cardfail = true
         })
       } else {
         $scope.$$childHead.payment2.$setDirty(true)
