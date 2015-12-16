@@ -22,7 +22,7 @@
           <td>{{order.status}}</td>
           <td>
             <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.gotoView(id)">
-            Cart</button>
+            Info</button>
           </td>
           <td ng-if="order.status === 0">
             <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.cancle(id)">
