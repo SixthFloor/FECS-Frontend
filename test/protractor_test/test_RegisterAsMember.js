@@ -49,14 +49,6 @@ describe('Register as member', function () {
       json: true,
       url: url
     }
-    request(options, function (err, res, body) {
-      console.log(body.token)
-    })
-    // .on('end', function(){
-    //   console.log(tokenData)
-    //   tokenData = JSON.parse(tokenData)
-    // })
-    console.log(tokenData)
     
 
     function enterResgiterPage(){

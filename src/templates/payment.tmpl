@@ -177,7 +177,7 @@
                   </div>
                 </fieldset>
               <div class="register-container">
-                <div class="alert alert-danger" ng-show="payment2.$error.cardfail && payment2.$error.cardfail">
+                <div class="alert alert-danger" ng-show="paymentCtrl.cardfail">
                   <strong>ERROR</strong> Credit card is invalid.
                 </div>
                 <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
@@ -244,7 +244,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Card number</div>
-                      <div class="col-sm-7">{{paymentCtrl.getCardNoFormat()}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.cardFormat}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Expiration date</div>

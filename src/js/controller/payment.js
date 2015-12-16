@@ -25,6 +25,7 @@
       step3: false
     }
     self.is404 = false
+    self.cardFormat = ''
 
     self.shippingList = []
     self.order = null
@@ -47,14 +48,16 @@
     })
 
     self.getCardNoFormat = function () {
-      return self.payment.card.no.substring(0, 4) + '-' + self.payment.card.no.substring(4, 8) + '-' + self.payment.card.no.substring(8, 12) + '-' + self.payment.card.no.substring(12, 16)
+      self.cardFormat = $scope.User.card_number.substring(0, 4) + '-' + $scope.User.card_number.substring(4, 8) + '-' + $scope.User.card_number.substring(8, 12) + '-' + $scope.User.card_number.substring(12, 16)
     }
 
     self.back = function () {
       var top = parseInt($scope.paymentCtrl.moveElement.css('margin-top').match(/\-+\d+/))
+      self.moveElement.removeAttr('style')
       var new_top = top + self.height
-      console.log(top + self.height)
-      self.moveElement.css('margin-top', '-' + new_top + 'px')
+      console.log('Top: ' + top)
+      console.log('New Top: ' + (top + self.height))
+      self.moveElement.css('margin-top', new_top + 'px')
     }
     self.next1 = function () {
       if ($scope.$$childHead.payment1.$invalid) {
@@ -66,20 +69,37 @@
         $scope.$$childHead.payment1.shippingdate.$setDirty(true)
       } else {
         self.moveElement.css('margin-top', '-' + self.height + 'px')
+        if($scope.User.card_number.length>=4) {
+          self.num1 = $scope.User.card_number.substring(0, 4)
+        }
+        else {
+          self.num1 = $scope.User.card_number
+        }
+        if($scope.User.card_number.length>=8) {
+          self.num2 = $scope.User.card_number.substring(4, 8)
+        }
+        if($scope.User.card_number.length>=12) {
+          self.num3 = $scope.User.card_number.substring(8, 12)
+        }
+        if($scope.User.card_number.length>=16) {
+          self.num4 = $scope.User.card_number.substring(12, 16)
+        }
       }
     }
     self.next2 = function () {
+      console.log(parseInt($scope.User.expirationDate.month, 10) - 1)
       var exp_date = moment.utc([
         $scope.User.expirationDate.year,
         parseInt($scope.User.expirationDate.month, 10) - 1,
         1,
         0
       ])
+      self.cardfail = false
       self.payment = {
         card: {
           no: self.num1 + self.num2 + self.num3 + self.num4,
           holder_name: $scope.User.card_name,
-          exp_date: exp_date,
+          exp_date: exp_date.valueOf().toString()
         },
         cvv: self.cvv,
         price: 0,
@@ -99,12 +119,11 @@
       }
       if (!$scope.$$childHead.payment2.$invalid) {
         $http.post($scope.environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
-          console.log(response)
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
+          self.getCardNoFormat()
+          self.cardfail = false
         }).error(function (response) {
-          console.log('ERROR step 2')
-          $scope.$$childHead.payment2.$setValidity('cardfail', false)
-          console.log($scope.$$childHead.payment2)
+          self.cardfail = true
         })
       } else {
         $scope.$$childHead.payment2.$setDirty(true)

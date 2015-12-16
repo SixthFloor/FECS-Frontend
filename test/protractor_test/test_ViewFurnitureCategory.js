@@ -3,7 +3,7 @@
 
 var request = require('request')
 
-describe('view furniture category', function() {
+describe('View furniture category', function() {
 
   var allProduct = $('#product')
 
@@ -68,7 +68,7 @@ describe('view furniture category', function() {
 
   function expectProductDescription(){
     waitForElement().then( function(){
-      for(var i = 0; i < 2; i++){
+      for(var i = 0; i < furnitureAll.length; i++){
         (function (i){
           // check product name
           allProductName.get(i).getText().then(function(name){

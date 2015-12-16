@@ -17,6 +17,7 @@ gulp.task('script', function () {
     './bower_components/angular-moment/angular-moment.min.js',
     './bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
     './bower_components/Bootflat/bootflat/js/*.js',
+    './bower_components/ng-table/dist/ng-table.js',
     './src/js/**/*.js'])
     .pipe(concat('scripts.js'))
     .pipe(uglify({mangle: false}))

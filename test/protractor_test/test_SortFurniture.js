@@ -1,8 +1,8 @@
-/* Test case: Sort furniutre*/
-/* Created by Niti*/
+/* Test case: Sort furniutre */
+/* Created by Niti */
 
 
-describe('sort furniture', function() {
+describe('Sort furniture', function() {
 
     var categoryButton =   element.all(by.css('.dropdown-toggle')).get(0)
     var accountButton =   element.all(by.css('.dropdown-toggle')).get(1)

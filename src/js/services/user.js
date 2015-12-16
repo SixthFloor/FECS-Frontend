@@ -258,7 +258,6 @@ every controller that have to identify the customer, authentication service has 
 
       
     }
-
     initUser()
   }
 })()
