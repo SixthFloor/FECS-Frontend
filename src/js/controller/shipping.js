@@ -32,6 +32,25 @@
     self.gotoView = function (orderNo) {
       $state.transitionTo('vieworder', {orderNumber: orderNo})
     }
+
+    self.deliver = function (shipping_id, status) {
+      var url= $scope.environment.getBaseAPI() + 'admin/shipping/'
+      switch (status) {
+        case 'progress':
+          url += 'progress'
+          break
+        case 'done':
+          url += 'done'
+          break
+      }
+      url += '?id=' + shipping_id
+      console.log(url)
+      $http.post(url).success(function (response) {
+        console.log(response)
+        self.selectOrder(self.selectMonth, self.selectYear)
+      })
+    }
+
     self.selectOrder(self.currentMonth, self.currentYear)
   }
 })()

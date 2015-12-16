@@ -81,7 +81,10 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.setRole = function (role) {
-      self.role = role
+      if (role === 'manager') {
+        self.role = 'admin'
+      }
+      else self.role = role
     }
     self.setEmail = function (email) {
       self.email = email
