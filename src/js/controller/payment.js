@@ -78,7 +78,7 @@
         card: {
           no: self.num1 + self.num2 + self.num3 + self.num4,
           holder_name: $scope.User.card_name,
-          exp_date: exp_date
+          exp_date: exp_date,
           address: {
             address1: $scope.User.address1,
             address2: $scope.User.address2,

@@ -34,4 +34,52 @@
       <b>Baht</b>
     </div>
   </div>
+
+  <div class="events" ng-if="vieworderCtrl.order.status > 1">
+    <div class="events-body">
+      <h4 class="events-heading">Shipping Information</h4>
+      <p>
+        <div class="member-info">
+          <div class="member-info-panel">
+            <div class="panel-heading">Address</div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-4 attr">Order number</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.orderNumber}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 attr">Customer</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.user.firstName}} {{vieworderCtrl.order.user.lastName}}</div>
+              </div>
+              <div class="row" ng-if="vieworderCtrl.User.adr1 !== ''">
+                <div class="col-sm-4 attr">Address</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.address.address1}}</div>
+              </div>
+              <div class="row" ng-if="vieworderCtrl.User.adr2 !== ''">
+                <div class="col-sm-4 attr">Address</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.address.address2}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 attr">Province</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.address.province}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 attr">Zip code</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.address.zipcode}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 attr">Shipping date</div>
+                <div class="col-sm-7">{{vieworderCtrl.order.shipping.date | amCalendar}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 attr">Total price</div>
+                <div class="col-sm-7">{{vieworderCtrl.total}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p>
+    </div>
+  </div>
+
 </div>
