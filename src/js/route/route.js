@@ -169,6 +169,12 @@
       })
       .state('manageuser', {
         url: '/admin/user',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'admin'],
+            redirectTo: 'home'
+          }
+        },
         templateUrl: 'templates/admin/user/manageuser.tmpl',
         controller: 'ManageuserController',
         controllerAs: 'manageuserCtrl'

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <h2>Manage User</h2>
   <table ng-table="manageuserCtrl.tableParams" class="table" show-filter="true" ng-form="manageuserCtrl.tableForm" disable-filter="manageuserCtrl.isAdding">
     <tr ng-repeat="user in $data" ng-form="rowForm">
@@ -30,4 +30,5 @@
           </td>
     </tr>
   </table>
+  <div class="push-top"></div>
 </div>
