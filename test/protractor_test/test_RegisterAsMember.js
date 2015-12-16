@@ -58,22 +58,22 @@ describe('Register as member', function () {
     it('Start: Test click to register page', function () {
         enterResgiterPage()
         expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/register')
-        browser.sleep(1000)
     })
 
     it('Case 1: If click nextButton without any information,register should not be successed', function () {
         nextButton1.click()
         expect(step1.isDisplayed).toBeTruthy
-        browser.sleep(1000)
+        // browser.sleep(1000)
     })
 
+
     it('Case 2: If e-mail,password are corrected and click next button,it should go next step', function () {
-        email.sendKeys("pedtesting42@gmail.com")
+        email.sendKeys("pedtesting50@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
         expect(step2.isDisplayed).toBeTruthy
-        browser.sleep(1000)
+        // browser.sleep(1000)
     })
 
     it('Case 3: If name and lastname are corrected and click next button,it should go next step', function () {
@@ -81,7 +81,7 @@ describe('Register as member', function () {
         lastname.sendKeys("noi")
         nextButton2.click()
         expect(step3.isDisplayed).toBeTruthy
-        browser.sleep(1000)
+        // browser.sleep(1000)
     })
 
     it('Case 4: If click register button,register should be successed', function () {
@@ -93,7 +93,7 @@ describe('Register as member', function () {
     })
 
     it('Case 5: If register with same e-mail, notification should appear register unsuccessful', function () {
-        email.sendKeys("pedtesting42@gmail.com")
+        email.sendKeys("pedtesting50@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -107,14 +107,28 @@ describe('Register as member', function () {
         nextButton2.click()
         cardHolder.sendKeys("DADY")
         registerButton.click()
-        browser.sleep(10000)
+        browser.sleep(5000)
         browser.waitForAngular()
         expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/register')
         browser.get('http://localhost:3030/#/register')
-        browser.sleep(2000)
     })
 
-    it('Case 6: If register with password shorter than 8 letters and click next button, it should stay the same step', function () {
+    it('Case 6: If register password with special charactor and click next button, it should stay the same step', function () {
+        email.sendKeys("pedtester@gmail.com")
+        password.sendKeys("!@#$%^&*")
+        confirmpassword.sendKeys("!@#$%^&*")
+        nextButton1.click()
+        firstname.sendKeys("ped")
+        lastname.sendKeys("noi")
+        nextButton2.click()
+        registerButton.click()
+        browser.sleep(5000)
+        browser.waitForAngular()
+        expect(step3.isDisplayed).toBeTruthy
+        browser.get('http://localhost:3030/#/register')
+    })
+
+    it('Case 7: If register with password shorter than 8 letters and click next button, it should stay the same step', function () {
         email.sendKeys("pedtester@gmail.com")
         password.sendKeys("12345")
         confirmpassword.sendKeys("12345")
@@ -123,7 +137,7 @@ describe('Register as member', function () {
         clearButton.click()
     })
 
-    it('Case 7: If register email with incorrect form and click next button, it should stay the same step', function () {
+    it('Case 8: If register email with incorrect form and click next button, it should stay the same step', function () {
         email.sendKeys("pedtester-gmail.com")
         password.sendKeys("1235678")
         confirmpassword.sendKeys("1235678")
@@ -132,7 +146,7 @@ describe('Register as member', function () {
         clearButton.click()
     })
 
-    it('Case 8: If register password that does not match and click next button, it should stay the same step', function () {
+    it('Case 9: If register password that does not match and click next button, it should stay the same step', function () {
         email.sendKeys("pedtester@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("87654321")
@@ -142,7 +156,7 @@ describe('Register as member', function () {
         browser.get('http://localhost:3030/#/register') 
     })
 
-    it('Case 9: If register without lastname and click next button, it should stay the same step', function () {
+    it('Case 10: If register without lastname and click next button, it should stay the same step', function () {
         email.sendKeys("pedtester@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
@@ -151,11 +165,11 @@ describe('Register as member', function () {
         nextButton2.click()
         expect(step2.isDisplayed).toBeTruthy
         browser.get('http://localhost:3030/#/register')
-        browser.sleep(5000)
+        browser.sleep(2000)
     })
 
-     it('Case 10: If register with email that is registered but with UpperCase, it should not login successed', function(){
-        email.sendKeys("PEDTesting42@gmail.com")
+     it('Case 11: If register with email that is registered but with UpperCase, it should not login successed', function(){
+        email.sendKeys("PEDTesting50@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -167,14 +181,4 @@ describe('Register as member', function () {
 
     })
 
-      it('Case 11: If register password with special charactor and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester@gmail.com")
-        password.sendKeys("!@#$%^&*")
-        confirmpassword.sendKeys("!@#$%^&*")
-        nextButton1.click()
-        browser.sleep(3000)
-        expect(step2.isDisplayed).toBe(false)
-        browser.get('http://localhost:3030/#/register')
-        browser.sleep(5000)
-    })
 })

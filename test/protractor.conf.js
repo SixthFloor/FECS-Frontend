@@ -2,7 +2,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
-  specs: ['protractor_test/test_SearchForFurniture.js'],
+  specs: ['protractor_test/test_RegisterAsMember.js'],
 
   capabilities: { 
     browserName: 'chrome'
@@ -17,7 +17,7 @@ exports.config = {
   // baseUrl: 'http://localhost:8080/app/',
 
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 6000000
+    defaultTimeoutInterval: 10000000
   },
 
   onPrepare: function () {
