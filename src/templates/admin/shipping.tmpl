@@ -1,0 +1,66 @@
+<div class="container">
+  <div name="title"><h1>View Shipping Order<span class="fa fa-truck"></span></h1></div>
+  <div class="select-shipping">
+    <div class="month">
+      <b>Select Month: </b>
+      <!-- Month dropdown -->
+      <select class="form-control" name="month" onchange="" size="1">
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+      </select>
+    </div>
+    <div class="year">
+      <b>Select Year: </b>
+      <!-- Year dropdown -->
+      <select class="form-control" name="year" onchange="" size="1">
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+      </select>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in cartCtrl.itemList track by $index">
+          <td>{{$index+1}}</td>
+          <td>
+            <img src={{item.product.images[0].link}} width="100"/></td>
+          <td>{{item.product.name}}</td>
+          <td class="quantity-input">
+            <input ng-model="quantity"  ng-init="quantity=item.quantity" ng-change="cartCtrl.changeQuantity($index,quantity)"
+            min="1" type="number" class="form-control"/>
+          </td>
+          <td>{{item.quantity*item.product.price}}</td>
+          <td><button type="button" class="btn btn-danger" ng-click="cartCtrl.removeItem($index)">
+            <span class="glyphicon glyphicon-remove"></span></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="checkout" ng-if="cartCtrl.itemList.length > 0">
+    <button class="checkout-btn" ng-click="cartCtrl.checkout()" type="button" name="button">Checkout</button>
+  </div>
+</div>

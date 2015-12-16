@@ -22,6 +22,7 @@
       'controller.order',
       'controller.settingpage',
       'controller.navbar',
+      'controller.shipping',
       'directive.navbar',
       'directive.footer'
     ])
