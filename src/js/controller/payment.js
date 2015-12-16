@@ -36,7 +36,7 @@
       // Calculate total price of products in cart
       console.log(self.order)
     }).error(function (response) {
-      console.log('Error')
+      console.log(response)
       self.is404 = true
     })
 
@@ -62,6 +62,7 @@
         $scope.$$childHead.payment1.address1.$setDirty(true)
         $scope.$$childHead.payment1.province.$setDirty(true)
         $scope.$$childHead.payment1.zipcode.$setDirty(true)
+        $scope.$$childHead.payment1.phonenumber.$setDirty(true)
         $scope.$$childHead.payment1.shippingdate.$setDirty(true)
       } else {
         self.moveElement.css('margin-top', '-' + self.height + 'px')
@@ -80,15 +81,18 @@
           holder_name: $scope.User.card_name,
           exp_date: exp_date,
         },
-        address: {
-          address1: $scope.User.address1,
-          address2: $scope.User.address2,
-          province: $scope.User.province,
-          zipcode: $scope.User.zipcode
-        },
         cvv: self.cvv,
         price: 0,
-        shipping: self.order.shipping
+        shipping: {
+          date: self.order.shipping.date,
+          phone: $scope.User.telephone_number,
+          address: {
+            address1: $scope.User.address1,
+            address2: $scope.User.address2,
+            province: $scope.User.province,
+            zipcode: $scope.User.zipcode
+          }
+        }
       }
       for ( var i = 0; i < self.order.cart.length;i++) {
         self.payment.price += self.order.cart[i].product.price * self.order.cart[i].quantity
