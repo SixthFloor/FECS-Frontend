@@ -34,7 +34,7 @@
     }
 
     self.deliver = function (shipping_id, status) {
-      var url= $scope.environment.getBaseAPI() + 'admin/shipping/'
+      var url = $scope.environment.getBaseAPI() + 'admin/shipping/'
       switch (status) {
         case 'progress':
           url += 'progress'

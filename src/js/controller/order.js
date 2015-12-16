@@ -40,8 +40,8 @@
     }
     self.getPrice = function (order) {
       var sum = 0
-      for(var i=0; i<order.cart.length;i++) {
-        sum += order.cart[i].product.price*order.cart[i].quantity
+      for (var i = 0; i < order.cart.length;i++) {
+        sum += order.cart[i].product.price * order.cart[i].quantity
       }
       return sum
     }
@@ -58,7 +58,6 @@
       self.calTotal()
       console.log(response)
     })
-
 
     self.calTotal = function () {
       self.total = 0
@@ -77,8 +76,8 @@
     $http.get(environment.getBaseAPI() + 'order/all').success(function (response) {
       self.orders = response
       console.log(response)
-      for(var i=0; i<self.orders.length;i++) {
-        if(self.orders[i].status > 1) {
+      for (var i = 0; i < self.orders.length;i++) {
+        if (self.orders[i].status > 1) {
           self.totalSpent += self.getPrice(self.orders[i])
         }
       }
@@ -93,20 +92,22 @@
         }
       })
     }
+
     self.getFullname = function (order) {
       var name = order.user.firstName + ' ' + order.user.lastName
       return name
     }
+
     self.gotoView = function (orderNo) {
       $state.transitionTo('vieworder', {orderNumber: orderNo})
     }
+
     self.getPrice = function (order) {
       var sum = 0
-      for(var i=0; i<order.cart.length;i++) {
-        sum += order.cart[i].product.price*order.cart[i].quantity
+      for (var i = 0; i < order.cart.length;i++) {
+        sum += order.cart[i].product.price * order.cart[i].quantity
       }
       return sum
     }
   }
-
 })()

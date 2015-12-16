@@ -91,7 +91,7 @@
               }
               break
             default:
-                filter = list
+              filter = list
           }
         }
       }
