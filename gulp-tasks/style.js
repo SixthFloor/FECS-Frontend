@@ -10,6 +10,7 @@ gulp.task('style', function () {
   return gulp.src([
     './bower_components/angular-ui-notification/dist/angular-ui-notification.min.css',
     './bower_components/components-font-awesome/css/font-awesome.min.css',
+    './bower_components/ng-table/dist/ng-table.css',
     './src/css/*.css',
     './src/scss/style.scss'
   ])

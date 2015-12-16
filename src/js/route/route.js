@@ -167,11 +167,11 @@
         controller: 'SettingController',
         controllerAs: 'settingCtrl'
       })
-      .state('admin.user', {
+      .state('manageuser', {
         url: '/admin/user',
-        templateUrl: 'templates/admin/user.tmpl',
-        controller: 'UserController',
-        controllerAs: 'userCtrl'
+        templateUrl: 'templates/admin/user/manageuser.tmpl',
+        controller: 'ManageuserController',
+        controllerAs: 'manageuserCtrl'
       })
       .state('shipping', {
         url: '/admin/shipping',
