@@ -5,7 +5,9 @@ describe('Add edit product', function() {
 
   var categoryButton =   element.all(by.css('.dropdown-toggle')).get(0)
   var accountButton =   element.all(by.css('.dropdown-toggle')).get(1)
+  var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(2)
   var linkSignin = element(by.css('[ui-sref="login"]'))
+  var linkSignout = element(by.css('[ui-sref="logout"]'))
   var email = element(by.model('loginCtrl.data.email'))
   var password = element(by.model('loginCtrl.data.pwd'))
   var loginButton = element(by.buttonText('Log in'))
@@ -33,6 +35,7 @@ describe('Add edit product', function() {
   var furnitureDimension = element(by.model('addproductCtrl.product.dimensionDescription'))
   var categoryModel = element(by.model('addproductCtrl.product.category'))
   var subcategoryModel = element(by.model('addproductCtrl.product.subcategory'))
+  var notifications = element.all(by.css('.ui-notification'))
 
   function Login(a,b) {
     email.sendKeys(a)
@@ -392,4 +395,13 @@ describe('Add edit product', function() {
     browser.sleep(5000)
     
   })
+
+  it('logout after test', function() {
+    linkAccountAfterLogin.click()
+    linkSignout.click()
+    expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
+    browser.sleep(5000)
+
+  })
+
 })

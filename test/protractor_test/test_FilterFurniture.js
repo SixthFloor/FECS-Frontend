@@ -17,6 +17,9 @@ describe('Filter furniture', function() {
   var allProductPrice = element.all(by.id('product-price'))
   var sortModel = element(by.model('categorypageCtrl.sort_by'))
   var allTypesort = element.all(by.tagName('option'))
+  var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(2)
+  var linkSignout = element(by.css('[ui-sref="logout"]'))
+  var notifications = element.all(by.css('.ui-notification'))
 
   var priceProductU1 = []
   var nameProductU1 = []
@@ -552,4 +555,13 @@ describe('Filter furniture', function() {
     }
 
   })
+  
+  it('logout after test', function() {
+    linkAccountAfterLogin.click()
+    linkSignout.click()
+    expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
+    browser.sleep(5000)
+
+  })
+
 })

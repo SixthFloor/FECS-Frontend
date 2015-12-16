@@ -25,6 +25,9 @@ describe('Sort furniture', function() {
     var amountProductSerial
     var amountProductPrice
     var eachProductDescription 
+    var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(2)
+    var linkSignout = element(by.css('[ui-sref="logout"]'))
+    var notifications = element.all(by.css('.ui-notification'))
 
     function Login(a,b) {
       email.sendKeys(a)
@@ -283,4 +286,13 @@ describe('Sort furniture', function() {
       }
 
     })
+
+    it('logout after test', function() {
+      linkAccountAfterLogin.click()
+      linkSignout.click()
+      expect(notifications.getText()).toEqual([ 'Logout Success! Thank you for using our services :)' ])
+      browser.sleep(5000)
+
+    })
+
 })
