@@ -25,6 +25,7 @@
       step3: false
     }
     self.is404 = false
+    self.cardFormat = ''
 
     self.shippingList = []
     self.order = null
@@ -47,7 +48,7 @@
     })
 
     self.getCardNoFormat = function () {
-      return self.payment.card.no.substring(0, 4) + '-' + self.payment.card.no.substring(4, 8) + '-' + self.payment.card.no.substring(8, 12) + '-' + self.payment.card.no.substring(12, 16)
+      self.cardFormat = $scope.User.card_number.substring(0, 4) + '-' + $scope.User.card_number.substring(4, 8) + '-' + $scope.User.card_number.substring(8, 12) + '-' + $scope.User.card_number.substring(12, 16)
     }
 
     self.back = function () {
@@ -66,6 +67,21 @@
         $scope.$$childHead.payment1.shippingdate.$setDirty(true)
       } else {
         self.moveElement.css('margin-top', '-' + self.height + 'px')
+        if($scope.User.card_number.length>=4) {
+          self.num1 = $scope.User.card_number.substring(0, 4)
+        }
+        else {
+          self.num1 = $scope.User.card_number
+        }
+        if($scope.User.card_number.length>=8) {
+          self.num2 = $scope.User.card_number.substring(4, 8)
+        }
+        if($scope.User.card_number.length>=12) {
+          self.num3 = $scope.User.card_number.substring(8, 12)
+        }
+        if($scope.User.card_number.length>=16) {
+          self.num4 = $scope.User.card_number.substring(12, 16)
+        }
       }
     }
     self.next2 = function () {
@@ -101,6 +117,7 @@
         $http.post($scope.environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
           console.log(response)
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
+          self.getCardNoFormat()
         }).error(function (response) {
           console.log('ERROR step 2')
           $scope.$$childHead.payment2.$setValidity('cardfail', false)
