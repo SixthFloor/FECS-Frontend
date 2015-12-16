@@ -22,12 +22,9 @@
     self.selectYear = String(self.currentYear)
 
     self.selectOrder = function (selectMonth, selectYear) {
-      var url = $scope.environment.getBaseAPI() + 'shipping/view?month=' + selectMonth + '&year=' + selectYear
+      var url = $scope.environment.getBaseAPI() + 'admin/shipping/list?month=' + selectMonth + '&year=' + selectYear
 
       $http.get(url).success(function (response) {
-        if (response.description == 'None of shipping slots is inprogress') {
-          self.msg = response.description
-        }
         self.orderList = response
       })
     }

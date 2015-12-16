@@ -137,6 +137,7 @@ every controller that have to identify the customer, authentication service has 
 
     self.setToken = function (token) {
       localStorageService.set('authToken', token)
+      console.log(token)
     }
 
     self.getToken = function () {
@@ -256,7 +257,7 @@ every controller that have to identify the customer, authentication service has 
         error()
       });
 
-      
+
     }
     initUser()
   }
