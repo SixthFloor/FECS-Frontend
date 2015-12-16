@@ -10,14 +10,71 @@
   angular
     .module('controller.order', [])
     .controller('OrderController', OrderController)
+    .controller('ViewOrderController', ViewOrderController)
+    .controller('OrderManagerController', OrderManagerController)
 
   OrderController.$inject = ['$scope', '$http', '$state', '$stateParams', 'User', 'environment']
   function OrderController ($scope, $http, $state, $stateParams, User, environment) {
     var self = this
     self.orders = []
-    self.totalSpent = 0
 
     $http.get(environment.getBaseAPI() + 'order/email/' + User.email).success(function (response) {
+      self.orders = response
+      console.log(response)
+    })
+
+    self.cancle = function (ccId) {
+      $http.put(environment.getBaseAPI() + 'order/cc', {id: ccId}).success(function (response) {
+        if (response.status !== 'error') {
+          console.log(self.order.orderNumber + 'Cancled')
+        } else {
+          console.log(response)
+        }
+      })
+    }
+    self.gotoPay = function (orderNo) {
+      $state.transitionTo('payment', {orderNumber: orderNo})
+    }
+    self.gotoView = function (orderNo) {
+      $state.transitionTo('vieworder', {orderNumber: orderNo})
+    }
+    self.getPrice = function (order) {
+      var sum = 0
+      for(var i=0; i<order.cart.length;i++) {
+        sum += order.cart[i].product.price*order.cart[i].quantity
+      }
+      return sum
+    }
+  }
+
+  ViewOrderController.$inject = ['$scope', '$http', '$state', '$stateParams', 'User', 'environment']
+  function ViewOrderController ($scope, $http, $state, $stateParams, User, environment) {
+    var self = this
+    self.order = null
+
+    $http.get(environment.getBaseAPI() + 'order/' + $stateParams.orderNumber).success(function (response) {
+      self.order = response
+      self.itemList = self.order.cart
+      self.calTotal()
+      console.log(response)
+    })
+
+
+    self.calTotal = function () {
+      self.total = 0
+      for (var i = 0; i < self.itemList.length; i++) {
+        self.total += self.itemList[i].product.price * self.itemList[i].quantity
+      }
+    }
+  }
+
+  OrderManagerController.$inject = ['$scope', '$http', '$state', '$stateParams', 'User', 'environment']
+  function OrderManagerController ($scope, $http, $state, $stateParams, User, environment) {
+    var self = this
+    self.orders = []
+    self.totalSpent = 0
+
+    $http.get(environment.getBaseAPI() + 'order/all').success(function (response) {
       self.orders = response
       console.log(response)
       for(var i=0; i<self.orders.length;i++) {
@@ -36,8 +93,12 @@
         }
       })
     }
-    self.gotoPay = function (orderNo) {
-      $state.transitionTo('payment', {orderNumber: orderNo})
+    self.getFullname = function (order) {
+      var name = order.user.firstName + ' ' + order.user.lastName
+      return name
+    }
+    self.gotoView = function (orderNo) {
+      $state.transitionTo('vieworder', {orderNumber: orderNo})
     }
     self.getPrice = function (order) {
       var sum = 0
@@ -47,4 +108,5 @@
       return sum
     }
   }
+
 })()
