@@ -137,17 +137,53 @@
         controller: 'OrderController',
         controllerAs: 'orderCtrl'
       })
+      .state('vieworder', {
+        url: '/vieworder/:orderNumber',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/vieworder.tmpl',
+        controller: 'ViewOrderController',
+        controllerAs: 'vieworderCtrl'
+      })
+      .state('orderman', {
+        url: '/admin/orderman',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'admin'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/admin/orderman.tmpl',
+        controller: 'OrderManagerController',
+        controllerAs: 'ordermanCtrl'
+      })
       .state('setting', {
         url: '/setting',
         templateUrl: 'templates/setting.tmpl',
         controller: 'SettingController',
         controllerAs: 'settingCtrl'
       })
-      .state('admin.user', {
+      .state('manageuser', {
         url: '/admin/user',
-        templateUrl: 'templates/admin/user.tmpl',
-        controller: 'UserController',
-        controllerAs: 'userCtrl'
+        templateUrl: 'templates/admin/user/manageuser.tmpl',
+        controller: 'ManageuserController',
+        controllerAs: 'manageuserCtrl'
+      })
+      .state('shipping', {
+        url: '/admin/shipping',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'admin'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/admin/shipping.tmpl',
+        controller: 'ShippingController',
+        controllerAs: 'shippingCtrl'
       })
   }
 })()

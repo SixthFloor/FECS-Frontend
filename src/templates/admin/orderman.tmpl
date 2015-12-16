@@ -1,0 +1,40 @@
+<div class="container">
+  <div name="title"><h1><span class="fa fa-list-ul"></span> Order Management</h1></div>
+  <div class="panel panel-default">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order Number</th>
+          <th>Owner</th>
+          <th>Total Price</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>View</th>
+          <th>Shipping</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="order in ordermanCtrl.orders">
+          <td>{{order.orderNumber}}</td>
+          <td>{{ordermanCtrl.getFullname(order)}}</td>
+          <td>{{ordermanCtrl.getPrice(order)}}</td>
+          <td>{{order.orderDate | amCalendar}}</td>
+          <td>
+            <span ng-if="order.status === 0">No pay</span>
+            <span ng-if="order.status === 1">Cancled</span>
+            <span ng-if="order.status > 1">Paid</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.gotoView(id)">
+            Info</button>
+          </td>
+          <td ng-if="order.status === 0">
+            <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.cancle(id)">
+            Cancle <span class="glyphicon glyphicon-remove"></span></button></td>
+          <td ng-if="order.status === 1">Cancled</td>
+          <td ng-if="order.status > 1">{{order.shipping.date | amCalendar}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

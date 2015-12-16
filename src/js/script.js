@@ -12,6 +12,7 @@
       'services.permission',
       'services.environment',
       'services.search',
+      'services.manage',
       'controller.homepage',
       'controller.login',
       'controller.register',
@@ -21,7 +22,9 @@
       'controller.payment',
       'controller.order',
       'controller.settingpage',
+      'controller.manageuserpage',
       'controller.navbar',
+      'controller.shipping',
       'directive.navbar',
       'directive.footer'
     ])

@@ -115,3 +115,22 @@
   @extend .row;
   margin: 0px;
 }
+
+// View Shipping Order
+.select-shipping{
+  @extend .row;
+  margin: 2% 0px;
+  text-align: center;
+  text-align: -webkit-center;
+    .month, .year{
+      @extend .col-md-6;
+      select {
+        width: 30%;
+      }
+    }
+}
+.noshipping{
+  @extend .total;
+  text-align: center;
+  text-align: -webkit-center;
+}

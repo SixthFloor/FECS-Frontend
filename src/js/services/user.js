@@ -210,7 +210,8 @@ every controller that have to identify the customer, authentication service has 
 
     self.editprofile = function (data, success, error) {
       if(self.zipcode == '') self.zipcode = '00000'
-
+      if(self.password == '') self.password = data.pwd
+      console.log("")
       var req = {
        method: 'PUT',
        url: environment.getBaseAPI() + 'user/' + self.email,
@@ -244,17 +245,19 @@ every controller that have to identify the customer, authentication service has 
         }
 
         $http(req).then(function(response){
+          console.log(response)
           success()
         }, function(response){
+          console.log(response)
           error()
         });
       }, function(response){
+        console.log(response)
         error()
       });
 
       
     }
-
     initUser()
   }
 })()
