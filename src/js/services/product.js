@@ -77,8 +77,8 @@
       }).success(success).error(error)
       $http.get(environment.getBaseAPI() + 'type/all').success(function (response) {
         if (response.status !== 'error') {
-          for ( var i = 0; i < response.length;i++) {
-            if ( response[i].category.name === self.product.category.name &&
+          for (var i = 0; i < response.length;i++) {
+            if (response[i].category.name === self.product.category.name &&
               response[i].subCategory.name === self.product.subcategory.name) {
               var newCatalog = {
                 id: catalogID,

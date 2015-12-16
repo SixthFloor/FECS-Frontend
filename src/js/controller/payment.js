@@ -69,19 +69,18 @@
         $scope.$$childHead.payment1.shippingdate.$setDirty(true)
       } else {
         self.moveElement.css('margin-top', '-' + self.height + 'px')
-        if($scope.User.card_number.length>=4) {
+        if ($scope.User.card_number.length >= 4) {
           self.num1 = $scope.User.card_number.substring(0, 4)
-        }
-        else {
+        } else {
           self.num1 = $scope.User.card_number
         }
-        if($scope.User.card_number.length>=8) {
+        if ($scope.User.card_number.length >= 8) {
           self.num2 = $scope.User.card_number.substring(4, 8)
         }
-        if($scope.User.card_number.length>=12) {
+        if ($scope.User.card_number.length >= 12) {
           self.num3 = $scope.User.card_number.substring(8, 12)
         }
-        if($scope.User.card_number.length>=16) {
+        if ($scope.User.card_number.length >= 16) {
           self.num4 = $scope.User.card_number.substring(12, 16)
         }
       }

@@ -213,13 +213,13 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.editprofile = function (data, success, error) {
-      if(self.zipcode == '') self.zipcode = '00000'
-      if(self.password == '') self.password = data.pwd
-      console.log("")
+      if (self.zipcode === '') self.zipcode = '00000'
+      if (self.password === '') self.password = data.pwd
+      console.log('')
       var req = {
-       method: 'PUT',
-       url: environment.getBaseAPI() + 'user/' + self.email,
-       data: {
+        method: 'PUT',
+        url: environment.getBaseAPI() + 'user/' + self.email,
+        data: {
           id: self.user_id,
           email: self.email,
           password: self.password,
@@ -233,34 +233,32 @@ every controller that have to identify the customer, authentication service has 
         }
       }
 
-      $http(req).then(function(response){
+      $http(req).then(function (response) {
         var req = {
-         method: 'PUT',
-         url: environment.getBaseAPI() + 'user/payment',
-         headers: {
+          method: 'PUT',
+          url: environment.getBaseAPI() + 'user/payment',
+          headers: {
             email: self.email,
             password: data.pwd
-         },
-         data: {
+          },
+          data: {
             card_name: self.card_name,
             expirationDate: self.expirationDate,
             card_number: self.card_number
           }
         }
 
-        $http(req).then(function(response){
+        $http(req).then(function (response) {
           console.log(response)
           success()
-        }, function(response){
+        }, function (response) {
           console.log(response)
           error()
-        });
-      }, function(response){
+        })
+      }, function (response) {
         console.log(response)
         error()
-      });
-
-
+      })
     }
     initUser()
   }

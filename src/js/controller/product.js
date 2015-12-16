@@ -52,10 +52,10 @@
     self.direct = function (categoryName) {
       $state.transitionTo('admin/product/add')
       productService.clearProduct()
-      if ( categoryName !== 'all') {
+      if (categoryName !== 'all') {
         for ( var i = 0; i < self.categoryList.length;i++) {
           var cat = self.categoryList[i]
-          if ( cat.name === categoryName) {
+          if (cat.name === categoryName) {
             self.product.category = cat
           }
         }
@@ -141,10 +141,10 @@
       $http.get($scope.environment.getBaseAPI() + 'category/' + self.product.category.name).success(function (response) {
         if (response.status !== 'error') {
           self.subcategoryList = response
-          if ( self.oldSubcat !== null) {
+          if (self.oldSubcat !== null) {
             for ( var i = 0; i < self.subcategoryList.length;i++) {
               var subcat = self.subcategoryList[i]
-              if ( subcat.name === self.oldSubcat.name) {
+              if (subcat.name === self.oldSubcat.name) {
                 self.product.subcategory = subcat
               }
             }
@@ -186,7 +186,7 @@
           self.catalogID = response[0].id
           for ( var i = 0; i < self.categoryList.length;i++) {
             var cat = self.categoryList[i]
-            if ( cat.name === response[0].type.category.name) {
+            if (cat.name === response[0].type.category.name) {
               self.product.category = cat
             }
           }
@@ -256,7 +256,7 @@
           })
           var category_bak = self.product.category
           productService.clearProduct()
-          if ( category_bak !== null) {
+          if (category_bak !== null) {
             $state.transitionTo('category', {category_name: category_bak.name})
           } else {
             $state.transitionTo('category', {category_name: 'all'})
@@ -271,11 +271,11 @@
       var list = []
       var url = $scope.environment.getBaseAPI() + 'real-product/new'
       for (var i = 0; i < quantity; i++) {
-        list.push({ id:self.product.id })
+        list.push({ id: self.product.id })
       }
-      $http.post(url, list).success( function(response){
+      $http.post(url, list).success(function (response) {
         console.log('Real product added')
-      }).error( function(response){
+      }).error(function (response) {
         console.log(response)
       })
     }

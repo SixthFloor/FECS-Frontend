@@ -28,7 +28,6 @@
         text: 'TEST2'
       }
     ]
-
   }
 
   AppController.$inject = ['$scope', 'environment', 'User']
