@@ -1,8 +1,8 @@
 /* Test case: Register As Member */
 /* Created by Kittinan */
 
-var request = require('request')
-var q = require('q')
+// var request = require('request')
+// var q = require('q')
 
 describe('Register as member', function () {
 
@@ -68,7 +68,7 @@ describe('Register as member', function () {
     })
 
     it('Case 2: If e-mail,password are corrected and click next button,it should go next step', function () {
-        email.sendKeys("pedtesting31@gmail.com")
+        email.sendKeys("pedtesting42@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -93,7 +93,7 @@ describe('Register as member', function () {
     })
 
     it('Case 5: If register with same e-mail, notification should appear register unsuccessful', function () {
-        email.sendKeys("pedtesting31@gmail.com")
+        email.sendKeys("pedtesting42@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -115,7 +115,7 @@ describe('Register as member', function () {
     })
 
     it('Case 6: If register with password shorter than 8 letters and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester32@gmail.com")
+        email.sendKeys("pedtester@gmail.com")
         password.sendKeys("12345")
         confirmpassword.sendKeys("12345")
         nextButton1.click()
@@ -124,7 +124,7 @@ describe('Register as member', function () {
     })
 
     it('Case 7: If register email with incorrect form and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester32-gmail.com")
+        email.sendKeys("pedtester-gmail.com")
         password.sendKeys("1235678")
         confirmpassword.sendKeys("1235678")
         nextButton1.click()
@@ -133,16 +133,17 @@ describe('Register as member', function () {
     })
 
     it('Case 8: If register password that does not match and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester32@gmail.com")
+        email.sendKeys("pedtester@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("87654321")
         nextButton1.click()
         expect(step1.isDisplayed).toBeTruthy
         clearButton.click()
+        browser.get('http://localhost:3030/#/register') 
     })
 
     it('Case 9: If register without lastname and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester32@gmail.com")
+        email.sendKeys("pedtester@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -154,7 +155,7 @@ describe('Register as member', function () {
     })
 
      it('Case 10: If register with email that is registered but with UpperCase, it should not login successed', function(){
-        email.sendKeys("PEDTesting31@gmail.com")
+        email.sendKeys("PEDTesting42@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -167,7 +168,7 @@ describe('Register as member', function () {
     })
 
       it('Case 11: If register password with special charactor and click next button, it should stay the same step', function () {
-        email.sendKeys("pedtester32@gmail.com")
+        email.sendKeys("pedtester@gmail.com")
         password.sendKeys("!@#$%^&*")
         confirmpassword.sendKeys("!@#$%^&*")
         nextButton1.click()

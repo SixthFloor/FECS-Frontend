@@ -12,6 +12,7 @@ describe('Add product to cart', function () {
 	var notifications = element.all(by.css('.ui-notification'))
 	var cartButton = element(by.css('[ui-sref="cart"]'))
 	var allProduct = element(by.css('[href="#/category/all"]'))
+	var logoutButton = element(by.css('[href="#/logout"]'))
 	var product = element.all(by.id('view-button'))
 	var CheckOutOfStock = element(by.id('outofstock'))
 	var addToCartButton = element(by.css('.add-btn'))
@@ -94,17 +95,17 @@ describe('Add product to cart', function () {
 	it('Case 5.1: If add the same product 3 times,it should show number of type with one product', function(){
 		linkDropdown.get(0).click()
 		allProduct.click()
-		product.get(1).click()
+		product.get(3).click()
 		addToCartButton.click()
 
 		linkDropdown.get(0).click()
 		allProduct.click()
-		product.get(1).click()
+		product.get(3).click()
 		addToCartButton.click()
 
 		linkDropdown.get(0).click()
 		allProduct.click()
-		product.get(1).click()
+		product.get(3).click()
 		addToCartButton.click()
 
 		cartButton.click()
@@ -133,7 +134,7 @@ describe('Add product to cart', function () {
 		removeButton.get(0).click()
 		linkDropdown.get(0).click()
 		allProduct.click()
-		product.get(1).click()
+		product.get(3).click()
 		quantity.clear()
 		quantity.sendKeys('3')
 		addToCartButton.click()
@@ -157,6 +158,9 @@ describe('Add product to cart', function () {
 		for (var i = 0 ; i < amountquant ; i++) {
         	expect(quantity.get(i).getText()).toEqual(quant[i])
       }
+      linkDropdown.get(1).click()
+      logoutButton.click()
+      browser.sleep(3000)
 	})
 
 })
