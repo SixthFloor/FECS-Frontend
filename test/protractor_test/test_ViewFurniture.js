@@ -3,7 +3,7 @@
 
 var request = require('request')
 
-describe('view furniture', function() {
+describe('View furniture', function() {
 
   var allViewProductButton = element.all(by.id('view-button'))
 
@@ -67,11 +67,15 @@ describe('view furniture', function() {
           }
           // check product description
           productDescription.getText().then(function(description){
-            expect(description).toEqual(furnitureAll[i].description)
+            // console.log('web: ' + description)
+            // console.log('api: ' + furnitureAll[i].description.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
+            expect(description).toEqual(furnitureAll[i].description.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
           })
           // check product dimension description
           productDemensionDescription.getText().then(function(dimensionDescription){
-            expect(dimensionDescription).toEqual(furnitureAll[i].dimensionDescription.replace(/(\r\n|\n|\r)/gm," "))
+            // console.log('web: ' + dimensionDescription)
+            // console.log('api: ' + furnitureAll[i].dimensionDescription.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
+            expect(dimensionDescription).toEqual(furnitureAll[i].dimensionDescription.replace(/(\r\n|\r|\n|\\n){1,}/g, ' '))
           })
           // // check product image
           // allProductImg.get(i).getAttribute('src').then(function(img){

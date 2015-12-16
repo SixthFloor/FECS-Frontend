@@ -5,23 +5,23 @@ describe('Add product to cart', function () {
 
 	var linkDropdown =   element.all(by.css('.dropdown-toggle'))
  	var linkSignin = element(by.css('[ui-sref="login"]'))
-  	var linkSignout = element(by.css('[ui-sref="logout"]'))
-  	var email = element(by.model('loginCtrl.data.email'))
-  	var password = element(by.model('loginCtrl.data.pwd'))
-  	var loginButton = element(by.buttonText('Log in'))
-  	var notifications = element.all(by.css('.ui-notification'))
-  	var cartButton = element(by.css('[ui-sref="cart"]'))
-  	var allProduct = element(by.css('[href="#/category/all"]'))
-  	var product = element.all(by.id('view-button'))
-  	var CheckOutOfStock = element(by.id('outofstock'))
-  	var addToCartButton = element(by.css('.add-btn'))
-  	var productInCart = element.all(by.repeater('item in cartCtrl.itemList track by $index'))
-  	var removeButton = element.all(by.css('.btn.btn-danger'))
-  	var quantity = element.all(by.model('quantity'))
-  	var amountProductInCart
-  	var amountProduct
-  	var amountquant
-  	var quant = []
+	var linkSignout = element(by.css('[ui-sref="logout"]'))
+	var email = element(by.model('loginCtrl.data.email'))
+	var password = element(by.model('loginCtrl.data.pwd'))
+	var loginButton = element(by.buttonText('Log in'))
+	var notifications = element.all(by.css('.ui-notification'))
+	var cartButton = element(by.css('[ui-sref="cart"]'))
+	var allProduct = element(by.css('[href="#/category/all"]'))
+	var product = element.all(by.id('view-button'))
+	var CheckOutOfStock = element(by.id('outofstock'))
+	var addToCartButton = element(by.css('.add-btn'))
+	var productInCart = element.all(by.repeater('item in cartCtrl.itemList track by $index'))
+	var removeButton = element.all(by.css('.btn.btn-danger'))
+	var quantity = element.all(by.model('quantity'))
+	var amountProductInCart
+	var amountProduct
+	var amountquant
+	var quant = []
   
   	// function randomProduct(amountProduct){
   	// 	randomfromAll = (Math.floor(Math.random() * (amountProduct+1))) -1

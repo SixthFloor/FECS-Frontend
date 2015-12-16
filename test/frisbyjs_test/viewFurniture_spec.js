@@ -20,10 +20,10 @@ function expectProductDetail(serialNumber){
   .toss()
 }
 
-describe('test', function(){
+describe('View furniture', function(){
   it("should respond with hello world", function(done) {
     request("http://128.199.133.224/api/product/all", function(error, response, body){
-      furnitureAll = JSON.parse(body)
+      var furnitureAll = JSON.parse(body)
       for(var i = 0; i < furnitureAll.length; i++){
         expectProductDetail(furnitureAll[i].serialNumber)
       }
