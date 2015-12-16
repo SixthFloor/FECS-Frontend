@@ -1,0 +1,21 @@
+<div ng-if="!manageruserCtrl.is404">
+  <div class="container">
+    <div class="route">
+      <ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/home">Home</a></li>
+        <li class="active"><span>Manager User</span></li>
+      </ol>
+    </div>
+    {{manageuserCtrl.data}}
+    <table ng-table="vm.tableParams" class="table" show-filter="true">
+      <tr ng-repeat="user in $data">
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">{{user.name}}</td>
+        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">{{user.age}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div ng-if="manageruserCtrl.is404">
+  <h1>Cannot manager user.</h1>
+</div>
+<footer></footer>
