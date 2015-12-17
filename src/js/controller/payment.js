@@ -103,13 +103,13 @@
         cvv: self.cvv,
         price: 0,
         shipping: {
-          date: self.order.shipping.date,
-          phone: $scope.User.telephone_number,
+          id: self.order.shipping.id,
           address: {
             address1: $scope.User.address1,
             address2: $scope.User.address2,
             province: $scope.User.province,
-            zipcode: $scope.User.zipcode
+            zipcode: $scope.User.zipcode,
+            phoneNumber: $scope.User.telephone_number
           }
         }
       }
