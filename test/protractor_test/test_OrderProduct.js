@@ -13,7 +13,6 @@ describe('Add product to cart', function () {
   	var BedroomProduct = element(by.css('[href="#/category/Bedroom"]'))
     var logoutButton = element(by.css('[href="#/logout"]'))
   	var product = element.all(by.id('view-button'))
-  	var CheckOutOfStock = element(by.id('outofstock'))
   	var addToCartButton = element(by.css('.add-btn'))
   	var productInCart = element.all(by.repeater('item in cartCtrl.itemList track by $index'))
   	var removeButton = element.all(by.css('.btn.btn-danger'))
@@ -29,15 +28,7 @@ describe('Add product to cart', function () {
     var cardNumber3 = element(by.model('paymentCtrl.num3'))
     var cardNumber4 = element(by.model('paymentCtrl.num4'))
     var checkErrorMessage1 = element(by.css('[ig-if="paymentCtrl.cardfail.status == 1"]')) // out of money
-    var checkErrorMessage2 = element(by.css('[ig-if="paymentCtrl.cardfail.status == 2"]')) // invilid credit card
-  	var amountProductInCart
-  	var amountProduct
-  	var amountquant
-  	var quant = []
-  
-  	// function randomProduct(amountProduct){
-  	// 	randomfromAll = (Math.floor(Math.random() * (amountProduct+1))) -1
-  	// }
+    var checkErrorMessage2 = element(by.css('[ig-if="paymentCtrl.cardfail.status == 2"]')) // invalid credit card
 
 	it('Case 1: If email and password correct,then it should access complete and cart button appear', function(){
 		browser.get('http://localhost:3030/#')
@@ -128,7 +119,7 @@ it('Case 5: Order with wrong Cvv,the alert message should show', function(){
     expect(checkErrorMessage2.isPresent()).toBeTruthy
   })
 
-it('Case 6: Order with wrong Cvv,the alert message should show', function(){
+it('Case 6: Order with invalid credit card,the alert message should show', function(){
     linkDropdown.get(0).click()
     BedroomProduct.click()
     product.get(9).click()
@@ -150,6 +141,9 @@ it('Case 6: Order with wrong Cvv,the alert message should show', function(){
     Orderbutton.get(3).click()
     browser.sleep(3000)
     expect(checkErrorMessage2.isPresent()).toBeTruthy
+
+    linkDropdown.get(1).click()
+    logoutButton.click()
   })
 
 })
