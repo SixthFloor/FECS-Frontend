@@ -122,6 +122,7 @@
           self.getCardNoFormat()
           self.cardfail = false
         }).error(function (response) {
+          console.log(response)
           self.cardfail = true
         })
       } else {
