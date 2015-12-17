@@ -18,15 +18,21 @@
     var self = this
     self.orders = []
 
-    $http.get(environment.getBaseAPI() + 'order/email/' + User.email).success(function (response) {
-      self.orders = response
-      console.log(response)
-    })
+    self.init = function () {
+      $http.get(environment.getBaseAPI() + 'order/email/' + User.email).success(function (response) {
+        self.orders = response
+        console.log(response)
+      }).error(function (response) {
+        console.log('Error init order history')
+        console.log(response)
+      })
+    }
 
     self.cancel = function (ccId) {
       $http.post(environment.getBaseAPI() + 'order/cc', {orderNumber: ccId}).success(function (response) {
         if (response.status !== 'error') {
           console.log(ccId + 'Canceled')
+          self.init()
         } else {
           console.log(response)
         }
@@ -45,6 +51,7 @@
       }
       return sum
     }
+    self.init()
   }
 
   ViewOrderController.$inject = ['$scope', '$http', '$state', '$stateParams', 'User', 'environment']
@@ -73,15 +80,17 @@
     self.orders = []
     self.totalSpent = 0
 
-    $http.get(environment.getBaseAPI() + 'order/all').success(function (response) {
-      self.orders = response
-      console.log(response)
-      for (var i = 0; i < self.orders.length;i++) {
-        if (self.orders[i].status > 1) {
-          self.totalSpent += self.getPrice(self.orders[i])
+    self.init = function () {
+      $http.get(environment.getBaseAPI() + 'order/all').success(function (response) {
+        self.orders = response
+        console.log(response)
+        for (var i = 0; i < self.orders.length;i++) {
+          if (self.orders[i].status > 1) {
+            self.totalSpent += self.getPrice(self.orders[i])
+          }
         }
-      }
-    })
+      })
+    }
 
     self.cancel = function (ccId) {
       var url = environment.getBaseAPI() + 'order/cc'
@@ -89,6 +98,7 @@
       $http.post(url, parameter).success(function (response) {
         if (response.status !== 'error') {
           console.log(ccId + 'Canceled')
+          self.init()
         } else {
           console.log(response)
         }
@@ -111,5 +121,6 @@
       }
       return sum
     }
+    self.init()
   }
 })()
