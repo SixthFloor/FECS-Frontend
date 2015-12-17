@@ -41,12 +41,12 @@
       <thead>
         <tr>
           <th>Shipping Date</th>
-          <th>Order Number</th>
+          <th>Order No.</th>
           <th>Customer Name</th>
           <th>Address</th>
           <th>Shipping Status</th>
-          <th>Order Information</th>
-          <th>Order Information</th>
+          <th>Information</th>
+          <th>Update</th>
         </tr>
       </thead>
       <tbody>
@@ -62,16 +62,16 @@
             </span>
           </td>
           <td>
-            <span ng-if="shipping.status === 1">Reserved</span>
+            <span ng-if="shipping.status === 1">Waiting</span>
             <span ng-if="shipping.status === 2">In progress</span>
             <span ng-if="shipping.status === 3">Done</span>
           </td>
           <td><button type="button" class="btn btn-info text-center" ng-click="shippingCtrl.gotoView(shipping.orderNumber)">
             View</button></td>
           <td><span ng-if="shipping.status === 1"><button type="button" ng-click="shippingCtrl.deliver(shipping.id,'progress')"
-            class="btn btn-default">Go for deliver</button></span>
+            class="btn btn-default">Go for delivery</button></span>
           <span ng-if="shipping.status === 2"><button type="button" ng-click="shippingCtrl.deliver(shipping.id,'done')"
-            class="btn btn-success">Done deliver</button></span></td>
+            class="btn btn-success">Done delivery</button></span></td>
         </tr>
       </tbody>
     </table>
