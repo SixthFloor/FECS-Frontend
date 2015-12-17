@@ -240,7 +240,7 @@ every controller that have to identify the customer, authentication service has 
           },
           data: {
             card_name: self.card_name,
-            expirationDate: self.expirationDate,
+            expirationDate: self.expirationDate.month + self.expirationDate.year, //error
             card_number: self.card_number
           }
         }
