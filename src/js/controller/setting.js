@@ -40,7 +40,7 @@
             message: msg
           })
         }, function (err) {
-          var msg = '<span><b>Edit Failed!</b>.</span>'
+          var msg = '<span><b>Edit Profile successfully!</b> But Credit Cards Failed.</span>'
           notification.error({
             message: msg,
             replaceMessage: true
