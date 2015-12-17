@@ -2,11 +2,17 @@
     .image-1 {
         height: 530px
     }
+    .full-screen {
+        min-height: 530px
+    }
 }
 
 @media only screen and (min-width:900px) and (max-width:1024px) {
     .image-1 {
         height: 600px
+    }
+    .full-screen {
+        min-height: 600px
     }
 }
 
@@ -14,17 +20,26 @@
     .image-1 {
         height: 700px
     }
+    .full-screen {
+        min-height: 700px
+    }
 }
 
 @media only screen and (min-width:1180px) and (max-width:1240px) {
     .image-1 {
         height: 630px
     }
+    .full-screen {
+        min-height: 630px
+    }
 }
 
 @media only screen and (min-width:1241px) and (max-width:1280px) {
     .image-1 {
         height: 655px
+    }
+    .full-screen {
+        min-height: 655px
     }
     .image-2 {
         height: 500px
@@ -35,11 +50,17 @@
     .image-1 {
         height: 675px
     }
+    .full-screen {
+        min-height: 675px
+    }
 }
 
 @media only screen and (min-width:1367px) and (max-width:1440px) {
     .image-1 {
         height: 730px
+    }
+    .full-screen {
+        min-height: 730px
     }
     .image-2 {
         height: 550px
@@ -50,6 +71,9 @@
     .image-1 {
         height: 790px
     }
+    .full-screen {
+        min-height: 790px;
+    }
     .image-2 {
         height: 600px
     }
@@ -58,6 +82,9 @@
 @media only screen and (min-width:1701px) {
     .image-1 {
         height: 950px
+    }
+    .full-screen {
+        min-height: 950px;
     }
     .image-2 {
         height: 750px
@@ -70,6 +97,30 @@
         position: relative;
         background-position: 0% -20px;
         background-image: url(../img/home-page/image-1.jpg);
+    }
+}
+.full-screen {
+    width: 100%;
+    padding-bottom: 50px;
+    margin-top: -66px;
+    padding-top: 66px;
+    background: #f4f4f4;
+    font-weight: 500;
+    h1 {
+        line-height: 50px;
+        text-align: center;
+        letter-spacing: 2rem;
+        text-rendering: optimizelegibility;
+        color: #000;
+        width: 100%;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 555;
+        font-size: 40px;
+        margin-top: 25px;
+        font-weight: 500;
+        -webkit-font-smoothing: subpixel-antialiased;
+        text-transform: uppercase;
     }
 }
 .image-content {
