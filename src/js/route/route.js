@@ -72,7 +72,7 @@
         url: '/admin/product/add',
         data: {
           permissions: {
-            only: ['staff', 'owner', 'admin'],
+            only: ['staff', 'owner', 'manager'],
             redirectTo: 'home'
           }
         },
@@ -93,7 +93,7 @@
         url: '/admin/product/edit/:product_id',
         data: {
           permissions: {
-            only: ['staff', 'owner', 'admin'],
+            only: ['staff', 'owner', 'manager'],
             redirectTo: 'home'
           }
         },
@@ -153,7 +153,7 @@
         url: '/admin/orderman',
         data: {
           permissions: {
-            only: ['staff', 'owner', 'admin'],
+            only: ['staff', 'owner', 'manager'],
             redirectTo: 'home'
           }
         },
@@ -163,6 +163,12 @@
       })
       .state('setting', {
         url: '/setting',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'home'
+          }
+        },
         templateUrl: 'templates/setting.tmpl',
         controller: 'SettingController',
         controllerAs: 'settingCtrl'
@@ -171,7 +177,7 @@
         url: '/admin/user',
         data: {
           permissions: {
-            only: ['staff', 'owner', 'admin'],
+            only: ['staff', 'owner', 'manager'],
             redirectTo: 'home'
           }
         },
@@ -183,7 +189,7 @@
         url: '/admin/shipping',
         data: {
           permissions: {
-            only: ['staff', 'owner', 'admin'],
+            only: ['staff', 'owner', 'manager'],
             redirectTo: 'home'
           }
         },

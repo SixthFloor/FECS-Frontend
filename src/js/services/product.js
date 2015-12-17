@@ -64,6 +64,12 @@
         id: self.product.id
       }).success(success).error(error)
     }
+    self.addproduct3 = function (success, error, form) {
+      var url = environment.getBaseAPI() + 'upload/images?product=' + self.product.serialNumber
+      $http.post(url, {
+        id: form
+      }).success(success).error(error)
+    }
 
     self.editproduct = function (success, error, catalogID) {
       var url = environment.getBaseAPI() + 'product/edit'

@@ -178,7 +178,7 @@
                 </fieldset>
               <div class="register-container">
                 <div class="alert alert-danger" ng-show="paymentCtrl.cardfail">
-                  <strong>ERROR</strong> Credit card is invalid.
+                  <span ng-if="paymentCtrl.cardfail.status == 2"><strong>ERROR</strong> Credit card is invalid. </span><span ng-if="paymentCtrl.cardfail.status == 1"><strong>ERROR</strong> {{paymentCtrl.cardfail.message}}</span>
                 </div>
                 <button type="button" class="register-btn" ng-click="paymentCtrl.back()"><i class="fa fa-arrow-circle-left"></i> Back</button>
                 <button type="submit" class="register-btn">Purchase <i class="fa fa-arrow-circle-right"></i></button>
@@ -244,7 +244,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Card number</div>
-                      <div class="col-sm-7">{{paymentCtrl.cardFormat}}</div>
+                      <div class="col-sm-7">{{paymentCtrl.payment.card.no | cardFormat}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4 attr">Expiration date</div>

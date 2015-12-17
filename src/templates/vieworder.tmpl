@@ -54,19 +54,23 @@
                 </div>
                 <div class="row" ng-if="vieworderCtrl.User.adr1 !== ''">
                   <div class="col-sm-4 attr">Address</div>
-                  <div class="col-sm-7">{{vieworderCtrl.order.address.address1}}</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.shipping.address.address1}}</div>
                 </div>
                 <div class="row" ng-if="vieworderCtrl.User.adr2 !== ''">
                   <div class="col-sm-4 attr">Address</div>
-                  <div class="col-sm-7">{{vieworderCtrl.order.address.address2}}</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.shipping.address.address2}}</div>
                 </div>
                 <div class="row">
                   <div class="col-sm-4 attr">Province</div>
-                  <div class="col-sm-7">{{vieworderCtrl.order.address.province}}</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.shipping.address.province}}</div>
                 </div>
                 <div class="row">
                   <div class="col-sm-4 attr">Zip code</div>
-                  <div class="col-sm-7">{{vieworderCtrl.order.address.zipcode}}</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.shipping.address.zipcode}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 attr">Phone number</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.shipping.address.phoneNumber}}</div>
                 </div>
                 <div class="row">
                   <div class="col-sm-4 attr">Shipping date</div>
