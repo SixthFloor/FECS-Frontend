@@ -64,7 +64,7 @@
             redirectTo: 'home'
           }
         },
-        templateUrl: 'templates/register/register.tmpl',
+        templateUrl: 'templates/register.tmpl',
         controller: 'RegisterController',
         controllerAs: 'registerCtrl'
       })
