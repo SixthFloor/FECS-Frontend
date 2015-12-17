@@ -30,7 +30,7 @@
             View</button>
           </td>
           <td ng-if="order.status === 0">
-            <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.cancel(id)">
+            <button type="button" class="btn btn-danger" ng-click="ordermanCtrl.cancel(order.orderNumber)">
             Cancel <span class="glyphicon glyphicon-remove"></span></button></td>
           <td ng-if="order.status === 1">Canceled</td>
           <td ng-if="order.status > 1">{{order.shipping.date | amCalendar}}</td>
