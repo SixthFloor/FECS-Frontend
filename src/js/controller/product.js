@@ -270,9 +270,12 @@
     self.addToStock = function (quantity) {
       var list = []
       var url = $scope.environment.getBaseAPI() + 'real-product/new'
-      for (var i = 0; i < quantity; i++) {
-        list.push({ id: self.product.id })
-      }
+      list.push({
+        product: {
+          id: self.product.id
+        },
+        quantity: quantity
+      })
       console.log(list)
       $http.post(url, list).success(function (response) {
         console.log('Real product added')
