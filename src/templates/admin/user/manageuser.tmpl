@@ -1,38 +1,36 @@
-
 <div class="full-screen">
-	<div class="container">
-  <h2>Manage User</h2>
-  <table ng-table="manageuserCtrl.tableParams" class="table" show-filter="true" ng-form="manageuserCtrl.tableForm" disable-filter="manageuserCtrl.isAdding">
-    <tr ng-repeat="user in $data" ng-form="rowForm">
-        <td title="'Email'" filter="{ email: 'text'}" sortable="'email'" ng-switch="user.isEditing" ng-class="email.$dirty ? 'bg-warning' : ''">
-            <span ng-switch-default class="editable-text">{{user.email}}</span>
-            <div class="controls" ng-class="email.$invalid && email.$dirty ? 'has-error' : ''" ng-switch-when="true">
-              <input type="text" name="email" ng-model="user.email" class="editable-input form-control input-sm" required />
-            </div>
-        </td>
-        <td title="'Firstname'" filter="{ firstName: 'text'}" sortable="'firstName'" ng-switch="user.isEditing" ng-class="firstname.$dirty ? 'bg-warning' : ''">
-            <span ng-switch-default class="editable-text">{{user.firstName}}</span>
-            <div class="controls" ng-class="firstname.$invalid && firstname.$dirty ? 'has-error' : ''" ng-switch-when="true">
-              <input type="text" name="firstname" ng-model="user.firstName" class="editable-input form-control input-sm" required />
-            </div>
-        </td>
-        <td title="'Lastname'" filter="{ lastName: 'text'}" sortable="'lastName'" ng-switch="user.isEditing" ng-class="lastname.$dirty ? 'bg-warning' : ''">
-            <span ng-switch-default class="editable-text">{{user.lastName}}</span>
-			<div class="controls" ng-class="lastname.$invalid && lastname.$dirty ? 'has-error' : ''" ng-switch-when="true">
-              <input type="text" name="lastname" ng-model="user.lastName" class="editable-input form-control input-sm" required />
-            </div>
-        </td>
-        <td title="'Joining Date'" sortable="'joiningDate'" style="width:10%; text-align:center;">
-            {{user.joiningDate | amCalendar}}</td>
-        <td style="width:5%;">
-            <button class="btn btn-primary btn-sm" ng-click="manageuserCtrl.save(user, rowForm)" ng-if="user.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-            <button class="btn btn-default btn-sm" ng-click="manageuserCtrl.cancel(user, rowForm)" ng-if="user.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
-            <button class="btn btn-default btn-sm" ng-click="user.isEditing = true" ng-if="!user.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
-            <button class="btn btn-danger btn-sm" ng-click="manageuserCtrl.del(user)" ng-if="!user.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+	<div class="container-fluid">
+    <h1>Manage User</h1>
+    <table ng-table="manageuserCtrl.tableParams" class="table" show-filter="true" ng-form="manageuserCtrl.tableForm" disable-filter="manageuserCtrl.isAdding">
+      <tr ng-repeat="user in $data" ng-form="rowForm">
+          <td title="'Email'" filter="{ email: 'text'}" sortable="'email'" ng-switch="user.isEditing" ng-class="email.$dirty ? 'bg-warning' : ''">
+              <span ng-switch-default class="editable-text">{{user.email}}</span>
+              <div class="controls" ng-class="email.$invalid && email.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                <input type="text" name="email" ng-model="user.email" class="editable-input form-control input-sm" required />
+              </div>
           </td>
-    </tr>
-  </table>
-  <div class="push-top"></div>
-</div>
-
+          <td title="'Firstname'" filter="{ firstName: 'text'}" sortable="'firstName'" ng-switch="user.isEditing" ng-class="firstname.$dirty ? 'bg-warning' : ''">
+              <span ng-switch-default class="editable-text">{{user.firstName}}</span>
+              <div class="controls" ng-class="firstname.$invalid && firstname.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                <input type="text" name="firstname" ng-model="user.firstName" class="editable-input form-control input-sm" required />
+              </div>
+          </td>
+          <td title="'Lastname'" filter="{ lastName: 'text'}" sortable="'lastName'" ng-switch="user.isEditing" ng-class="lastname.$dirty ? 'bg-warning' : ''">
+              <span ng-switch-default class="editable-text">{{user.lastName}}</span>
+  			<div class="controls" ng-class="lastname.$invalid && lastname.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                <input type="text" name="lastname" ng-model="user.lastName" class="editable-input form-control input-sm" required />
+              </div>
+          </td>
+          <td title="'Joining Date'" sortable="'joiningDate'" style="width:10%; text-align:center;">
+              {{user.joiningDate | amCalendar}}</td>
+          <td style="width:5%;">
+              <button class="btn btn-primary btn-sm" ng-click="manageuserCtrl.save(user, rowForm)" ng-if="user.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+              <button class="btn btn-default btn-sm" ng-click="manageuserCtrl.cancel(user, rowForm)" ng-if="user.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+              <button class="btn btn-default btn-sm" ng-click="user.isEditing = true" ng-if="!user.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+              <button class="btn btn-danger btn-sm" ng-click="manageuserCtrl.del(user)" ng-if="!user.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+      </tr>
+    </table>
+    <div class="push-top"></div>
+  </div>
 </div>

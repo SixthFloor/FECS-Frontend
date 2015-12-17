@@ -1,85 +1,87 @@
-<div class="container">
-  <div name="title"><h1>View Order <span class="glyphicon glyphicon-shopping-cart"></span></h1></div>
-  <div class="panel panel-default">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Order: {{vieworderCtrl.order.orderNumber}}</th>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="item in vieworderCtrl.itemList track by $index">
-          <td>{{$index+1}}</td>
-          <td>
-            <img src={{item.product.images[0].link}} width="100"/></td>
-          <td>{{item.product.name}}</td>
-          <td>{{item.quantity}}</td>
-          <td>{{item.quantity*item.product.price}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="total">
-    <div class="col-md-6">
-      <b>Total Price: </b>
-  </div>
-  <div class="col-md-4 text-right">
-    <b>{{vieworderCtrl.total}}</b>
-  </div>
-    <div class="col-md-2">
-      <b>Baht</b>
+<div class="full-screen">    
+  <div class="container">
+    <div name="title"><h1>View Order</h1></div>
+    <div class="panel panel-default">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Order: {{vieworderCtrl.order.orderNumber}}</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in vieworderCtrl.itemList track by $index">
+            <td>{{$index+1}}</td>
+            <td>
+              <img src={{item.product.images[0].link}} width="100"/></td>
+            <td>{{item.product.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.quantity*item.product.price}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
+    <div class="total">
+      <div class="col-md-6">
+        <b>Total Price: </b>
+    </div>
+    <div class="col-md-4 text-right">
+      <b>{{vieworderCtrl.total}}</b>
+    </div>
+      <div class="col-md-2">
+        <b>Baht</b>
+      </div>
+    </div>
 
-  <div class="events" ng-if="vieworderCtrl.order.status > 1">
-    <div class="events-body">
-      <h4 class="events-heading">Shipping Information</h4>
-      <p>
-        <div class="member-info">
-          <div class="member-info-panel">
-            <div class="panel-heading">Address</div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-4 attr">Order number</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.orderNumber}}</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 attr">Customer</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.user.firstName}} {{vieworderCtrl.order.user.lastName}}</div>
-              </div>
-              <div class="row" ng-if="vieworderCtrl.User.adr1 !== ''">
-                <div class="col-sm-4 attr">Address</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.address.address1}}</div>
-              </div>
-              <div class="row" ng-if="vieworderCtrl.User.adr2 !== ''">
-                <div class="col-sm-4 attr">Address</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.address.address2}}</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 attr">Province</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.address.province}}</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 attr">Zip code</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.address.zipcode}}</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 attr">Shipping date</div>
-                <div class="col-sm-7">{{vieworderCtrl.order.shipping.date | amCalendar}}</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 attr">Total price</div>
-                <div class="col-sm-7">{{vieworderCtrl.total}} Bath</div>
+    <div class="events" ng-if="vieworderCtrl.order.status > 1">
+      <div class="events-body">
+        <h4 class="events-heading">Shipping Information</h4>
+        <p>
+          <div class="member-info">
+            <div class="member-info-panel">
+              <div class="panel-heading">Address</div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-4 attr">Order number</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.orderNumber}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 attr">Customer</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.user.firstName}} {{vieworderCtrl.order.user.lastName}}</div>
+                </div>
+                <div class="row" ng-if="vieworderCtrl.User.adr1 !== ''">
+                  <div class="col-sm-4 attr">Address</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.address.address1}}</div>
+                </div>
+                <div class="row" ng-if="vieworderCtrl.User.adr2 !== ''">
+                  <div class="col-sm-4 attr">Address</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.address.address2}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 attr">Province</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.address.province}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 attr">Zip code</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.address.zipcode}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 attr">Shipping date</div>
+                  <div class="col-sm-7">{{vieworderCtrl.order.shipping.date | amCalendar}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 attr">Total price</div>
+                  <div class="col-sm-7">{{vieworderCtrl.total}} Bath</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>
 
+  </div>
 </div>
