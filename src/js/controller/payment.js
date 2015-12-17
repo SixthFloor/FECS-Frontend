@@ -10,7 +10,17 @@
   angular
     .module('controller.payment', [])
     .controller('PaymentController', PaymentController)
+    .filter('cardFormat', cardNoFormat)
 
+  function cardNoFormat () {
+    return function (input) {
+      if (input) {
+        return input.substring(0, 4) + '-' + input.substring(4, 8) + '-' +
+          input.substring(8, 12) + '-' + input.substring(12, 16)
+      }
+      return 'XXXX-XXXX-XXXX-XXXX'
+    }
+  }
   PaymentController.$inject = ['$scope', '$http', '$state', '$stateParams', 'moment']
   function PaymentController ($scope, $http, $state, $stateParams, moment) {
     var self = this
@@ -47,16 +57,10 @@
       self.is404 = true
     })
 
-    self.getCardNoFormat = function () {
-      self.cardFormat = $scope.User.card_number.substring(0, 4) + '-' + $scope.User.card_number.substring(4, 8) + '-' + $scope.User.card_number.substring(8, 12) + '-' + $scope.User.card_number.substring(12, 16)
-    }
-
     self.back = function () {
       var top = parseInt($scope.paymentCtrl.moveElement.css('margin-top').match(/\-+\d+/))
       self.moveElement.removeAttr('style')
       var new_top = top + self.height
-      console.log('Top: ' + top)
-      console.log('New Top: ' + (top + self.height))
       self.moveElement.css('margin-top', new_top + 'px')
     }
     self.next1 = function () {
@@ -69,31 +73,19 @@
         $scope.$$childHead.payment1.shippingdate.$setDirty(true)
       } else {
         self.moveElement.css('margin-top', '-' + self.height + 'px')
-        if ($scope.User.card_number.length >= 4) {
-          self.num1 = $scope.User.card_number.substring(0, 4)
-        } else {
-          self.num1 = $scope.User.card_number
-        }
-        if ($scope.User.card_number.length >= 8) {
-          self.num2 = $scope.User.card_number.substring(4, 8)
-        }
-        if ($scope.User.card_number.length >= 12) {
-          self.num3 = $scope.User.card_number.substring(8, 12)
-        }
-        if ($scope.User.card_number.length >= 16) {
-          self.num4 = $scope.User.card_number.substring(12, 16)
-        }
       }
     }
     self.next2 = function () {
-      console.log(parseInt($scope.User.expirationDate.month, 10) - 1)
       var exp_date = moment.utc([
         $scope.User.expirationDate.year,
         parseInt($scope.User.expirationDate.month, 10) - 1,
         1,
         0
       ])
-      self.cardfail = false
+      self.cardfail = {
+        status: 0,
+        message: ''
+      }
       self.payment = {
         card: {
           no: self.num1 + self.num2 + self.num3 + self.num4,
@@ -120,9 +112,14 @@
         $http.post($scope.environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
           self.getCardNoFormat()
-          self.cardfail = false
+          self.cardfail.status = 3
         }).error(function (response) {
-          self.cardfail = true
+          self.cardfail.message = response.description
+          if (response.description === 'Out of amount') {
+            self.cardfail.status = 1
+          } else {
+            self.cardfail.status = 2
+          }
         })
       } else {
         $scope.$$childHead.payment2.$setDirty(true)
@@ -135,7 +132,6 @@
       }
     }
     self.submit = function () {
-      console.log(self.payment)
       $http.post($scope.environment.getBaseAPI() + 'payment/pay?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
         if (response.status !== 'error') {
           console.log('Paid')

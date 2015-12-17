@@ -1,2 +1,9 @@
 <div>
+<div class="form-group">
+	<span class="require-star">*</span>
+	<label class="col-sm-2 control-label" for="price">Image:</label>
+	<div class="col-sm-2">
+	  <input type="file" class="form-control" onchange="angular.element(this).scope().filesChanged(this)" name="image" id="image" ng-model="addproductCtrl.image" base-sixty-four-input>
+	</div>
+</div>
 </div>

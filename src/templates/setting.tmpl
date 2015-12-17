@@ -58,12 +58,18 @@
               <label>Card Number</label>
               <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" ng-model="settingCtrl.User.card_number">
             </div>
-            <div class="form-group">
-              <label>Expiration Date</label>
-              <input type="text" class="form-control" id="expDate" placeholder="Expiration Date" ng-model="settingCtrl.User.expirationDate.year">
+            <label>Expiration Date</label>
+            <div class="form-inline">
+              <div class="form-group"> 
+                <input type="text" class="form-control" id="expDateMonth" placeholder="Month" ng-model="settingCtrl.User.expirationDate.month">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="expDateYear" placeholder="Year" ng-model="settingCtrl.User.expirationDate.year">
+              </div>
             </div>
           </uib-tab>
         </uib-tabset>
+        
         <div class="form-group has-success has-feedback">
           <input type="password" class="form-control login-field" ng-model="settingCtrl.data.pwd" maxlength="20" placeholder="Old Password" pattern=".{8,20}" required tabindex="0" uib-tooltip="Password should be between 8-20 characters..." tooltip-trigger="focus" tooltip-placement="top" tooltip-class="customClass">
         </div>
