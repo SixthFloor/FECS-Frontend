@@ -68,7 +68,7 @@ describe('Register as member', function () {
 
 
     it('Case 2: If e-mail,password are corrected and click next button,it should go next step', function () {
-        email.sendKeys("pedtesting57@gmail.com")
+        email.sendKeys("pedtesting58@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -93,7 +93,7 @@ describe('Register as member', function () {
     })
 
     it('Case 5: If register with same e-mail, notification should appear register unsuccessful', function () {
-        email.sendKeys("pedtesting56@gmail.com")
+        email.sendKeys("pedtesting58@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -169,7 +169,7 @@ describe('Register as member', function () {
     })
 
      it('Case 11: If register with email that is registered but with UpperCase, it should not login successed', function(){
-        email.sendKeys("PEDTesting56@gmail.com")
+        email.sendKeys("PEDTesting58@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
