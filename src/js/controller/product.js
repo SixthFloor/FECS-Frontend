@@ -54,7 +54,7 @@
       $state.transitionTo('admin/product/add')
       productService.clearProduct()
       if (categoryName !== 'all') {
-        for ( var i = 0; i < self.categoryList.length;i++) {
+        for (var i = 0; i < self.categoryList.length;i++) {
           var cat = self.categoryList[i]
           if (cat.name === categoryName) {
             self.product.category = cat
@@ -153,7 +153,7 @@
         if (response.status !== 'error') {
           self.subcategoryList = response
           if (self.oldSubcat !== null) {
-            for ( var i = 0; i < self.subcategoryList.length;i++) {
+            for (var i = 0; i < self.subcategoryList.length;i++) {
               var subcat = self.subcategoryList[i]
               if (subcat.name === self.oldSubcat.name) {
                 self.product.subcategory = subcat
@@ -195,7 +195,7 @@
       $http.get(url).success(function (response) {
         if (response.status !== 'error') {
           self.catalogID = response[0].id
-          for ( var i = 0; i < self.categoryList.length;i++) {
+          for (var i = 0; i < self.categoryList.length;i++) {
             var cat = self.categoryList[i]
             if (cat.name === response[0].type.category.name) {
               self.product.category = cat
@@ -281,9 +281,13 @@
     self.addToStock = function (quantity) {
       var list = []
       var url = $scope.environment.getBaseAPI() + 'real-product/new'
-      for (var i = 0; i < quantity; i++) {
-        list.push({ id: self.product.id })
-      }
+      list.push({
+        product: {
+          id: self.product.id
+        },
+        quantity: quantity
+      })
+      console.log(list)
       $http.post(url, list).success(function (response) {
         console.log('Real product added')
       }).error(function (response) {
