@@ -33,7 +33,7 @@
 
       self.User.validEditProfile = true
       User.confirmProfile(data, function () {
-        User.editprofile(data, function () {
+        User.editprofile(data, function (res) {
           $state.go('setting', {}, {reload: true})
           var msg = '<span><b>Well done!</b> Edit Profile successfully.</span>'
           notification.success({
