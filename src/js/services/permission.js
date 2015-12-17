@@ -34,9 +34,9 @@
       return false
     })
 
-    Permission.defineRole('admin', function (stateParams) {
+    Permission.defineRole('manager', function (stateParams) {
       if (User.isAuthed()) {
-        if (User.role === 'admin') {
+        if (User.role === 'manager') {
           return true
         }
       }

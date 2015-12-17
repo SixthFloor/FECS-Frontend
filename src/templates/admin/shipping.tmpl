@@ -55,7 +55,11 @@
           <td >{{shipping.orderNumber}}</td>
           <td>{{shipping.user.firstName}} {{shipping.user.lastName}}</td>
           <td>
-            {{shipping.user.address}}50 Ngam Wong Wan Rd, Lat Yao Chatuchak Bangkok 10900
+            <span ng-hide="shipping.address == null">
+              {{shipping.address.address1}} {{shipping.address.address2}}
+              {{shipping.address.province}} {{shipping.address.zipcode}}
+              Tel. {{shipping.address.phoneNumber}}
+            </span>
           </td>
           <td>
             <span ng-if="shipping.status === 1">Reserved</span>

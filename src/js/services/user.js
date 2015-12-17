@@ -77,14 +77,11 @@ every controller that have to identify the customer, authentication service has 
     }
 
     self.isAdmin = function () {
-      return (self.role === 'owner' || self.role === 'staff' || self.role === 'admin')
+      return (self.role === 'owner' || self.role === 'staff' || self.role === 'manager')
     }
 
     self.setRole = function (role) {
-      if (role === 'manager') {
-        self.role = 'admin'
-      }
-      else self.role = role
+      self.role = role
     }
     self.setEmail = function (email) {
       self.email = email
@@ -243,7 +240,7 @@ every controller that have to identify the customer, authentication service has 
           },
           data: {
             card_name: self.card_name,
-            expirationDate: self.expirationDate,
+            expirationDate: self.expirationDate.month + self.expirationDate.year, //error
             card_number: self.card_number
           }
         }
