@@ -4,7 +4,7 @@ exports.config = {
 
 
 
-  specs: ['protractor_test/test_AddProductToCart.js','protractor_test/test_FilterFurniture.js'],
+  specs: ['protractor_test/test_RegisterAsMember.js'],
 
   capabilities: { 
     browserName: 'chrome'
