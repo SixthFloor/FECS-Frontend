@@ -82,7 +82,10 @@
         1,
         0
       ])
-      self.cardfail = false
+      self.cardfail = {
+        status: 0,
+        message: ''
+      }
       self.payment = {
         card: {
           no: self.num1 + self.num2 + self.num3 + self.num4,
@@ -109,9 +112,14 @@
         $http.post($scope.environment.getBaseAPI() + 'payment/validate?orderNumber=' + self.order.orderNumber, self.payment).success(function (response) {
           self.moveElement.css('margin-top', '-' + (self.height * 2) + 'px')
           self.getCardNoFormat()
-          self.cardfail = false
+          self.cardfail.status = 3
         }).error(function (response) {
-          self.cardfail = true
+          self.cardfail.message = response.description
+          if (response.description === 'Out of amount') {
+            self.cardfail.status = 1
+          } else {
+            self.cardfail.status = 2
+          }
         })
       } else {
         $scope.$$childHead.payment2.$setDirty(true)
