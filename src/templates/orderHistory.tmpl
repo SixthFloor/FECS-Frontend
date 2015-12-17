@@ -1,0 +1,53 @@
+<div class="full-screen">
+  <div class="container">
+    <div name="title"><h1>Order History</h1></div>
+    <div class="panel panel-default">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Order No.</th>
+            <th>Total Price</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Information</th>
+            <th>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="order in orderCtrl.orders">
+            <td>{{order.orderNumber}}</td>
+            <td>{{orderCtrl.getPrice(order)}}</td>
+            <td>{{order.orderDate | amCalendar}}</td>
+            <td>
+              <span ng-if="order.status === 0">Unpaid</span>
+              <span ng-if="order.status === 1">Canceled</span>
+              <span ng-if="order.status > 1">Paid</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-info text-center" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoView(id)">
+              View</button>
+            </td>
+            <td ng-if="order.status === 0">
+              <button type="button" class="btn btn-submit" ng-init="id=order.orderNumber" ng-click="orderCtrl.gotoPay(id)">
+              Pay</button>
+              <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="orderCtrl.cancel(id)">
+              Cancel <span class="glyphicon glyphicon-remove"></span></button></td>
+            <td ng-if="order.status === 1">Canceled</td>
+            <td ng-if="order.status > 1">Paid</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total">
+      <div class="col-md-6">
+        <b>Money spent: </b>
+      </div>
+      <div class="col-md-4 text-right">
+        <b>{{orderCtrl.totalSpent}}</b>
+      </div>
+      <div class="col-md-2">
+        <b>Baht</b>
+      </div>
+    </div>
+  </div>
+</div>

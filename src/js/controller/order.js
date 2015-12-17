@@ -23,10 +23,10 @@
       console.log(response)
     })
 
-    self.cancle = function (ccId) {
+    self.cancel = function (ccId) {
       $http.put(environment.getBaseAPI() + 'order/cc', {id: ccId}).success(function (response) {
         if (response.status !== 'error') {
-          console.log(self.order.orderNumber + 'Cancled')
+          console.log(self.order.orderNumber + 'Canceled')
         } else {
           console.log(response)
         }
@@ -83,10 +83,10 @@
       }
     })
 
-    self.cancle = function (ccId) {
+    self.cancel = function (ccId) {
       $http.put(environment.getBaseAPI() + 'order/cc', {id: ccId}).success(function (response) {
         if (response.status !== 'error') {
-          console.log(self.order.orderNumber + 'Cancled')
+          console.log(self.order.orderNumber + 'Canceled')
         } else {
           console.log(response)
         }

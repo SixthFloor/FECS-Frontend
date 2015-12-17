@@ -9,7 +9,7 @@
       </div>
       <form role="form" name="settingForm" ng-submit="settingCtrl.submit()">
         <uib-tabset justified="true">
-          <uib-tab heading="User">
+          <uib-tab heading="Account Information">
             <div class="form-group">
               <label>Email address</label>
               <input type="email" class="form-control" id="email" placeholder="Email" ng-model="settingCtrl.User.email" readonly="">
@@ -19,7 +19,7 @@
               <input type="password" class="form-control" id="password" ng-model="settingCtrl.User.password" placeholder="New Password (No Reqiure)" pattern=".{8,20}" tabindex="0" uib-tooltip="Password should be between 8-20 characters..." tooltip-trigger="focus" tooltip-placement="top" tooltip-class="customClass">
             </div>
           </uib-tab>
-          <uib-tab heading="Information">
+          <uib-tab heading="Personal Information">
             <div class="form-group">
               <label>First Name</label>
               <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="settingCtrl.User.firstname">
@@ -49,7 +49,7 @@
               <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" ng-model="settingCtrl.User.telephone_number">
             </div>
           </uib-tab>
-          <uib-tab heading="Card ID">
+          <uib-tab heading="Credit Card Information">
             <div class="form-group">
               <label>Card Holder's Name</label>
               <input type="text" class="form-control" id="cardHolderName" placeholder="Card Holder's Name" ng-model="settingCtrl.User.card_name">

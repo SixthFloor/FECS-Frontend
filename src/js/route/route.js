@@ -133,7 +133,7 @@
             redirectTo: 'home'
           }
         },
-        templateUrl: 'templates/order.tmpl',
+        templateUrl: 'templates/orderhistory.tmpl',
         controller: 'OrderController',
         controllerAs: 'orderCtrl'
       })
