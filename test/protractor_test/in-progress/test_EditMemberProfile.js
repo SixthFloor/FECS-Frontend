@@ -8,7 +8,8 @@ describe('edit member profile', function() {
     var profileButton =   element.all(by.css('.dropdown-toggle')).get(1)
     var linkSignin = element(by.css('[ui-sref="login"]'))
     var linkSettingProfile = element(by.css('[href="#/setting"]'))
-    var informationButton = element.all(by.css('.ng-isolate-scope')).get(2)
+    var personInforButton = element.all(by.css('.ng-isolate-scope')).get(2)
+    var accountInforButton = element.all(by.css('.ng-isolate-scope')).get(1)
     var email = element(by.model('loginCtrl.data.email'))
     var password = element(by.model('loginCtrl.data.pwd'))
     var loginButton = element(by.buttonText('Log in'))
@@ -20,6 +21,8 @@ describe('edit member profile', function() {
     var province = element(by.id('province'))
     var zipCode = element(by.model('settingCtrl.User.zipcode'))
     var phoneNumber = element(by.id('phoneNumber'))
+    var oldpassword = element(by.model('settingCtrl.data.pwd'))
+    var editProfileButton = element(by.buttonText('Edit Profile'))
     var linkAccountAfterLogin =   element.all(by.css('.dropdown-toggle')).get(1)
     var linkSignout = element(by.css('[ui-sref="logout"]'))
     var notifications = element.all(by.css('.ui-notification'))
@@ -27,6 +30,16 @@ describe('edit member profile', function() {
     function Login(a,b) {
       email.sendKeys(a)
       password.sendKeys(b)
+    }
+
+    function ClearInformation() {
+      firstName.clear()
+      lastName.clear()
+      address1.clear()
+      address2.clear()
+      province.clear()
+      zipCode.clear()
+      phoneNumber.clear()
     }
 
     beforeEach(function() {
@@ -49,9 +62,9 @@ describe('edit member profile', function() {
 
       profileButton.click()
       linkSettingProfile.click()
-      informationButton.click()
-      expect(firstName.getAttribute('value')).toEqual('Niti')
-      expect(lastName.getAttribute('value')).toEqual('Test')
+      personInforButton.click()
+      expect(firstName.getAttribute('value')).toEqual('Firstname')
+      expect(lastName.getAttribute('value')).toEqual('Lastname')
       expect(address1.getAttribute('value')).toEqual('')
       expect(address2.getAttribute('value')).toEqual('')
       expect(province.getAttribute('value')).toEqual('')
@@ -61,15 +74,29 @@ describe('edit member profile', function() {
       lastName.clear()
       firstName.sendKeys('Niti')
       lastName.sendKeys('Petcharatmora')
-      address1.sendKeys('436 ต.ท้ายช้าง อ.เมือง จ.พังงา')
-      address2.sendKeys('แกรนด์วิว แมนชั่น 18/118-119 ซ.พหลโยธิน 34 แขวงเสนานิคม เขตจัตุจักร กรุงเทพมหานคร')
+      address1.sendKeys('436 phang-nga')
+      address2.sendKeys('18/118-119 bangkok')
       province.sendKeys('phang-nga')
       zipCode.sendKeys('82000')
       phoneNumber.sendKeys('0944486743')
+      oldpassword.sendKeys('12345678')
+      editProfileButton.click()
+      browser.sleep(5000)
+
+      //browser.sleep(5000)
+      //element(by.linkText(' Sign out ')).click()
+
+    })
+    
+    it('Case1:If you click information button,then it should show your information and you can edit your information.', function() {
+
+      profileButton.click()
+      linkSettingProfile.click()
+      personInforButton.click()
       expect(firstName.getAttribute('value')).toEqual('Niti')
       expect(lastName.getAttribute('value')).toEqual('Petcharatmora')
-      expect(address1.getAttribute('value')).toEqual('436 ต.ท้ายช้าง อ.เมือง จ.พังงา')
-      expect(address2.getAttribute('value')).toEqual('แกรนด์วิว แมนชั่น 18/118-119 ซ.พหลโยธิน 34 แขวงเสนานิคม เขตจัตุจักร กรุงเทพมหานคร')
+      expect(address1.getAttribute('value')).toEqual('436 phang-nga')
+      expect(address2.getAttribute('value')).toEqual('18/118-119 bangkok')
       expect(province.getAttribute('value')).toEqual('phang-nga')
       expect(zipCode.getAttribute('value')).toEqual('82000')
       expect(phoneNumber.getAttribute('value')).toEqual('0944486743')
@@ -78,6 +105,24 @@ describe('edit member profile', function() {
       //element(by.linkText(' Sign out ')).click()
 
     })
+
+    it('Case1:If you click information button,then it should show your information and you can edit your information.', function() {
+
+      profileButton.click()
+      linkSettingProfile.click()
+      personInforButton.click()
+      ClearInformation()
+      firstName.sendKeys('Firstname')
+      lastName.sendKeys('Lastname')
+      oldpassword.sendKeys('12345678')
+      editProfileButton.click()
+      browser.sleep(5000)
+
+      //browser.sleep(5000)
+      //element(by.linkText(' Sign out ')).click()
+
+    })
+
 
     it('logout after test', function() {
       linkAccountAfterLogin.click()
