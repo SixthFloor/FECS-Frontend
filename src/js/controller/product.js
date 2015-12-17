@@ -39,7 +39,6 @@
     self.valid = productService.valid
     self.categoryList = {}
     self.subcategoryList = {}
-    self.image = null
     // Get all categories
     $http.get($scope.environment.getBaseAPI() + 'category/all').success(function (response) {
       if (response.status !== 'error') {
@@ -76,8 +75,7 @@
     }
     self.submit = function () {
       if ((self.product.productName !== '') && (self.product.price !== '') &&
-        (self.product.category !== null) && (self.product.subcategory !== null) &&
-        (self.image !== null)) {
+        (self.product.category !== null) && (self.product.subcategory !== null)) {
         productService.valid = true
         if (self.product.description === '') {
           self.product.description = '-'
@@ -97,15 +95,7 @@
             self.product.id = response.id
             productService.addproduct2(function (response2) {
               console.log(response2)
-              productService.addproduct3(function (response3) {
-                console.log(response3)
-                productService.clearProduct()
-              }, function (response3) {
-                console.log(response3)
-              }, self.image)
-              notification.success({
-                message: msg
-              })
+              productService.clearProduct()
             }, function (response2) {
               console.log(response2)
             })

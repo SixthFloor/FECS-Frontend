@@ -2,6 +2,7 @@ var HtmlReporter = require('protractor-html-screenshot-reporter')
 
 exports.config = {
 
+
   specs: ['protractor_test/in-progress/test_EditMemberProfile.js'],
 
   capabilities: { 

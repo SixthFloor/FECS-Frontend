@@ -68,7 +68,7 @@ describe('Register as member', function () {
 
 
     it('Case 2: If e-mail,password are corrected and click next button,it should go next step', function () {
-        email.sendKeys("pedtesting50@gmail.com")
+        email.sendKeys("pedtesting57@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -93,7 +93,7 @@ describe('Register as member', function () {
     })
 
     it('Case 5: If register with same e-mail, notification should appear register unsuccessful', function () {
-        email.sendKeys("pedtesting50@gmail.com")
+        email.sendKeys("pedtesting56@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()
@@ -107,7 +107,7 @@ describe('Register as member', function () {
         nextButton2.click()
         cardHolder.sendKeys("DADY")
         registerButton.click()
-        browser.sleep(5000)
+        browser.sleep(4000)
         browser.waitForAngular()
         expect(browser.getCurrentUrl()).toBe('http://localhost:3030/#/register')
         browser.get('http://localhost:3030/#/register')
@@ -122,7 +122,7 @@ describe('Register as member', function () {
         lastname.sendKeys("noi")
         nextButton2.click()
         registerButton.click()
-        browser.sleep(5000)
+        browser.sleep(4000)
         browser.waitForAngular()
         expect(step3.isDisplayed).toBeTruthy
         browser.get('http://localhost:3030/#/register')
@@ -165,11 +165,11 @@ describe('Register as member', function () {
         nextButton2.click()
         expect(step2.isDisplayed).toBeTruthy
         browser.get('http://localhost:3030/#/register')
-        browser.sleep(2000)
+        // browser.sleep(2000)
     })
 
      it('Case 11: If register with email that is registered but with UpperCase, it should not login successed', function(){
-        email.sendKeys("PEDTesting50@gmail.com")
+        email.sendKeys("PEDTesting56@gmail.com")
         password.sendKeys("12345678")
         confirmpassword.sendKeys("12345678")
         nextButton1.click()

@@ -18,7 +18,7 @@ describe('Add edit product', function(){
       frisby.create('post product detail as json to add product - 1')
         .addHeaders(post_headers)
         .post('http://128.199.133.224/api/product/new', {
-          "name": "Runyatestbb",
+          "name": "Runyatestk",
           "price": 200,
           "description": "This furniture is added by API testing with frisby.",
           "dimensionDescription": "Not too big and not too small."
@@ -50,7 +50,7 @@ describe('Add edit product', function(){
       frisby.create('post product detail as json to add product - 2')
         .addHeaders(post_headers)
         .post('http://128.199.133.224/api/product/new', {
-          "name": "Runyatesthhhhhh",
+          "name": "Runyatestc",
           "price": 200,
           "description": "This furniture is added by API testing with frisby.",
           "dimensionDescription": "Not too big and not too small."
@@ -76,7 +76,7 @@ describe('Add edit product', function(){
       frisby.create('post product detail as json to add product')
         .addHeaders(post_headers)
         .post('http://128.199.133.224/api/product/new', {
-          "name": "Runyatest",
+          "name": "Runyatestc",
           "price": null,
           "description": null,
           "dimensionDescription": null
