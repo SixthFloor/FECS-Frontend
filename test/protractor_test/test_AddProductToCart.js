@@ -54,7 +54,7 @@ describe('Add product to cart', function () {
 	it('Case 3.1: Adding product to cart', function(){
 		linkDropdown.get(0).click()
 		allProduct.click()
-		product.get(1).click()
+		product.get(4).click()
 		addToCartButton.click()
 
 		linkDropdown.get(0).click()
@@ -158,9 +158,8 @@ describe('Add product to cart', function () {
 		for (var i = 0 ; i < amountquant ; i++) {
         	expect(quantity.get(i).getText()).toEqual(quant[i])
       }
-      linkDropdown.get(1).click()
+      linkDropdown.get(2).click()
       logoutButton.click()
-      browser.sleep(3000)
 	})
 
 })
