@@ -5,13 +5,13 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Order Number</th>
-          <th>Owner</th>
+          <th>Order No.</th>
+          <th>Customer's Name</th>
           <th>Total Price</th>
           <th>Order Date</th>
           <th>Status</th>
           <th>View</th>
-          <th>Shipping</th>
+          <th>Shipping Date</th>
         </tr>
       </thead>
       <tbody>
@@ -21,8 +21,8 @@
           <td>{{ordermanCtrl.getPrice(order)}}</td>
           <td>{{order.orderDate | amCalendar}}</td>
           <td>
-            <span ng-if="order.status === 0">No pay</span>
-            <span ng-if="order.status === 1">Cancled</span>
+            <span ng-if="order.status === 0">Unpaid</span>
+            <span ng-if="order.status === 1">Canceled</span>
             <span ng-if="order.status > 1">Paid</span>
           </td>
           <td>
@@ -32,7 +32,7 @@
           <td ng-if="order.status === 0">
             <button type="button" class="btn btn-danger" ng-init="id=order.orderNumber" ng-click="ordermanCtrl.cancle(id)">
             Cancle <span class="glyphicon glyphicon-remove"></span></button></td>
-          <td ng-if="order.status === 1">Cancled</td>
+          <td ng-if="order.status === 1">Canceled</td>
           <td ng-if="order.status > 1">{{order.shipping.date | amCalendar}}</td>
         </tr>
       </tbody>
