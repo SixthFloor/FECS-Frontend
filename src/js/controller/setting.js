@@ -32,27 +32,28 @@
       }
 
       self.User.validEditProfile = true
-      User.confirmProfile(data, function () {
-        User.editprofile(data, function (res) {
-          $state.go('setting', {}, {reload: true})
-          var msg = '<span><b>Well done!</b> Edit Profile successfully.</span>'
-          notification.success({
-            message: msg
-          })
-        }, function (err) {
-          var msg = '<span><b>Edit Profile successfully!</b> But Credit Cards Failed.</span>'
-          notification.error({
-            message: msg,
-            replaceMessage: true
-          })
+      // User.confirmProfile(data, function () {
+      User.editprofile(data, function (res) {
+        $state.go('setting', {}, {reload: true})
+        var msg = '<span><b>Well done!</b> Edit Profile successfully.</span>'
+        notification.success({
+          message: msg
         })
       }, function (err) {
-        var msg = '<span><b>Confirm Failed</b> ' + err.error.description + '.</span>'
+        console.log(err)
+        var msg = '<span><b>ERROR: </b>' + err.data.description + '</span>'
         notification.error({
           message: msg,
           replaceMessage: true
         })
       })
+    // }, function (err) {
+    //   var msg = '<span><b>Confirm Failed</b> ' + err.error.description + '.</span>'
+    //   notification.error({
+    //     message: msg,
+    //     replaceMessage: true
+    //   })
+    // })
     }
   }
 })()

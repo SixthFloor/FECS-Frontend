@@ -211,11 +211,22 @@ every controller that have to identify the customer, authentication service has 
 
     self.editprofile = function (data, success, error) {
       if (self.zipcode === '') self.zipcode = '00000'
-      if (self.password === '') self.password = data.pwd
-      console.log('')
+      // if (self.password === '') self.password = data.pwd
+      var expdate = moment.utc([
+        self.expirationDate.year,
+        parseInt(self.expirationDate.month, 10) - 1,
+        1,
+        0
+      ])
+      var expdate_unix = expdate.valueOf()
+
       var req = {
         method: 'PUT',
-        url: environment.getBaseAPI() + 'user/' + self.email,
+        headers: {
+          email: self.email,
+          password: data.pwd
+        },
+        url: environment.getBaseAPI() + 'user/edit',
         data: {
           id: self.user_id,
           email: self.email,
@@ -226,36 +237,49 @@ every controller that have to identify the customer, authentication service has 
           address2: self.address2,
           province: self.province,
           zipcode: self.zipcode,
-          telephone_number: self.telephone_number
+          telephone_number: self.telephone_number,
+          card_name: self.card_name,
+          expirationDate: expdate_unix, // error
+          card_number: self.card_number
         }
       }
 
-      $http(req).then(function (response) {
-        var req = {
-          method: 'PUT',
-          url: environment.getBaseAPI() + 'user/payment',
-          headers: {
-            email: self.email,
-            password: data.pwd
-          },
-          data: {
-            card_name: self.card_name,
-            expirationDate: self.expirationDate.month + self.expirationDate.year, //error
-            card_number: self.card_number
-          }
-        }
+      // $http(req).then(function (response) {
+      //   console.log(response)
+      //   var expdate = moment.utc([
+      //     self.expirationDate.year,
+      //     parseInt(self.expirationDate.month, 10) - 1,
+      //     1,
+      //     0
+      //   ])
+      //   var expdate_unix = expdate.valueOf()
+      //   var req = {
+      //     method: 'PUT',
+      //     url: environment.getBaseAPI() + 'user/payment',
+      //     headers: {
+      //       email: self.email,
+      //       password: data.pwd
+      //     },
+      //     data: {
+      //       card_name: self.card_name,
+      //       expirationDate: expdate_unix, // error
+      //       card_number: self.card_number
+      //     }
+      //   }
 
-        $http(req).then(function (response) {
-          console.log(response)
-          success()
-        }, function (response) {
-          console.log(response)
-          error()
-        })
+      $http(req).then(function (response) {
+        console.log(response)
+        console.log(req)
+        success()
       }, function (response) {
         console.log(response)
-        error()
+        console.log(req)
+        error(response)
       })
+    // }, function (response) {
+    //   console.log(response)
+    //   error(response)
+    // })
     }
     initUser()
   }
