@@ -82,12 +82,15 @@
                 <a ui-sref="manageuser"><i class="fa fa-users"></i> Manage User </a>
               </li>
               <li>
+                <a href="#/admin/product"><i class="fa fa-shopping-bag"></i> Manage Product </a>
+              </li>
+              <li>
                 <a href="#/admin/orderman"><i class="fa fa-list-ul"></i> Manage Order </a>
               </li>
+              <li>
+                <a ui-sref="shipping"><i class="fa fa-truck"></i> Shipping Order </a>
+              </li>
             </div>
-            <li>
-              <a ui-sref="shipping"><i class="fa fa-truck"></i> Shipping Order </a>
-            </li>
           </ul>
         </li>
         <li class="dropdown" ng-if="User.isAuthed()">

@@ -197,5 +197,17 @@
         controller: 'ShippingController',
         controllerAs: 'shippingCtrl'
       })
+      .state('manageproduct', {
+        url: '/admin/product',
+        data: {
+          permissions: {
+            only: ['staff', 'owner', 'manager'],
+            redirectTo: 'home'
+          }
+        },
+        templateUrl: 'templates/admin/product/manageproduct.tmpl',
+        controller: 'ManageProductController',
+        controllerAs: 'manageproductCtrl'
+      })
   }
 })()

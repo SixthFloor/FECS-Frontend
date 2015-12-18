@@ -12,6 +12,7 @@
     .controller('ProductPageController', ProductPageController)
     .controller('AddProductController', AddProductController)
     .controller('EditProductController', EditProductController)
+    .controller('ManageProductController', ManageProductController)
 
   ProductPageController.$inject = ['$scope', '$http', '$stateParams', 'Cart']
   function ProductPageController ($scope, $http, $stateParams, Cart) {
@@ -274,6 +275,54 @@
       list.push({
         product: {
           id: self.product.id
+        },
+        quantity: quantity
+      })
+      console.log(list)
+      $http.post(url, list).success(function (response) {
+        console.log('Real product added')
+      }).error(function (response) {
+        console.log(response)
+      })
+    }
+  }
+
+  ManageProductController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Notification', 'Manage', 'NgTableParams']
+  function ManageProductController ($scope, $http, $state, $stateParams, notification, Manage, NgTableParams) {
+    var self = this
+
+    self.tableParams = new NgTableParams({
+      count: 10
+    },
+      {
+        counts: ['10', '50', '100'],
+        filterDelay: 300,
+        paginationMaxBlocks: 13,
+        paginationMinBlocks: 2,
+        getData: function (params) {
+          return Manage.getProduct(params).then(function (res) {
+            return res
+          }, function (res) {
+            return res
+          })
+        }
+      })
+    function resetRow (row, rowForm) {
+      row.isEditing = false
+      rowForm.$setPristine()
+      // self.tableTracker.untrack(row)
+      // console.log(_)
+      // return _.findWhere(originalData, function (r) {
+      //   return r.id === row.id
+      // })
+      return row
+    }
+    self.addToStock = function (quantity, Id) {
+      var list = []
+      var url = $scope.environment.getBaseAPI() + 'real-product/new'
+      list.push({
+        product: {
+          id: Id
         },
         quantity: quantity
       })

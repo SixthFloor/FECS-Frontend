@@ -142,6 +142,7 @@
           console.log(response)
         }
       }).error(function (response) {
+        console.log(self.payment)
         console.log(response)
       })
     }

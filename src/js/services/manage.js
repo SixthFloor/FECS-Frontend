@@ -15,6 +15,8 @@
     var self = this
     self.userlist = null
     self.getData = getData
+    self.productlist = null
+    self.getProduct = getProduct
     function getData (params) {
       var deferred = $q.defer()
       var req = {
@@ -24,6 +26,24 @@
       $http(req).then(function (response) {
         self.userlist = response.data
         var orderedData = params.sorting() ? $filter('orderBy')(self.userlist, params.orderBy()) : self.userlist
+        orderedData = params.filter() ? $filter('filter')(orderedData, params.filter()) : orderedData
+        params.total(orderedData.length)
+        deferred.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()))
+      }, function (response) {
+        deferred.reject(response)
+      })
+      return deferred.promise
+    }
+
+    function getProduct (params) {
+      var deferred = $q.defer()
+      var req = {
+        method: 'GET',
+        url: environment.getBaseAPI() + 'product/all'
+      }
+      $http(req).then(function (response) {
+        self.productlist = response.data
+        var orderedData = params.sorting() ? $filter('orderBy')(self.productlist, params.orderBy()) : self.productlist
         orderedData = params.filter() ? $filter('filter')(orderedData, params.filter()) : orderedData
         params.total(orderedData.length)
         deferred.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()))

@@ -1,0 +1,32 @@
+<div class="full-screen">
+	<div class="container-fluid">
+    <h1>Manage Product</h1>
+    <table ng-table="manageproductCtrl.tableParams" class="table" show-filter="true" ng-form="manageproductCtrl.tableForm" disable-filter="manageproductCtrl.isAdding">
+      <tr ng-repeat="product in $data" ng-form="rowForm">
+          <td title="'Image'" style="text-align:center;">
+              <img src={{product.images[0].link}} width="100"/></td>
+          </td>
+          <td title="'Serial Number'" filter="{ serialNumber: 'text'}" sortable="'serialNumber'" ng-switch="product.isEditing" ng-class="serialNumber.$dirty ? 'bg-warning' : ''">
+              <span ng-switch-default class="editable-text">{{product.serialNumber}}</span>
+              <div class="controls" ng-class="serialNumber.$invalid && serialNumber.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                <input type="text" name="serialNumber" ng-model="product.serialNumber" class="editable-input form-control input-sm" required />
+              </div>
+          </td>
+          <td title="'Product Name'" filter="{ name: 'text'}" sortable="'name'" ng-switch="user.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''">
+              <span ng-switch-default class="editable-text">{{product.name}}</span>
+              <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                <input type="text" name="name" ng-model="product.name" class="editable-input form-control input-sm" required />
+              </div>
+          </td>
+          <td title="'Add to stock'" style="text-align:center;">
+            <input type="number" size="4" min="1" ng-model="addQuantity">
+            <button type="button" ng-init="id=product.id" ng-click="manageproductCtrl.addToStock(addQuantity, id)" class="btn btn-primary" name="button">Add</button>
+          </td>
+          <td title="'Edit Product'" style="text-align:center;">
+            <a class="btn btn-default category-btn" href="#/admin/product/edit/{{product.serialNumber}}"> <span class="glyphicon glyphicon-edit"/>Edit</a>
+          </td>
+      </tr>
+    </table>
+    <div class="push-top"></div>
+  </div>
+</div>
