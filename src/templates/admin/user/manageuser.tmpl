@@ -23,12 +23,12 @@
           </td>
           <td title="'Joining Date'" sortable="'joiningDate'" style="width:10%; text-align:center;">
               {{user.joiningDate | amCalendar}}</td>
-          <td style="width:5%;">
+          <!-- <td style="width:5%;">
               <button class="btn btn-primary btn-sm" ng-click="manageuserCtrl.save(user, rowForm)" ng-if="user.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
               <button class="btn btn-default btn-sm" ng-click="manageuserCtrl.cancel(user, rowForm)" ng-if="user.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
               <button class="btn btn-default btn-sm" ng-click="user.isEditing = true" ng-if="!user.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
               <button class="btn btn-danger btn-sm" ng-click="manageuserCtrl.del(user)" ng-if="!user.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
-            </td>
+            </td> -->
       </tr>
     </table>
     <div class="push-top"></div>
