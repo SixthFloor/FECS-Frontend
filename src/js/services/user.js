@@ -126,8 +126,8 @@ every controller that have to identify the customer, authentication service has 
     self.setCardExpDate = function (exp) {
       if (exp) {
         var date = moment(exp)
-        self.expirationDate.year = date.year()
-        self.expirationDate.month = date.month()
+        self.expirationDate.year = date.year().toString()
+        self.expirationDate.month = (date.month() + 1).toString()
       }
     }
 
