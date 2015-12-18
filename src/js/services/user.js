@@ -128,6 +128,9 @@ every controller that have to identify the customer, authentication service has 
         var date = moment(exp)
         self.expirationDate.year = date.year().toString()
         self.expirationDate.month = (date.month() + 1).toString()
+      } else {
+        self.expirationDate.year = '2015'
+        self.expirationDate.month = '1'
       }
     }
 
