@@ -221,6 +221,7 @@
           notification.success({
             message: msg
           })
+          $state.transitionTo('category', { category_name: 'all' } )
         }, function (response) {
             var msg = response.description
             notification.error({
