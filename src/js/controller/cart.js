@@ -11,8 +11,8 @@
     .module('controller.cart', [])
     .controller('CartController', CartController)
 
-  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Cart']
-  function CartController ($scope, $http, $state, $stateParams, Cart) {
+  CartController.$inject = ['$scope', '$http', '$state', '$stateParams', 'Cart', 'Notification']
+  function CartController ($scope, $http, $state, $stateParams, Cart, notification) {
     var self = this
 
     self.calTotal = function () {
@@ -49,6 +49,11 @@
         Cart.init()
         $state.transitionTo('payment', {orderNumber: response})
       }).error(function (response) {
+        var msg = response.description
+        notification.error({
+          message: msg,
+          replaceMessage: true
+        })
         console.log('error')
         console.log(response)
       })
