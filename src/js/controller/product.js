@@ -86,7 +86,7 @@
         }
         productService.addproduct(function (response) {
           if (response.status === 'error') {
-            var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+            var msg = '<span><b>Add failed!</b> ' + response.message + '.</span>'
             notification.error({
               message: msg,
               replaceMessage: true
@@ -216,19 +216,17 @@
           self.product.dimensionDescription = '-'
         }
         productService.editproduct(function (response) {
-          if (response.status === 'error') {
-            var msg = '<span><b>Edit Failed!</b> ' + response.message + '.</span>'
+          console.log(response)
+          var msg = '<span><b>Success!</b> Edited Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + "'s datas saved.</span>"
+          notification.success({
+            message: msg
+          })
+        }, function (response) {
+            var msg = response.description
             notification.error({
               message: msg,
               replaceMessage: true
             })
-          } else {
-            msg = '<span><b>Success!</b> Edited Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + "'s datas saved.</span>"
-            notification.success({
-              message: msg
-            })
-          }
-        }, function (response) {
           console.log(response)
         }, self.catalogID)
       } else {

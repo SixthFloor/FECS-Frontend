@@ -82,23 +82,21 @@
         dimensionDescription: self.product.dimensionDescription
       }).success(success).error(error)
       $http.get(environment.getBaseAPI() + 'type/all').success(function (response) {
-        if (response.status !== 'error') {
-          for (var i = 0; i < response.length;i++) {
-            if (response[i].category.name === self.product.category.name &&
-              response[i].subCategory.name === self.product.subcategory.name) {
-              var newCatalog = {
-                id: catalogID,
-                type: {
-                  id: response[i].id
-                },
-                productDescription: {
-                  id: self.product.id
-                }
+        for (var i = 0; i < response.length;i++) {
+          if (response[i].category.name === self.product.category.name &&
+            response[i].subCategory.name === self.product.subcategory.name) {
+            var newCatalog = {
+              id: catalogID,
+              type: {
+                id: response[i].id
+              },
+              productDescription: {
+                id: self.product.id
               }
-              console.log(newCatalog)
-              url = environment.getBaseAPI() + 'catalog/edit'
-              $http.put(url, newCatalog).success(success).error(error)
             }
+            console.log(newCatalog)
+            url = environment.getBaseAPI() + 'catalog/edit'
+            $http.put(url, newCatalog)
           }
         }
       })
