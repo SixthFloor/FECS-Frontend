@@ -217,13 +217,13 @@
         }
         productService.editproduct(function (response) {
           if (response.status === 'error') {
-            var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+            var msg = '<span><b>Edit Failed!</b> ' + response.message + '.</span>'
             notification.error({
               message: msg,
               replaceMessage: true
             })
           } else {
-            msg = '<span><b>Success!</b> Edited Furniture ID: ' + self.productID + '<br/>' + self.product.productName + "'s datas saved.</span>"
+            msg = '<span><b>Success!</b> Edited Furniture ID: ' + self.product.serialNumber + '<br/>' + self.product.productName + "'s datas saved.</span>"
             notification.success({
               message: msg
             })
@@ -241,7 +241,7 @@
     self.delete = function () {
       productService.deleteproduct(function (response) {
         if (response.status === 'error') {
-          var msg = '<span><b>Oh snap!</b> ' + response.message + '.</span>'
+          var msg = '<span><b>Delete Failed!</b> ' + response.message + '.</span>'
           notification.error({
             message: msg,
             replaceMessage: true
@@ -280,6 +280,10 @@
       })
       console.log(list)
       $http.post(url, list).success(function (response) {
+        msg = '<span><b>Success!</b> Restocked productID: ' + self.product.id + ' for ' + quantity +' ea.'
+          notification.success({
+            message: msg
+        })
         console.log('Real product added')
       }).error(function (response) {
         console.log(response)
@@ -328,6 +332,10 @@
       })
       console.log(list)
       $http.post(url, list).success(function (response) {
+        msg = '<span><b>Success!</b> Restocked productID: ' + Id + ' for ' + quantity +' ea.'
+          notification.success({
+            message: msg
+        })
         console.log('Real product added')
       }).error(function (response) {
         console.log(response)
